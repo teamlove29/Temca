@@ -1,7 +1,117 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"/>
+    android:orientation="vertical"
+    tools:context=".MainActivity" >
+
+
+    <ImageView
+        android:layout_marginTop="40dp"
+        android:id="@+id/logoImageView"
+        android:layout_width="250dp"
+        android:layout_height="200dp"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/temca_logo"/>
+
+    <RelativeLayout
+        android:layout_marginTop="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        >
+
+        <Button
+            android:id="@+id/buttonWireSize"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:padding="10dp"
+            android:textColor="@color/black"
+            android:backgroundTint="#FFFFFF"
+            android:fontFamily="@font/kanit_regular"
+            android:textSize="17dp"
+            android:text="หาขนาดสาย"
+            android:onClick="HandleOnClick"/>
+
+        <Button
+            android:id="@+id/buttonPipeSize"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:padding="10dp"
+            android:layout_toRightOf="@+id/buttonWireSize"
+            android:textColor="@color/black"
+            android:backgroundTint="#FFFFFF"
+            android:fontFamily="@font/kanit_regular"
+            android:textSize="17dp"
+            android:text="หาขนาดท่อ/ราง"
+            android:onClick="HandleOnClick"/>
+
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:padding="10dp"
+            android:layout_below="@+id/buttonWireSize"
+            android:textColor="@color/black"
+            android:backgroundTint="#FFFFFF"
+            android:fontFamily="@font/kanit_regular"
+            android:textSize="17dp"
+            android:text="coming soon" />
+
+        <Button
+            android:id="@+id/button4"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:padding="10dp"
+            android:layout_below="@+id/buttonPipeSize"
+            android:layout_toRightOf="@+id/button3"
+            android:textColor="@color/black"
+            android:backgroundTint="#FFFFFF"
+            android:fontFamily="@font/kanit_regular"
+            android:textSize="17dp"
+            android:text="coming soon" />
+
+        <Button
+            android:id="@+id/button5"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:padding="10dp"
+            android:layout_below="@+id/button3"
+            android:textColor="@color/black"
+            android:backgroundTint="#FFFFFF"
+            android:fontFamily="@font/kanit_regular"
+            android:textSize="17dp"
+            android:text="coming soon" />
+
+        <Button
+            android:id="@+id/button6"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:padding="10dp"
+            android:layout_below="@+id/button4"
+            android:layout_toRightOf="@+id/button5"
+            android:textColor="@color/black"
+            android:backgroundTint="#FFFFFF"
+            android:fontFamily="@font/kanit_regular"
+            android:textSize="17dp"
+            android:text="coming soon" />
+
+
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/sponsorImageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/coming_soon"/>
+
+</LinearLayout>
