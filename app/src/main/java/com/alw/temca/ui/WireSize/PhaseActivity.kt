@@ -28,11 +28,10 @@ class PhaseActivity : AppCompatActivity(), onClickAdapterListener {
 
 
     override fun onClick(postion: Int, value: Int) {
-        println("dsaasdadasdsad $value")
         val intent = Intent(this,WireSizeActivity::class.java)
 //        val bundle = Bundle()
 //        bundle.putParcelable("restaurant", foodList[postion])
-        intent.putExtra("Test",value)
+        intent.putExtra("dataPhase",value)
         startActivity(intent)
     }
 

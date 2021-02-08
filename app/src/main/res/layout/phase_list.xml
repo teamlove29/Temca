@@ -18,7 +18,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="เฟส"
-                android:textSize="20dp"
+                android:textSize="16dp"
                 android:fontFamily="@font/kanit_regular"
                 android:textColor="@color/black"
                 android:layout_centerVertical="true"/>

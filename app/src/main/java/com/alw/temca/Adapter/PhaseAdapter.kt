@@ -6,7 +6,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.alw.temca.Model.PhaseModel
 import com.alw.temca.R
-import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.phase_list.view.*
 
 interface onClickAdapterListener{

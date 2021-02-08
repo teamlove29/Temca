@@ -41,7 +41,7 @@
 </RelativeLayout>
         //Phase
         <androidx.cardview.widget.CardView
-            android:onClick="phaseOnClick"
+      android:onClick="phaseOnClick"
       android:id="@+id/cardViewPhase"
       android:clickable="true"
       android:focusable="true"
@@ -69,7 +69,7 @@
                   android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
                   android:layout_marginRight="10dp"
-                  android:text="1  เฟส"
+                  android:hint="1  เฟส"
                   android:textSize="18dp"
                   android:layout_toLeftOf="@+id/iconPhase"
                   android:fontFamily="@font/kanit_regular"
@@ -88,6 +88,7 @@
   </androidx.cardview.widget.CardView>
         // Installation group
         <androidx.cardview.widget.CardView
+        android:onClick="installationOnClick"
         android:id="@+id/cardViewInstallation"
         android:clickable="true"
         android:focusable="true"
@@ -111,10 +112,11 @@
                 android:layout_centerVertical="true"/>
 
             <TextView
+                android:id="@+id/installationTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="10dp"
-                android:text="กลุ่ม 2"
+                android:hint="กลุ่ม 1"
                 android:textSize="18dp"
                 android:layout_toLeftOf="@+id/iconInstallation"
                 android:fontFamily="@font/kanit_regular"
@@ -133,6 +135,7 @@
     </androidx.cardview.widget.CardView>
         // WireType
         <androidx.cardview.widget.CardView
+            android:onClick="typeCableOnClick"
             android:id="@+id/cardViewWireType"
             android:clickable="true"
             android:focusable="true"
@@ -156,10 +159,11 @@
                     android:layout_centerVertical="true"/>
 
                 <TextView
+                    android:id="@+id/typeCableTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="10dp"
-                    android:text="IEC01"
+                    android:hint="IEC01"
                     android:textSize="18dp"
                     android:layout_toLeftOf="@+id/iconWireType"
                     android:fontFamily="@font/kanit_regular"
@@ -178,6 +182,7 @@
         </androidx.cardview.widget.CardView>
         // Circuit Breaker
         <androidx.cardview.widget.CardView
+            android:onClick="CircuitOnClick"
             android:id="@+id/cardViewCircuitBreaker"
             android:clickable="true"
             android:focusable="true"
@@ -201,10 +206,11 @@
                     android:layout_centerVertical="true"/>
 
                 <TextView
+                    android:id="@+id/circuitTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="10dp"
-                    android:text="40A"
+                    android:hint="40A"
                     android:textSize="18dp"
                     android:layout_toLeftOf="@+id/iconCircuitBreakere"
                     android:fontFamily="@font/kanit_regular"
@@ -242,24 +248,39 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="10dp"
-                    android:text="ระยะทาง"
+                    android:text="ระยะทาง(เมตร)"
                     android:textSize="20dp"
                     android:fontFamily="@font/kanit_regular"
                     android:textColor="@color/black"
                     android:layout_centerVertical="true"/>
 
+
                 <EditText
                     android:id="@+id/editTextDistance"
-                    android:layout_width="wrap_content"
+                    android:layout_width="250dp"
                     android:layout_height="wrap_content"
-                    android:hint="1234"
+                    android:layout_marginBottom="10dp"
                     android:inputType="number"
-                    android:textSize="18dp"
-                    android:layout_toRightOf="@+id/textViewDistance"
-                    android:backgroundTint="@null"
+                    android:hint="200"
                     android:fontFamily="@font/kanit_regular"
-                    android:textColor="@color/black"
-                    android:layout_centerVertical="true" />
+                    android:layout_toRightOf="@+id/textViewDistance"
+                    android:background="@null"
+                    android:layout_centerVertical="true"
+                    />
+
+
+<!--                <EditText-->
+<!--                    android:id="@+id/editTextDistance"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:hint="1234"-->
+<!--                    android:inputType="number"-->
+<!--                    android:textSize="18dp"-->
+<!--                    android:layout_toRightOf="@+id/textViewDistance"-->
+<!--                    android:backgroundTint="@null"-->
+<!--                    android:fontFamily="@font/kanit_regular"-->
+<!--                    android:textColor="@color/black"-->
+<!--                    android:layout_centerVertical="true" />-->
 
 <!--                <TextView-->
 <!--                    android:layout_width="wrap_content"-->
