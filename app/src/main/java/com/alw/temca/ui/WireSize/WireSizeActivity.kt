@@ -2,17 +2,21 @@ package com.alw.temca.ui.WireSize
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
+import android.provider.CalendarContract
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
-import com.alw.temca.Model.PhaseModel
+import androidx.core.widget.addTextChangedListener
 import com.alw.temca.R
 import kotlinx.android.synthetic.main.activity_wire_size.*
 
 
-
 class WireSizeActivity : AppCompatActivity() {
+    final val TASK_NAME_REQUEST_CODE = 100
     final val TASK_LIST_PREF_KEY_PHASE = "task_list_phase"
     final val TASK_LIST_PREF_KEY_INSTALLATION = "task_list_installation"
     final val TASK_LIST_PREF_KEY_TYPE_CABLE = "task_list_type_cable"
@@ -23,49 +27,85 @@ class WireSizeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_wire_size)
-
+        tableBeforeCalculate.visibility = View.GONE
         loadData()
 
         val intent = intent
-        val dataPhase = intent.getIntExtra("dataPhase",0)
         val dataInstallation = intent.getStringExtra("dataInstall")
         val dataTypeCable = intent.getStringExtra("dataTypeCable")
         val dataCircuit = intent.getStringExtra("dataCircuit")
 
-        if (dataPhase != 0){
-            phaseTextView.text = "$dataPhase เฟส"
-            saveData("phase",dataPhase.toString())
-        }
+
+//        if (dataPhase != 0){
+//            phaseTextView.text = "$dataPhase เฟส"
+//            saveData("phase", dataPhase.toString())
+//        }
 
         if (dataInstallation != null) {
             installationTextView.text = dataInstallation.slice(0..6)
-            saveData("installation",dataInstallation)
+            saveData("installation", dataInstallation)
         }
         if (dataTypeCable != null) {
             typeCableTextView.text = dataTypeCable
-            saveData("typeCable",dataTypeCable)
+            saveData("typeCable", dataTypeCable)
         }
         if (dataCircuit != null) {
             circuitTextView.text = dataCircuit
-            saveData("circuit",dataCircuit)
+            saveData("circuit", dataCircuit)
+        }
+
+        editTextDistance.addTextChangedListener(object : TextWatcher{
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                //ก่อนเปลี่ยนคือ ?
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                btnCal.apply {
+                    setBackgroundColor(resources.getColor(R.color.btnBlue))
+                    isClickable = true
+                    isSelected = true;
+                    isFocusable = true;
+                }
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+                //หลังจากพิมพ์ผลลัพคือ ?
+                saveData("distance",s.toString())
+            }
+
+        })
+
+    }
+
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode === TASK_NAME_REQUEST_CODE){
+            if(resultCode == RESULT_OK){
+                val dataPhase = data!!.getIntExtra("dataPhase",0)
+                if (dataPhase != 0){
+                    phaseTextView.text = "$dataPhase เฟส"
+                    saveData("phase", dataPhase.toString())
+                }
+            }
         }
     }
 
-    fun phaseOnClick(view:View){
-        val intent = Intent(this,PhaseActivity::class.java)
-        startActivity(intent)
+    fun phaseOnClick(view: View){
+        val intent = Intent(this, PhaseActivity::class.java)
+        startActivityForResult(intent,TASK_NAME_REQUEST_CODE)
     }
 
     fun installationOnClick(view: View) {
-        val intent = Intent(this,InstallationActivity::class.java)
+        val intent = Intent(this, InstallationActivity::class.java)
         startActivity(intent)
 
     }  fun typeCableOnClick(view: View) {
-        val intent = Intent(this,TypeCableActivity::class.java)
+        val intent = Intent(this, TypeCableActivity::class.java)
         startActivity(intent)
     }
     fun CircuitOnClick(view: View) {
-        val intent = Intent(this,CircuitActivity::class.java)
+        val intent = Intent(this, CircuitActivity::class.java)
         startActivity(intent)
     }
 
@@ -75,10 +115,31 @@ class WireSizeActivity : AppCompatActivity() {
         imm.showSoftInput(editTextDistance, InputMethodManager.SHOW_IMPLICIT)
     }
 
-    fun saveData(type:String,value:String){
+    fun calculatorOnClick(view: View) {
+        if (editTextDistance.text.isEmpty()){
+            editTextDistance.setText("100")
+        }
+        sponsorImageView.visibility = View.GONE
+        tableBeforeCalculate.visibility = View.VISIBLE
+        editTextDistance.clearFocus()
+        btnCal.apply {
+            isClickable = false
+            setBackgroundColor(Color.GRAY)
+            isSelected = false;
+            isFocusable = false;
+            hideKeyboard()
+        }
+    }
+
+    fun View.hideKeyboard() {
+        val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(windowToken, 0)
+    }
+
+    fun saveData(type: String, value: String){
         val data = value
         val sharedPref = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE) ?: return
-        with (sharedPref.edit()) {
+        with(sharedPref.edit()) {
             if (type == "phase"){
                 putString(TASK_LIST_PREF_KEY_PHASE, data)
             }
@@ -90,6 +151,10 @@ class WireSizeActivity : AppCompatActivity() {
             }
             if (type == "circuit"){
                 putString(TASK_LIST_PREF_KEY_CIRCUIT, data)
+
+            }
+            if (type == "distance"){
+                putString(TASK_LIST_PREF_KEY_DISTANCE, data)
             }
             commit()
         }
@@ -97,18 +162,20 @@ class WireSizeActivity : AppCompatActivity() {
 
     fun loadData(){
         val sharedPref = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
-        val dataOfPhase = sharedPref.getString(TASK_LIST_PREF_KEY_PHASE,"1 เฟส")
-        val dataOfInstallation = sharedPref.getString(TASK_LIST_PREF_KEY_INSTALLATION,"กลุ่ม 1")
-        val dataOfTypeCable = sharedPref.getString(TASK_LIST_PREF_KEY_TYPE_CABLE,"IEC01")
-        val dataOfCircuit = sharedPref.getString(TASK_LIST_PREF_KEY_CIRCUIT,"40A")
-        val dataOfDistance = sharedPref.getString(TASK_LIST_PREF_KEY_DISTANCE,"0")
+        val dataOfPhase = sharedPref.getString(TASK_LIST_PREF_KEY_PHASE, "1")
+        val dataOfInstallation = sharedPref.getString(TASK_LIST_PREF_KEY_INSTALLATION, "กลุ่ม 1")
+        val dataOfTypeCable = sharedPref.getString(TASK_LIST_PREF_KEY_TYPE_CABLE, "IEC01")
+        val dataOfCircuit = sharedPref.getString(TASK_LIST_PREF_KEY_CIRCUIT, "40A")
+        val dataOfDistance = sharedPref.getString(TASK_LIST_PREF_KEY_DISTANCE, "100")
 
-        phaseTextView.text = "$dataOfPhase เฟส"
+
+         phaseTextView.text = "$dataOfPhase เฟส"
         installationTextView.text = dataOfInstallation!!.slice(0..6)
         typeCableTextView.text = dataOfTypeCable
         circuitTextView.text = dataOfCircuit
-//        editTextDistance.text
+        editTextDistance.setText(dataOfDistance)
     }
+
 }
 
 

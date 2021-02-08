@@ -1,5 +1,6 @@
 package com.alw.temca.ui.WireSize
 
+import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -28,11 +29,17 @@ class PhaseActivity : AppCompatActivity(), onClickAdapterListener {
 
 
     override fun onClick(postion: Int, value: Int) {
-        val intent = Intent(this,WireSizeActivity::class.java)
-//        val bundle = Bundle()
-//        bundle.putParcelable("restaurant", foodList[postion])
-        intent.putExtra("dataPhase",value)
-        startActivity(intent)
+//        val intent = Intent(this,WireSizeActivity::class.java)
+////        val bundle = Bundle()
+////        bundle.putParcelable("restaurant", foodList[postion])
+//        intent.putExtra("dataPhase",value)
+//        startActivity(intent)
+        val resultIntent = Intent()
+        resultIntent.putExtra("dataPhase",value);
+
+        println("qeqasqewewqe ${resultIntent.getIntExtra("dataPhase",55)}")
+        setResult(Activity.RESULT_OK, resultIntent)
+        finish()
     }
 
 }

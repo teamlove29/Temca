@@ -10,7 +10,7 @@
 
 
     <ImageView
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="60dp"
         android:id="@+id/logoImageView"
         android:layout_width="250dp"
         android:layout_height="200dp"
@@ -25,46 +25,47 @@
         >
 
         <Button
+            android:foreground="?android:selectableItemBackground"
             android:id="@+id/buttonWireSize"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:padding="10dp"
-            android:textColor="@color/black"
-            android:backgroundTint="#FFFFFF"
+            android:background="@drawable/shape"
             android:fontFamily="@font/kanit_regular"
             android:textSize="17dp"
             android:text="หาขนาดสาย"
             android:onClick="HandleOnClick"/>
 
         <Button
+            android:foreground="?android:selectableItemBackground"
             android:id="@+id/buttonPipeSize"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:padding="10dp"
+            android:background="@drawable/shape"
             android:layout_toRightOf="@+id/buttonWireSize"
-            android:textColor="@color/black"
-            android:backgroundTint="#FFFFFF"
             android:fontFamily="@font/kanit_regular"
             android:textSize="17dp"
             android:text="หาขนาดท่อ/ราง"
             android:onClick="HandleOnClick"/>
 
         <Button
+            android:foreground="?android:selectableItemBackground"
             android:id="@+id/button3"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:padding="10dp"
+            android:background="@drawable/shape"
             android:layout_below="@+id/buttonWireSize"
-            android:textColor="@color/black"
-            android:backgroundTint="#FFFFFF"
             android:fontFamily="@font/kanit_regular"
             android:textSize="17dp"
             android:text="coming soon" />
 
         <Button
+            android:foreground="?android:selectableItemBackground"
             android:id="@+id/button4"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
@@ -72,26 +73,26 @@
             android:padding="10dp"
             android:layout_below="@+id/buttonPipeSize"
             android:layout_toRightOf="@+id/button3"
-            android:textColor="@color/black"
-            android:backgroundTint="#FFFFFF"
+            android:background="@drawable/shape"
             android:fontFamily="@font/kanit_regular"
             android:textSize="17dp"
             android:text="coming soon" />
 
         <Button
+            android:foreground="?android:selectableItemBackground"
             android:id="@+id/button5"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:padding="10dp"
             android:layout_below="@+id/button3"
-            android:textColor="@color/black"
-            android:backgroundTint="#FFFFFF"
+            android:background="@drawable/shape"
             android:fontFamily="@font/kanit_regular"
             android:textSize="17dp"
             android:text="coming soon" />
 
         <Button
+            android:foreground="?android:selectableItemBackground"
             android:id="@+id/button6"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
@@ -99,19 +100,19 @@
             android:padding="10dp"
             android:layout_below="@+id/button4"
             android:layout_toRightOf="@+id/button5"
-            android:textColor="@color/black"
-            android:backgroundTint="#FFFFFF"
+            android:background="@drawable/shape"
             android:fontFamily="@font/kanit_regular"
             android:textSize="17dp"
             android:text="coming soon" />
 
 
+
     </RelativeLayout>
 
-    <ImageView
-        android:id="@+id/sponsorImageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/coming_soon"/>
+<!--    <ImageView-->
+<!--        android:id="@+id/sponsorImageView"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:background="@drawable/coming_soon"/>-->
 
 </LinearLayout>

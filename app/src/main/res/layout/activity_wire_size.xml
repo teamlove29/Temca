@@ -261,6 +261,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
                     android:inputType="number"
+                    android:maxLength="3"
                     android:hint="200"
                     android:fontFamily="@font/kanit_regular"
                     android:layout_toRightOf="@+id/textViewDistance"
@@ -295,12 +296,14 @@
         </androidx.cardview.widget.CardView>
 
     <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnCal"
+        android:onClick="calculatorOnClick"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cornerRadius="20dp"
-        android:padding="15dp"
+        android:padding="10dp"
         android:layout_margin="10dp"
-        android:textSize="25dp"
+        android:textSize="20dp"
         android:backgroundTint="@color/btnBlue"
         android:fontFamily="@font/kanit_regular"
         android:text="คำนวณ"/>
@@ -310,5 +313,107 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/coming_soon"/>
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/tableBeforeCalculate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="5dp">
+
+        <RelativeLayout
+            android:padding="50dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/textViewShow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ขนาดท่อร้อยสาย(ราง) "
+                android:textSize="16dp"
+                android:fontFamily="@font/kanit_regular"
+                android:textColor="@color/black" />
+
+
+            <TextView
+                android:id="@+id/textViewShow2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignRight="@+id/textViewShow"
+                android:text="10 sq.mm"
+                android:textSize="16dp"
+                android:fontFamily="@font/kanit_regular"
+                android:textColor="@color/black" />
+
+
+            <TextView
+                android:id="@+id/textViewShow3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_below="@+id/textViewShow"
+                android:text="ขนาดสายไฟฟ้า"
+                android:textSize="16dp"
+                android:fontFamily="@font/kanit_regular"
+                android:textColor="@color/black" />
+
+
+            <TextView
+                android:id="@+id/textViewShow4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_below="@+id/textViewShow2"
+                android:layout_alignParentRight="true"
+                android:text="3/4"
+                android:textSize="16dp"
+                android:fontFamily="@font/kanit_regular"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/textViewShow5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_below="@+id/textViewShow3"
+                android:text="แรงดันตก"
+                android:textSize="16dp"
+                android:fontFamily="@font/kanit_regular"
+                android:textColor="@color/black" />
+
+
+            <TextView
+                android:id="@+id/textViewShow6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_below="@+id/textViewShow4"
+                android:layout_alignParentRight="true"
+                android:text="-%"
+                android:textSize="16dp"
+                android:fontFamily="@font/kanit_regular"
+                android:textColor="@color/black" />
+
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textViewShow6"
+                app:cornerRadius="10dp"
+                android:padding="10dp"
+                android:layout_margin="10dp"
+                android:textSize="14dp"
+                android:backgroundTint="#50596F"
+                android:fontFamily="@font/kanit_regular"
+                android:layout_centerHorizontal="true"
+                android:text="สร้างรายงาน"/>
+
+        </RelativeLayout>
+
+
+
+    </androidx.cardview.widget.CardView>
+
 </LinearLayout>
 </ScrollView>
