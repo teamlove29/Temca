@@ -1,5 +1,6 @@
 package com.alw.temca.ui.WireSize
 
+import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -33,8 +34,12 @@ class InstallationActivity : AppCompatActivity(), InstallationonClickAdapterList
     }
 
     override fun onClick(postion: Int) {
-        val intent = Intent(this,WireSizeActivity::class.java)
-        intent.putExtra("dataInstall", installItem[postion].name)
-        startActivity(intent)
+//        val intent = Intent(this,WireSizeActivity::class.java)
+//        intent.putExtra("dataInstall", installItem[postion].name)
+//        startActivity(intent)
+        val resultIntent = Intent()
+        resultIntent.putExtra("dataInstall",installItem[postion].name);
+        setResult(Activity.RESULT_OK, resultIntent)
+        finish()
     }
 }

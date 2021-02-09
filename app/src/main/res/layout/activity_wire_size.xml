@@ -163,7 +163,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="10dp"
-                    android:hint="IEC01"
+                    android:hint="CV"
                     android:textSize="18dp"
                     android:layout_toLeftOf="@+id/iconWireType"
                     android:fontFamily="@font/kanit_regular"
@@ -261,8 +261,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
                     android:inputType="number"
-                    android:maxLength="3"
-                    android:hint="200"
+                    android:maxLength="5"
+                    android:hint="2000"
                     android:fontFamily="@font/kanit_regular"
                     android:layout_toRightOf="@+id/textViewDistance"
                     android:background="@null"
@@ -397,6 +397,7 @@
                 android:textColor="@color/black" />
 
             <com.google.android.material.button.MaterialButton
+                android:onClick="ReportOnClick"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/textViewShow6"

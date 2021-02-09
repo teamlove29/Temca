@@ -36,8 +36,6 @@ class PhaseActivity : AppCompatActivity(), onClickAdapterListener {
 //        startActivity(intent)
         val resultIntent = Intent()
         resultIntent.putExtra("dataPhase",value);
-
-        println("qeqasqewewqe ${resultIntent.getIntExtra("dataPhase",55)}")
         setResult(Activity.RESULT_OK, resultIntent)
         finish()
     }

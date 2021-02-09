@@ -62,7 +62,8 @@
             android:layout_below="@+id/buttonWireSize"
             android:fontFamily="@font/kanit_regular"
             android:textSize="17dp"
-            android:text="coming soon" />
+            android:text="coming soon"
+            android:onClick="HandleOnClick"/>
 
         <Button
             android:foreground="?android:selectableItemBackground"
@@ -76,7 +77,8 @@
             android:background="@drawable/shape"
             android:fontFamily="@font/kanit_regular"
             android:textSize="17dp"
-            android:text="coming soon" />
+            android:text="coming soon"
+            android:onClick="HandleOnClick"/>
 
         <Button
             android:foreground="?android:selectableItemBackground"
@@ -89,7 +91,8 @@
             android:background="@drawable/shape"
             android:fontFamily="@font/kanit_regular"
             android:textSize="17dp"
-            android:text="coming soon" />
+            android:text="coming soon"
+            android:onClick="HandleOnClick"/>
 
         <Button
             android:foreground="?android:selectableItemBackground"
@@ -103,7 +106,8 @@
             android:background="@drawable/shape"
             android:fontFamily="@font/kanit_regular"
             android:textSize="17dp"
-            android:text="coming soon" />
+            android:text="coming soon"
+            android:onClick="HandleOnClick"/>
 
 
 

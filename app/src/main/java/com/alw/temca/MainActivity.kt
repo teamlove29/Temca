@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import com.alw.temca.ui.PipeSize.PipeSizeActivity
+import com.alw.temca.ui.SoonActivity
 import com.alw.temca.ui.WireSize.WireSizeActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -22,6 +23,22 @@ class MainActivity : AppCompatActivity() {
             }
             buttonPipeSize -> {
                 val intent = Intent(this,PipeSizeActivity::class.java)
+                startActivity(intent)
+            }
+            button3 -> {
+                val intent = Intent(this,SoonActivity::class.java)
+                startActivity(intent)
+            }
+            button4 -> {
+                val intent = Intent(this,SoonActivity::class.java)
+                startActivity(intent)
+            }
+            button5 -> {
+                val intent = Intent(this,SoonActivity::class.java)
+                startActivity(intent)
+            }
+            button6 -> {
+                val intent = Intent(this,SoonActivity::class.java)
                 startActivity(intent)
             }
         }

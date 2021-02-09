@@ -30,36 +30,13 @@ class WireSizeActivity : AppCompatActivity() {
         tableBeforeCalculate.visibility = View.GONE
         loadData()
 
-        val intent = intent
-        val dataInstallation = intent.getStringExtra("dataInstall")
-        val dataTypeCable = intent.getStringExtra("dataTypeCable")
-        val dataCircuit = intent.getStringExtra("dataCircuit")
-
-
-//        if (dataPhase != 0){
-//            phaseTextView.text = "$dataPhase เฟส"
-//            saveData("phase", dataPhase.toString())
-//        }
-
-        if (dataInstallation != null) {
-            installationTextView.text = dataInstallation.slice(0..6)
-            saveData("installation", dataInstallation)
-        }
-        if (dataTypeCable != null) {
-            typeCableTextView.text = dataTypeCable
-            saveData("typeCable", dataTypeCable)
-        }
-        if (dataCircuit != null) {
-            circuitTextView.text = dataCircuit
-            saveData("circuit", dataCircuit)
-        }
-
         editTextDistance.addTextChangedListener(object : TextWatcher{
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
                 //ก่อนเปลี่ยนคือ ?
             }
-
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                sponsorImageView.visibility = View.VISIBLE
+                tableBeforeCalculate.visibility = View.GONE
                 btnCal.apply {
                     setBackgroundColor(resources.getColor(R.color.btnBlue))
                     isClickable = true
@@ -67,7 +44,6 @@ class WireSizeActivity : AppCompatActivity() {
                     isFocusable = true;
                 }
             }
-
             override fun afterTextChanged(s: Editable?) {
                 //หลังจากพิมพ์ผลลัพคือ ?
                 saveData("distance",s.toString())
@@ -83,11 +59,35 @@ class WireSizeActivity : AppCompatActivity() {
         if (requestCode === TASK_NAME_REQUEST_CODE){
             if(resultCode == RESULT_OK){
                 val dataPhase = data!!.getIntExtra("dataPhase",0)
+                val dataInstallation = data!!.getStringExtra("dataInstall")
+                val dataTypeCable = data!!.getStringExtra("dataTypeCable")
+                val dataCircuit = data!!.getStringExtra("dataCircuit")
+
                 if (dataPhase != 0){
                     phaseTextView.text = "$dataPhase เฟส"
                     saveData("phase", dataPhase.toString())
                 }
+                if (dataInstallation != null) {
+                    installationTextView.text = dataInstallation.slice(0..6)
+                    saveData("installation", dataInstallation)
+                }
+                if (dataTypeCable != null) {
+                    typeCableTextView.text = dataTypeCable
+                    saveData("typeCable", dataTypeCable)
+                }
+                if (dataCircuit != null) {
+                    circuitTextView.text = dataCircuit
+                    saveData("circuit", dataCircuit)
+                }
             }
+        }
+        sponsorImageView.visibility = View.VISIBLE
+        tableBeforeCalculate.visibility = View.GONE
+        btnCal.apply {
+            setBackgroundColor(resources.getColor(R.color.btnBlue))
+            isClickable = true
+            isSelected = true;
+            isFocusable = true;
         }
     }
 
@@ -98,15 +98,20 @@ class WireSizeActivity : AppCompatActivity() {
 
     fun installationOnClick(view: View) {
         val intent = Intent(this, InstallationActivity::class.java)
-        startActivity(intent)
+        startActivityForResult(intent,TASK_NAME_REQUEST_CODE)
 
     }  fun typeCableOnClick(view: View) {
         val intent = Intent(this, TypeCableActivity::class.java)
-        startActivity(intent)
+        startActivityForResult(intent,TASK_NAME_REQUEST_CODE)
     }
     fun CircuitOnClick(view: View) {
         val intent = Intent(this, CircuitActivity::class.java)
-        startActivity(intent)
+        startActivityForResult(intent,TASK_NAME_REQUEST_CODE)
+    }
+    fun ReportOnClick(view: View) {
+        val intent = Intent(this, ReportActivity::class.java)
+        startActivityForResult(intent,TASK_NAME_REQUEST_CODE)
+        finish()
     }
 
     fun DestanceOnClick(view: View) {
