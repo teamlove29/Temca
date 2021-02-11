@@ -2,11 +2,13 @@ package com.alw.temca.ui.WireSize
 
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.graphics.Color
 import android.os.Bundle
 import android.provider.CalendarContract
 import android.text.Editable
 import android.text.TextWatcher
+import android.text.method.TextKeyListener.clear
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
@@ -181,6 +183,12 @@ class WireSizeActivity : AppCompatActivity() {
         editTextDistance.setText(dataOfDistance)
     }
 
+
+    override fun onRestart() {
+        super.onRestart()
+        val sharedPref = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE).edit().clear()
+        sharedPref.apply()
+    }
 }
 
 
