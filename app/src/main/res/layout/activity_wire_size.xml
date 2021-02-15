@@ -310,9 +310,11 @@
 
     <ImageView
         android:id="@+id/sponsorImageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/coming_soon"/>
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_margin="84dp"
+        android:background="@drawable/support"
+        android:scaleType="fitCenter" />
 
 
     <androidx.cardview.widget.CardView

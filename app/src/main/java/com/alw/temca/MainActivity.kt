@@ -27,18 +27,22 @@ class MainActivity : AppCompatActivity() {
             }
             button3 -> {
                 val intent = Intent(this,SoonActivity::class.java)
+                intent.putExtra("txt",button3.text)
                 startActivity(intent)
             }
             button4 -> {
                 val intent = Intent(this,SoonActivity::class.java)
+                intent.putExtra("txt",button4.text)
                 startActivity(intent)
             }
             button5 -> {
                 val intent = Intent(this,SoonActivity::class.java)
+                intent.putExtra("txt",button5.text)
                 startActivity(intent)
             }
             button6 -> {
                 val intent = Intent(this,SoonActivity::class.java)
+                intent.putExtra("txt",button6.text)
                 startActivity(intent)
             }
         }

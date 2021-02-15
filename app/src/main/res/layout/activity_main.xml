@@ -52,62 +52,74 @@
             android:onClick="HandleOnClick"/>
 
         <Button
-            android:foreground="?android:selectableItemBackground"
             android:id="@+id/button3"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:padding="10dp"
-            android:background="@drawable/shape"
             android:layout_below="@+id/buttonWireSize"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/shape"
             android:fontFamily="@font/kanit_regular"
-            android:textSize="17dp"
-            android:text="coming soon"
-            android:onClick="HandleOnClick"/>
+            android:foreground="?android:selectableItemBackground"
+            android:onClick="HandleOnClick"
+            android:padding="10dp"
+            android:text="module 3"
+            android:textSize="17dp" />
 
         <Button
-            android:foreground="?android:selectableItemBackground"
             android:id="@+id/button4"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:padding="10dp"
             android:layout_below="@+id/buttonPipeSize"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
             android:layout_toRightOf="@+id/button3"
             android:background="@drawable/shape"
             android:fontFamily="@font/kanit_regular"
-            android:textSize="17dp"
-            android:text="coming soon"
-            android:onClick="HandleOnClick"/>
+            android:foreground="?android:selectableItemBackground"
+            android:onClick="HandleOnClick"
+            android:padding="10dp"
+            android:text="module 4"
+            android:textSize="17dp" />
 
         <Button
-            android:foreground="?android:selectableItemBackground"
             android:id="@+id/button5"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:padding="10dp"
             android:layout_below="@+id/button3"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
             android:background="@drawable/shape"
             android:fontFamily="@font/kanit_regular"
-            android:textSize="17dp"
-            android:text="coming soon"
-            android:onClick="HandleOnClick"/>
+            android:foreground="?android:selectableItemBackground"
+            android:onClick="HandleOnClick"
+            android:padding="10dp"
+            android:text="module 5"
+            android:textSize="17dp" />
 
         <Button
-            android:foreground="?android:selectableItemBackground"
             android:id="@+id/button6"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:padding="10dp"
             android:layout_below="@+id/button4"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
             android:layout_toRightOf="@+id/button5"
             android:background="@drawable/shape"
             android:fontFamily="@font/kanit_regular"
-            android:textSize="17dp"
-            android:text="coming soon"
-            android:onClick="HandleOnClick"/>
+            android:foreground="?android:selectableItemBackground"
+            android:onClick="HandleOnClick"
+            android:padding="10dp"
+            android:text="module 6"
+            android:textSize="17dp" />
 
 
 
