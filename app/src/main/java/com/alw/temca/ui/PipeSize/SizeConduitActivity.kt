@@ -1,5 +1,7 @@
 package com.alw.temca.ui.PipeSize
 
+import android.app.Activity
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -25,6 +27,9 @@ class SizeConduitActivity : AppCompatActivity(), InstallationonClickAdapterListe
 
     }
     override fun onClick(postion: Int) {
-
+        val resultIntent = Intent()
+        resultIntent.putExtra("dataSizeConduit",listConduit[postion].name);
+        setResult(Activity.RESULT_OK, resultIntent)
+        finish()
     }
 }

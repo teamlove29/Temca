@@ -13,6 +13,9 @@ import com.alw.temca.R
 import com.alw.temca.ui.WireSize.TypeCableActivity
 import kotlinx.android.synthetic.main.activity_pipe_size.*
 import kotlinx.android.synthetic.main.activity_wire_size.typeCableTextView
+import java.io.BufferedReader
+import java.io.InputStreamReader
+import java.io.Reader
 
 
 class PipeSizeActivity : AppCompatActivity() {
@@ -21,6 +24,7 @@ class PipeSizeActivity : AppCompatActivity() {
     final val TASK_LIST_PREF_KEY_TYPE_CABLE_IN_PIPE = "task_list_type_cable_in_pipe"
     final val TASK_LIST_PREF_KEY_SIZE = "task_list_size"
     final val TASK_LIST_PREF_KEY_AMOUNT = "task_list_amount"
+    final val TASK_LIST_PREF_KEY_CONDUIT = "task_list_conduit"
     final val PREF_NAME = "task_pipe"
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,6 +33,16 @@ class PipeSizeActivity : AppCompatActivity() {
         loadData()
         switchButton()
         tableBeforeCalculateInPipe.visibility = View.GONE
+
+
+        val inputStream = resources.openRawResource(R.raw.story)
+        val reader  = BufferedReader(InputStreamReader(inputStream, charset("UTF-8")))
+        val csvLine : String = reader.readLine()
+        val test = reader.readLine()
+        val test2 = test.split(",")
+
+        println("dasasdadss ${csvLine}")
+
 
         editTextAmountCable.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
@@ -119,12 +133,9 @@ class PipeSizeActivity : AppCompatActivity() {
 //                val dataPhase = data!!.getIntExtra("dataPhase",0)
                 val dataSizeCable = data!!.getStringExtra("dataSizeCable")
                 val dataTypeCable = data!!.getStringExtra("dataTypeCable")
-                val dataAmount = data!!.getStringExtra("dataAmount")
+                val dataConduit = data!!.getStringExtra("dataSizeConduit")
 
-//                if (dataPhase != 0){
-//                    phaseTextView.text = "$dataPhase เฟส"
-//                    saveData("phase", dataPhase.toString())
-//                }
+
                 if (dataSizeCable != null) {
                     cableSizeTextView.text = dataSizeCable
                     saveData("sizeCable", dataSizeCable)
@@ -132,6 +143,10 @@ class PipeSizeActivity : AppCompatActivity() {
                 if (dataTypeCable != null) {
                     typeCableTextView.text = dataTypeCable
                     saveData("typeCable", dataTypeCable)
+                }
+                if (dataConduit != null){
+                    SizeConduitTextView.text = dataConduit
+                    saveData("conduit", dataConduit)
                 }
             }
         }
@@ -165,9 +180,7 @@ class PipeSizeActivity : AppCompatActivity() {
         val data = value
         val sharedPref = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE) ?: return
         with(sharedPref.edit()) {
-//            if (type == "phase"){
-//                putString(TASK_LIST_PREF_KEY_PHASE, data)
-//            }
+
             if (type == "sizeCable"){
                 putString(TASK_LIST_PREF_KEY_SIZE, data)
             }
@@ -177,19 +190,22 @@ class PipeSizeActivity : AppCompatActivity() {
             if (type == "amount"){
                 putString(TASK_LIST_PREF_KEY_AMOUNT, data)
             }
+            if (type == "conduit"){
+                putString(TASK_LIST_PREF_KEY_CONDUIT, data)
+            }
             commit()
         }
     }
 
     fun loadData(){
     val sharedPref = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
-//    val dataOfPhase = sharedPref.getString(TASK_LIST_PREF_KEY_PHASE, "1")
+
     val dataOfSizeCable = sharedPref.getString(TASK_LIST_PREF_KEY_SIZE, "2.5 มม2")
     val dataOfTypeCable = sharedPref.getString(TASK_LIST_PREF_KEY_TYPE_CABLE_IN_PIPE, "IEC01")
     val dataOfAmount = sharedPref.getString(TASK_LIST_PREF_KEY_AMOUNT, "2")
-//
-//
-//    phaseTextView.text = "$dataOfPhase เฟส"
+    val dataOfConduit = sharedPref.getString(TASK_LIST_PREF_KEY_CONDUIT, "100x100 มม.")
+
+    SizeConduitTextView.text = dataOfConduit
     cableSizeTextView.text = dataOfSizeCable
     typeCableTextView.text = dataOfTypeCable
     editTextAmountCable.setText(dataOfAmount)
