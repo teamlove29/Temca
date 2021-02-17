@@ -248,6 +248,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="10dp"
+                    android:layout_marginLeft="5dp"
                     android:text="ระยะทาง(เมตร)"
                     android:textSize="20dp"
                     android:fontFamily="@font/kanit_regular"
