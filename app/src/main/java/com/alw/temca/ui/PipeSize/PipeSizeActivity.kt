@@ -2,7 +2,6 @@ package com.alw.temca.ui.PipeSize
 
 import android.content.Context
 import android.content.Intent
-import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
@@ -11,11 +10,10 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import com.alw.temca.R
 import com.alw.temca.ui.WireSize.TypeCableActivity
+import jxl.Workbook
 import kotlinx.android.synthetic.main.activity_pipe_size.*
 import kotlinx.android.synthetic.main.activity_wire_size.typeCableTextView
-import java.io.BufferedReader
-import java.io.InputStreamReader
-import java.io.Reader
+import java.io.IOException
 
 
 class PipeSizeActivity : AppCompatActivity() {
@@ -35,13 +33,7 @@ class PipeSizeActivity : AppCompatActivity() {
         tableBeforeCalculateInPipe.visibility = View.GONE
 
 
-        val inputStream = resources.openRawResource(R.raw.story)
-        val reader  = BufferedReader(InputStreamReader(inputStream, charset("UTF-8")))
-        val csvLine : String = reader.readLine()
-        val test = reader.readLine()
-        val test2 = test.split(",")
-
-        println("dasasdadss ${csvLine}")
+        calculator()
 
 
         editTextAmountCable.addTextChangedListener(object : TextWatcher {
@@ -59,6 +51,9 @@ class PipeSizeActivity : AppCompatActivity() {
             }
 
         })
+    }
+
+    private fun calculator() {
 
     }
 
@@ -115,6 +110,9 @@ class PipeSizeActivity : AppCompatActivity() {
     }
 
     fun calculatorOnClick(view: View) {
+        val result = ArrayList<String>()
+        val sizeCable = arrayListOf<String>("1 มม2","1.5 มม2","2.5 มม2","4 มม2","6 มม2","10 มม2","16 มม2","25 มม2","35 มม2","50 มม2","70 มม2","95 มม2","120 มม2","150 มม2","185 มม2","240 มม2","300 มม2","400 มม2","500 มม2")
+        var typeCable = ""
         if (editTextAmountCable.text.isEmpty()){
             editTextAmountCable.setText("2")
         }
@@ -123,6 +121,61 @@ class PipeSizeActivity : AppCompatActivity() {
         btnCalInPipeSize.apply {
             hideKeyboard()
         }
+
+
+
+        when(typeCableTextView.text){
+            "IEC01" -> typeCable = "IEC01.xls"
+            "NYY 1C" -> typeCable = "NYY1C.xls"
+            "NYY 2C" -> typeCable = "NYY2C.xls"
+            "NYY 3C" -> typeCable = "NYY3C.xls"
+            "NYY 4C" -> typeCable = "NYY4C.xls"
+            "IEC10 2C" -> typeCable = "IEC102C.xls"
+            "IEC10 3C" -> typeCable = "IEC103C.xls"
+            "XLPE 1C" -> typeCable = "XLPE1C.xls"
+            "XLPE 2C" -> typeCable = "XLPE2C.xls"
+            "XLPE 3C" -> typeCable = "XLPE3C.xls"
+            "XLPE 4C" -> typeCable = "XLPE4C.xls"
+
+        }
+
+        try {
+            val typeCable = applicationContext.assets.open(typeCable)
+            val wb = Workbook.getWorkbook(typeCable)
+            val sheet = wb.getSheet(0)
+            val typeCabletitle = sheet.getCell(0,0).contents
+            if (typeCableTextView.text == typeCabletitle){
+                sizeCable.forEachIndexed { index,size  ->
+                    if (cableSizeTextView.text == size){
+                       for (i in 1..12){
+                           //  i is col result
+                           if (editTextAmountCable.text.toString().toInt() <= sheet.getCell(i,index + 1).contents.toInt()){
+                               textViewShow4InPipe.text = "${sheet.getCell(i,0).contents} (${sheet.getCell(i,index + 1).contents} เส้น)"
+                               break
+                            }else{
+                               textViewShow4InPipe.text = "null"
+                           }
+                       }
+                        for (j in 14..22){
+                            //  j is col result
+                            if(editTextAmountCable.text.toString().toInt() <= sheet.getCell(j,index + 1).contents.toInt()){
+                                 textViewShow6InPipe.text = "${sheet.getCell(j, 0).contents} (${sheet.getCell(j,index + 1).contents} เส้น)"
+                                break
+                            }else{
+                                textViewShow6InPipe.text = "null"
+                            }
+       }
+                } }
+
+            }else{
+                println("Error NO Output")
+            }
+        } catch (e: IOException) {
+            e.printStackTrace()
+            println("Error NO00 $e")
+        }
+
+
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

@@ -19,8 +19,15 @@ class SizeConduitActivity : AppCompatActivity(), InstallationonClickAdapterListe
         setContentView(R.layout.activity_size_conduit)
 
 
+        listConduit.add(SizeConduitModel("50x75 มม."))
+        listConduit.add(SizeConduitModel("50x100 มม."))
+        listConduit.add(SizeConduitModel("75x100 มม."))
         listConduit.add(SizeConduitModel("100x100 มม."))
         listConduit.add(SizeConduitModel("100x150 มม."))
+        listConduit.add(SizeConduitModel("100x200 มม."))
+        listConduit.add(SizeConduitModel("100x250 มม."))
+        listConduit.add(SizeConduitModel("100x300 มม."))
+        listConduit.add(SizeConduitModel("150x300 มม."))
 
         recyclerViewSizeConduit.adapter = SizeConduitAdapter(listConduit,this)
         recyclerViewSizeConduit.layoutManager = LinearLayoutManager(this)
