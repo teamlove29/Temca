@@ -37,40 +37,36 @@
                 android:textSize="35dp"/>
 
         </RelativeLayout>
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardViewTitle"
-            app:cardCornerRadius="5dp"
-            android:layout_marginBottom="1dp"
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardViewSwitchButton"
+        app:cardCornerRadius="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:padding="15dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <RelativeLayout
-                android:padding="15dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <TextView
-                    android:id="@+id/titlePipeSize"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="หาขนาดท่อและราง"
-                    android:textSize="20dp"
-                    android:fontFamily="@font/kanit_regular"
-                    android:textColor="@color/black"
-                    android:layout_centerVertical="true"/>
+        <TextView
+            android:id="@+id/titlePipeSize"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="หาขนาดท่อและราง"
+            android:textSize="22dp"
+            android:fontFamily="@font/kanit_regular"
+            android:textColor="@color/black" />
 
-            <Switch
-                android:id="@+id/switchButtonPipeSize"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_alignParentRight="true"
-                android:focusedByDefault="false" />
+        <Switch
+            android:id="@+id/switchButtonPipeSize"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:focusedByDefault="false" />
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
 
-            </RelativeLayout>
 
-        </androidx.cardview.widget.CardView>
-
-        // WireType
         <androidx.cardview.widget.CardView
             android:onClick="typeCableOnClickInPipeSize"
             android:id="@+id/cardViewWireType"
@@ -82,18 +78,19 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+
             <RelativeLayout
                 android:padding="15dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="ชนิดสายไฟ"
                     android:textSize="20dp"
                     android:fontFamily="@font/kanit_regular"
-                    android:textColor="@color/black"
-                    android:layout_centerVertical="true"/>
+                    android:textColor="@color/black" />
 
                 <TextView
                     android:id="@+id/typeCableTextView"
@@ -103,15 +100,13 @@
                     android:hint="CV"
                     android:textSize="18dp"
                     android:layout_toLeftOf="@+id/iconWireType"
-                    android:fontFamily="@font/kanit_regular"
-                    android:layout_centerVertical="true"/>
+                    android:fontFamily="@font/kanit_regular" />
 
                 <ImageView
                     android:id="@+id/iconWireType"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_baseline_keyboard_arrow_right_24"
-                    android:layout_centerVertical="true"
                     android:layout_alignParentRight="true"/>
 
             </RelativeLayout>
@@ -265,9 +260,11 @@
             android:id="@+id/btnCalInPipeSize"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:cornerRadius="20dp"
+            app:cornerRadius="10dp"
             android:padding="10dp"
-            android:layout_margin="10dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
             android:textSize="20dp"
             android:backgroundTint="@color/btnBlue"
             android:fontFamily="@font/kanit_regular"
@@ -278,6 +275,7 @@
             android:id="@+id/tableBeforeCalculateInPipe"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:backgroundTint="@color/btnBlue"
             app:cardCornerRadius="5dp">
 
             <RelativeLayout
@@ -292,7 +290,7 @@
                     android:text="ผลการคำนวณ "
                     android:textSize="20dp"
                     android:fontFamily="@font/kanit_regular"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/white" />
 
 
                 <TextView
@@ -301,10 +299,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_alignRight="@+id/textViewShowInPipe"
-                    android:text=""
-                    android:textSize="20dp"
-                    android:fontFamily="@font/kanit_regular"
-                    android:textColor="@color/black" />
+                    android:textSize="20dp" />
 
 
                 <TextView
@@ -316,7 +311,7 @@
                     android:text="ขนาดท่อ(จำนวนสูงสุด)"
                     android:textSize="16dp"
                     android:fontFamily="@font/kanit_regular"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/white" />
 
 
                 <TextView
@@ -326,10 +321,10 @@
                     android:layout_marginTop="20dp"
                     android:layout_below="@+id/textViewShow2InPipe"
                     android:layout_alignParentRight="true"
-                    android:text="5 นิ้ว (8 เส้น)"
+                    android:text="null นิ้ว (null เส้น)"
                     android:textSize="16dp"
                     android:fontFamily="@font/kanit_regular"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/white" />
 
                 <TextView
                     android:id="@+id/textViewShow5InPipe"
@@ -337,10 +332,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
                     android:layout_below="@+id/textViewShow3InPipe"
-                    android:text="ขนาดแรง(จำนวนสูงสุด)"
+                    android:text="ขนาดราง(จำนวนสูงสุด)"
                     android:textSize="16dp"
                     android:fontFamily="@font/kanit_regular"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/white" />
 
 
                 <TextView
@@ -350,10 +345,10 @@
                     android:layout_marginTop="20dp"
                     android:layout_below="@+id/textViewShow4InPipe"
                     android:layout_alignParentRight="true"
-                    android:text="100x200มม. (6 เส้น)"
+                    android:text="null (null เส้น)"
                     android:textSize="16dp"
                     android:fontFamily="@font/kanit_regular"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/white" />
 
 
 
@@ -366,7 +361,7 @@
                     android:text="จำนวนสายไฟสูงสุด"
                     android:textSize="16dp"
                     android:fontFamily="@font/kanit_regular"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/white" />
 
 
                 <TextView
@@ -376,10 +371,10 @@
                     android:layout_marginTop="20dp"
                     android:layout_below="@+id/textViewShow6InPipe"
                     android:layout_alignParentRight="true"
-                    android:text="3 เส้น"
+                    android:text="null เส้น"
                     android:textSize="16dp"
                     android:fontFamily="@font/kanit_regular"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/white" />
 
             </RelativeLayout>
         </androidx.cardview.widget.CardView>

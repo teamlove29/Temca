@@ -8,6 +8,7 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import android.widget.Toast
 import com.alw.temca.R
 import com.alw.temca.ui.WireSize.TypeCableActivity
 import jxl.Workbook
@@ -106,23 +107,24 @@ class PipeSizeActivity : AppCompatActivity() {
                 textViewShow6InPipe.visibility = View.VISIBLE
                 cardViewAmountCable.visibility = View.VISIBLE
             }
+            btnCalInPipeSize.visibility = View.VISIBLE
         }
     }
 
     fun calculatorOnClick(view: View) {
-        val result = ArrayList<String>()
+        btnCalInPipeSize.visibility = View.GONE
         val sizeCable = arrayListOf<String>("1 มม2","1.5 มม2","2.5 มม2","4 มม2","6 มม2","10 มม2","16 มม2","25 มม2","35 มม2","50 มม2","70 มม2","95 มม2","120 มม2","150 มม2","185 มม2","240 มม2","300 มม2","400 มม2","500 มม2")
+        val sizeConduit = arrayListOf<String>("50x75 มม.","50x100 มม.","75x100 มม.","100x100 มม.","100x150 มม.","100x200 มม.","100x250 มม.","100x300 มม.","150x300 มม.",)
         var typeCable = ""
         if (editTextAmountCable.text.isEmpty()){
             editTextAmountCable.setText("2")
         }
+
         tableBeforeCalculateInPipe.visibility = View.VISIBLE
         editTextAmountCable.clearFocus()
         btnCalInPipeSize.apply {
             hideKeyboard()
         }
-
-
 
         when(typeCableTextView.text){
             "IEC01" -> typeCable = "IEC01.xls"
@@ -136,44 +138,70 @@ class PipeSizeActivity : AppCompatActivity() {
             "XLPE 2C" -> typeCable = "XLPE2C.xls"
             "XLPE 3C" -> typeCable = "XLPE3C.xls"
             "XLPE 4C" -> typeCable = "XLPE4C.xls"
-
         }
 
-        try {
-            val typeCable = applicationContext.assets.open(typeCable)
-            val wb = Workbook.getWorkbook(typeCable)
-            val sheet = wb.getSheet(0)
-            val typeCabletitle = sheet.getCell(0,0).contents
-            if (typeCableTextView.text == typeCabletitle){
-                sizeCable.forEachIndexed { index,size  ->
-                    if (cableSizeTextView.text == size){
-                       for (i in 1..12){
-                           //  i is col result
-                           if (editTextAmountCable.text.toString().toInt() <= sheet.getCell(i,index + 1).contents.toInt()){
-                               textViewShow4InPipe.text = "${sheet.getCell(i,0).contents} (${sheet.getCell(i,index + 1).contents} เส้น)"
-                               break
-                            }else{
-                               textViewShow4InPipe.text = "null"
-                           }
-                       }
-                        for (j in 14..22){
-                            //  j is col result
-                            if(editTextAmountCable.text.toString().toInt() <= sheet.getCell(j,index + 1).contents.toInt()){
-                                 textViewShow6InPipe.text = "${sheet.getCell(j, 0).contents} (${sheet.getCell(j,index + 1).contents} เส้น)"
-                                break
-                            }else{
-                                textViewShow6InPipe.text = "null"
+        if(switchButtonPipeSize.isChecked == false){
+            try {
+                val typeCable = applicationContext.assets.open(typeCable)
+                val wb = Workbook.getWorkbook(typeCable)
+                val sheet = wb.getSheet(0)
+                val typeCabletitle = sheet.getCell(0,0).contents
+                if (typeCableTextView.text == typeCabletitle){
+                    sizeCable.forEachIndexed { index,size  ->
+                        if (cableSizeTextView.text == size){
+                            for (i in 1..12){
+                                //  i is col result
+                                if (editTextAmountCable.text.toString().toInt() <= sheet.getCell(i,index + 1).contents.toInt()){
+                                    textViewShow4InPipe.text = "${sheet.getCell(i,0).contents} (${sheet.getCell(i,index + 1).contents} เส้น)"
+                                    break
+                                }else{
+//                               textViewShow4InPipe.text = "null"
+                                    if(editTextAmountCable.text.toString().toInt() >= sheet.getCell(i,index + 1).contents.toInt() && sheet.getCell(i,index + 1).contents.toInt() != 0){
+                                        textViewShow4InPipe.text = "${sheet.getCell(i,0).contents} (${sheet.getCell(i,index + 1).contents} เส้น)"
+                                    }
+                                }
                             }
-       }
-                } }
+                            for (j in 14..22){
+                                //  j is col result
+                                if(editTextAmountCable.text.toString().toInt() <= sheet.getCell(j,index + 1).contents.toInt()){
+                                    textViewShow6InPipe.text = "${sheet.getCell(j, 0).contents} (${sheet.getCell(j,index + 1).contents} เส้น)"
+                                    break
+                                }else{
+//                                textViewShow6InPipe.text = "null"
+                                    if(editTextAmountCable.text.toString().toInt() >= sheet.getCell(j,index + 1).contents.toInt() && sheet.getCell(j,index + 1).contents.toInt() != 0){
+                                        textViewShow6InPipe.text = "${sheet.getCell(j, 0).contents} (${sheet.getCell(j,index + 1).contents} เส้น)"
+                                    }
+                                }
+                            }
+                        } }
 
-            }else{
-                println("Error NO Output")
+                }
+            } catch (e: IOException) {
+                e.printStackTrace()
+                Toast.makeText(this,"Error : $e",Toast.LENGTH_LONG).show()
             }
-        } catch (e: IOException) {
-            e.printStackTrace()
-            println("Error NO00 $e")
+        }else{
+            try {
+                val typeCable = applicationContext.assets.open(typeCable)
+                val wb = Workbook.getWorkbook(typeCable)
+                val sheet = wb.getSheet(0)
+                val typeCabletitle = sheet.getCell(0,0).contents
+                if (typeCableTextView.text == typeCabletitle){
+                    sizeCable.forEachIndexed { indexSize,size  ->
+                        if (cableSizeTextView.text == size){
+                            sizeConduit.forEachIndexed{indexConduit, conduit ->
+                                if(SizeConduitTextView.text == conduit){
+                                    textViewShow8InPipe.text = "${sheet.getCell(indexConduit + 14,indexSize+1).contents} เส้น"
+                                }
+                            }
+                        } }
+                }
+            } catch (e: IOException) {
+                e.printStackTrace()
+                Toast.makeText(this,"Error : $e",Toast.LENGTH_LONG).show()
+            }
         }
+
 
 
     }
@@ -203,6 +231,7 @@ class PipeSizeActivity : AppCompatActivity() {
                 }
             }
         }
+        btnCalInPipeSize.visibility = View.VISIBLE
         tableBeforeCalculateInPipe.visibility = View.GONE
     }
 
