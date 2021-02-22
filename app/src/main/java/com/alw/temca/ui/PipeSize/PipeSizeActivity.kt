@@ -32,8 +32,14 @@ class PipeSizeActivity : AppCompatActivity() {
         loadData()
         switchButton()
         tableBeforeCalculateInPipe.visibility = View.GONE
-
         calculator()
+
+
+//        editTextAmountCable.setOnFocusChangeListener { v, hasFocus ->
+//            if (hasFocus){
+//                editTextAmountCable.hint = " "
+//            }
+//        }
 
         editTextAmountCable.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
@@ -41,6 +47,11 @@ class PipeSizeActivity : AppCompatActivity() {
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                if (s!!.isEmpty()){
+                    editTextAmountCable.hint = "20"
+                }else{
+                    editTextAmountCable.hint = ""
+                }
                 tableBeforeCalculateInPipe.visibility = View.GONE
                 btnCalInPipeSize.visibility = View.VISIBLE
                 btnCalInPipeSize.apply {
@@ -113,7 +124,7 @@ class PipeSizeActivity : AppCompatActivity() {
     }
 
     fun calculatorOnClick(view: View) {
-        btnCalInPipeSize.visibility = View.GONE
+
         val sizeCable = arrayListOf<String>("1 มม2", "1.5 มม2", "2.5 มม2", "4 มม2", "6 มม2", "10 มม2", "16 มม2", "25 มม2", "35 มม2", "50 มม2", "70 มม2", "95 มม2", "120 มม2", "150 มม2", "185 มม2", "240 มม2", "300 มม2", "400 มม2", "500 มม2")
         val sizeConduit = arrayListOf<String>("50x75 มม.", "50x100 มม.", "75x100 มม.", "100x100 มม.", "100x150 มม.", "100x200 มม.", "100x250 มม.", "100x300 มม.", "150x300 มม.")
         var typeCable = ""
@@ -126,6 +137,7 @@ class PipeSizeActivity : AppCompatActivity() {
         btnCalInPipeSize.apply {
             hideKeyboard()
         }
+        btnCalInPipeSize.visibility = View.GONE
 
         when(typeCableTextView.text){
             "IEC01" -> typeCable = "IEC01.xls"
@@ -214,8 +226,8 @@ class PipeSizeActivity : AppCompatActivity() {
 
 //                val dataPhase = data!!.getIntExtra("dataPhase",0)
                 val dataSizeCable = data!!.getStringExtra("dataSizeCable")
-                val dataTypeCable = data!!.getStringExtra("dataTypeCable")
-                val dataConduit = data!!.getStringExtra("dataSizeConduit")
+                val dataTypeCable = data.getStringExtra("dataTypeCable")
+                val dataConduit = data.getStringExtra("dataSizeConduit")
 
 
                 if (dataSizeCable != null) {
@@ -285,7 +297,7 @@ class PipeSizeActivity : AppCompatActivity() {
 
     val dataOfSizeCable = sharedPref.getString(TASK_LIST_PREF_KEY_SIZE, "2.5 มม2")
     val dataOfTypeCable = sharedPref.getString(TASK_LIST_PREF_KEY_TYPE_CABLE_IN_PIPE, "IEC01")
-    val dataOfAmount = sharedPref.getString(TASK_LIST_PREF_KEY_AMOUNT,null)
+    val dataOfAmount = sharedPref.getString(TASK_LIST_PREF_KEY_AMOUNT, null)
     val dataOfConduit = sharedPref.getString(TASK_LIST_PREF_KEY_CONDUIT, "100x100 มม.")
 
     SizeConduitTextView.text = dataOfConduit
@@ -302,6 +314,8 @@ class PipeSizeActivity : AppCompatActivity() {
     }
 
     fun setAmountOnClick(view: View) {
+        editTextAmountCable.setText("")
+        editTextAmountCable.hint = " "
         editTextAmountCable.requestFocus()
         val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.showSoftInput(editTextAmountCable, InputMethodManager.SHOW_IMPLICIT)
