@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Temca">
-        <activity android:name=".ui.PipeSize.SizeConduitActivity"></activity>
+        <activity android:name=".ui.SponsorActivity"></activity>
+        <activity android:name=".ui.PipeSize.SizeConduitActivity" />
         <activity android:name=".ui.PipeSize.SizeCableActivity" />
         <activity android:name=".ui.SoonActivity" />
         <activity android:name=".ui.WireSize.ReportActivity" />

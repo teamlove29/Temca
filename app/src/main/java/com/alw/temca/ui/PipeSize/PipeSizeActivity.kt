@@ -33,9 +33,7 @@ class PipeSizeActivity : AppCompatActivity() {
         switchButton()
         tableBeforeCalculateInPipe.visibility = View.GONE
 
-
         calculator()
-
 
         editTextAmountCable.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
@@ -43,6 +41,7 @@ class PipeSizeActivity : AppCompatActivity() {
             }
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 tableBeforeCalculateInPipe.visibility = View.GONE
+                btnCalInPipeSize.visibility = View.VISIBLE
                 btnCalInPipeSize.apply {
                 }
             }

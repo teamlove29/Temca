@@ -21,10 +21,9 @@
             <ImageView
                 android:id="@+id/logoImageView"
                 android:layout_width="70dp"
-                android:layout_height="60dp"
+                android:layout_height="50dp"
                 android:layout_marginRight="10dp"
-
-                android:background="@drawable/temca_logo"/>
+                android:background="@drawable/temca_logo_mini"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -32,7 +31,7 @@
                 android:layout_toRightOf="@id/logoImageView"
                 android:layout_centerVertical="true"
                 android:fontFamily="@font/kanit_regular"
-                android:textColor="@color/black"
+                android:textColor="#0E4194"
                 android:text="หาขนาดท่อและราง"
                 android:textSize="35dp"/>
 
@@ -62,7 +61,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:focusedByDefault="false" />
+            android:focusedByDefault="false"
+            android:theme="@style/SCBSwitch"/>
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
 
@@ -262,7 +262,7 @@
             android:layout_height="wrap_content"
             app:cornerRadius="10dp"
             android:padding="10dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="20dp"
             android:layout_marginRight="10dp"
             android:layout_marginLeft="10dp"
             android:textSize="20dp"
@@ -271,12 +271,11 @@
             android:text="คำนวณ"/>
 
         <androidx.cardview.widget.CardView
-            android:layout_margin="20dp"
             android:id="@+id/tableBeforeCalculateInPipe"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/btnBlue"
-            app:cardCornerRadius="5dp">
+            android:layout_height="match_parent"
+            android:layout_marginTop="20dp"
+            android:backgroundTint="@color/btnBlue">
 
             <RelativeLayout
                 android:padding="20dp"
@@ -337,7 +336,6 @@
                     android:fontFamily="@font/kanit_regular"
                     android:textColor="@color/white" />
 
-
                 <TextView
                     android:id="@+id/textViewShow6InPipe"
                     android:layout_width="wrap_content"
@@ -350,8 +348,6 @@
                     android:fontFamily="@font/kanit_regular"
                     android:textColor="@color/white" />
 
-
-
                 <TextView
                     android:id="@+id/textViewShow7InPipe"
                     android:layout_width="wrap_content"
@@ -362,7 +358,6 @@
                     android:textSize="16dp"
                     android:fontFamily="@font/kanit_regular"
                     android:textColor="@color/white" />
-
 
                 <TextView
                     android:id="@+id/textViewShow8InPipe"
@@ -377,6 +372,24 @@
                     android:textColor="@color/white" />
 
             </RelativeLayout>
+
+
+            <com.google.android.material.button.MaterialButton
+                android:layout_gravity="bottom|center_horizontal"
+                android:id="@+id/btnCreateReport"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                app:cornerRadius="10dp"
+                android:padding="10dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:textSize="20dp"
+                android:textColor="#0E4194"
+                android:backgroundTint="@color/white"
+                android:fontFamily="@font/kanit_regular"
+                android:text="สร้างรายงาน"/>
+
         </androidx.cardview.widget.CardView>
 
     </LinearLayout>

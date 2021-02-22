@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 import com.alw.temca.ui.PipeSize.PipeSizeActivity
 import com.alw.temca.ui.SoonActivity
+import com.alw.temca.ui.SponsorActivity
 import com.alw.temca.ui.WireSize.WireSizeActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -42,5 +43,10 @@ class MainActivity : AppCompatActivity() {
                 startActivity(intent)
             }
         }
+    }
+
+    fun sponsorOnClick(view: View) {
+        val intent = Intent(this,SponsorActivity::class.java)
+        startActivity(intent)
     }
 }

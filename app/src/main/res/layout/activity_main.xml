@@ -6,16 +6,37 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@drawable/background_main"
     tools:context=".MainActivity" >
 
 
     <ImageView
         android:layout_marginTop="60dp"
+        android:layout_marginBottom="20dp"
         android:id="@+id/logoImageView"
-        android:layout_width="250dp"
-        android:layout_height="200dp"
+        android:layout_width="170dp"
+        android:layout_height="150dp"
         android:layout_gravity="center_horizontal"
         android:background="@drawable/temca_logo"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/kanit_regular"
+        android:textColor="#0E4194"
+        android:textSize="34dp"
+        android:gravity="center_horizontal"
+        android:text="Cable and Conduit"/>
+
+    <TextView
+        android:layout_marginTop="-10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/kanit_regular"
+        android:textColor="#0E4194"
+        android:textSize="34dp"
+        android:gravity="center_horizontal"
+        android:text="Calculator"/>
 
     <RelativeLayout
         android:layout_marginTop="30dp"
@@ -28,95 +49,151 @@
             android:foreground="?android:selectableItemBackground"
             android:id="@+id/buttonWireSize"
             android:layout_width="150dp"
-            android:layout_height="wrap_content"
+            android:layout_height="80dp"
             android:layout_margin="10dp"
             android:padding="10dp"
-            android:background="@drawable/shape"
+            android:elevation="10dp"
+            android:backgroundTint="#092B61"
             android:fontFamily="@font/kanit_regular"
             android:textSize="17dp"
             android:text="หาขนาดสาย"
-            android:onClick="HandleOnClick"/>
+            android:textColor="@color/white"
+            android:gravity="bottom|center_horizontal"
+            android:onClick="HandleOnClick" />
 
         <Button
             android:foreground="?android:selectableItemBackground"
             android:id="@+id/buttonPipeSize"
             android:layout_width="150dp"
-            android:layout_height="wrap_content"
+            android:layout_height="80dp"
             android:layout_margin="10dp"
             android:padding="10dp"
-            android:background="@drawable/shape"
+            android:elevation="10dp"
+            android:backgroundTint="#092B61"
             android:layout_toRightOf="@+id/buttonWireSize"
             android:fontFamily="@font/kanit_regular"
             android:textSize="17dp"
             android:text="หาขนาดท่อ/ราง"
+            android:textColor="@color/white"
+            android:gravity="bottom|center_horizontal"
             android:onClick="HandleOnClick"/>
 
         <Button
             android:foreground="?android:selectableItemBackground"
             android:id="@+id/button3"
             android:layout_width="150dp"
-            android:layout_height="wrap_content"
+            android:layout_height="80dp"
             android:layout_margin="10dp"
             android:padding="10dp"
-            android:background="@drawable/shape"
+            android:elevation="10dp"
+            android:backgroundTint="#092B61"
             android:layout_below="@+id/buttonWireSize"
             android:fontFamily="@font/kanit_regular"
             android:textSize="17dp"
-            android:text="coming soon"
+            android:text="Module 3"
+            android:textColor="@color/white"
+            android:gravity="bottom|center_horizontal"
             android:onClick="HandleOnClick"/>
 
         <Button
             android:foreground="?android:selectableItemBackground"
             android:id="@+id/button4"
             android:layout_width="150dp"
-            android:layout_height="wrap_content"
+            android:layout_height="80dp"
             android:layout_margin="10dp"
             android:padding="10dp"
             android:layout_below="@+id/buttonPipeSize"
             android:layout_toRightOf="@+id/button3"
-            android:background="@drawable/shape"
+            android:elevation="10dp"
+            android:backgroundTint="#092B61"
             android:fontFamily="@font/kanit_regular"
             android:textSize="17dp"
-            android:text="coming soon"
+            android:text="Module 4"
+            android:textColor="@color/white"
+            android:gravity="bottom|center_horizontal"
             android:onClick="HandleOnClick"/>
 
         <Button
             android:foreground="?android:selectableItemBackground"
             android:id="@+id/button5"
             android:layout_width="150dp"
-            android:layout_height="wrap_content"
+            android:layout_height="80dp"
             android:layout_margin="10dp"
             android:padding="10dp"
             android:layout_below="@+id/button3"
-            android:background="@drawable/shape"
+            android:elevation="10dp"
+            android:backgroundTint="#092B61"
             android:fontFamily="@font/kanit_regular"
             android:textSize="17dp"
-            android:text="coming soon"
+            android:text="Module 5"
+            android:textColor="@color/white"
+            android:gravity="bottom|center_horizontal"
             android:onClick="HandleOnClick"/>
 
         <Button
             android:foreground="?android:selectableItemBackground"
             android:id="@+id/button6"
             android:layout_width="150dp"
-            android:layout_height="wrap_content"
+            android:layout_height="80dp"
             android:layout_margin="10dp"
             android:padding="10dp"
             android:layout_below="@+id/button4"
             android:layout_toRightOf="@+id/button5"
-            android:background="@drawable/shape"
+            android:elevation="10dp"
+            android:backgroundTint="#092B61"
             android:fontFamily="@font/kanit_regular"
             android:textSize="17dp"
-            android:text="coming soon"
+            android:text="Module 6"
+            android:textColor="@color/white"
+            android:gravity="bottom|center_horizontal"
             android:onClick="HandleOnClick"/>
 
 
 
     </RelativeLayout>
 
-<!--    <ImageView-->
-<!--        android:id="@+id/sponsorImageView"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:background="@drawable/coming_soon"/>-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="bottom|center_horizontal">
+
+        <TextView
+            android:layout_marginLeft="70dp"
+            android:id="@+id/textViewTerm"
+            android:drawableStart="@drawable/ic_help_outline_24px"
+            android:drawableTint="@color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/kanit_regular"
+            android:textColor="@color/white"
+            android:text="Term of usage"/>
+
+        <TextView
+            android:onClick="sponsorOnClick"
+            android:layout_marginRight="80dp"
+            android:layout_alignParentRight="true"
+            android:id="@+id/textViewSponser"
+            android:drawableStart="@drawable/ic_engineering_24px"
+            android:drawableTint="@color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/kanit_regular"
+            android:textColor="@color/white"
+            android:text="ผู้สนับสนุน"/>
+
+        <TextView
+            android:padding="20dp"
+            android:layout_marginTop="30dp"
+            android:gravity="bottom|center_horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/kanit_regular"
+            android:textColor="@color/white"
+            android:text="สมาคมช่างเหมาไฟฟ้าและเครื่องกลไทย"/>
+
+
+    </RelativeLayout>
+
+
 
 </LinearLayout>
