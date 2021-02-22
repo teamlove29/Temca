@@ -6,8 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.alw.temca.Adapter.InstallationonClickAdapterListener
-import com.alw.temca.Adapter.typeCableAdapter
-import com.alw.temca.Model.InstallationModel
+import com.alw.temca.Adapter.TypeCableAdapter
 import com.alw.temca.Model.TypeCableModel
 import com.alw.temca.R
 import kotlinx.android.synthetic.main.activity_type_cable.*
@@ -18,23 +17,25 @@ class TypeCableActivity : AppCompatActivity() , InstallationonClickAdapterListen
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_type_cable)
 
-        typeCableItem.add(TypeCableModel("CV"))
-        typeCableItem.add(TypeCableModel("CVV - S"))
-        typeCableItem.add(TypeCableModel("CVV"))
         typeCableItem.add(TypeCableModel("IEC01"))
-        typeCableItem.add(TypeCableModel("IEC06"))
-        typeCableItem.add(TypeCableModel("IEC10"))
-        typeCableItem.add(TypeCableModel("IEC53"))
-        typeCableItem.add(TypeCableModel("IEC53 - G"))
-        typeCableItem.add(TypeCableModel("NYY - G"))
-        typeCableItem.add(TypeCableModel("NYY"))
-        typeCableItem.add(TypeCableModel("THW - A"))
-        typeCableItem.add(TypeCableModel("VAF - G"))
-        typeCableItem.add(TypeCableModel("VAF"))
-        typeCableItem.add(TypeCableModel("VKF (IEC52)"))
-        typeCableItem.add(TypeCableModel("VKF (IEC53)"))
+        typeCableItem.add(TypeCableModel("NYY 1C"))
+        typeCableItem.add(TypeCableModel("NYY 2C"))
+        typeCableItem.add(TypeCableModel("NYY 3C"))
+        typeCableItem.add(TypeCableModel("NYY 4C"))
+        typeCableItem.add(TypeCableModel("IEC10 2C"))
+        typeCableItem.add(TypeCableModel("IEC10 3C"))
+        typeCableItem.add(TypeCableModel("XLPE 1C"))
+        typeCableItem.add(TypeCableModel("XLPE 2C"))
+        typeCableItem.add(TypeCableModel("XLPE 3C"))
+        typeCableItem.add(TypeCableModel("XLPE 4C"))
 
-        recyclerViewTypeCable.adapter = typeCableAdapter(typeCableItem,this)
+        val checkActivity = intent.getStringExtra("Activity")
+        if (checkActivity.equals("PipeSize")){
+            headerTypeCable.text = "หาขนาดท่อและราง"
+        }
+
+
+        recyclerViewTypeCable.adapter = TypeCableAdapter(typeCableItem,this)
         recyclerViewTypeCable.layoutManager = LinearLayoutManager(this)
     }
 

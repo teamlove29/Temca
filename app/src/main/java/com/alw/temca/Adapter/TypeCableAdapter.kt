@@ -9,7 +9,7 @@ import com.alw.temca.R
 import kotlinx.android.synthetic.main.type_cable_list.view.*
 
 
-class typeCableAdapter(var TypeCableList : ArrayList<TypeCableModel>, var onClickTypeCable:InstallationonClickAdapterListener): RecyclerView.Adapter<typeCableAdapter.TypecableViewHolder>() {
+class TypeCableAdapter(var TypeCableList : ArrayList<TypeCableModel>, var onClickTypeCable:InstallationonClickAdapterListener): RecyclerView.Adapter<TypeCableAdapter.TypecableViewHolder>() {
 
     class TypecableViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
