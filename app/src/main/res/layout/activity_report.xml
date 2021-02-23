@@ -29,10 +29,10 @@
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/logoImageView"
             android:layout_centerVertical="true"
-            android:fontFamily="@font/kanit_regular"
+            android:fontFamily="@font/mitr_regular"
             android:textColor="@color/black"
-            android:text="รายงาน"
-            android:textSize="35dp"/>
+            android:text="Cable and Conduit Calculator"
+            android:textSize="18dp"/>
 
     </RelativeLayout>
 
@@ -43,37 +43,37 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-<androidx.cardview.widget.CardView
-    android:layout_marginTop="20dp"
-    android:layout_marginLeft="10dp"
-    android:layout_marginRight="10dp"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:backgroundTint="#F5F6F7">
+<!--<androidx.cardview.widget.CardView-->
+<!--    android:layout_marginTop="20dp"-->
+<!--    android:layout_marginLeft="10dp"-->
+<!--    android:layout_marginRight="10dp"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="wrap_content"-->
+<!--    android:backgroundTint="#F5F6F7">-->
 
-    <RelativeLayout
-        android:padding="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+<!--    <RelativeLayout-->
+<!--        android:padding="10dp"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content">-->
 
-        <ImageView
-            android:id="@+id/logoImageView2"
-            android:layout_width="50dp"
-            android:layout_height="40dp"
-            android:layout_marginRight="10dp"
-            android:background="@drawable/temca_logo"/>
+<!--        <ImageView-->
+<!--            android:id="@+id/logoImageView2"-->
+<!--            android:layout_width="50dp"-->
+<!--            android:layout_height="50dp"-->
+<!--            android:layout_marginRight="10dp"-->
+<!--            android:background="@drawable/temca_logo"/>-->
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:fontFamily="@font/kanit_regular"
-            android:textColor="@color/black"
-            android:layout_centerHorizontal="true"
-            android:text="รายงาน"
-            android:textSize="25dp"/>
-    </RelativeLayout>
-</androidx.cardview.widget.CardView>
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_centerVertical="true"-->
+<!--            android:fontFamily="@font/sarabun_bold"-->
+<!--            android:textColor="@color/black"-->
+<!--            android:layout_centerHorizontal="true"-->
+<!--            android:text="รายงาน"-->
+<!--            android:textSize="25dp"/>-->
+<!--    </RelativeLayout>-->
+<!--</androidx.cardview.widget.CardView>-->
 
         <androidx.cardview.widget.CardView
             android:layout_marginTop="20dp"
@@ -95,7 +95,7 @@
                     android:layout_marginLeft="20dp"
                     android:text="ขนาดสายไฟฟ้า"
                     android:textColor="@color/black"
-                    android:fontFamily="@font/kanit_regular"
+                    android:fontFamily="@font/sarabun_medium"
                     android:textSize="18dp"/>
 
                 <TextView
@@ -106,7 +106,7 @@
                     android:layout_height="wrap_content"
                     android:text="10 sq.mm."
                     android:textColor="@color/black"
-                    android:fontFamily="@font/kanit_regular"
+                    android:fontFamily="@font/sarabun_regular"
                     android:textSize="18dp"/>
 
             </RelativeLayout>
@@ -131,7 +131,7 @@
                     android:layout_marginLeft="20dp"
                     android:text="ขนาดท่อร้อยสาย(ราง)"
                     android:textColor="@color/black"
-                    android:fontFamily="@font/kanit_regular"
+                    android:fontFamily="@font/sarabun_medium"
                     android:textSize="18dp"/>
 
                 <TextView
@@ -142,7 +142,7 @@
                     android:layout_height="wrap_content"
                     android:text="3/4"
                     android:textColor="@color/black"
-                    android:fontFamily="@font/kanit_regular"
+                    android:fontFamily="@font/sarabun_regular"
                     android:textSize="18dp"/>
 
             </RelativeLayout>
@@ -167,7 +167,7 @@
                     android:layout_marginLeft="20dp"
                     android:text="แรงดันตก"
                     android:textColor="@color/black"
-                    android:fontFamily="@font/kanit_regular"
+                    android:fontFamily="@font/sarabun_medium"
                     android:textSize="18dp"/>
 
                 <TextView
@@ -178,7 +178,7 @@
                     android:layout_height="wrap_content"
                     android:text="-%"
                     android:textColor="@color/black"
-                    android:fontFamily="@font/kanit_regular"
+                    android:fontFamily="@font/sarabun_regular"
                     android:textSize="18dp"/>
 
             </RelativeLayout>
@@ -205,7 +205,7 @@
                     android:layout_margin="10dp"
                     android:textSize="14dp"
                     android:backgroundTint="#50596F"
-                    android:fontFamily="@font/kanit_regular"
+                    android:fontFamily="@font/mitr_regular"
                     android:text="พิมพ์"/>
 
                 <com.google.android.material.button.MaterialButton
@@ -218,7 +218,7 @@
                     android:layout_margin="10dp"
                     android:textSize="14dp"
                     android:backgroundTint="#50596F"
-                    android:fontFamily="@font/kanit_regular"
+                    android:fontFamily="@font/mitr_regular"
                     android:text="ส่งอีเมล์"/>
             </RelativeLayout>
 

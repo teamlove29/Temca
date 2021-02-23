@@ -30,7 +30,7 @@
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@id/logoImageView"
                 android:layout_centerVertical="true"
-                android:fontFamily="@font/kanit_regular"
+                android:fontFamily="@font/mitr_regular"
                 android:textColor="#0E4194"
                 android:text="หาขนาดท่อและราง"
                 android:textSize="35dp"/>
@@ -53,7 +53,7 @@
             android:layout_height="wrap_content"
             android:text="หาขนาดท่อและราง"
             android:textSize="22dp"
-            android:fontFamily="@font/kanit_regular"
+            android:fontFamily="@font/mitr_regular"
             android:textColor="@color/black" />
 
         <Switch
@@ -89,7 +89,7 @@
                     android:layout_height="wrap_content"
                     android:text="ชนิดสายไฟ"
                     android:textSize="20dp"
-                    android:fontFamily="@font/kanit_regular"
+                    android:fontFamily="@font/mitr_regular"
                     android:textColor="@color/black" />
 
                 <TextView
@@ -100,7 +100,7 @@
                     android:hint="CV"
                     android:textSize="18dp"
                     android:layout_toLeftOf="@+id/iconWireType"
-                    android:fontFamily="@font/kanit_regular" />
+                    android:fontFamily="@font/mitr_regular" />
 
                 <ImageView
                     android:id="@+id/iconWireType"
@@ -133,7 +133,7 @@
                     android:layout_height="wrap_content"
                     android:text="ขนาดสาย"
                     android:textSize="20dp"
-                    android:fontFamily="@font/kanit_regular"
+                    android:fontFamily="@font/mitr_regular"
                     android:textColor="@color/black"
                     android:layout_centerVertical="true"/>
 
@@ -145,7 +145,7 @@
                     android:hint="2.5 มม2"
                     android:textSize="18dp"
                     android:layout_toLeftOf="@+id/iconCircuitBreakere"
-                    android:fontFamily="@font/kanit_regular"
+                    android:fontFamily="@font/mitr_regular"
                     android:layout_centerVertical="true"/>
 
                 <ImageView
@@ -182,7 +182,7 @@
                     android:layout_marginLeft="5dp"
                     android:text="จำนวนเส้น"
                     android:textSize="20dp"
-                    android:fontFamily="@font/kanit_regular"
+                    android:fontFamily="@font/mitr_regular"
                     android:textColor="@color/black"
                     android:layout_centerVertical="true"/>
 
@@ -198,7 +198,7 @@
                     android:layout_marginRight="40dp"
                     android:hint="20"
                     android:textDirection="rtl"
-                    android:fontFamily="@font/kanit_regular"
+                    android:fontFamily="@font/mitr_regular"
                     android:background="@null"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
@@ -229,7 +229,7 @@
                 android:layout_height="wrap_content"
                 android:text="ขนาดราง"
                 android:textSize="20dp"
-                android:fontFamily="@font/kanit_regular"
+                android:fontFamily="@font/mitr_regular"
                 android:textColor="@color/black"
                 android:layout_centerVertical="true"/>
 
@@ -241,7 +241,7 @@
                 android:hint="100x100 มม."
                 android:textSize="18dp"
                 android:layout_toLeftOf="@+id/iconSizeConduit"
-                android:fontFamily="@font/kanit_regular"
+                android:fontFamily="@font/mitr_regular"
                 android:layout_centerVertical="true"/>
 
             <ImageView
@@ -269,7 +269,7 @@
             android:layout_marginLeft="10dp"
             android:textSize="20dp"
             android:backgroundTint="@color/btnBlue"
-            android:fontFamily="@font/kanit_regular"
+            android:fontFamily="@font/mitr_regular"
             android:text="คำนวณ"/>
 
         <androidx.cardview.widget.CardView
@@ -290,7 +290,7 @@
                     android:layout_height="wrap_content"
                     android:text="ผลการคำนวณ "
                     android:textSize="20dp"
-                    android:fontFamily="@font/kanit_regular"
+                    android:fontFamily="@font/mitr_regular"
                     android:textColor="@color/white" />
 
 
@@ -311,7 +311,7 @@
                     android:layout_below="@+id/textViewShowInPipe"
                     android:text="ขนาดท่อ(จำนวนสูงสุด)"
                     android:textSize="16dp"
-                    android:fontFamily="@font/kanit_regular"
+                    android:fontFamily="@font/mitr_regular"
                     android:textColor="@color/white" />
 
 
@@ -324,7 +324,7 @@
                     android:layout_alignParentRight="true"
                     android:text="null นิ้ว (null เส้น)"
                     android:textSize="16dp"
-                    android:fontFamily="@font/kanit_regular"
+                    android:fontFamily="@font/mitr_regular"
                     android:textColor="@color/white" />
 
                 <TextView
@@ -335,7 +335,7 @@
                     android:layout_below="@+id/textViewShow3InPipe"
                     android:text="ขนาดราง(จำนวนสูงสุด)"
                     android:textSize="16dp"
-                    android:fontFamily="@font/kanit_regular"
+                    android:fontFamily="@font/mitr_regular"
                     android:textColor="@color/white" />
 
                 <TextView
@@ -347,7 +347,7 @@
                     android:layout_alignParentRight="true"
                     android:text="null (null เส้น)"
                     android:textSize="16dp"
-                    android:fontFamily="@font/kanit_regular"
+                    android:fontFamily="@font/mitr_regular"
                     android:textColor="@color/white" />
 
                 <TextView
@@ -358,7 +358,7 @@
                     android:layout_below="@+id/textViewShow5InPipe"
                     android:text="จำนวนสายไฟสูงสุด"
                     android:textSize="16dp"
-                    android:fontFamily="@font/kanit_regular"
+                    android:fontFamily="@font/mitr_regular"
                     android:textColor="@color/white" />
 
                 <TextView
@@ -370,13 +370,14 @@
                     android:layout_alignParentRight="true"
                     android:text="null เส้น"
                     android:textSize="16dp"
-                    android:fontFamily="@font/kanit_regular"
+                    android:fontFamily="@font/mitr_regular"
                     android:textColor="@color/white" />
 
             </RelativeLayout>
 
 
             <com.google.android.material.button.MaterialButton
+                android:onClick="pipeSizeReportOnClick"
                 android:layout_gravity="bottom|center_horizontal"
                 android:id="@+id/btnCreateReport"
                 android:layout_width="match_parent"
@@ -389,7 +390,7 @@
                 android:textSize="20dp"
                 android:textColor="#0E4194"
                 android:backgroundTint="@color/white"
-                android:fontFamily="@font/kanit_regular"
+                android:fontFamily="@font/mitr_regular"
                 android:text="สร้างรายงาน"/>
 
         </androidx.cardview.widget.CardView>

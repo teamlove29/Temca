@@ -321,6 +321,12 @@ class PipeSizeActivity : AppCompatActivity() {
         imm.showSoftInput(editTextAmountCable, InputMethodManager.SHOW_IMPLICIT)
     }
 
+    fun pipeSizeReportOnClick(view: View) {
+        val intent = Intent(this,PipeSizeReportActivity::class.java)
+        startActivity(intent)
+        finish()
+    }
+
 
 }
 

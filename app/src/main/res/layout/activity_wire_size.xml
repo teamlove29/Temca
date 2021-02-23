@@ -32,7 +32,7 @@
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/logoImageView"
         android:layout_centerVertical="true"
-        android:fontFamily="@font/kanit_regular"
+        android:fontFamily="@font/mitr_regular"
         android:textColor="@color/black"
         android:text="หาขนาดสายไฟ"
         android:textSize="35dp"/>
@@ -59,7 +59,7 @@
                 android:layout_height="wrap_content"
                 android:text="เฟส"
                 android:textSize="20dp"
-                android:fontFamily="@font/kanit_regular"
+                android:fontFamily="@font/mitr_regular"
                 android:textColor="@color/black"
                 android:layout_centerVertical="true"/>
 
@@ -71,7 +71,7 @@
                   android:hint="1  เฟส"
                   android:textSize="18dp"
                   android:layout_toLeftOf="@+id/iconPhase"
-                  android:fontFamily="@font/kanit_regular"
+                  android:fontFamily="@font/mitr_regular"
                   android:layout_centerVertical="true"/>
 
               <ImageView
@@ -106,7 +106,7 @@
                 android:layout_height="wrap_content"
                 android:text="กลุ่มการติดตั้ง"
                 android:textSize="20dp"
-                android:fontFamily="@font/kanit_regular"
+                android:fontFamily="@font/mitr_regular"
                 android:textColor="@color/black"
                 android:layout_centerVertical="true"/>
 
@@ -118,7 +118,7 @@
                 android:hint="กลุ่ม 1"
                 android:textSize="18dp"
                 android:layout_toLeftOf="@+id/iconInstallation"
-                android:fontFamily="@font/kanit_regular"
+                android:fontFamily="@font/mitr_regular"
                 android:layout_centerVertical="true"/>
 
             <ImageView
@@ -153,7 +153,7 @@
                     android:layout_height="wrap_content"
                     android:text="ชนิดสายไฟ"
                     android:textSize="20dp"
-                    android:fontFamily="@font/kanit_regular"
+                    android:fontFamily="@font/mitr_regular"
                     android:textColor="@color/black"
                     android:layout_centerVertical="true"/>
 
@@ -165,7 +165,7 @@
                     android:hint="CV"
                     android:textSize="18dp"
                     android:layout_toLeftOf="@+id/iconWireType"
-                    android:fontFamily="@font/kanit_regular"
+                    android:fontFamily="@font/mitr_regular"
                     android:layout_centerVertical="true"/>
 
                 <ImageView
@@ -200,7 +200,7 @@
                     android:layout_height="wrap_content"
                     android:text="Circuit Breaker / กระแสใช้งาน"
                     android:textSize="20dp"
-                    android:fontFamily="@font/kanit_regular"
+                    android:fontFamily="@font/mitr_regular"
                     android:textColor="@color/black"
                     android:layout_centerVertical="true"/>
 
@@ -212,7 +212,7 @@
                     android:hint="40A"
                     android:textSize="18dp"
                     android:layout_toLeftOf="@+id/iconCircuitBreakere"
-                    android:fontFamily="@font/kanit_regular"
+                    android:fontFamily="@font/mitr_regular"
                     android:layout_centerVertical="true"/>
 
                 <ImageView
@@ -250,7 +250,7 @@
                     android:layout_marginLeft="5dp"
                     android:text="ระยะทาง(เมตร)"
                     android:textSize="20dp"
-                    android:fontFamily="@font/kanit_regular"
+                    android:fontFamily="@font/mitr_regular"
                     android:textColor="@color/black"
                     android:layout_centerVertical="true"/>
 
@@ -263,7 +263,7 @@
                     android:inputType="number"
                     android:maxLength="5"
                     android:hint="2000"
-                    android:fontFamily="@font/kanit_regular"
+                    android:fontFamily="@font/mitr_regular"
                     android:layout_toRightOf="@+id/textViewDistance"
                     android:background="@null"
                     android:layout_centerVertical="true"
@@ -279,7 +279,7 @@
 <!--                    android:textSize="18dp"-->
 <!--                    android:layout_toRightOf="@+id/textViewDistance"-->
 <!--                    android:backgroundTint="@null"-->
-<!--                    android:fontFamily="@font/kanit_regular"-->
+<!--                    android:fontFamily="@font/mitr_regular"-->
 <!--                    android:textColor="@color/black"-->
 <!--                    android:layout_centerVertical="true" />-->
 
@@ -289,7 +289,7 @@
 <!--                    android:layout_marginRight="10dp"-->
 <!--                    android:text="เมตร"-->
 <!--                    android:textSize="18dp"-->
-<!--                    android:fontFamily="@font/kanit_regular"-->
+<!--                    android:fontFamily="@font/mitr_regular"-->
 <!--                    android:layout_centerVertical="true"-->
 <!--                    android:layout_alignParentRight="true"/>-->
             </RelativeLayout>
@@ -305,7 +305,7 @@
         android:layout_margin="10dp"
         android:textSize="20dp"
         android:backgroundTint="@color/btnBlue"
-        android:fontFamily="@font/kanit_regular"
+        android:fontFamily="@font/mitr_regular"
         android:text="คำนวณ"/>
 
     <ImageView
@@ -332,7 +332,7 @@
                 android:layout_height="wrap_content"
                 android:text="ขนาดท่อร้อยสาย(ราง) "
                 android:textSize="16dp"
-                android:fontFamily="@font/kanit_regular"
+                android:fontFamily="@font/mitr_regular"
                 android:textColor="@color/black" />
 
 
@@ -344,7 +344,7 @@
                 android:layout_alignRight="@+id/textViewShow"
                 android:text="10 sq.mm"
                 android:textSize="16dp"
-                android:fontFamily="@font/kanit_regular"
+                android:fontFamily="@font/mitr_regular"
                 android:textColor="@color/black" />
 
 
@@ -356,7 +356,7 @@
                 android:layout_below="@+id/textViewShow"
                 android:text="ขนาดสายไฟฟ้า"
                 android:textSize="16dp"
-                android:fontFamily="@font/kanit_regular"
+                android:fontFamily="@font/mitr_regular"
                 android:textColor="@color/black" />
 
 
@@ -369,7 +369,7 @@
                 android:layout_alignParentRight="true"
                 android:text="3/4"
                 android:textSize="16dp"
-                android:fontFamily="@font/kanit_regular"
+                android:fontFamily="@font/mitr_regular"
                 android:textColor="@color/black" />
 
             <TextView
@@ -380,7 +380,7 @@
                 android:layout_below="@+id/textViewShow3"
                 android:text="แรงดันตก"
                 android:textSize="16dp"
-                android:fontFamily="@font/kanit_regular"
+                android:fontFamily="@font/mitr_regular"
                 android:textColor="@color/black" />
 
 
@@ -393,7 +393,7 @@
                 android:layout_alignParentRight="true"
                 android:text="-%"
                 android:textSize="16dp"
-                android:fontFamily="@font/kanit_regular"
+                android:fontFamily="@font/mitr_regular"
                 android:textColor="@color/black" />
 
             <com.google.android.material.button.MaterialButton
@@ -406,7 +406,7 @@
                 android:layout_margin="10dp"
                 android:textSize="14dp"
                 android:backgroundTint="#50596F"
-                android:fontFamily="@font/kanit_regular"
+                android:fontFamily="@font/mitr_regular"
                 android:layout_centerHorizontal="true"
                 android:text="สร้างรายงาน"/>
 

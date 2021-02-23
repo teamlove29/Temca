@@ -29,7 +29,7 @@
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/logoImageView"
             android:layout_centerVertical="true"
-            android:fontFamily="@font/kanit_regular"
+            android:fontFamily="@font/mitr_regular"
             android:textColor="@color/black"
             android:text="หาขนาดท่อ/ราง"
             android:textSize="35dp"/>

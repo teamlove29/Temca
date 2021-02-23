@@ -29,7 +29,7 @@
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/logoImageView"
             android:layout_centerVertical="true"
-            android:fontFamily="@font/kanit_regular"
+            android:fontFamily="@font/mitr_regular"
             android:textColor="@color/black"
             android:text="หาขนาดสายไฟ"
             android:textSize="35dp"/>
@@ -41,7 +41,7 @@
                 android:paddingBottom="5dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/kanit_regular"
+                android:fontFamily="@font/mitr_regular"
                 android:textColor="@color/black"
                 android:textSize="20dp"
                 android:text="Circuit / กระแสใช้งาน"/>
@@ -65,7 +65,7 @@
             android:layout_height="wrap_content"
             android:text="Circuit Breaker"
             android:textSize="18dp"
-            android:fontFamily="@font/kanit_regular"
+            android:fontFamily="@font/mitr_regular"
             android:textColor="@color/black"
             android:layout_centerVertical="true"/>
 
@@ -76,7 +76,7 @@
             android:hint="40A"
             android:textSize="18dp"
             android:layout_toLeftOf="@+id/iconWireType"
-            android:fontFamily="@font/kanit_regular"
+            android:fontFamily="@font/mitr_regular"
             android:layout_centerVertical="true"/>
 
         <ImageView
@@ -112,7 +112,7 @@
                 android:layout_marginRight="10dp"
                 android:text="กระแสใช้งาน(A)"
                 android:textSize="18dp"
-                android:fontFamily="@font/kanit_regular"
+                android:fontFamily="@font/mitr_regular"
                 android:textColor="@color/black"
                 android:layout_centerVertical="true"/>
 
@@ -124,7 +124,7 @@
                 android:layout_marginBottom="10dp"
                 android:inputType="number"
                 android:hint="40"
-                android:fontFamily="@font/kanit_regular"
+                android:fontFamily="@font/mitr_regular"
                 android:layout_toRightOf="@+id/textViewOperating"
                 android:background="@null"
                 android:layout_centerVertical="true"

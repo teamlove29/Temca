@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:orientation="vertical"
+android:background="#EEEEEE"
+tools:context=".ui.PipeSize.PipeSizeReportActivity">
+
+<RelativeLayout
+    android:paddingBottom="40dp"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp"
+    android:paddingTop="40dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/logoImageView"
+        android:layout_width="70dp"
+        android:layout_height="50dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/temca_logo_mini"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/logoImageView"
+        android:layout_centerVertical="true"
+        android:fontFamily="@font/mitr_regular"
+        android:textColor="@color/black"
+        android:text="Cable and Conduit Calculator"
+        android:textSize="18dp"/>
+
+</RelativeLayout>
+
+<LinearLayout
+    android:background="#EEEEEE"
+    android:layout_weight="1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:gravity="center_horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:text="รายงานผลการคำนวณขนาดท่อและราง"
+        android:fontFamily="@font/sarabun_medium"
+        android:textColor="@color/black"
+        android:textSize="20dp"/>
+
+        <RelativeLayout
+            android:padding="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/textViewCableTypeInPipeReport"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:text="ชนิดสายไฟ"
+                android:textColor="@color/black"
+                android:fontFamily="@font/sarabun_medium"
+                android:textSize="18dp"/>
+
+            <TextView
+                android:id="@+id/textViewReslutCableTypeInPipeReport"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="IEC10 2C x 35มม2"
+                android:textColor="@color/black"
+                android:fontFamily="@font/sarabun_regular"
+                android:textSize="18dp"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:padding="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/textViewAmountCableInPipeReport"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:text="จำนวน"
+                android:textColor="@color/black"
+                android:fontFamily="@font/sarabun_medium"
+                android:textSize="18dp"/>
+
+            <TextView
+                android:id="@+id/textViewReslutAmountCableInPipeReport"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="5 เส้น"
+                android:textColor="@color/black"
+                android:fontFamily="@font/sarabun_regular"
+                android:textSize="18dp"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:padding="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/textViewPipeSizeInPipeReport"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:text="ขนาดท่อ"
+                android:textColor="@color/black"
+                android:fontFamily="@font/sarabun_medium"
+                android:textSize="18dp"/>
+
+            <TextView
+                android:id="@+id/textViewPipeSizeInPipeReport2"
+                android:layout_below="@+id/textViewPipeSizeInPipeReport"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:text="(จำนวนสูงสุด)"
+                android:textColor="@color/black"
+                android:fontFamily="@font/sarabun_light"
+                android:textSize="18dp"/>
+
+            <TextView
+                android:id="@+id/textViewResultPipeSizeInPipeReport"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="5 นิ้ว (8 เส้น)"
+                android:textColor="@color/black"
+                android:fontFamily="@font/sarabun_regular"
+                android:textSize="18dp"/>
+
+        </RelativeLayout>
+
+
+    <RelativeLayout
+        android:padding="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/textViewConduitSizeInPipeReport"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:text="ขนาดราง"
+            android:textColor="@color/black"
+            android:fontFamily="@font/sarabun_medium"
+            android:textSize="18dp"/>
+
+        <TextView
+            android:id="@+id/textViewConduitSizeInPipeReport2"
+            android:layout_below="@+id/textViewConduitSizeInPipeReport"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:text="(จำนวนสูงสุด)"
+            android:textColor="@color/black"
+            android:fontFamily="@font/sarabun_light"
+            android:textSize="18dp"/>
+
+        <TextView
+            android:id="@+id/textViewResultConduitSizeInPipeReport"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="100x200มม. ( 6เส้น )"
+            android:textColor="@color/black"
+            android:fontFamily="@font/sarabun_regular"
+            android:textSize="18dp"/>
+
+    </RelativeLayout>
+
+
+
+    <LinearLayout
+        android:gravity="bottom"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="จัดทำโดย สมาคมช่างเหมาไฟฟ้าและเครื่องกลไทย"
+            android:textColor="@color/black"
+            android:gravity="center_horizontal"
+            android:fontFamily="@font/sarabun_regular"/>
+
+        <RelativeLayout
+            android:gravity="center"
+            android:padding="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnPrint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:cornerRadius="10dp"
+                android:padding="10dp"
+                android:layout_margin="10dp"
+                android:textSize="14dp"
+                android:backgroundTint="#50596F"
+                android:fontFamily="@font/mitr_regular"
+                android:text="พิมพ์"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnSendEmailInPipeSize"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/btnPrint"
+                app:cornerRadius="10dp"
+                android:padding="10dp"
+                android:layout_margin="10dp"
+                android:textSize="14dp"
+                android:backgroundTint="#50596F"
+                android:fontFamily="@font/mitr_regular"
+                android:text="ส่งอีเมล์"/>
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
+
+
+</LinearLayout>
