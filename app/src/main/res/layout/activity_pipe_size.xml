@@ -238,7 +238,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="10dp"
-                android:hint="100x100 มม."
+                android:hint="50x75 มม."
                 android:textSize="18dp"
                 android:layout_toLeftOf="@+id/iconSizeConduit"
                 android:fontFamily="@font/mitr_regular"
@@ -271,6 +271,49 @@
             android:backgroundTint="@color/btnBlue"
             android:fontFamily="@font/mitr_regular"
             android:text="คำนวณ"/>
+
+    <LinearLayout
+        android:id="@+id/wayBackActivity1"
+        android:layout_marginBottom="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="bottom|center_horizontal"
+        android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_marginTop="50dp"
+                android:gravity="bottom|center_horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:onClick="backOnClick"
+                    android:layout_marginLeft="30dp"
+                    android:id="@+id/textViewTerms"
+                    android:drawableStart="@drawable/ic_exit_to_app_24px"
+                    android:drawableTint="#092B61"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/mitr_regular"
+                    android:textColor="#092B61"
+                    android:text="@string/back_Button"/>
+
+                <TextView
+                    android:onClick="sponsorOnClick"
+                    android:layout_marginRight="30dp"
+                    android:layout_alignParentRight="true"
+                    android:id="@+id/textViewSponsers"
+                    android:drawableStart="@drawable/ic_engineering_24px"
+                    android:drawableTint="#092B61"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/mitr_regular"
+                    android:textColor="#092B61"
+                    android:text="@string/sponsor"/>
+            </RelativeLayout>
+
+    </LinearLayout>
+
 
         <androidx.cardview.widget.CardView
             android:id="@+id/tableBeforeCalculateInPipe"
@@ -375,11 +418,15 @@
 
             </RelativeLayout>
 
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="bottom|center_horizontal"
+    android:orientation="vertical">
 
             <com.google.android.material.button.MaterialButton
                 android:onClick="pipeSizeReportOnClick"
-                android:layout_gravity="bottom|center_horizontal"
-                android:id="@+id/btnCreateReport"
+                android:id="@+id/btnCreateReports"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
@@ -391,7 +438,42 @@
                 android:textColor="#0E4194"
                 android:backgroundTint="@color/white"
                 android:fontFamily="@font/mitr_regular"
-                android:text="สร้างรายงาน"/>
+                android:text="@string/create_report"/>
+
+
+            <RelativeLayout
+                android:id="@+id/wayBackActivity2"
+                android:layout_marginBottom="20dp"
+                android:gravity="bottom|center_horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:onClick="backOnClick"
+                    android:layout_marginLeft="30dp"
+                    android:id="@+id/textViewTerm"
+                    android:drawableStart="@drawable/ic_exit_to_app_24px"
+                    android:drawableTint="@color/white"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/mitr_regular"
+                    android:textColor="@color/white"
+                    android:text="@string/back_Button"/>
+
+                <TextView
+                    android:onClick="sponsorOnClick"
+                    android:layout_marginRight="30dp"
+                    android:layout_alignParentRight="true"
+                    android:id="@+id/textViewSponser"
+                    android:drawableStart="@drawable/ic_engineering_24px"
+                    android:drawableTint="@color/white"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/mitr_regular"
+                    android:textColor="@color/white"
+                    android:text="@string/sponsor"/>
+            </RelativeLayout>
+</LinearLayout>
 
         </androidx.cardview.widget.CardView>
 

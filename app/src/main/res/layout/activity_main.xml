@@ -166,7 +166,7 @@
         android:layout_height="match_parent">
 
         <TextView
-            android:layout_marginLeft="70dp"
+            android:layout_marginLeft="50dp"
             android:id="@+id/textViewTerm"
             android:drawableStart="@drawable/ic_help_outline_24px"
             android:drawableTint="@color/white"
@@ -178,7 +178,7 @@
 
         <TextView
             android:onClick="sponsorOnClick"
-            android:layout_marginRight="80dp"
+            android:layout_marginRight="70dp"
             android:layout_alignParentRight="true"
             android:id="@+id/textViewSponser"
             android:drawableStart="@drawable/ic_engineering_24px"

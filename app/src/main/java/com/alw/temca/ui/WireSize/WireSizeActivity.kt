@@ -37,7 +37,7 @@ class WireSizeActivity : AppCompatActivity() {
                 //ก่อนเปลี่ยนคือ ?
             }
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                sponsorImageView.visibility = View.VISIBLE
+//                sponsorImageView.visibility = View.VISIBLE
                 tableBeforeCalculate.visibility = View.GONE
                 btnCal.apply {
                     setBackgroundColor(resources.getColor(R.color.btnBlue))
@@ -83,7 +83,7 @@ class WireSizeActivity : AppCompatActivity() {
                 }
             }
         }
-        sponsorImageView.visibility = View.VISIBLE
+//        sponsorImageView.visibility = View.VISIBLE
         tableBeforeCalculate.visibility = View.GONE
         btnCal.apply {
             setBackgroundColor(resources.getColor(R.color.btnBlue))
@@ -126,7 +126,7 @@ class WireSizeActivity : AppCompatActivity() {
         if (editTextDistance.text.isEmpty()){
             editTextDistance.setText("100")
         }
-        sponsorImageView.visibility = View.GONE
+//        sponsorImageView.visibility = View.GONE
         tableBeforeCalculate.visibility = View.VISIBLE
         editTextDistance.clearFocus()
         btnCal.apply {

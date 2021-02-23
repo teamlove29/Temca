@@ -9,7 +9,9 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.alw.temca.MainActivity
 import com.alw.temca.R
+import com.alw.temca.ui.SponsorActivity
 import com.alw.temca.ui.WireSize.TypeCableActivity
 import jxl.Workbook
 import kotlinx.android.synthetic.main.activity_pipe_size.*
@@ -31,6 +33,7 @@ class PipeSizeActivity : AppCompatActivity() {
         setContentView(R.layout.activity_pipe_size)
         loadData()
         switchButton()
+        wayBackActivity2.visibility = View.GONE
         tableBeforeCalculateInPipe.visibility = View.GONE
         calculator()
 
@@ -52,6 +55,8 @@ class PipeSizeActivity : AppCompatActivity() {
                 }else{
                     editTextAmountCable.hint = ""
                 }
+                wayBackActivity1.visibility = View.VISIBLE
+                wayBackActivity2.visibility = View.GONE
                 tableBeforeCalculateInPipe.visibility = View.GONE
                 btnCalInPipeSize.visibility = View.VISIBLE
                 btnCalInPipeSize.apply {
@@ -137,6 +142,8 @@ class PipeSizeActivity : AppCompatActivity() {
         btnCalInPipeSize.apply {
             hideKeyboard()
         }
+        wayBackActivity1.visibility = View.GONE
+        wayBackActivity2.visibility = View.VISIBLE
         btnCalInPipeSize.visibility = View.GONE
 
         when(typeCableTextView.text){
@@ -168,10 +175,10 @@ class PipeSizeActivity : AppCompatActivity() {
                                     textViewShow4InPipe.text = "${sheet.getCell(i, 0).contents} (${sheet.getCell(i, index + 1).contents} เส้น)"
                                     break
                                 }else{
-//                               textViewShow4InPipe.text = "null"
-                                    if(editTextAmountCable.text.toString().toInt() >= sheet.getCell(i, index + 1).contents.toInt() && sheet.getCell(i, index + 1).contents.toInt() != 0){
-                                        textViewShow4InPipe.text = "${sheet.getCell(i, 0).contents} (${sheet.getCell(i, index + 1).contents} เส้น)"
-                                    }
+                               textViewShow4InPipe.text = "- เส้น"
+//                                    if(editTextAmountCable.text.toString().toInt() >= sheet.getCell(i, index + 1).contents.toInt() && sheet.getCell(i, index + 1).contents.toInt() != 0){
+//                                        textViewShow4InPipe.text = "${sheet.getCell(i, 0).contents} (${sheet.getCell(i, index + 1).contents} เส้น)"
+//                                    }
                                 }
                             }
                             for (j in 14..22){
@@ -180,10 +187,10 @@ class PipeSizeActivity : AppCompatActivity() {
                                     textViewShow6InPipe.text = "${sheet.getCell(j, 0).contents} (${sheet.getCell(j, index + 1).contents} เส้น)"
                                     break
                                 }else{
-//                                textViewShow6InPipe.text = "null"
-                                    if(editTextAmountCable.text.toString().toInt() >= sheet.getCell(j, index + 1).contents.toInt() && sheet.getCell(j, index + 1).contents.toInt() != 0){
-                                        textViewShow6InPipe.text = "${sheet.getCell(j, 0).contents} (${sheet.getCell(j, index + 1).contents} เส้น)"
-                                    }
+                                textViewShow6InPipe.text = "- เส้น"
+//                                    if(editTextAmountCable.text.toString().toInt() >= sheet.getCell(j, index + 1).contents.toInt() && sheet.getCell(j, index + 1).contents.toInt() != 0){
+//                                        textViewShow6InPipe.text = "${sheet.getCell(j, 0).contents} (${sheet.getCell(j, index + 1).contents} เส้น)"
+//                                    }
                                 }
                             }
                         } }
@@ -203,8 +210,11 @@ class PipeSizeActivity : AppCompatActivity() {
                     sizeCable.forEachIndexed { indexSize, size  ->
                         if (cableSizeTextView.text == size){
                             sizeConduit.forEachIndexed{ indexConduit, conduit ->
-                                if(SizeConduitTextView.text == conduit){
+                                if(SizeConduitTextView.text == conduit ){
                                     textViewShow8InPipe.text = "${sheet.getCell(indexConduit + 14, indexSize + 1).contents} เส้น"
+                                    if (sheet.getCell(indexConduit + 14, indexSize + 1).contents == "0"){
+                                        textViewShow8InPipe.text = "- เส้น"
+                                    }
                                 }
                             }
                         } }
@@ -244,6 +254,8 @@ class PipeSizeActivity : AppCompatActivity() {
                 }
             }
         }
+        wayBackActivity1.visibility = View.VISIBLE
+        wayBackActivity2.visibility = View.GONE
         btnCalInPipeSize.visibility = View.VISIBLE
         tableBeforeCalculateInPipe.visibility = View.GONE
     }
@@ -298,7 +310,7 @@ class PipeSizeActivity : AppCompatActivity() {
     val dataOfSizeCable = sharedPref.getString(TASK_LIST_PREF_KEY_SIZE, "2.5 มม2")
     val dataOfTypeCable = sharedPref.getString(TASK_LIST_PREF_KEY_TYPE_CABLE_IN_PIPE, "IEC01")
     val dataOfAmount = sharedPref.getString(TASK_LIST_PREF_KEY_AMOUNT, null)
-    val dataOfConduit = sharedPref.getString(TASK_LIST_PREF_KEY_CONDUIT, "100x100 มม.")
+    val dataOfConduit = sharedPref.getString(TASK_LIST_PREF_KEY_CONDUIT, "50x75 มม.")
 
     SizeConduitTextView.text = dataOfConduit
     cableSizeTextView.text = dataOfSizeCable
@@ -325,6 +337,17 @@ class PipeSizeActivity : AppCompatActivity() {
         val intent = Intent(this,PipeSizeReportActivity::class.java)
         startActivity(intent)
         finish()
+    }
+
+    fun backOnClick(view: View) {
+        val intent = Intent(this,MainActivity::class.java)
+        startActivity(intent)
+        finish()
+    }
+
+    fun sponsorOnClick(view: View) {
+        val intent = Intent(this,SponsorActivity::class.java)
+        startActivity(intent)
     }
 
 
