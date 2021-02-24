@@ -66,7 +66,6 @@
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
 
-
         <androidx.cardview.widget.CardView
             android:onClick="typeCableOnClickInPipeSize"
             android:id="@+id/cardViewWireType"
@@ -440,7 +439,6 @@
                 android:fontFamily="@font/mitr_regular"
                 android:text="@string/create_report"/>
 
-
             <RelativeLayout
                 android:id="@+id/wayBackActivity2"
                 android:layout_marginBottom="20dp"
@@ -473,8 +471,6 @@
                     android:textColor="@color/white"
                     android:text="@string/sponsor"/>
             </RelativeLayout>
-</LinearLayout>
-
+    </LinearLayout>
         </androidx.cardview.widget.CardView>
-
     </LinearLayout>
