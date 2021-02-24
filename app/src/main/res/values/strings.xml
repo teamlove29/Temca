@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">Temca</string>
+    <string name="back_Button">ย้อนกลับ</string>
+    <string name="sponsor">ผู้สนับสนุน</string>
+    <string name="create_report">สร้างรายงาน</string>
 </resources>

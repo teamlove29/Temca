@@ -19,8 +19,9 @@
             android:layout_height="wrap_content"
             android:text="IEC01"
             android:textSize="16dp"
-            android:fontFamily="@font/kanit_regular"
+            android:fontFamily="@font/mitr_regular"
             android:textColor="@color/black"
             android:layout_centerVertical="true"/>
     </RelativeLayout>
 </androidx.cardview.widget.CardView>
+

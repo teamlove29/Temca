@@ -20,17 +20,16 @@
             <ImageView
                 android:id="@+id/logoImageView"
                 android:layout_width="70dp"
-                android:layout_height="60dp"
+                android:layout_height="50dp"
                 android:layout_marginRight="10dp"
-
-                android:background="@drawable/temca_logo"/>
+                android:background="@drawable/temca_logo_mini"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@id/logoImageView"
                 android:layout_centerVertical="true"
-                android:fontFamily="@font/kanit_regular"
+                android:fontFamily="@font/mitr_regular"
                 android:textColor="@color/black"
                 android:text="หาขนาดสายไฟ"
                 android:textSize="35dp"/>
@@ -42,7 +41,7 @@
 <!--            android:paddingBottom="5dp"-->
 <!--            android:layout_width="wrap_content"-->
 <!--            android:layout_height="wrap_content"-->
-<!--            android:fontFamily="@font/kanit_regular"-->
+<!--            android:fontFamily="@font/mitr_regular"-->
 <!--            android:textColor="@color/black"-->
 <!--            android:textSize="20dp"-->
 <!--            android:text="เฟส"/>-->
