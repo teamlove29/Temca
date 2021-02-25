@@ -21,6 +21,7 @@ class PipeSizeReportActivity : AppCompatActivity() {
 
         if(resultPipe != null){
             CableSizeInPipeReport2.visibility = View.VISIBLE
+            textViewConduitSizeInPipeReport2.visibility = View.VISIBLE
             CableSizeInPipeReport.visibility = View.GONE
             textViewReslutCableTypeInPipeReport.text = "${resultPipe!!.cabletype} x ${resultPipe.sizecable}"
             textViewReslutAmountCableInPipeReport.text = "${resultPipe.amount}"
@@ -28,6 +29,7 @@ class PipeSizeReportActivity : AppCompatActivity() {
             textViewResultConduitSizeInPipeReport.text = "${resultPipe.conduitsize}"
         }else{
             CableSizeInPipeReport2.visibility = View.GONE
+            textViewConduitSizeInPipeReport2.visibility = View.GONE
             CableSizeInPipeReport.visibility = View.VISIBLE
             textViewReslutCableTypeInPipeReport.text = "${resultMax!!.cabletype} x ${resultMax.sizecable}"
             textViewResultConduitSizeInPipeReport.text = "${resultMax.conduitsizechoose}"
