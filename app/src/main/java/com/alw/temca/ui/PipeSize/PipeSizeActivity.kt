@@ -10,6 +10,7 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.alw.temca.MainActivity
+import com.alw.temca.Model.ReportReslutPipeSizeModel
 import com.alw.temca.R
 import com.alw.temca.ui.SponsorActivity
 import com.alw.temca.ui.WireSize.TypeCableActivity
@@ -170,7 +171,7 @@ class PipeSizeActivity : AppCompatActivity() {
                     sizeCable.forEachIndexed { index, size  ->
                         if (cableSizeTextView.text == size){
                             for (i in 1..12){
-                                //  i is col result
+                                //  i is col result ขนาดท่อ
                                 if (editTextAmountCable.text.toString().toInt() <= sheet.getCell(i, index + 1).contents.toInt()){
                                     textViewShow4InPipe.text = "${sheet.getCell(i, 0).contents} (${sheet.getCell(i, index + 1).contents} เส้น)"
                                     break
@@ -182,7 +183,7 @@ class PipeSizeActivity : AppCompatActivity() {
                                 }
                             }
                             for (j in 14..22){
-                                //  j is col result
+                                //  j is col result ขนาดราง
                                 if(editTextAmountCable.text.toString().toInt() <= sheet.getCell(j, index + 1).contents.toInt()){
                                     textViewShow6InPipe.text = "${sheet.getCell(j, 0).contents} (${sheet.getCell(j, index + 1).contents} เส้น)"
                                     break
@@ -211,6 +212,7 @@ class PipeSizeActivity : AppCompatActivity() {
                         if (cableSizeTextView.text == size){
                             sizeConduit.forEachIndexed{ indexConduit, conduit ->
                                 if(SizeConduitTextView.text == conduit ){
+                                    // ขนาด สายไฟสุงสุด
                                     textViewShow8InPipe.text = "${sheet.getCell(indexConduit + 14, indexSize + 1).contents} เส้น"
                                     if (sheet.getCell(indexConduit + 14, indexSize + 1).contents == "0"){
                                         textViewShow8InPipe.text = "- เส้น"
@@ -306,7 +308,6 @@ class PipeSizeActivity : AppCompatActivity() {
 
     fun loadData(){
     val sharedPref = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
-
     val dataOfSizeCable = sharedPref.getString(TASK_LIST_PREF_KEY_SIZE, "2.5 มม2")
     val dataOfTypeCable = sharedPref.getString(TASK_LIST_PREF_KEY_TYPE_CABLE_IN_PIPE, "IEC01")
     val dataOfAmount = sharedPref.getString(TASK_LIST_PREF_KEY_AMOUNT, null)
@@ -335,6 +336,22 @@ class PipeSizeActivity : AppCompatActivity() {
 
     fun pipeSizeReportOnClick(view: View) {
         val intent = Intent(this,PipeSizeReportActivity::class.java)
+        val bundle = Bundle()
+
+        if(switchButtonPipeSize.isChecked == true){
+            bundle.putParcelable("resultMaxCable",ReportReslutPipeSizeModel(
+                    typeCableTextView.text.toString(),cableSizeTextView.text.toString(),
+                    "","","",SizeConduitTextView.text.toString(),textViewShow8InPipe.text.toString()))
+            intent.putExtras(bundle)
+
+        }else{
+            bundle.putParcelable("resultPipeSize",ReportReslutPipeSizeModel(
+                    typeCableTextView.text.toString(),cableSizeTextView.text.toString(),
+                    editTextAmountCable.text.toString(), textViewShow4InPipe.text.toString(),
+                    textViewShow6InPipe.text.toString(),"",""))
+            intent.putExtras(bundle)
+        }
+
         startActivity(intent)
         finish()
     }
