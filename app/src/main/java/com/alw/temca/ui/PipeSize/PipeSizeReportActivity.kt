@@ -37,23 +37,29 @@ class PipeSizeReportActivity : AppCompatActivity() {
         }
 
 
+        btnSendEmailInPipeSize.setOnClickListener {
 
+            val sendIntent = Intent(Intent.ACTION_SEND)
+            sendIntent.putExtra(Intent.EXTRA_STREAM, "1234")
+            sendIntent.type = "text/pdf"
+            startActivity(Intent.createChooser(sendIntent, "SHARE"))
+        }
 
-        btnSendEmailInPipeSize.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(view: View?) {
-                val mailto = "mailto:useremail@gmail.com" +
-                        "?cc=" +
-                        "&subject=" + Uri.encode("ผลการคำนวณ") +
-                        "&body=" + Uri.encode("ทดสอบการส่งอีเมล์")
-                val emailIntent = Intent(Intent.ACTION_SENDTO)
-                emailIntent.data = Uri.parse(mailto)
-                try {
-                    startActivity(emailIntent)
-                } catch (e: ActivityNotFoundException) {
-                    Toast.makeText(this@PipeSizeReportActivity, "Error to open email app", Toast.LENGTH_SHORT).show()
-                }
-            }
-        })
+//        btnSendEmailInPipeSize.setOnClickListener(object : View.OnClickListener {
+//            override fun onClick(view: View?) {
+//                val mailto = "mailto:useremail@gmail.com" +
+//                        "?cc=" +
+//                        "&subject=" + Uri.encode("ผลการคำนวณ") +
+//                        "&body=" + Uri.encode("ทดสอบการส่งอีเมล์")
+//                val emailIntent = Intent(Intent.ACTION_SENDTO)
+//                emailIntent.data = Uri.parse(mailto)
+//                try {
+//                    startActivity(emailIntent)
+//                } catch (e: ActivityNotFoundException) {
+//                    Toast.makeText(this@PipeSizeReportActivity, "Error to open email app", Toast.LENGTH_SHORT).show()
+//                }
+//            }
+//        })
 
     }
 

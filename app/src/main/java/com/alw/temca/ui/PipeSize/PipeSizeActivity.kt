@@ -1,7 +1,10 @@
 package com.alw.temca.ui.PipeSize
 
+import android.Manifest
 import android.content.Context
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -9,15 +12,29 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.alw.temca.Common.Common
 import com.alw.temca.MainActivity
 import com.alw.temca.Model.ReportReslutPipeSizeModel
 import com.alw.temca.R
 import com.alw.temca.ui.SponsorActivity
 import com.alw.temca.ui.WireSize.TypeCableActivity
+import com.itextpdf.text.*
+import com.itextpdf.text.pdf.BaseFont
+import com.itextpdf.text.pdf.PdfWriter
+import com.itextpdf.text.pdf.draw.LineSeparator
+import com.itextpdf.text.pdf.draw.VerticalPositionMark
 import jxl.Workbook
 import kotlinx.android.synthetic.main.activity_pipe_size.*
 import kotlinx.android.synthetic.main.activity_wire_size.typeCableTextView
+import java.io.File
+import java.io.FileOutputStream
 import java.io.IOException
+import com.karumi.dexter.Dexter
+import com.karumi.dexter.PermissionToken
+import com.karumi.dexter.listener.PermissionDeniedResponse
+import com.karumi.dexter.listener.PermissionGrantedResponse
+import com.karumi.dexter.listener.PermissionRequest
+import com.karumi.dexter.listener.single.PermissionListener
 
 
 class PipeSizeActivity : AppCompatActivity() {
@@ -28,6 +45,7 @@ class PipeSizeActivity : AppCompatActivity() {
     final val TASK_LIST_PREF_KEY_AMOUNT = "task_list_amount"
     final val TASK_LIST_PREF_KEY_CONDUIT = "task_list_conduit"
     final val PREF_NAME = "task_pipe"
+    final val file_name:String = "result_calculate.pdf"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,6 +56,25 @@ class PipeSizeActivity : AppCompatActivity() {
         tableBeforeCalculateInPipe.visibility = View.GONE
         calculator()
 
+        Dexter.withActivity(this)
+            .withPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+            .withListener(object:PermissionListener{
+                override fun onPermissionGranted(p0: PermissionGrantedResponse?) {
+                    createPDFFile(Common.getAppPath(this@PipeSizeActivity)+file_name)
+                }
+
+                override fun onPermissionDenied(p0: PermissionDeniedResponse?) {
+                    Toast.makeText(this@PipeSizeActivity,"Denied Permission",Toast.LENGTH_LONG).show()
+                }
+
+                override fun onPermissionRationaleShouldBeShown(
+                    p0: PermissionRequest?,
+                    p1: PermissionToken?
+                ) {
+                }
+
+            })
+            .check()
 
 //        editTextAmountCable.setOnFocusChangeListener { v, hasFocus ->
 //            if (hasFocus){
@@ -352,8 +389,127 @@ class PipeSizeActivity : AppCompatActivity() {
             intent.putExtras(bundle)
         }
 
+        // TODO save pdf here
+            createPDFFile(Common.getAppPath(this)+file_name)
+
+
         startActivity(intent)
         finish()
+    }
+
+    private fun createPDFFile(path: String) {
+    if(File(path).exists()) File(path).delete()
+        try {
+            val document = Document()
+            //Save
+            PdfWriter.getInstance(document,FileOutputStream(path))
+            println("dasadsdas ${FileOutputStream(path)}")
+            //Open to Write
+            document.open()
+            //Setting
+            document.pageSize = PageSize.A4
+            document.addCreationDate()
+            document.addAuthor("Dev")
+            document.addCreator("Marutthep Rompho")
+
+            // Font setting
+            val colorAccent = BaseColor(0,153,204,255)
+            val headingFontSize = 20.0f
+            val valueFontSzie = 26.0f
+
+            // Custom font
+            val fontName = BaseFont.createFont("assets/sarabun_regular.ttf",BaseFont.IDENTITY_H,BaseFont.NOT_EMBEDDED,true)
+            val logo = BitmapFactory.decodeResource(resources,R.drawable.temca_logo_mini)
+            val scaledlogo = Bitmap.createScaledBitmap(logo,70,50,false)
+
+
+
+            // Add Title to document
+            val titleStyle = Font(fontName,30.0f, Font.NORMAL,BaseColor.BLACK)
+            var headingStyle = Font(fontName,headingFontSize,Font.NORMAL,colorAccent)
+            var valueStyle = Font(fontName,valueFontSzie,Font.NORMAL,BaseColor.BLACK)
+
+            addNewItem(document,"Cable and Conduit Calculator",Element.ALIGN_CENTER,titleStyle)
+            addLineSpace(document)
+            addLineSeperator(document)
+            addNewItem(document,"รายงานผลการคำนวณขนาดท่อและราง",Element.ALIGN_CENTER,titleStyle)
+            addLineSpace(document)
+
+            //cabletype
+            addNewItemWithLeftAndRight(document,"ชนิดสายไฟ", "${typeCableTextView.text} x ${SizeConduitTextView.text}",titleStyle,valueStyle)
+
+            //amount
+            addNewItemWithLeftAndRight(document,"จำนวน", "${editTextAmountCable.text}",titleStyle,valueStyle)
+
+            //conduit Size
+            addNewItemWithLeftAndRight(document,"ขนาดท่อ", "1-1/4",titleStyle,valueStyle)
+            addNewItemWithLeftAndRight(document,"(จำนวนสูงสุด)", "",titleStyle,valueStyle)
+
+            //Rail  Size
+            addNewItemWithLeftAndRight(document,"ขนาดราง", "${SizeConduitTextView.text}",titleStyle,valueStyle)
+            addNewItemWithLeftAndRight(document,"(จำนวนสูงสุด)", "",titleStyle,valueStyle)
+
+//            addNewItem(document,"Order No",Element.ALIGN_LEFT,headingStyle)
+//            addNewItem(document,"#123123",Element.ALIGN_LEFT,valueStyle)
+
+//            addLineSeperator(document)
+//
+//            addNewItem(document,"Order Date",Element.ALIGN_LEFT,headingStyle)
+//            addNewItem(document,"03/08/2019",Element.ALIGN_LEFT,valueStyle)
+//
+//            addLineSeperator(document)
+//
+//            addNewItem(document,"Account Name:",Element.ALIGN_LEFT,headingStyle)
+//            addNewItem(document,"Marutthep Rompho",Element.ALIGN_LEFT,valueStyle)
+//
+
+
+            //close
+            document.close()
+            Toast.makeText(this@PipeSizeActivity,"${file_name} to  ${path}",Toast.LENGTH_LONG).show()
+
+
+
+        }catch (e:Exception){
+        println("Error Mowwww : $e")
+        }
+    }
+
+    @Throws(DocumentException::class)
+    private fun addNewItemWithLeftAndRight(document: Document, textLeft: String, textRight: String, leftStyle: Font, rightStyle: Font) {
+        val chunkTextLeft = Chunk(textLeft,leftStyle)
+        val chunkTextRight = Chunk(textRight,rightStyle)
+        val p = Paragraph(chunkTextLeft)
+        p.add(Chunk(VerticalPositionMark()))
+        p.add(chunkTextRight)
+        addLineSpace(document)
+        document.add(p)
+
+    }
+
+    @Throws(DocumentException::class)
+    private fun addLineSeperator(document: Document) {
+        val lineSeparator = LineSeparator()
+        lineSeparator.lineColor = BaseColor(0,0,0,68)
+        addLineSpace(document)
+        document.add(Chunk(lineSeparator))
+        addLineSpace(document)
+
+    }
+
+    @Throws(DocumentException::class)
+    private fun addLineSpace(document: Document) {
+        document.add(Paragraph(" "))
+    }
+
+    @Throws(DocumentException::class)
+    private fun addNewItem(document: Document, text: String, align: Int, style: Font) {
+        val chunk = Chunk(text,style)
+        val p = Paragraph(chunk)
+        p.alignment = align
+        document.add(p)
+
+
     }
 
     fun backOnClick(view: View) {
