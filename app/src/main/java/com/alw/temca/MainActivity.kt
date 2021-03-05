@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import com.alw.temca.ui.PipeSize.PipeSizeActivity
 import com.alw.temca.ui.SoonActivity
 import com.alw.temca.ui.SponsorActivity
@@ -48,6 +49,16 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        println("dasdad  ${requestCode}")
+        if(requestCode == 100){
+            Toast.makeText(this, "SUCCESS !", Toast.LENGTH_LONG).show()
+        }
+    }
+
 
     fun sponsorOnClick(view: View) {
         val intent = Intent(this,SponsorActivity::class.java)
