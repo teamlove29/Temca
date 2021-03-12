@@ -8,13 +8,14 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
-        android:requestLegacyExternalStorage="true"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Temca">
+        <activity android:name=".ui.WireSize.CircuitBreakerActivity"></activity>
         <activity android:name=".ui.PipeSize.PipeSizeReportActivity" />
         <activity android:name=".ui.SponsorActivity" />
         <activity android:name=".ui.PipeSize.SizeConduitActivity" />
@@ -36,15 +37,16 @@
         </activity>
 
         <provider
-            android:authorities="com.alw.temca.fileprovider"
             android:name="androidx.core.content.FileProvider"
+            android:authorities="com.alw.temca.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/provider_path" />
         </provider>
-        <receiver android:name=".Common.ApplicationSelectorReceiver"></receiver>
+
+        <receiver android:name=".Common.ApplicationSelectorReceiver" />
     </application>
 
 </manifest>

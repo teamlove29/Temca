@@ -48,7 +48,7 @@
 
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardViewWireType"
+        android:id="@+id/cardViewCircuitBreaker"
         android:clickable="true"
         android:focusable="true"
         android:foreground="?android:selectableItemBackground"
@@ -70,6 +70,7 @@
             android:layout_centerVertical="true"/>
 
         <TextView
+            android:id="@+id/textViewCircuit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="10dp"

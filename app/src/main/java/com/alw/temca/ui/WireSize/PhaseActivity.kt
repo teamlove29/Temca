@@ -10,7 +10,6 @@ import com.alw.temca.Adapter.PhaseAdapter
 import com.alw.temca.Adapter.onClickAdapterListener
 import com.alw.temca.Model.PhaseModel
 import com.alw.temca.R
-import com.alw.temca.ui.PipeSize.PipeSizeActivity
 import kotlinx.android.synthetic.main.activity_phase.*
 
 class PhaseActivity : AppCompatActivity(), onClickAdapterListener {
@@ -19,8 +18,8 @@ class PhaseActivity : AppCompatActivity(), onClickAdapterListener {
         setContentView(R.layout.activity_phase)
 
         val phaseItem = ArrayList<PhaseModel>()
-        phaseItem.add(PhaseModel(1,"เฟส"))
-        phaseItem.add(PhaseModel(2,"เฟส"))
+        phaseItem.add(PhaseModel(1,"เฟส (2 สาย)"))
+        phaseItem.add(PhaseModel(3,"เฟส (4 สาย)"))
 
         recyclerViewPhase.adapter = PhaseAdapter(phaseItem,this)
         recyclerViewPhase.layoutManager = LinearLayoutManager(this)

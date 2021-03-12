@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">Temca</string>
+    <string name="copy_right">จัดทำโดย สมาคมช่างเหมาไฟฟ้าและเครื่องกลไทย</string>
     <string name="back_Button">ย้อนกลับ</string>
     <string name="sponsor">ผู้สนับสนุน</string>
     <string name="create_report">สร้างรายงาน</string>
+    <string name="share">แชร์</string>
+    <string name="calculate">คำนวณ</string>
 </resources>

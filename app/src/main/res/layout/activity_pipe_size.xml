@@ -268,7 +268,7 @@
             android:textSize="20dp"
             android:backgroundTint="@color/btnBlue"
             android:fontFamily="@font/mitr_regular"
-            android:text="คำนวณ"/>
+            android:text="@string/calculate"/>
 
     <LinearLayout
         android:id="@+id/wayBackActivity1"

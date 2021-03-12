@@ -38,7 +38,7 @@ class InstallationActivity : AppCompatActivity(), InstallationonClickAdapterList
 //        intent.putExtra("dataInstall", installItem[postion].name)
 //        startActivity(intent)
         val resultIntent = Intent()
-        resultIntent.putExtra("dataInstall",installItem[postion].name);
+        resultIntent.putExtra("dataInstall",installItem[postion].name)
         setResult(Activity.RESULT_OK, resultIntent)
         finish()
     }

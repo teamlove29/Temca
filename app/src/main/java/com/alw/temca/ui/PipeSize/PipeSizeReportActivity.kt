@@ -114,9 +114,9 @@ class PipeSizeReportActivity : AppCompatActivity() {
 
 
 
-        btnPrint.setOnClickListener {
-            printPDF()
-        }
+//        btnPrint.setOnClickListener {
+//            printPDF()
+//        }
 
         btnSendEmailInPipeSize.setOnClickListener {
             try {

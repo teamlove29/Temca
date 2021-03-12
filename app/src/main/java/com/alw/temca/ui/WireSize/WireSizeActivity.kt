@@ -88,8 +88,8 @@ class WireSizeActivity : AppCompatActivity() {
         btnCal.apply {
             setBackgroundColor(resources.getColor(R.color.btnBlue))
             isClickable = true
-            isSelected = true;
-            isFocusable = true;
+            isSelected = true
+            isFocusable = true
         }
     }
 

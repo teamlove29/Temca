@@ -36,6 +36,17 @@ tools:context=".ui.PipeSize.PipeSizeReportActivity">
 
 </RelativeLayout>
 
+
+    <TextView
+        android:gravity="center_horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:background="@color/placeHolderBG"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:textColor="@color/black" />
+
+
 <LinearLayout
     android:background="@color/white"
     android:layout_weight="1"
@@ -227,12 +238,6 @@ tools:context=".ui.PipeSize.PipeSizeReportActivity">
 
         </RelativeLayout>
 
-
-
-
-
-
-
     <LinearLayout
         android:gravity="bottom"
         android:layout_weight="1"
@@ -244,7 +249,7 @@ tools:context=".ui.PipeSize.PipeSizeReportActivity">
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:text="จัดทำโดย สมาคมช่างเหมาไฟฟ้าและเครื่องกลไทย"
+            android:text="@string/copy_right"
             android:textColor="@color/black"
             android:gravity="center_horizontal"
             android:fontFamily="@font/sarabun_regular"/>
@@ -255,17 +260,18 @@ tools:context=".ui.PipeSize.PipeSizeReportActivity">
             android:padding="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnPrint"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:cornerRadius="10dp"
-                android:padding="10dp"
-                android:layout_margin="10dp"
-                android:textSize="14dp"
-                android:backgroundTint="#50596F"
-                android:fontFamily="@font/mitr_regular"
-                android:text="พิมพ์"/>
+
+<!--            <com.google.android.material.button.MaterialButton-->
+<!--                android:id="@+id/btnPrint"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                app:cornerRadius="10dp"-->
+<!--                android:padding="10dp"-->
+<!--                android:layout_margin="10dp"-->
+<!--                android:textSize="14dp"-->
+<!--                android:backgroundTint="#50596F"-->
+<!--                android:fontFamily="@font/mitr_regular"-->
+<!--                android:text="พิมพ์"/>-->
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnSendEmailInPipeSize"
@@ -278,7 +284,7 @@ tools:context=".ui.PipeSize.PipeSizeReportActivity">
                 android:textSize="14dp"
                 android:backgroundTint="#50596F"
                 android:fontFamily="@font/mitr_regular"
-                android:text="ส่งอีเมล์"/>
+                android:text="@string/share"/>
         </RelativeLayout>
 
     </LinearLayout>
