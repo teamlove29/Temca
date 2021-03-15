@@ -14,7 +14,10 @@ import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.addTextChangedListener
 import com.alw.temca.R
+import jxl.Workbook
+import kotlinx.android.synthetic.main.activity_circuit.*
 import kotlinx.android.synthetic.main.activity_wire_size.*
+import java.io.IOException
 
 
 class WireSizeActivity : AppCompatActivity() {
@@ -53,6 +56,15 @@ class WireSizeActivity : AppCompatActivity() {
 
         })
 
+
+        intent = getIntent()
+        val dataCircuit = intent.extras?.getString("dataCircuit")
+        if (dataCircuit != null){
+             circuitTextView.text = dataCircuit
+             saveData("circuit", dataCircuit)
+        }
+
+
     }
 
 
@@ -63,7 +75,7 @@ class WireSizeActivity : AppCompatActivity() {
                 val dataPhase = data!!.getIntExtra("dataPhase",0)
                 val dataInstallation = data!!.getStringExtra("dataInstall")
                 val dataTypeCable = data!!.getStringExtra("dataTypeCable")
-                val dataCircuit = data!!.getStringExtra("dataCircuit")
+//                val dataCircuit = data!!.getStringExtra("dataCircuit")
 
                 if (dataPhase != 0){
                     phaseTextView.text = "$dataPhase เฟส"
@@ -76,10 +88,6 @@ class WireSizeActivity : AppCompatActivity() {
                 if (dataTypeCable != null) {
                     typeCableTextView.text = dataTypeCable
                     saveData("typeCable", dataTypeCable)
-                }
-                if (dataCircuit != null) {
-                    circuitTextView.text = dataCircuit
-                    saveData("circuit", dataCircuit)
                 }
             }
         }
@@ -126,16 +134,81 @@ class WireSizeActivity : AppCompatActivity() {
         if (editTextDistance.text.isEmpty()){
             editTextDistance.setText("100")
         }
-//        sponsorImageView.visibility = View.GONE
         tableBeforeCalculate.visibility = View.VISIBLE
         editTextDistance.clearFocus()
         btnCal.apply {
             isClickable = false
             setBackgroundColor(Color.GRAY)
-            isSelected = false;
-            isFocusable = false;
+            isSelected = false
+            isFocusable = false
             hideKeyboard()
         }
+
+        lateinit var groupInstallation:String
+        when(installationTextView.text){
+//            "กลุ่ม 1" -> groupInstallation = "Group1"
+            "กลุ่ม 2" -> groupInstallation = "Group2"
+            else -> groupInstallation = "Group2"
+        }
+
+        val typeCableFile:String
+        typeCableFile = when(typeCableTextView.text){
+            "IEC01" -> "WireGroup_IEC01_${groupInstallation}.xls"
+            else -> "WireGroup_IEC01_Group2.xls"
+//            "NYY 1C" -> typeCableFile = "NYY1C.xls"
+//            "NYY 2C" -> typeCableFile = "NYY2C.xls"
+//            "NYY 3C" -> typeCableFile = "NYY3C.xls"
+//            "NYY 4C" -> typeCableFile = "NYY4C.xls"
+//            "IEC10 2C" -> typeCableFile = "IEC102C.xls"
+//            "IEC10 3C" -> typeCableFile = "IEC103C.xls"
+//            "XLPE 1C" -> typeCableFile = "XLPE1C.xls"
+//            "XLPE 2C" -> typeCableFile = "XLPE2C.xls"
+//            "XLPE 3C" -> typeCableFile = "XLPE3C.xls"
+//            "XLPE 4C" -> typeCableFile = "XLPE4C.xls"
+        }
+
+//        val typeCable:String
+//        when(typeCableTextView.text){
+//            "IEC01" -> typeCable = "IEC01.xls"
+//            "NYY 1C" -> typeCable = "NYY1C.xls"
+//            "NYY 2C" -> typeCable = "NYY2C.xls"
+//            "NYY 3C" -> typeCable = "NYY3C.xls"
+//            "NYY 4C" -> typeCable = "NYY4C.xls"
+//            "IEC10 2C" -> typeCable = "IEC102C.xls"
+//            "IEC10 3C" -> typeCable = "IEC103C.xls"
+//            "XLPE 1C" -> typeCable = "XLPE1C.xls"
+//            "XLPE 2C" -> typeCable = "XLPE2C.xls"
+//            "XLPE 3C" -> typeCable = "XLPE3C.xls"
+//            "XLPE 4C" -> typeCable = "XLPE4C.xls"
+//        }
+
+
+        try {
+            val typeCable = applicationContext.assets.open(typeCableFile)
+            val wb = Workbook.getWorkbook(typeCable)
+            val sheet = wb.getSheet(0)
+
+            if(phaseTextView.text == "1 เฟส"){
+                for(i in 2..20){
+                    val findInOnePhase = sheet.getCell(1, i).contents
+                    val circuitToInt = Integer.parseInt(circuitTextView.text.toString().replace("A",""))
+
+                    if (circuitToInt <= findInOnePhase.toInt()){
+                        val getCableSizeInTable = sheet.getCell(0, i).contents
+                        println("dsadadsd $getCableSizeInTable")
+                        break
+                    }
+                }
+            }else{
+
+            }
+
+
+        }catch (e:IOException){}
+
+
+
+
     }
 
     fun View.hideKeyboard() {
@@ -174,7 +247,6 @@ class WireSizeActivity : AppCompatActivity() {
         val dataOfTypeCable = sharedPref.getString(TASK_LIST_PREF_KEY_TYPE_CABLE, "IEC01")
         val dataOfCircuit = sharedPref.getString(TASK_LIST_PREF_KEY_CIRCUIT, "40A")
         val dataOfDistance = sharedPref.getString(TASK_LIST_PREF_KEY_DISTANCE, "100")
-
 
          phaseTextView.text = "$dataOfPhase เฟส"
         installationTextView.text = dataOfInstallation!!.slice(0..6)

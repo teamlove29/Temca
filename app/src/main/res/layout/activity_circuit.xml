@@ -134,4 +134,22 @@
     </androidx.cardview.widget.CardView>
 
 
+    <com.google.android.material.button.MaterialButton
+        android:onClick="SubmitCircuitOnClick"
+        android:id="@+id/btnCalInPipeSize"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cornerRadius="10dp"
+        android:padding="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:textSize="20dp"
+        android:backgroundTint="@color/btnBlue"
+        android:fontFamily="@font/mitr_regular"
+        android:text="ตกลง"/>
+
+
+
+
 </LinearLayout>
