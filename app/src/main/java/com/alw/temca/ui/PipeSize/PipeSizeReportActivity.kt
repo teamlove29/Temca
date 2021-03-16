@@ -111,9 +111,6 @@ class PipeSizeReportActivity : AppCompatActivity() {
             textViewReslutCableSizeInPipeReport.text = "${resultMax!!.amountcablemax}"
         }
 
-
-
-
 //        btnPrint.setOnClickListener {
 //            printPDF()
 //        }
@@ -143,33 +140,33 @@ class PipeSizeReportActivity : AppCompatActivity() {
         }
     }
 
-    private fun printPDF() {
-        val printManager = getSystemService(Context.PRINT_SERVICE) as PrintManager
-        try {
-            val printAdapter = PdfDocumentAdapter(this,Common.getAppPath(this) + file_name)
-            printManager.print("Document",printAdapter, PrintAttributes.Builder().build())
-        }catch (e:Exception){
-            Log.e("Error Report", e.message.toString())
-        }
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-
-//                println("requestCode ${requestCode}")
-//                println("mailClientOpened ${mailClientOpened}")
-//                println("resultCode ${resultCode}")
-//                println("resultCode2222 ${Activity.RESULT_OK}")
-
-//        if(requestCode == 800){
-////            val intent = Intent(this,MainActivity::class.java)
-////            startActivityForResult(intent,100)
+//    private fun printPDF() {
+//        val printManager = getSystemService(Context.PRINT_SERVICE) as PrintManager
+//        try {
+//            val printAdapter = PdfDocumentAdapter(this,Common.getAppPath(this) + file_name)
+//            printManager.print("Document",printAdapter, PrintAttributes.Builder().build())
+//        }catch (e:Exception){
+//            Log.e("Error Report", e.message.toString())
 //        }
-//        if (resultCode == Activity.RESULT_OK) {
-//            Toast.makeText(this, "Successfully Sharing", Toast.LENGTH_SHORT).show()
+//    }
+
+//    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+//        super.onActivityResult(requestCode, resultCode, data)
 //
-//        }
-    }
+////                println("requestCode ${requestCode}")
+////                println("mailClientOpened ${mailClientOpened}")
+////                println("resultCode ${resultCode}")
+////                println("resultCode2222 ${Activity.RESULT_OK}")
+//
+////        if(requestCode == 800){
+//////            val intent = Intent(this,MainActivity::class.java)
+//////            startActivityForResult(intent,100)
+////        }
+////        if (resultCode == Activity.RESULT_OK) {
+////            Toast.makeText(this, "Successfully Sharing", Toast.LENGTH_SHORT).show()
+////
+////        }
+//    }
 
 
 //    override fun onResume() {

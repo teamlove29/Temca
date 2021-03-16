@@ -378,8 +378,6 @@ class PipeSizeActivity : AppCompatActivity() {
 
 
     fun backOnClick(view: View) {
-        val intent = Intent(this,MainActivity::class.java)
-        startActivity(intent)
         finish()
     }
 

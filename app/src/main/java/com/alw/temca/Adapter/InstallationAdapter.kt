@@ -1,5 +1,6 @@
 package com.alw.temca.Adapter
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,12 +14,15 @@ interface InstallationonClickAdapterListener{
     fun onClick(postion: Int)
 }
 
-
-class InstallationAdapter(var InstallList : ArrayList<InstallationModel>, var onClickInstall:InstallationonClickAdapterListener): RecyclerView.Adapter<InstallationAdapter.InstallViewHolder>() {
+class InstallationAdapter(var InstallList: ArrayList<InstallationModel>, var onClickInstall: InstallationonClickAdapterListener): RecyclerView.Adapter<InstallationAdapter.InstallViewHolder>() {
     class InstallViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         fun bind(itemList: InstallationModel, action: InstallationonClickAdapterListener){
-            itemView.textViewInstallation.text = "${itemList.name}"
+
+
+            itemView.imageViewGroup.setImageDrawable(itemList.image)
+            itemView.textViewInstallationTitle.text = itemList.title
+            itemView.textViewInstallation.text = itemList.des
 
             itemView.setOnClickListener {
                 action.onClick(adapterPosition)
@@ -27,13 +31,13 @@ class InstallationAdapter(var InstallList : ArrayList<InstallationModel>, var on
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): InstallViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.installation_list,parent,false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.installation_list, parent, false)
         return InstallViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: InstallViewHolder, position: Int) {
         val currency = InstallList[position]
-        holder.bind(currency,onClickInstall)
+        holder.bind(currency, onClickInstall)
 
     }
 

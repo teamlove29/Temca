@@ -13,14 +13,35 @@
         android:padding="15dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/imageViewGroup"
+            android:layout_width="75dp"
+            android:layout_height="50dp"
+
+            android:layout_centerVertical="true"
+            android:src="@drawable/setting_group1"/>
+
+        <TextView
+            android:id="@+id/textViewInstallationTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/imageViewGroup"
+            android:hint="กลุ่ม 1"
+            android:textSize="16dp"
+            android:fontFamily="@font/mitr_regular"
+            android:textColor="@color/btnBlue" />
+
         <TextView
             android:id="@+id/textViewInstallation"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="กลุ่ม 1 - เดินสายภายในฝ้าเพดานที่เป็นฉนวนความร้อน"
+            android:layout_toRightOf="@+id/imageViewGroup"
+            android:layout_below="@+id/textViewInstallationTitle"
+            android:hint="เดินสายภายในฝ้าเพดานที่เป็นฉนวนความร้อน"
             android:textSize="16dp"
             android:fontFamily="@font/mitr_regular"
-            android:textColor="@color/black"
-            android:layout_centerVertical="true"/>
+            android:textColor="@color/black" />
+
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

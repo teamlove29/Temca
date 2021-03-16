@@ -6,8 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#EEEEEE"
-    tools:context=".ui.WireSize.ReportActivity">
+    android:background="@color/white"
+    tools:context=".ui.PipeSize.PipeSizeReportActivity">
 
     <RelativeLayout
         android:paddingBottom="40dp"
@@ -31,158 +31,132 @@
             android:layout_centerVertical="true"
             android:fontFamily="@font/mitr_regular"
             android:textColor="@color/black"
-            android:text="Cable and Conduit Calculator"
+            android:text="CableSize"
             android:textSize="18dp"/>
 
     </RelativeLayout>
 
+
+    <TextView
+        android:gravity="center_horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:background="@color/placeHolderBG"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:textColor="@color/black" />
+
+
     <LinearLayout
-        android:layout_weight="1"
         android:background="@color/white"
+        android:layout_weight="1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-<!--<androidx.cardview.widget.CardView-->
-<!--    android:layout_marginTop="20dp"-->
-<!--    android:layout_marginLeft="10dp"-->
-<!--    android:layout_marginRight="10dp"-->
-<!--    android:layout_width="match_parent"-->
-<!--    android:layout_height="wrap_content"-->
-<!--    android:backgroundTint="#F5F6F7">-->
-
-<!--    <RelativeLayout-->
-<!--        android:padding="10dp"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content">-->
-
-<!--        <ImageView-->
-<!--            android:id="@+id/logoImageView2"-->
-<!--            android:layout_width="50dp"-->
-<!--            android:layout_height="50dp"-->
-<!--            android:layout_marginRight="10dp"-->
-<!--            android:background="@drawable/temca_logo"/>-->
-
-<!--        <TextView-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_centerVertical="true"-->
-<!--            android:fontFamily="@font/sarabun_bold"-->
-<!--            android:textColor="@color/black"-->
-<!--            android:layout_centerHorizontal="true"-->
-<!--            android:text="รายงาน"-->
-<!--            android:textSize="25dp"/>-->
-<!--    </RelativeLayout>-->
-<!--</androidx.cardview.widget.CardView>-->
-
-        <androidx.cardview.widget.CardView
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
+        <TextView
+            android:gravity="center_horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="#F5F6F7">
+            android:layout_margin="20dp"
+            android:text="รายงานผลการคำนวณขนาดสาย"
+            android:fontFamily="@font/sarabun_medium"
+            android:textColor="@color/black"
+            android:textSize="20dp"/>
 
-            <RelativeLayout
-                android:padding="10dp"
+
+            <LinearLayout
+                android:layout_weight="1"
+                android:background="@color/white"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/textViewWireSize"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:text="ขนาดสายไฟฟ้า"
-                    android:textColor="@color/black"
-                    android:fontFamily="@font/sarabun_medium"
-                    android:textSize="18dp"/>
 
-                <TextView
-                    android:id="@+id/textViewResultWireSize"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="20dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="10 sq.mm."
-                    android:textColor="@color/black"
-                    android:fontFamily="@font/sarabun_regular"
-                    android:textSize="18dp"/>
 
-            </RelativeLayout>
-        </androidx.cardview.widget.CardView>
+                    <RelativeLayout
+                        android:padding="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
 
-        <androidx.cardview.widget.CardView
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#F5F6F7">
+                        <TextView
+                            android:id="@+id/textViewWireSize"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:text="ขนาดสายไฟฟ้า"
+                            android:textColor="@color/black"
+                            android:fontFamily="@font/sarabun_medium"
+                            android:textSize="18dp"/>
 
-            <RelativeLayout
-                android:padding="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                        <TextView
+                            android:id="@+id/textViewResultWireSize"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginRight="20dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="10 sq.mm."
+                            android:textColor="@color/black"
+                            android:fontFamily="@font/sarabun_regular"
+                            android:textSize="18dp"/>
 
-                <TextView
-                    android:id="@+id/textViewConduitSize"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:text="ขนาดท่อร้อยสาย(ราง)"
-                    android:textColor="@color/black"
-                    android:fontFamily="@font/sarabun_medium"
-                    android:textSize="18dp"/>
+                    </RelativeLayout>
 
-                <TextView
-                    android:id="@+id/textViewResultConduitSize"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="20dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="3/4"
-                    android:textColor="@color/black"
-                    android:fontFamily="@font/sarabun_regular"
-                    android:textSize="18dp"/>
+                    <RelativeLayout
+                        android:padding="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
 
-            </RelativeLayout>
-        </androidx.cardview.widget.CardView>
+                        <TextView
+                            android:id="@+id/textViewConduitSize"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:text="ขนาดท่อร้อยสาย(ราง)"
+                            android:textColor="@color/black"
+                            android:fontFamily="@font/sarabun_medium"
+                            android:textSize="18dp"/>
 
-        <androidx.cardview.widget.CardView
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#F5F6F7">
+                        <TextView
+                            android:id="@+id/textViewResultConduitSize"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginRight="20dp"
+                            android:fontFamily="@font/sarabun_regular"
+                            android:text="3/4"
+                            android:textColor="@color/black"
+                            android:textSize="18dp" />
 
-            <RelativeLayout
-                android:padding="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                    </RelativeLayout>
 
-                <TextView
-                    android:id="@+id/textViewPressure"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:text="แรงดันตก"
-                    android:textColor="@color/black"
-                    android:fontFamily="@font/sarabun_medium"
-                    android:textSize="18dp"/>
+                    <RelativeLayout
+                        android:padding="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
 
-                <TextView
-                    android:id="@+id/textViewResultPressure"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="20dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="-%"
-                    android:textColor="@color/black"
-                    android:fontFamily="@font/sarabun_regular"
-                    android:textSize="18dp"/>
+                        <TextView
+                            android:id="@+id/textViewPressure"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:text="แรงดันตก"
+                            android:textColor="@color/black"
+                            android:fontFamily="@font/sarabun_medium"
+                            android:textSize="18dp"/>
 
-            </RelativeLayout>
-        </androidx.cardview.widget.CardView>
+                        <TextView
+                            android:id="@+id/textViewResultPressure"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginRight="20dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="-%"
+                            android:textColor="@color/black"
+                            android:fontFamily="@font/sarabun_regular"
+                            android:textSize="18dp"/>
+
+                    </RelativeLayout>
 
         <LinearLayout
             android:gravity="bottom"
@@ -191,25 +165,25 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="@string/copy_right"
+                android:textColor="@color/black"
+                android:gravity="center_horizontal"
+                android:fontFamily="@font/sarabun_regular"/>
+
             <RelativeLayout
+                android:background="#EEEEEE"
                 android:gravity="center"
                 android:padding="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btnPrint"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:cornerRadius="10dp"
-                    android:padding="10dp"
-                    android:layout_margin="10dp"
-                    android:textSize="14dp"
-                    android:backgroundTint="#50596F"
-                    android:fontFamily="@font/mitr_regular"
-                    android:text="พิมพ์"/>
+
 
                 <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btnSendEmail"
+                    android:id="@+id/btnSendEmailInWireSize"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@+id/btnPrint"
@@ -219,12 +193,11 @@
                     android:textSize="14dp"
                     android:backgroundTint="#50596F"
                     android:fontFamily="@font/mitr_regular"
-                    android:text="ส่งอีเมล์"/>
+                    android:text="@string/share"/>
             </RelativeLayout>
 
         </LinearLayout>
 
+    </LinearLayout>
 </LinearLayout>
-
-
 </LinearLayout>

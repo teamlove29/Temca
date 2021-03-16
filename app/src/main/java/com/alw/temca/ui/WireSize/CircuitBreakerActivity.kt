@@ -44,6 +44,7 @@ class CircuitBreakerActivity : AppCompatActivity(), InstallationonClickAdapterLi
         val Intent = Intent(this,CircuitActivity::class.java)
         Intent.putExtra("data",CircuitItem[postion].name)
         startActivity(Intent)
+        overridePendingTransition(R.anim.nothing,R.anim.nothing)
         finish()
     }
 }
