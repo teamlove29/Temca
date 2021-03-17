@@ -166,25 +166,30 @@ class PipeSizeActivity : AppCompatActivity() {
         wayBackActivity2.visibility = View.VISIBLE
         btnCalInPipeSize.visibility = View.GONE
 
-        when(typeCableTextView.text){
-            "IEC01" -> typeCable = "IEC01.xls"
-            "NYY 1C" -> typeCable = "NYY1C.xls"
-            "NYY 2C" -> typeCable = "NYY2C.xls"
-            "NYY 3C" -> typeCable = "NYY3C.xls"
-            "NYY 4C" -> typeCable = "NYY4C.xls"
-            "IEC10 2C" -> typeCable = "IEC102C.xls"
-            "IEC10 3C" -> typeCable = "IEC103C.xls"
-            "XLPE 1C" -> typeCable = "XLPE1C.xls"
-            "XLPE 2C" -> typeCable = "XLPE2C.xls"
-            "XLPE 3C" -> typeCable = "XLPE3C.xls"
-            "XLPE 4C" -> typeCable = "XLPE4C.xls"
+        val fineSheetInTableCableSize = when(typeCableTextView.text){
+                    "IEC01" -> 0
+                    "IEC10 2C" -> 1
+                    "IEC10 3C" -> 2
+                    "IEC10 4C" -> 3
+                    "NYY 1C" -> 4
+                    "NYY 2C" -> 5
+                    "NYY 3C" -> 6
+                    "NYY 4C" -> 7
+                    "XLPE 1C" -> 8
+                    "XLPE 2C" -> 9
+                    "XLPE 3C" -> 10
+                    "XLPE 4C" -> 11
+                    else -> return
         }
+
+
+
 
         if(switchButtonPipeSize.isChecked == false){
             try {
-                val typeCable = applicationContext.assets.open(typeCable)
+                val typeCable = applicationContext.assets.open("TypeCable_Table.xls")
                 val wb = Workbook.getWorkbook(typeCable)
-                val sheet = wb.getSheet(0)
+                val sheet = wb.getSheet(fineSheetInTableCableSize)
                 val typeCabletitle = sheet.getCell(0, 0).contents
                 if (typeCableTextView.text == typeCabletitle){
                     sizeCable.forEachIndexed { index, size  ->
@@ -222,9 +227,9 @@ class PipeSizeActivity : AppCompatActivity() {
             }
         }else{
             try {
-                val typeCable = applicationContext.assets.open(typeCable)
+                val typeCable = applicationContext.assets.open("TypeCable_Table.xls")
                 val wb = Workbook.getWorkbook(typeCable)
-                val sheet = wb.getSheet(0)
+                val sheet = wb.getSheet(fineSheetInTableCableSize)
                 val typeCabletitle = sheet.getCell(0, 0).contents
                 if (typeCableTextView.text == typeCabletitle){
                     sizeCable.forEachIndexed { indexSize, size  ->

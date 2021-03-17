@@ -145,12 +145,12 @@ class ReportActivity : AppCompatActivity() {
             // Add Title to document
             val titleStyleTitle = Font(fontNameBoldStyle, 30.0f, Font.NORMAL, BaseColor.BLACK)
             val titleStyle = Font(fontName, 26.0f, Font.NORMAL, BaseColor.BLACK)
-            var headingStyle = Font(fontName, headingFontSize, Font.NORMAL, BaseColor.BLACK)
+            val headingStyle = Font(fontName, headingFontSize, Font.NORMAL, BaseColor.BLACK)
             var valueStyle = Font(fontName, valueFontSzie, Font.NORMAL, BaseColor.BLACK)
             var SubvalueStyle = Font(fontName, SubvalueFontSzie, Font.NORMAL, BaseColor.BLACK)
 
-
-            addNewItemWithLeftAndRight(document, "", "CableSize", titleStyle, titleStyleTitle)
+            val title = "CableSize                                    "
+            addNewItemWithLeftAndRight(document, "", title, titleStyle, titleStyleTitle)
                 addLineSpace(document)
                 addLineSeperator(document)
                 addNewItem(document, "รายงานผลการคำนวณสาย", Element.ALIGN_CENTER, titleStyleTitle)
@@ -193,7 +193,7 @@ class ReportActivity : AppCompatActivity() {
 
 //        document.add(image)
 
-        var chunkTextLeft = if (textRight == "CableSize"){
+        var chunkTextLeft = if (textRight == "CableSize                                    "){
             Chunk(image, 25.0F, -10.0F, true)
         }else{
             Chunk(textLeft, leftStyle)

@@ -155,42 +155,44 @@ class WireSizeActivity : AppCompatActivity() {
             else -> groupInstallation = "Group2"
         }
 
-        val typeCableFile:String
+        val typeCableFile:Int
         typeCableFile = when(typeCableTextView.text){
-            "IEC01" -> "WireGroup_IEC01_${groupInstallation}.xls"
-            else -> "WireGroup_IEC01_Group2.xls"
-//            "NYY 1C" -> typeCableFile = "NYY1C.xls"
-//            "NYY 2C" -> typeCableFile = "NYY2C.xls"
-//            "NYY 3C" -> typeCableFile = "NYY3C.xls"
-//            "NYY 4C" -> typeCableFile = "NYY4C.xls"
-//            "IEC10 2C" -> typeCableFile = "IEC102C.xls"
-//            "IEC10 3C" -> typeCableFile = "IEC103C.xls"
-//            "XLPE 1C" -> typeCableFile = "XLPE1C.xls"
-//            "XLPE 2C" -> typeCableFile = "XLPE2C.xls"
-//            "XLPE 3C" -> typeCableFile = "XLPE3C.xls"
-//            "XLPE 4C" -> typeCableFile = "XLPE4C.xls"
+            "IEC01" -> 0
+            "NYY 1C" -> 0
+            "NYY 2C" -> 1
+            "NYY 3C" -> 1
+            "NYY 4C" -> 1
+            "IEC10 2C" -> 1
+            "IEC10 3C" -> 1
+            "XLPE 1C" -> 2
+            "XLPE 2C" -> 3
+            "XLPE 3C" -> 3
+            "XLPE 4C" -> 3
+            else -> return
         }
 
-        lateinit var fineSizeCableInTable:String
-        when(typeCableTextView.text){
-            "IEC01" -> fineSizeCableInTable = "IEC01.xls"
-            "NYY 1C" -> fineSizeCableInTable = "NYY1C.xls"
-            "NYY 2C" -> fineSizeCableInTable = "NYY2C.xls"
-            "NYY 3C" -> fineSizeCableInTable = "NYY3C.xls"
-            "NYY 4C" -> fineSizeCableInTable = "NYY4C.xls"
-            "IEC10 2C" -> fineSizeCableInTable = "IEC102C.xls"
-            "IEC10 3C" -> fineSizeCableInTable = "IEC103C.xls"
-            "XLPE 1C" -> fineSizeCableInTable = "XLPE1C.xls"
-            "XLPE 2C" -> fineSizeCableInTable = "XLPE2C.xls"
-            "XLPE 3C" -> fineSizeCableInTable = "XLPE3C.xls"
-            "XLPE 4C" -> fineSizeCableInTable = "XLPE4C.xls"
+        val fineSizeCableInTable:Int
+        fineSizeCableInTable = when(typeCableTextView.text){
+            "IEC01" -> 0
+            "IEC10 2C" -> 1
+            "IEC10 3C" -> 2
+            "IEC10 4C" -> 3
+            "NYY 1C" -> 4
+            "NYY 2C" -> 5
+            "NYY 3C" -> 6
+            "NYY 4C" -> 7
+            "XLPE 1C" -> 8
+            "XLPE 2C" -> 9
+            "XLPE 3C" -> 10
+            "XLPE 4C" -> 11
+            else -> return
         }
 
 
         try {
-            val typeCable = applicationContext.assets.open(typeCableFile)
+            val typeCable = applicationContext.assets.open("WireGroup_Group2.xls")
             val wb = Workbook.getWorkbook(typeCable)
-            val sheet = wb.getSheet(0)
+            val sheet = wb.getSheet(typeCableFile)
 
             if(phaseTextView.text == "1 เฟส"){
                 for(i in 2..20){
@@ -198,24 +200,43 @@ class WireSizeActivity : AppCompatActivity() {
                     val circuitToInt = Integer.parseInt(circuitTextView.text.toString().replace("A",""))
 
                     if (circuitToInt <= findInOnePhase.toInt()){
-                        val getCableSizeInTable = sheet.getCell(0, i).contents
-
-                        val typeCable = applicationContext.assets.open(fineSizeCableInTable)
-                        val wb = Workbook.getWorkbook(typeCable)
-                        val sheet = wb.getSheet(0)
+                        val getCableSizeInTable = sheet.getCell(0, i).contents // result
 
                         for (k in 1..19){
+                            val typeCable = applicationContext.assets.open("TypeCable_Table.xls")
+                            val wb = Workbook.getWorkbook(typeCable)
+                            val sheet = wb.getSheet(fineSizeCableInTable)
                             val checkCableSizeInTable = sheet.getCell(0, k).contents
+
                             if(checkCableSizeInTable == getCableSizeInTable){
                                 for (g in 1..12){
                                     val checkCableSizeInTable2 = sheet.getCell(g, k).contents.toInt()
                                     if (2 <= checkCableSizeInTable2){ // 4 is PhaseSize
-                                        val getCableSize2InTable = sheet.getCell(g, 0).contents
+                                        val getCableSize2InTable = sheet.getCell(g, 0).contents // result
+
                                         textViewShow2.text = "${getCableSizeInTable} มม."
                                         textViewShow4.text = "${getCableSize2InTable} (สูงสุด ${checkCableSizeInTable2} เส้น)"
+
+                                        for (q in 2..20){
+                                            println(q)
+                                            val pressureCable = applicationContext.assets.open("pressure_drop.xls")
+                                            val wbPressure  = Workbook.getWorkbook(pressureCable)
+                                            val sheetPressure = wbPressure.getSheet(0)
+//                                            println("Dasdadasdasd")
+//                                            val getCableSizeInTableToInt = Integer.parseInt(getCableSizeInTable.toString())
+//                                            val amountDeistance = Integer.parseInt(editTextDistance.text.toString())
+//                                            val fineCabletypeInTable = sheetPressure.getCell(0, q).contents.toInt()
+//                                            if (getCableSizeInTableToInt == fineCabletypeInTable){
+//                                                val pullResult = (fineCabletypeInTable * circuitToInt) * amountDeistance / 1000 // result
+//                                                textViewShow6.text = "-${pullResult}V"
+//                                                break
+//
+//                                            }
+                                        }
                                         break
                                     }
                                 }
+                                break
                             }
                         }
                         break
@@ -231,9 +252,9 @@ class WireSizeActivity : AppCompatActivity() {
                         val getCableSizeInTable = sheet.getCell(0, j).contents
 
 
-                        val typeCable = applicationContext.assets.open(fineSizeCableInTable)
+                        val typeCable = applicationContext.assets.open("TypeCable_Table.xls")
                         val wb = Workbook.getWorkbook(typeCable)
-                        val sheet = wb.getSheet(0)
+                        val sheet = wb.getSheet(fineSizeCableInTable)
 
                         for (k in 1..19){
                             val checkCableSizeInTable = sheet.getCell(0, k).contents
