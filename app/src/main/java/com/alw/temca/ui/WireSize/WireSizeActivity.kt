@@ -12,6 +12,7 @@ import android.text.method.TextKeyListener.clear
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.util.rangeTo
 import androidx.core.widget.addTextChangedListener
 import com.alw.temca.MainActivity
 import com.alw.temca.Model.ReportReslutPipeSizeModel
@@ -123,7 +124,7 @@ class WireSizeActivity : AppCompatActivity() {
         bundle.putParcelable("reportWireSize", ReportResultWireSize(
                 textViewShow2.text.toString(), // text2 is cablesize
                 textViewShow4.text.toString(), // text4 is conduitsize
-                ""))
+                textViewShow6.text.toString()))
         intent.putExtras(bundle)
         startActivityForResult(intent,TASK_NAME_REQUEST_CODE)
         finish()
@@ -211,32 +212,32 @@ class WireSizeActivity : AppCompatActivity() {
                             if(checkCableSizeInTable == getCableSizeInTable){
                                 for (g in 1..12){
                                     val checkCableSizeInTable2 = sheet.getCell(g, k).contents.toInt()
-                                    if (2 <= checkCableSizeInTable2){ // 4 is PhaseSize
+                                    if (2 <= checkCableSizeInTable2){ // 2 is PhaseSize
                                         val getCableSize2InTable = sheet.getCell(g, 0).contents // result
-
-                                        textViewShow2.text = "${getCableSizeInTable} มม."
-                                        textViewShow4.text = "${getCableSize2InTable} (สูงสุด ${checkCableSizeInTable2} เส้น)"
-
-                                        for (q in 2..20){
-                                            println(q)
-                                            val pressureCable = applicationContext.assets.open("pressure_drop.xls")
+                                        for (h in 2..20){
+                                            val pressureCable = applicationContext.assets.open("qwerty.xls")
                                             val wbPressure  = Workbook.getWorkbook(pressureCable)
                                             val sheetPressure = wbPressure.getSheet(0)
-//                                            println("Dasdadasdasd")
-//                                            val getCableSizeInTableToInt = Integer.parseInt(getCableSizeInTable.toString())
-//                                            val amountDeistance = Integer.parseInt(editTextDistance.text.toString())
-//                                            val fineCabletypeInTable = sheetPressure.getCell(0, q).contents.toInt()
-//                                            if (getCableSizeInTableToInt == fineCabletypeInTable){
-//                                                val pullResult = (fineCabletypeInTable * circuitToInt) * amountDeistance / 1000 // result
-//                                                textViewShow6.text = "-${pullResult}V"
-//                                                break
-//
-//                                            }
+                                            val fineCabletypeInTable = sheetPressure.getCell(0, h).contents
+                                            val amountDeistance = Integer.parseInt(editTextDistance.text.toString())
+
+                                            if (getCableSizeInTable == fineCabletypeInTable){
+                                                val getreslutInTable = sheetPressure.getCell(1, h).contents.toFloat()
+                                                val pullResult = fineCabletypeInTable.toFloat() * getreslutInTable * amountDeistance / 1000 // result
+                                                textViewShow2.text = "${getCableSizeInTable} มม."
+                                                textViewShow4.text = "${getCableSize2InTable} (สูงสุด ${checkCableSizeInTable2} เส้น)"
+                                                textViewShow6.text = "- %.2f V".format(pullResult)
+                                                break
+                                            }
                                         }
                                         break
+                                    }else{
+                                        textViewShow2.text = "- มม."
+                                        textViewShow4.text = "- (สูงสุด - เส้น)"
+                                        textViewShow6.text = "- V"
                                     }
                                 }
-                                break
+
                             }
                         }
                         break
@@ -249,7 +250,7 @@ class WireSizeActivity : AppCompatActivity() {
                     val circuitToInt = Integer.parseInt(circuitTextView.text.toString().replace("A",""))
 
                     if (circuitToInt <= findInthreePhase.toInt()){
-                        val getCableSizeInTable = sheet.getCell(0, j).contents
+                        val getCableSizeInTable = sheet.getCell(0, j).contents // result
 
 
                         val typeCable = applicationContext.assets.open("TypeCable_Table.xls")
@@ -262,10 +263,27 @@ class WireSizeActivity : AppCompatActivity() {
                                 for (g in 1..12){
                                     val checkCableSizeInTable2 = sheet.getCell(g, k).contents.toInt()
                                     if (4 <= checkCableSizeInTable2){ // 4 is PhaseSize
-                                        val getCableSize2InTable = sheet.getCell(g, 0).contents
-                                        textViewShow2.text = "${getCableSizeInTable} มม."
-                                        textViewShow4.text = "${getCableSize2InTable} (สูงสุด ${checkCableSizeInTable2} เส้น)"
+                                        val getCableSize2InTable = sheet.getCell(g, 0).contents // result
+                                        for (h in 2..20){
+                                            val pressureCable = applicationContext.assets.open("qwerty.xls")
+                                            val wbPressure  = Workbook.getWorkbook(pressureCable)
+                                            val sheetPressure = wbPressure.getSheet(0)
+                                            val fineCabletypeInTable = sheetPressure.getCell(0, h).contents
+                                            val amountDeistance = Integer.parseInt(editTextDistance.text.toString())
+
+                                            if (getCableSizeInTable == fineCabletypeInTable){
+                                                val getreslutInTable = sheetPressure.getCell(2, h).contents.toFloat()
+                                                val pullResult = fineCabletypeInTable.toFloat() * getreslutInTable * amountDeistance / 1000 // result
+                                                textViewShow2.text = "${getCableSizeInTable} มม."
+                                                textViewShow4.text = "${getCableSize2InTable} (สูงสุด ${checkCableSizeInTable2} เส้น)"
+                                                textViewShow6.text = "- %.2f V".format(pullResult)
+                                                break
+                                            }
+                                        }
                                         break
+                                    }else{
+                                        textViewShow2.text = "- มม."
+                                        textViewShow4.text = "- (สูงสุด - เส้น)"
                                     }
                                 }
                             }
@@ -276,7 +294,9 @@ class WireSizeActivity : AppCompatActivity() {
             }
 
 
-        }catch (e:IOException){}
+        }catch (e:IOException){
+            println("Error : $e")
+        }
     }
     fun View.hideKeyboard() {
         val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager

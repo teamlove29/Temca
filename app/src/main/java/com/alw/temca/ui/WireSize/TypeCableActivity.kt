@@ -17,7 +17,7 @@ class TypeCableActivity : AppCompatActivity() , InstallationonClickAdapterListen
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_type_cable)
 
-        typeCableItem.add(TypeCableModel("IEC01(THW)"))
+        typeCableItem.add(TypeCableModel("IEC01"))
         typeCableItem.add(TypeCableModel("IEC10 2C"))
         typeCableItem.add(TypeCableModel("IEC10 3C"))
         typeCableItem.add(TypeCableModel("IEC10 4C"))
@@ -45,7 +45,7 @@ class TypeCableActivity : AppCompatActivity() , InstallationonClickAdapterListen
 //        intent.putExtra("dataTypeCable",typeCableItem[postion].name)
 //        startActivity(intent)
         val resultIntent = Intent()
-        resultIntent.putExtra("dataTypeCable",typeCableItem[postion].name.replace("(THW)",""))
+        resultIntent.putExtra("dataTypeCable",typeCableItem[postion].name)
         setResult(Activity.RESULT_OK, resultIntent)
         finish()
     }
