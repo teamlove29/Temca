@@ -21,6 +21,7 @@ class MainActivity : AppCompatActivity() {
         when(view){
             buttonWireSize ->{
                 val intent = Intent(this,WireSizeActivity::class.java)
+                intent.putExtra("code",true)
                 startActivity(intent)
             }
             buttonPipeSize -> {

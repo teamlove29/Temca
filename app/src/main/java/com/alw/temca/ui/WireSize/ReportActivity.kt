@@ -1,17 +1,15 @@
 package com.alw.temca.ui.WireSize
 
 import android.Manifest
+import android.app.Activity
 import android.app.PendingIntent
-import android.content.ActivityNotFoundException
-import android.content.DialogInterface
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
-import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.os.Environment
-import android.view.View
+import android.util.Log
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
@@ -19,7 +17,6 @@ import androidx.core.content.FileProvider
 import androidx.core.graphics.scale
 import com.alw.temca.Common.ApplicationSelectorReceiver
 import com.alw.temca.Common.Common
-import com.alw.temca.Model.ReportReslutPipeSizeModel
 import com.alw.temca.Model.ReportResultWireSize
 import com.alw.temca.R
 import com.itextpdf.text.*
@@ -42,6 +39,7 @@ import java.io.FileOutputStream
 
 class ReportActivity : AppCompatActivity() {
     val file_name:String = "_result_calculate.pdf"
+    val MY_REQUEST_CODE = 0
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP_MR1)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -65,6 +63,7 @@ class ReportActivity : AppCompatActivity() {
                             )
                         }
                     }
+
                     override fun onPermissionDenied(p0: PermissionDeniedResponse?) {
                         Toast.makeText(
                                 this@ReportActivity,
@@ -72,6 +71,7 @@ class ReportActivity : AppCompatActivity() {
                                 Toast.LENGTH_LONG
                         ).show()
                     }
+
                     override fun onPermissionRationaleShouldBeShown(
                             p0: PermissionRequest?,
                             p1: PermissionToken?
@@ -98,13 +98,26 @@ class ReportActivity : AppCompatActivity() {
                 sendIntent.putExtra(Intent.EXTRA_SUBJECT, "รายงานผลการคำนวณหาขนาดสาย")
                 sendIntent.putExtra(Intent.EXTRA_TEXT, "รายงานผลการคำนวณขนาดสายตามไฟล์ที่แนบ...")
                 sendIntent.putExtra(Intent.EXTRA_STREAM, uri)
-                startActivityForResult(Intent.createChooser(sendIntent, "SHARE", pendingIntent.intentSender), 800)
+                startActivityForResult(Intent.createChooser(sendIntent, "SHARE", pendingIntent.intentSender), MY_REQUEST_CODE)
             } catch (e: Exception) {
                 Toast.makeText(this, "Error : $e", Toast.LENGTH_SHORT).show()
 //                println("Error : $e")
             }
         }
 
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        Log.i("SS", "onActivityResult: " + requestCode + ", " + resultCode + ", " + (data?.toString() ?: "empty intent"))
+        if (requestCode == MY_REQUEST_CODE) {
+            Toast.makeText(applicationContext, "Success send email",
+                    Toast.LENGTH_SHORT).show()
+        }else{
+            Toast.makeText(applicationContext,  "failed to send email",
+                        Toast.LENGTH_SHORT).show()
+        }
+        finish() // to end your activity when toast is shown
     }
 
     fun createPDFFile(path: String, data: ReportResultWireSize?) {

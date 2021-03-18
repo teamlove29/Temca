@@ -41,7 +41,22 @@ class WireSizeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_wire_size)
         tableBeforeCalculate.visibility = View.GONE
-        loadData()
+
+
+        intent = getIntent()
+        val dataCircuit = intent.extras?.getString("dataCircuit")
+        val codeStart = intent.extras?.getBoolean("code")
+        if (dataCircuit != null){
+            circuitTextView.text = dataCircuit
+            saveData("circuit", dataCircuit)
+        }
+
+        if(codeStart == true){
+            val sharedPref = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE).edit().clear()
+            sharedPref.apply()
+        }else{
+            loadData()
+        }
 
         editTextDistance.addTextChangedListener(object : TextWatcher{
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
@@ -60,12 +75,10 @@ class WireSizeActivity : AppCompatActivity() {
         })
 
 
-        intent = getIntent()
-        val dataCircuit = intent.extras?.getString("dataCircuit")
-        if (dataCircuit != null){
-             circuitTextView.text = dataCircuit
-             saveData("circuit", dataCircuit)
-        }
+
+
+
+
 
 
     }
@@ -335,9 +348,6 @@ class WireSizeActivity : AppCompatActivity() {
         val dataOfCircuit = sharedPref.getString(TASK_LIST_PREF_KEY_CIRCUIT, "40A")
         val dataOfDistance = sharedPref.getString(TASK_LIST_PREF_KEY_DISTANCE, "100")
 
-
-
-
          phaseTextView.text = "$dataOfPhase เฟส"
         installationTextView.text = dataOfInstallation!!.slice(0..6)
         typeCableTextView.text = dataOfTypeCable
@@ -346,11 +356,8 @@ class WireSizeActivity : AppCompatActivity() {
     }
 
 
-    override fun onRestart() {
-        super.onRestart()
-        val sharedPref = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE).edit().clear()
-//        sharedPref.apply()
-    }
+
+
 
     fun backOnClick(view: View) {
         finish()
