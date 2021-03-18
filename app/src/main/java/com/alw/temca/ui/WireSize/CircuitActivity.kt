@@ -23,7 +23,7 @@ class CircuitActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_circuit)
 
-//        loadData()
+        loadData()
         var intent: Intent
 
         cardViewCircuitBreaker.setOnClickListener {
@@ -89,10 +89,11 @@ class CircuitActivity : AppCompatActivity() {
 //        }
 //    }
 //
-//    fun loadData(){
-//        val sharedPref = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
-//        val dataOfCircuit = sharedPref.getString(TASK_LIST_PREF_KEY_CIRCUIT, "40A")
-//        textViewCircuit.text = dataOfCircuit
-//    }
+    fun loadData(){
+        val sharedPref = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
+        val dataOfCircuit = sharedPref.getString(TASK_LIST_PREF_KEY_CIRCUIT, "40A")
+        textViewCircuit.text = dataOfCircuit
+        editTextOperating.setText(dataOfCircuit!!.replace("A",""))
+    }
 
 }

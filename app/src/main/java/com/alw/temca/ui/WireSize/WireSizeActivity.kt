@@ -158,7 +158,7 @@ class WireSizeActivity : AppCompatActivity() {
 
         val typeCableFile:Int
         typeCableFile = when(typeCableTextView.text){
-            "IEC01" -> 0
+            "IEC01(THW)" -> 0
             "NYY 1C" -> 0
             "NYY 2C" -> 1
             "NYY 3C" -> 1
@@ -174,7 +174,7 @@ class WireSizeActivity : AppCompatActivity() {
 
         val fineSizeCableInTable:Int
         fineSizeCableInTable = when(typeCableTextView.text){
-            "IEC01" -> 0
+            "IEC01(THW)" -> 0
             "IEC10 2C" -> 1
             "IEC10 3C" -> 2
             "IEC10 4C" -> 3
@@ -331,7 +331,7 @@ class WireSizeActivity : AppCompatActivity() {
         val sharedPref = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
         val dataOfPhase = sharedPref.getString(TASK_LIST_PREF_KEY_PHASE, "1")
         val dataOfInstallation = sharedPref.getString(TASK_LIST_PREF_KEY_INSTALLATION, "กลุ่ม 2")
-        val dataOfTypeCable = sharedPref.getString(TASK_LIST_PREF_KEY_TYPE_CABLE, "IEC01")
+        val dataOfTypeCable = sharedPref.getString(TASK_LIST_PREF_KEY_TYPE_CABLE, "IEC01(THW)")
         val dataOfCircuit = sharedPref.getString(TASK_LIST_PREF_KEY_CIRCUIT, "40A")
         val dataOfDistance = sharedPref.getString(TASK_LIST_PREF_KEY_DISTANCE, "100")
 
@@ -342,14 +342,14 @@ class WireSizeActivity : AppCompatActivity() {
         installationTextView.text = dataOfInstallation!!.slice(0..6)
         typeCableTextView.text = dataOfTypeCable
         circuitTextView.text = dataOfCircuit
-        editTextDistance.hint = dataOfDistance
+        editTextDistance.setText(dataOfDistance)
     }
 
 
     override fun onRestart() {
         super.onRestart()
         val sharedPref = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE).edit().clear()
-        sharedPref.apply()
+//        sharedPref.apply()
     }
 
     fun backOnClick(view: View) {
