@@ -369,14 +369,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <TextView
-                android:id="@+id/textViewShow"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="ขนาดท่อร้อยสาย(ราง) "
-                android:textSize="16dp"
-                android:fontFamily="@font/mitr_regular"
-                android:textColor="@color/white" />
+
+
 
 
             <TextView
@@ -384,43 +378,51 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:layout_alignRight="@+id/textViewShow"
+                android:paddingTop="3dp"
                 android:text="10 sq.mm"
                 android:textSize="16dp"
                 android:fontFamily="@font/mitr_regular"
                 android:textColor="@color/white" />
 
-
             <TextView
                 android:id="@+id/textViewShow3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_below="@+id/textViewShow"
                 android:text="ขนาดสายไฟฟ้า"
                 android:textSize="16dp"
                 android:fontFamily="@font/mitr_regular"
                 android:textColor="@color/white" />
 
+            <TextView
+                android:id="@+id/textViewShow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textViewShow3"
+                android:layout_marginTop="20dp"
+                android:text="ขนาดท่อร้อยสาย(ราง) "
+                android:textSize="16dp"
+                android:fontFamily="@font/mitr_regular"
+                android:textColor="@color/white" />
 
             <TextView
                 android:id="@+id/textViewShow4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
                 android:layout_below="@+id/textViewShow2"
+                android:layout_marginTop="20dp"
                 android:layout_alignParentRight="true"
                 android:text="3/4"
                 android:textSize="16dp"
                 android:fontFamily="@font/mitr_regular"
                 android:textColor="@color/white" />
 
+
             <TextView
                 android:id="@+id/textViewShow5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:layout_below="@+id/textViewShow3"
+                android:layout_below="@+id/textViewShow"
                 android:text="แรงดันตก"
                 android:textSize="16dp"
                 android:fontFamily="@font/mitr_regular"
@@ -432,7 +434,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:layout_below="@+id/textViewShow4"
+                android:layout_below="@+id/textViewShow"
                 android:layout_alignParentRight="true"
                 android:text="-%"
                 android:textSize="16dp"

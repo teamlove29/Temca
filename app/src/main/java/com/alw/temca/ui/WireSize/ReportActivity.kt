@@ -1,7 +1,6 @@
 package com.alw.temca.ui.WireSize
 
 import android.Manifest
-import android.app.Activity
 import android.app.PendingIntent
 import android.content.Intent
 import android.graphics.Bitmap
@@ -9,6 +8,9 @@ import android.graphics.drawable.BitmapDrawable
 import android.os.Build
 import android.os.Bundle
 import android.os.Environment
+import android.text.Html
+import android.text.Spannable
+import android.text.style.SuperscriptSpan
 import android.util.Log
 import android.widget.Toast
 import androidx.annotation.RequiresApi
@@ -32,6 +34,7 @@ import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.single.PermissionListener
 import kotlinx.android.synthetic.main.activity_pipe_size_report.*
 import kotlinx.android.synthetic.main.activity_report.*
+import kotlinx.android.synthetic.main.activity_wire_size.*
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileOutputStream
@@ -47,8 +50,10 @@ class ReportActivity : AppCompatActivity() {
 
         val resultWire = intent.getParcelableExtra<ReportResultWireSize>("reportWireSize")
 
+
+
         if(resultWire != null){
-            textViewResultWireSize.text = resultWire.cableSize
+            textViewResultWireSize.text = Html.fromHtml("${resultWire.cableSize.replace("2","")}<sup>2</sup>")
             textViewResultConduitSize.text = resultWire.condutiSize
             textViewResultPressure.text = resultWire.pressure
         }
@@ -109,13 +114,14 @@ class ReportActivity : AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        Log.i("SS", "onActivityResult: " + requestCode + ", " + resultCode + ", " + (data?.toString() ?: "empty intent"))
+        Log.i("SS", "onActivityResult: " + requestCode + ", " + resultCode + ", " + (data?.toString()
+                ?: "empty intent"))
         if (requestCode == MY_REQUEST_CODE) {
             Toast.makeText(applicationContext, "Success send email",
                     Toast.LENGTH_SHORT).show()
         }else{
-            Toast.makeText(applicationContext,  "failed to send email",
-                        Toast.LENGTH_SHORT).show()
+            Toast.makeText(applicationContext, "failed to send email",
+                    Toast.LENGTH_SHORT).show()
         }
         finish() // to end your activity when toast is shown
     }
@@ -170,14 +176,13 @@ class ReportActivity : AppCompatActivity() {
                 addLineSpace(document)
 
                 // cableSize
-                addNewItemWithLeftAndRight(document, "ขนาดสายไฟ", "${data!!.cableSize}", titleStyle, headingStyle)
+                addNewItemWithLeftAndRight(document, "ขนาดสายไฟ", data!!.cableSize, titleStyle, headingStyle)
                 addLineSpace(document)
-
-                    //amount
-                    addNewItemWithLeftAndRight(document, "ขนาดท่อร้อยสาย(ราง)", "${data.condutiSize}", titleStyle, headingStyle)
-
-                    //conduit Size
-                    addNewItemWithLeftAndRight(document, "แรงดันตก", "${data.pressure}", titleStyle, headingStyle)
+                //condutiSize
+                addNewItemWithLeftAndRight(document, "ขนาดท่อร้อยสาย(ราง)", data.condutiSize, titleStyle, headingStyle)
+                addLineSpace(document)
+                //pressure
+                addNewItemWithLeftAndRight(document, "แรงดันตก", data.pressure, titleStyle, headingStyle)
 
             //close
             document.close()
@@ -212,8 +217,15 @@ class ReportActivity : AppCompatActivity() {
             Chunk(textLeft, leftStyle)
         }
 
+        val chunkTextRight = if (textRight.indexOf("มม2") > 1){
+            Chunk("${textRight.replace("2","")}\u00B2", rightStyle)
+        }else{
+            Chunk(textRight, rightStyle)
+        }
+
+
 //        val chunkTextLeft = Chunk(textLeft, leftStyle)
-        val chunkTextRight = Chunk(textRight, rightStyle)
+
 
         val p = Paragraph(chunkTextLeft)
         p.add(Chunk(VerticalPositionMark()))

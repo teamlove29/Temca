@@ -7,6 +7,7 @@ import android.graphics.Color
 import android.os.Bundle
 import android.provider.CalendarContract
 import android.text.Editable
+import android.text.Html
 import android.text.TextWatcher
 import android.text.method.TextKeyListener.clear
 import android.view.View
@@ -25,6 +26,7 @@ import kotlinx.android.synthetic.main.activity_pipe_size.*
 import kotlinx.android.synthetic.main.activity_wire_size.*
 import kotlinx.android.synthetic.main.activity_wire_size.typeCableTextView
 import kotlinx.android.synthetic.main.activity_wire_size.wayBackActivity1
+import org.apache.log4j.NDC.clear
 import java.io.IOException
 
 
@@ -43,20 +45,22 @@ class WireSizeActivity : AppCompatActivity() {
         tableBeforeCalculate.visibility = View.GONE
 
 
+        val codeStart = intent.extras?.getBoolean("code")
+        if(codeStart == true){
+            val sharedPref = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE).edit().clear()
+            sharedPref.apply()
+        }
+
+        loadData()
+
         intent = getIntent()
         val dataCircuit = intent.extras?.getString("dataCircuit")
-        val codeStart = intent.extras?.getBoolean("code")
+
         if (dataCircuit != null){
             circuitTextView.text = dataCircuit
             saveData("circuit", dataCircuit)
         }
 
-        if(codeStart == true){
-            val sharedPref = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE).edit().clear()
-            sharedPref.apply()
-        }else{
-            loadData()
-        }
 
         editTextDistance.addTextChangedListener(object : TextWatcher{
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
@@ -226,7 +230,7 @@ class WireSizeActivity : AppCompatActivity() {
                                 for (g in 1..12){
                                     val checkCableSizeInTable2 = sheet.getCell(g, k).contents.toInt()
                                     if (2 <= checkCableSizeInTable2){ // 2 is PhaseSize
-                                        val getCableSize2InTable = sheet.getCell(g, 0).contents // result
+                                        val getConduitSize2InTable = sheet.getCell(g, 0).contents // result
                                         for (h in 2..20){
                                             val pressureCable = applicationContext.assets.open("qwerty.xls")
                                             val wbPressure  = Workbook.getWorkbook(pressureCable)
@@ -237,15 +241,15 @@ class WireSizeActivity : AppCompatActivity() {
                                             if (getCableSizeInTable == fineCabletypeInTable){
                                                 val getreslutInTable = sheetPressure.getCell(1, h).contents.toFloat()
                                                 val pullResult = fineCabletypeInTable.toFloat() * getreslutInTable * amountDeistance / 1000 // result
-                                                textViewShow2.text = "${getCableSizeInTable} มม."
-                                                textViewShow4.text = "${getCableSize2InTable} (สูงสุด ${checkCableSizeInTable2} เส้น)"
-                                                textViewShow6.text = "- %.2f V".format(pullResult)
+                                                textViewShow2.text = Html.fromHtml("${getCableSizeInTable} มม<sup>2</sup>")
+                                                textViewShow4.text = "${getConduitSize2InTable} (สูงสุด ${checkCableSizeInTable2} เส้น)"
+                                                textViewShow6.text = "%.2f V".format(pullResult)
                                                 break
                                             }
                                         }
                                         break
                                     }else{
-                                        textViewShow2.text = "- มม."
+                                        textViewShow2.text = Html.fromHtml("- มม<sup>2</sup>")
                                         textViewShow4.text = "- (สูงสุด - เส้น)"
                                         textViewShow6.text = "- V"
                                     }
@@ -287,16 +291,17 @@ class WireSizeActivity : AppCompatActivity() {
                                             if (getCableSizeInTable == fineCabletypeInTable){
                                                 val getreslutInTable = sheetPressure.getCell(2, h).contents.toFloat()
                                                 val pullResult = fineCabletypeInTable.toFloat() * getreslutInTable * amountDeistance / 1000 // result
-                                                textViewShow2.text = "${getCableSizeInTable} มม."
+                                                textViewShow2.text = Html.fromHtml("${getCableSizeInTable} มม<sup>2</sup>")
                                                 textViewShow4.text = "${getCableSize2InTable} (สูงสุด ${checkCableSizeInTable2} เส้น)"
-                                                textViewShow6.text = "- %.2f V".format(pullResult)
+                                                textViewShow6.text = "%.2f V".format(pullResult)
                                                 break
                                             }
                                         }
                                         break
                                     }else{
-                                        textViewShow2.text = "- มม."
-                                        textViewShow4.text = "- (สูงสุด - เส้น)"
+                                        textViewShow2.text = Html.fromHtml("- มม<sup>2</sup>")
+                                        textViewShow4.text = "(สูงสุด - เส้น)"
+                                        textViewShow6.text = "- V"
                                     }
                                 }
                             }
@@ -353,10 +358,8 @@ class WireSizeActivity : AppCompatActivity() {
         typeCableTextView.text = dataOfTypeCable
         circuitTextView.text = dataOfCircuit
         editTextDistance.setText(dataOfDistance)
+
     }
-
-
-
 
 
     fun backOnClick(view: View) {
