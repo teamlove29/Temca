@@ -369,17 +369,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-
-
-
-
             <TextView
                 android:id="@+id/textViewShow2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:paddingTop="3dp"
-                android:text="10 sq.mm"
+                android:text="- มม"
                 android:textSize="16dp"
                 android:fontFamily="@font/mitr_regular"
                 android:textColor="@color/white" />
@@ -388,7 +384,7 @@
                 android:id="@+id/textViewShow3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="ขนาดสายไฟฟ้า"
+                android:text="ขนาดสายไฟฟ้าที่เหมาะสม"
                 android:textSize="16dp"
                 android:fontFamily="@font/mitr_regular"
                 android:textColor="@color/white" />
@@ -397,21 +393,46 @@
                 android:id="@+id/textViewShow"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_below="@+id/textViewWireGround"
+                android:layout_marginTop="20dp"
+                android:text="ขนาดท่อไฟฟ้า"
+                android:textSize="16dp"
+                android:fontFamily="@font/mitr_regular"
+                android:textColor="@color/white" />
+
+
+            <TextView
+                android:id="@+id/textViewWireGround"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_below="@+id/textViewShow3"
                 android:layout_marginTop="20dp"
-                android:text="ขนาดท่อร้อยสาย(ราง) "
+                android:text="ขนาดสายดินที่เหมาะสม"
                 android:textSize="16dp"
                 android:fontFamily="@font/mitr_regular"
                 android:textColor="@color/white" />
 
             <TextView
-                android:id="@+id/textViewShow4"
+                android:id="@+id/textViewResultWireGround"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/textViewShow2"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="20dp"
+                android:text="- มม"
+                android:textSize="16dp"
+                android:fontFamily="@font/mitr_regular"
+                android:textColor="@color/white" />
+
+
+            <TextView
+                android:id="@+id/textViewShow4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textViewResultWireGround"
                 android:layout_marginTop="20dp"
                 android:layout_alignParentRight="true"
-                android:text="3/4"
+                android:text="- (สูงสุด - เส้น)"
                 android:textSize="16dp"
                 android:fontFamily="@font/mitr_regular"
                 android:textColor="@color/white" />
@@ -434,7 +455,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:layout_below="@+id/textViewShow"
+                android:layout_below="@+id/textViewShow4"
                 android:layout_alignParentRight="true"
                 android:text="-%"
                 android:textSize="16dp"

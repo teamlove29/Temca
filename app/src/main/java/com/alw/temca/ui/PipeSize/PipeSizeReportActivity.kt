@@ -12,6 +12,7 @@ import android.os.Bundle
 import android.os.Environment
 import android.print.PrintAttributes
 import android.print.PrintManager
+import android.text.Html
 import android.util.Log
 import android.view.View
 import android.widget.Toast
@@ -98,7 +99,7 @@ class PipeSizeReportActivity : AppCompatActivity() {
             CableSizeInPipeReport2.visibility = View.VISIBLE
             textViewConduitSizeInPipeReport2.visibility = View.VISIBLE
             CableSizeInPipeReport.visibility = View.GONE
-            textViewReslutCableTypeInPipeReport.text = "${resultPipe!!.cabletype} x ${resultPipe.sizecable}"
+            textViewReslutCableTypeInPipeReport.text = Html.fromHtml("${resultPipe!!.cabletype} x ${resultPipe.sizecable.replace("มม2","มม")}<sup>2</sup>")
             textViewReslutAmountCableInPipeReport.text = "${resultPipe.amount}"
             textViewResultPipeSizeInPipeReport.text = "${resultPipe.pipesize}"
             textViewResultConduitSizeInPipeReport.text = "${resultPipe.conduitsize}"
@@ -106,7 +107,7 @@ class PipeSizeReportActivity : AppCompatActivity() {
             CableSizeInPipeReport2.visibility = View.GONE
             textViewConduitSizeInPipeReport2.visibility = View.GONE
             CableSizeInPipeReport.visibility = View.VISIBLE
-            textViewReslutCableTypeInPipeReport.text = "${resultMax!!.cabletype} x ${resultMax.sizecable}"
+            textViewReslutCableTypeInPipeReport.text = Html.fromHtml("${resultMax!!.cabletype} x ${resultMax.sizecable.replace("มม2","มม")}<sup>2</sup>")
             textViewResultConduitSizeInPipeReport.text = "${resultMax.conduitsizechoose}"
             textViewReslutCableSizeInPipeReport.text = "${resultMax!!.amountcablemax}"
         }
@@ -229,7 +230,7 @@ class PipeSizeReportActivity : AppCompatActivity() {
             addLineSpace(document)
 
             //cabletype
-            addNewItemWithLeftAndRight(document, "ชนิดสายไฟ", "${data!!.cabletype} x ${data.sizecable}", titleStyle, headingStyle)
+            addNewItemWithLeftAndRight(document, "ชนิดสายไฟ", "${data!!.cabletype} x ${data.sizecable.replace("2","")}\u00B2", titleStyle, headingStyle)
             addLineSpace(document)
 
             if(data!!.amountcablemax == ""){

@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
+import android.text.Html
 import android.text.TextWatcher
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -50,18 +51,22 @@ class CircuitActivity : AppCompatActivity() {
                     val sheet = wb.getSheet(0)
                     val sToInt = Integer.parseInt(s.toString())
 
-                    for (i in 0..15) {
+                    for (i in 0..17) {
                         val sizeCirCuit = sheet.getCell(0, i).contents.toInt()
                         if (sToInt <= sizeCirCuit) {
+//                            val sizeWireGround = sheet.getCell(2, i).contents
                             textViewCircuit.text = "${sizeCirCuit}A"
+//                            textViewGroundWire.text = Html.fromHtml("${sizeWireGround} มม<sup><small><small>2</small></small></sup>")
                             break
                         } else {
-                            textViewCircuit.text = "300A"
+                            textViewCircuit.text = "800A"
+//                            textViewGroundWire.text = Html.fromHtml("70 มม<sup><small><small>2</small></small></sup>")
                         }
                     }
 
                 } else {
                     textViewCircuit.text = "40A"
+//                    textViewGroundWire.text = Html.fromHtml("4 มม<sup><small><small>2</small></small></sup>")
                 }
             }
 
@@ -88,12 +93,13 @@ class CircuitActivity : AppCompatActivity() {
 //            commit()
 //        }
 //    }
-//
+
     fun loadData(){
         val sharedPref = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
         val dataOfCircuit = sharedPref.getString(TASK_LIST_PREF_KEY_CIRCUIT, "40A")
         textViewCircuit.text = dataOfCircuit
         editTextOperating.setText(dataOfCircuit!!.replace("A",""))
     }
+
 
 }

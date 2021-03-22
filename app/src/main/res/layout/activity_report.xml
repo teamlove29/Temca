@@ -84,23 +84,53 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="20dp"
-                            android:text="ขนาดสายไฟฟ้า"
+                            android:text="ขนาดสายไฟฟ้าที่เหมาะสม"
                             android:textColor="@color/black"
                             android:fontFamily="@font/sarabun_medium"
                             android:textSize="18dp"/>
 
                         <TextView
                             android:id="@+id/textViewResultWireSize"
-                            android:layout_alignParentRight="true"
-                            android:layout_marginRight="20dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginRight="20dp"
+                            android:fontFamily="@font/sarabun_regular"
                             android:text="10 sq.mm."
                             android:textColor="@color/black"
-                            android:fontFamily="@font/sarabun_regular"
-                            android:textSize="18dp"/>
+                            android:textSize="18dp" />
 
                     </RelativeLayout>
+
+
+                <RelativeLayout
+                    android:padding="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/textViewWireGround"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:text="ขนาดสายดินที่เหมาะสม"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/sarabun_medium"
+                        android:textSize="18dp"/>
+
+                    <TextView
+                        android:id="@+id/textViewResultWireGroundInReport"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="20dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="10 sq.mm."
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/sarabun_regular"
+                        android:textSize="18dp"/>
+
+                </RelativeLayout>
+
 
                     <RelativeLayout
                         android:padding="10dp"
@@ -112,7 +142,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="20dp"
-                            android:text="ขนาดท่อร้อยสาย(ราง)"
+                            android:text="ขนาดท่อไฟฟ้า"
                             android:textColor="@color/black"
                             android:fontFamily="@font/sarabun_medium"
                             android:textSize="18dp"/>

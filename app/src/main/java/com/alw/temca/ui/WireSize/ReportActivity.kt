@@ -40,6 +40,7 @@ import java.io.File
 import java.io.FileOutputStream
 
 
+
 class ReportActivity : AppCompatActivity() {
     val file_name:String = "_result_calculate.pdf"
     val MY_REQUEST_CODE = 0
@@ -51,9 +52,9 @@ class ReportActivity : AppCompatActivity() {
         val resultWire = intent.getParcelableExtra<ReportResultWireSize>("reportWireSize")
 
 
-
         if(resultWire != null){
-            textViewResultWireSize.text = Html.fromHtml("${resultWire.cableSize.replace("2","")}<sup>2</sup>")
+            textViewResultWireSize.text = Html.fromHtml("${resultWire.cableSize.replace("มม2","มม")}<sup><small><small>2</small></small></sup>")
+            textViewResultWireGroundInReport.text = Html.fromHtml("${resultWire.wireGround.replace("มม2","มม")}<sup><small><small>2</small></small></sup>")
             textViewResultConduitSize.text = resultWire.condutiSize
             textViewResultPressure.text = resultWire.pressure
         }
@@ -162,27 +163,40 @@ class ReportActivity : AppCompatActivity() {
             )
 
             // Add Title to document
-            val titleStyleTitle = Font(fontNameBoldStyle, 30.0f, Font.NORMAL, BaseColor.BLACK)
+            val titleStyleTitle = Font(fontNameBoldStyle, 12.0f, Font.NORMAL, BaseColor.BLACK)
             val titleStyle = Font(fontName, 26.0f, Font.NORMAL, BaseColor.BLACK)
             val headingStyle = Font(fontName, headingFontSize, Font.NORMAL, BaseColor.BLACK)
             var valueStyle = Font(fontName, valueFontSzie, Font.NORMAL, BaseColor.BLACK)
             var SubvalueStyle = Font(fontName, SubvalueFontSzie, Font.NORMAL, BaseColor.BLACK)
 
-            val title = "CableSize                                    "
-            addNewItemWithLeftAndRight(document, "", title, titleStyle, titleStyleTitle)
-                addLineSpace(document)
-                addLineSeperator(document)
-                addNewItem(document, "รายงานผลการคำนวณสาย", Element.ALIGN_CENTER, titleStyleTitle)
-                addLineSpace(document)
+            val title = "TEMCA Cable and Conduit Calculator"
 
-                // cableSize
-                addNewItemWithLeftAndRight(document, "ขนาดสายไฟ", data!!.cableSize, titleStyle, headingStyle)
-                addLineSpace(document)
-                //condutiSize
-                addNewItemWithLeftAndRight(document, "ขนาดท่อร้อยสาย(ราง)", data.condutiSize, titleStyle, headingStyle)
-                addLineSpace(document)
-                //pressure
-                addNewItemWithLeftAndRight(document, "แรงดันตก", data.pressure, titleStyle, headingStyle)
+
+            //add Image
+            val d = resources.getDrawable(R.drawable.temca_logo_mini)
+            val bitDw = d as BitmapDrawable
+            val bmp = bitDw.bitmap
+            val stream = ByteArrayOutputStream()
+            bmp.compress(Bitmap.CompressFormat.PNG, 100, stream)
+            bmp.scale(200, 500)
+            val image: Image = Image.getInstance(stream.toByteArray())
+
+            document.add(image)
+            addNewItem(document, "", Element.ALIGN_RIGHT, titleStyleTitle)
+            addNewItemWithLeftAndRight(document, "", title, titleStyle, titleStyleTitle)
+//                addLineSpace(document)
+//                addLineSeperator(document)
+//                addNewItem(document, "รายงานผลการคำนวณสาย", Element.ALIGN_CENTER, titleStyleTitle)
+//                addLineSpace(document)
+//
+//                // cableSize
+//                addNewItemWithLeftAndRight(document, "ขนาดสายไฟ", data!!.cableSize, titleStyle, headingStyle)
+//                addLineSpace(document)
+//                //condutiSize
+//                addNewItemWithLeftAndRight(document, "ขนาดท่อร้อยสาย(ราง)", data.condutiSize, titleStyle, headingStyle)
+//                addLineSpace(document)
+//                //pressure
+//                addNewItemWithLeftAndRight(document, "แรงดันตก", data.pressure, titleStyle, headingStyle)
 
             //close
             document.close()
