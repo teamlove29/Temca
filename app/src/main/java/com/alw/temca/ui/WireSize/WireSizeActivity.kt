@@ -68,6 +68,11 @@ class WireSizeActivity : AppCompatActivity() {
                 //ก่อนเปลี่ยนคือ ?
             }
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                if (s!!.isEmpty()){
+                    editTextDistance.hint = "2000"
+                }else{
+                    editTextDistance.hint = ""
+                }
 //                sponsorImageView.visibility = View.VISIBLE
                 tableBeforeCalculate.visibility = View.GONE
                 btnCal.visibility = View.VISIBLE
@@ -82,7 +87,31 @@ class WireSizeActivity : AppCompatActivity() {
 
 
 
-
+//        editTextAmountCable.addTextChangedListener(object : TextWatcher {
+//            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+//                //ก่อนเปลี่ยนคือ ?
+//            }
+//
+//            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+//                if (s!!.isEmpty()){
+//                    editTextAmountCable.hint = "20"
+//                }else{
+//                    editTextAmountCable.hint = ""
+//                }
+//                wayBackActivity1.visibility = View.VISIBLE
+//                wayBackActivity2.visibility = View.GONE
+//                tableBeforeCalculateInPipe.visibility = View.GONE
+//                btnCalInPipeSize.visibility = View.VISIBLE
+//                btnCalInPipeSize.apply {
+//                }
+//            }
+//
+//            override fun afterTextChanged(s: Editable?) {
+//                //หลังจากพิมพ์ผลลัพคือ ?
+//                saveData("amount", s.toString())
+//            }
+//
+//        })
 
 
 
@@ -155,7 +184,10 @@ class WireSizeActivity : AppCompatActivity() {
         finish()
     }
 
+
     fun DestanceOnClick(view: View) {
+        editTextDistance.setText("")
+        editTextDistance.hint = " "
         editTextDistance.requestFocus()
         val imm = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
         imm.showSoftInput(editTextDistance, InputMethodManager.SHOW_IMPLICIT)
@@ -413,6 +445,9 @@ class WireSizeActivity : AppCompatActivity() {
                     textViewResultWireGround.text = Html.fromHtml("- มม<sup><small><small>2</small></small></sup>")
         }
     }
+
+
+
 }
 
 
