@@ -6,6 +6,11 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class ReportResultWireSize(
+        val phase:String,
+        val installation:String,
+        val cableType:String,
+        val breaker:String,
+        val distance:String,
         val cableSize:String,
         val wireGround:String,
         val condutiSize: String,

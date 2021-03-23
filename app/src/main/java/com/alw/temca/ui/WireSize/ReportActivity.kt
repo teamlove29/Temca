@@ -9,8 +9,6 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Environment
 import android.text.Html
-import android.text.Spannable
-import android.text.style.SuperscriptSpan
 import android.util.Log
 import android.widget.Toast
 import androidx.annotation.RequiresApi
@@ -40,7 +38,6 @@ import java.io.File
 import java.io.FileOutputStream
 
 
-
 class ReportActivity : AppCompatActivity() {
     val file_name:String = "_result_calculate.pdf"
     val MY_REQUEST_CODE = 0
@@ -53,8 +50,8 @@ class ReportActivity : AppCompatActivity() {
 
 
         if(resultWire != null){
-            textViewResultWireSize.text = Html.fromHtml("${resultWire.cableSize.replace("มม2","มม")}<sup><small><small>2</small></small></sup>")
-            textViewResultWireGroundInReport.text = Html.fromHtml("${resultWire.wireGround.replace("มม2","มม")}<sup><small><small>2</small></small></sup>")
+            textViewResultWireSize.text = Html.fromHtml("${resultWire.cableSize.replace("มม2", "มม")}<sup><small><small>2</small></small></sup>")
+            textViewResultWireGroundInReport.text = Html.fromHtml("${resultWire.wireGround.replace("มม2", "มม")}<sup><small><small>2</small></small></sup>")
             textViewResultConduitSize.text = resultWire.condutiSize
             textViewResultPressure.text = resultWire.pressure
         }
@@ -143,12 +140,11 @@ class ReportActivity : AppCompatActivity() {
             document.addCreationDate()
             document.addAuthor("Dev")
             document.addCreator("Marutthep Rompho")
-
             // Font setting
-            val colorAccent = BaseColor(0, 153, 204, 255)
-            val headingFontSize = 26.0f
-            val valueFontSzie = 26.0f
-            val SubvalueFontSzie = 20.0f
+            val colorAccent = BaseColor(14, 65, 148, 255)
+            val headingFontSize = 14.0f
+            val valueFontSzie = 14.0f
+            val SubvalueFontSzie = 14.0f
 
             // Custom font
             val fontName = BaseFont.createFont(
@@ -163,32 +159,62 @@ class ReportActivity : AppCompatActivity() {
             )
 
             // Add Title to document
-            val titleStyleTitle = Font(fontNameBoldStyle, 12.0f, Font.NORMAL, BaseColor.BLACK)
-            val titleStyle = Font(fontName, 26.0f, Font.NORMAL, BaseColor.BLACK)
-            val headingStyle = Font(fontName, headingFontSize, Font.NORMAL, BaseColor.BLACK)
-            var valueStyle = Font(fontName, valueFontSzie, Font.NORMAL, BaseColor.BLACK)
-            var SubvalueStyle = Font(fontName, SubvalueFontSzie, Font.NORMAL, BaseColor.BLACK)
+            val titleStyleTitle = Font(fontNameBoldStyle, 14.0f, Font.NORMAL, BaseColor.BLACK)
+            val detailStyleTitle = Font(fontNameBoldStyle, 12.0f, Font.NORMAL, colorAccent)
+            val titleStyle = Font(fontName, 20.0f, Font.NORMAL, BaseColor.BLACK)
+            val headingStyle = Font(fontName, headingFontSize, Font.BOLD, BaseColor.BLACK)
+            var valueStyle = Font(fontName, valueFontSzie, Font.NORMAL, colorAccent)
+            var SubvalueStyle = Font(fontName, SubvalueFontSzie, Font.NORMAL, colorAccent)
 
-            val title = "TEMCA Cable and Conduit Calculator"
 
-
-            //add Image
-            val d = resources.getDrawable(R.drawable.temca_logo_mini)
-            val bitDw = d as BitmapDrawable
-            val bmp = bitDw.bitmap
-            val stream = ByteArrayOutputStream()
-            bmp.compress(Bitmap.CompressFormat.PNG, 100, stream)
-            bmp.scale(200, 500)
-            val image: Image = Image.getInstance(stream.toByteArray())
-
-            document.add(image)
-            addNewItem(document, "", Element.ALIGN_RIGHT, titleStyleTitle)
-            addNewItemWithLeftAndRight(document, "", title, titleStyle, titleStyleTitle)
-//                addLineSpace(document)
-//                addLineSeperator(document)
-//                addNewItem(document, "รายงานผลการคำนวณสาย", Element.ALIGN_CENTER, titleStyleTitle)
-//                addLineSpace(document)
+//            //add Image
+//            val d = resources.getDrawable(R.drawable.logo_pdf_temca)
+//            val bitDw = d as BitmapDrawable
+//            val bmp = bitDw.bitmap
+//            val stream = ByteArrayOutputStream()
+//            bmp.compress(Bitmap.CompressFormat.PNG, 100, stream)
+////            bmp.scale(200, 500)
+//            val image: Image = Image.getInstance(stream.toByteArray())
 //
+//
+//
+//            val chunk = Chunk(image, 0F, -40F, true)
+//            val p = Paragraph(chunk)
+//            p.alignment = Element.ALIGN_RIGHT
+//            document.add(p)
+
+//            addNewItem(document, "", Element.ALIGN_RIGHT, titleStyleTitle)
+            addNewItemWithLeftAndRight(document, "รายงานคำนวณขนาดสายไฟฟ้าและท่อไฟฟ้า", "", titleStyle, detailStyleTitle)
+                addLineSeperator(document)
+                addNewItem(document, "ข้อมูลการใช้งาน", Element.ALIGN_LEFT, headingStyle)
+                addLineSpace(document)
+                addItemAndResult(document, "                ระบบไฟฟ้า : ", data!!.phase, titleStyleTitle, valueStyle)
+                addLineSpace(document)
+                addItemAndResult(document, "                กลุ่มการติดตั้ง : ", data.installation, titleStyleTitle, valueStyle)
+                addLineSpace(document)
+                addItemAndResult(document, "                ชนิดสายไฟฟ้า : ", data.cableType, titleStyleTitle, valueStyle)
+                addLineSpace(document)
+                addItemAndResult(document, "                Circuit Breaker : ", data.breaker, titleStyleTitle, valueStyle)
+                addLineSpace(document)
+                addItemAndResult(document, "                ระยะสายไฟฟ้า : ", data.distance, titleStyleTitle, valueStyle)
+                addLineSpace(document)
+
+            addNewItem(document, "ผลการคำนวน", Element.ALIGN_LEFT, headingStyle)
+            addLineSpace(document)
+            addItemAndResult(document, "                ขนาดสายไฟฟ้าที่เหมาะสม     ", data.cableSize, titleStyleTitle, valueStyle)
+            addLineSpace(document)
+            addItemAndResult(document, "                ขนาดสายดินที่เหมาะสม          ", data.wireGround, titleStyleTitle, valueStyle)
+            addLineSpace(document)
+            addItemAndResult(document, "                ขนาดท่อไฟฟ้า                         ", data.condutiSize, titleStyleTitle, valueStyle)
+            addLineSpace(document)
+            addItemAndResult(document, "                แรงดันตก                                 ", data.pressure, titleStyleTitle, valueStyle)
+            addLineSpace(document)
+            addLineSpace(document)
+
+            addNewItem(document, "* อ้างอิงตามมาตรฐานการติดตั้งทางไฟฟ้า วสท. 2562", Element.ALIGN_LEFT, SubvalueStyle)
+            addLineSpace(document)
+            addNewItem(document, "** ใช้งานที่อุณหภูมิ 36-40 และเดินสาย 1 กลุ่มวงจร", Element.ALIGN_LEFT, SubvalueStyle)
+
 //                // cableSize
 //                addNewItemWithLeftAndRight(document, "ขนาดสายไฟ", data!!.cableSize, titleStyle, headingStyle)
 //                addLineSpace(document)
@@ -215,30 +241,31 @@ class ReportActivity : AppCompatActivity() {
             rightStyle: Font
     ) {
         //add Image
-        val d = resources.getDrawable(R.drawable.temca_logo_mini)
+        val d = resources.getDrawable(R.drawable.logo_pdf_temca)
         val bitDw = d as BitmapDrawable
         val bmp = bitDw.bitmap
         val stream = ByteArrayOutputStream()
         bmp.compress(Bitmap.CompressFormat.PNG, 100, stream)
-        bmp.scale(200, 500)
+//        bmp.scale(200, 100)
         val image: Image = Image.getInstance(stream.toByteArray())
 
 //        document.add(image)
 
-        var chunkTextLeft = if (textRight == "CableSize                                    "){
-            Chunk(image, 25.0F, -10.0F, true)
-        }else{
-            Chunk(textLeft, leftStyle)
-        }
-
-        val chunkTextRight = if (textRight.indexOf("มม2") > 1){
-            Chunk("${textRight.replace("2","")}\u00B2", rightStyle)
+        var chunkTextRight = if (textLeft == "รายงานคำนวณขนาดสายไฟฟ้าและท่อไฟฟ้า"){
+            Chunk(image, 0F, -20F, true)
+//            Chunk(textRight, rightStyle)
         }else{
             Chunk(textRight, rightStyle)
         }
 
+//        val chunkTextRight = if (textRight.indexOf("มม2") > 1){
+//            Chunk("${textRight.replace("2", "")}\u00B2", rightStyle)
+//        }else{
+//            Chunk(textRight, rightStyle)
+//        }
 
-//        val chunkTextLeft = Chunk(textLeft, leftStyle)
+//        val chunkTextRight =  Chunk(textRight, rightStyle)
+        val chunkTextLeft = Chunk(textLeft, leftStyle)
 
 
         val p = Paragraph(chunkTextLeft)
@@ -270,7 +297,20 @@ class ReportActivity : AppCompatActivity() {
         val p = Paragraph(chunk)
         p.alignment = align
         document.add(p)
+    }
 
+   fun addItemAndResult(document: Document, text1: String, text2: String, style1: Font, style2: Font){
+       val glue =  Chunk(VerticalPositionMark())
+       val p = Paragraph()
+       p.add(Chunk(text1, style1))
+
+       if (text2.indexOf("มม2") > 1){
+           p.add(Chunk("${text2.replace("2", "")}\u00B2", style2))
+       }else{
+           p.add(Chunk(text2, style2))
+       }
+
+       document.add(p)
 
     }
 

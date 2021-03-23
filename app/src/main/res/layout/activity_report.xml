@@ -31,7 +31,7 @@
             android:layout_centerVertical="true"
             android:fontFamily="@font/mitr_regular"
             android:textColor="@color/black"
-            android:text="CableSize"
+            android:text="@string/cable_and_conduit_calculator"
             android:textSize="18dp"/>
 
     </RelativeLayout>

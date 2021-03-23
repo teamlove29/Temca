@@ -6,4 +6,5 @@
     <string name="create_report">สร้างรายงาน</string>
     <string name="share">แชร์</string>
     <string name="calculate">คำนวณ</string>
+    <string name="cable_and_conduit_calculator">Cable and Conduit Calculator</string>
 </resources>

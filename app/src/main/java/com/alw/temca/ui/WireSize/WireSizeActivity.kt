@@ -15,6 +15,7 @@ import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.util.rangeTo
 import androidx.core.widget.addTextChangedListener
+import com.alw.temca.Function.FindDetailInstallation
 import com.alw.temca.MainActivity
 import com.alw.temca.Model.ReportReslutPipeSizeModel
 import com.alw.temca.Model.ReportResultWireSize
@@ -133,12 +134,18 @@ class WireSizeActivity : AppCompatActivity() {
         val intent = Intent(this, CircuitActivity::class.java)
         startActivityForResult(intent,TASK_NAME_REQUEST_CODE)
         finish()
-
     }
+
     fun ReportOnClick(view: View) {
         val intent = Intent(this, ReportActivity::class.java)
         val bundle = Bundle()
+        val textInstallation = FindDetailInstallation(installationTextView.text.toString())
         bundle.putParcelable("reportWireSize", ReportResultWireSize(
+                phaseTextView.text.toString(),
+                textInstallation,
+                typeCableTextView.text.toString(),
+                circuitTextView.text.toString(),
+                editTextDistance.text.toString(),
                 textViewShow2.text.toString(), // text2 is cablesize
                 textViewResultWireGround.text.toString(),
                 textViewShow4.text.toString(), // text4 is conduitsize
@@ -366,7 +373,7 @@ class WireSizeActivity : AppCompatActivity() {
         val dataOfCircuit = sharedPref.getString(TASK_LIST_PREF_KEY_CIRCUIT, "40A")
         val dataOfDistance = sharedPref.getString(TASK_LIST_PREF_KEY_DISTANCE, "100")
 
-         phaseTextView.text = "$dataOfPhase เฟส"
+        phaseTextView.text = "$dataOfPhase เฟส"
         installationTextView.text = dataOfInstallation!!.slice(0..6)
         typeCableTextView.text = dataOfTypeCable
         circuitTextView.text = dataOfCircuit
