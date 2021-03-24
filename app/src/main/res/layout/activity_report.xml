@@ -1,4 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    tools:context=".ui.PipeSize.PipeSizeActivity">
+
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -10,29 +19,31 @@
     tools:context=".ui.PipeSize.PipeSizeReportActivity">
 
     <RelativeLayout
-        android:paddingBottom="40dp"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
-        android:paddingTop="40dp"
+        android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <ImageView
-            android:id="@+id/logoImageView"
-            android:layout_width="70dp"
-            android:layout_height="50dp"
-            android:layout_marginRight="10dp"
-            android:background="@drawable/temca_logo_mini"/>
 
         <TextView
+            android:id="@+id/textViewTitleReport"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/logoImageView"
-            android:layout_centerVertical="true"
+            android:layout_marginTop="35dp"
             android:fontFamily="@font/mitr_regular"
             android:textColor="@color/black"
-            android:text="@string/cable_and_conduit_calculator"
-            android:textSize="18dp"/>
+            android:text="รายงานคำนวนสายไฟฟ้าและท่อไฟฟ้า"
+            android:textSize="14dp"/>
+
+        <ImageView
+            android:id="@+id/logoImageView"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_width="100dp"
+            android:layout_height="70dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/logo_pdf_temca"/>
 
     </RelativeLayout>
 
@@ -49,33 +60,188 @@
 
     <LinearLayout
         android:background="@color/white"
-        android:layout_weight="1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <TextView
-            android:gravity="center_horizontal"
+        <LinearLayout
+            android:background="@color/white"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            android:text="รายงานผลการคำนวณขนาดสาย"
-            android:fontFamily="@font/sarabun_medium"
-            android:textColor="@color/black"
-            android:textSize="20dp"/>
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="40dp"
+                android:text="ข้อมูลการใช้งาน"
+                android:fontFamily="@font/sarabun_medium"
+                android:textColor="@color/black"
+                android:textSize="13dp"
+                android:textStyle="bold"/>
+
+            <RelativeLayout
+                android:padding="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/textViewPhaseInReport"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="70dp"
+                    android:text="ระบบไฟฟ้า : "
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/sarabun_medium"
+                    android:textSize="12dp"/>
+
+                <TextView
+                    android:id="@+id/textViewResultPhaseInReport"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/textViewPhaseInReport"
+                    android:fontFamily="@font/sarabun_regular"
+                    android:text="1 เฟส"
+                    android:textColor="@color/btnBlue"
+                    android:textSize="12dp" />
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:padding="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/textViewInstallationInReport"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="70dp"
+                    android:text="กลุ่มการติดตั้ง : "
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/sarabun_medium"
+                    android:textSize="12dp"/>
+
+                <TextView
+                    android:id="@+id/textViewResultInstallationInReport"
+                    android:layout_toRightOf="@+id/textViewInstallationInReport"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="กลุ่มที่ 2"
+                    android:textColor="@color/btnBlue"
+                    android:fontFamily="@font/sarabun_regular"
+                    android:textSize="12dp"/>
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:padding="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/textViewCableTypeInReport"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="70dp"
+                    android:text="ชนิดสายไฟฟ้า : "
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/sarabun_medium"
+                    android:textSize="12dp"/>
+
+                <TextView
+                    android:id="@+id/textViewResultCableTypeInReport"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/textViewCableTypeInReport"
+                    android:fontFamily="@font/sarabun_regular"
+                    android:text="IEC01 (THW)"
+                    android:textColor="@color/btnBlue"
+                    android:textSize="12dp" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:padding="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/textViewBreakerInReport"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="70dp"
+                    android:text="Circuit Breaker : "
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/sarabun_medium"
+                    android:textSize="12dp"/>
+
+                <TextView
+                    android:id="@+id/textViewResultBreakerInReportData"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/textViewBreakerInReport"
+                    android:fontFamily="@font/sarabun_regular"
+                    android:text="32A"
+                    android:textColor="@color/btnBlue"
+                    android:textSize="12dp" />
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:padding="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/textViewDistanceInReport"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="70dp"
+                    android:text="ระยะสายไฟฟ้า : "
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/sarabun_medium"
+                    android:textSize="12dp"/>
+
+                <TextView
+                    android:id="@+id/textViewResultDistanceInReport"
+                    android:layout_toRightOf="@+id/textViewDistanceInReport"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="800 เมตร"
+                    android:textColor="@color/btnBlue"
+                    android:fontFamily="@font/sarabun_regular"
+                    android:textSize="12dp"/>
+
+            </RelativeLayout>
+        </LinearLayout>
 
 
             <LinearLayout
-                android:layout_weight="1"
                 android:background="@color/white"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="40dp"
+                    android:text="ผลการคำนวน"
+                    android:fontFamily="@font/sarabun_medium"
+                    android:textColor="@color/black"
+                    android:textSize="13dp"
+                    android:textStyle="bold"/>
 
                     <RelativeLayout
-                        android:padding="10dp"
+                        android:padding="5dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
@@ -83,28 +249,28 @@
                             android:id="@+id/textViewWireSize"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="20dp"
+                            android:layout_marginLeft="70dp"
                             android:text="ขนาดสายไฟฟ้าที่เหมาะสม"
                             android:textColor="@color/black"
                             android:fontFamily="@font/sarabun_medium"
-                            android:textSize="18dp"/>
+                            android:textSize="12dp"/>
 
                         <TextView
                             android:id="@+id/textViewResultWireSize"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
-                            android:layout_marginRight="20dp"
+                            android:layout_toRightOf="@+id/textViewWireSize"
+                            android:layout_marginLeft="30dp"
                             android:fontFamily="@font/sarabun_regular"
                             android:text="10 sq.mm."
-                            android:textColor="@color/black"
-                            android:textSize="18dp" />
+                            android:textColor="@color/btnBlue"
+                            android:textSize="12dp" />
 
                     </RelativeLayout>
 
 
                 <RelativeLayout
-                    android:padding="10dp"
+                    android:padding="5dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
@@ -112,28 +278,28 @@
                         android:id="@+id/textViewWireGround"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"
+                        android:layout_marginLeft="70dp"
                         android:text="ขนาดสายดินที่เหมาะสม"
                         android:textColor="@color/black"
                         android:fontFamily="@font/sarabun_medium"
-                        android:textSize="18dp"/>
+                        android:textSize="12dp"/>
 
                     <TextView
                         android:id="@+id/textViewResultWireGroundInReport"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginRight="20dp"
+                        android:layout_toRightOf="@+id/textViewWireGround"
+                        android:layout_marginLeft="45dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="10 sq.mm."
-                        android:textColor="@color/black"
+                        android:textColor="@color/btnBlue"
                         android:fontFamily="@font/sarabun_regular"
-                        android:textSize="18dp"/>
+                        android:textSize="12dp"/>
 
                 </RelativeLayout>
 
 
                     <RelativeLayout
-                        android:padding="10dp"
+                        android:padding="5dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
@@ -141,27 +307,27 @@
                             android:id="@+id/textViewConduitSize"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="20dp"
+                            android:layout_marginLeft="70dp"
                             android:text="ขนาดท่อไฟฟ้า"
                             android:textColor="@color/black"
                             android:fontFamily="@font/sarabun_medium"
-                            android:textSize="18dp"/>
+                            android:textSize="12dp"/>
 
                         <TextView
                             android:id="@+id/textViewResultConduitSize"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
-                            android:layout_marginRight="20dp"
+                            android:layout_toRightOf="@+id/textViewConduitSize"
+                            android:layout_marginLeft="90dp"
                             android:fontFamily="@font/sarabun_regular"
                             android:text="3/4"
-                            android:textColor="@color/black"
-                            android:textSize="18dp" />
+                            android:textColor="@color/btnBlue"
+                            android:textSize="12dp" />
 
                     </RelativeLayout>
 
                     <RelativeLayout
-                        android:padding="10dp"
+                        android:padding="5dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
@@ -169,27 +335,57 @@
                             android:id="@+id/textViewPressure"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="20dp"
+                            android:layout_marginLeft="70dp"
                             android:text="แรงดันตก"
                             android:textColor="@color/black"
                             android:fontFamily="@font/sarabun_medium"
-                            android:textSize="18dp"/>
+                            android:textSize="12dp"/>
 
                         <TextView
                             android:id="@+id/textViewResultPressure"
-                            android:layout_alignParentRight="true"
-                            android:layout_marginRight="20dp"
+                            android:layout_toRightOf="@+id/textViewPressure"
+                            android:layout_marginLeft="115dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="-%"
-                            android:textColor="@color/black"
+                            android:textColor="@color/btnBlue"
                             android:fontFamily="@font/sarabun_regular"
-                            android:textSize="18dp"/>
+                            android:textSize="12dp"/>
 
                     </RelativeLayout>
+            </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="40dp"
+                android:text="* อ้างอิงตามมาตรฐานการติดตั้งทางไฟฟ้า วสท. 2562"
+                android:textSize="12dp"
+                android:textColor="@color/btnBlue"
+                android:fontFamily="@font/sarabun_regular"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="40dp"
+                android:text="** ใช้งานที่อุณหภูมิ 36-40 C ละเดินสาย 1 ลุ่มวงจร"
+                android:textSize="12dp"
+                android:textColor="@color/btnBlue"
+                android:fontFamily="@font/sarabun_regular"/>
+        </LinearLayout>
 
         <LinearLayout
             android:gravity="bottom"
+            android:layout_marginTop="30dp"
             android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -228,6 +424,7 @@
 
         </LinearLayout>
 
-    </LinearLayout>
+
 </LinearLayout>
 </LinearLayout>
+</ScrollView>
