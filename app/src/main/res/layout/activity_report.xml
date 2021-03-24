@@ -22,6 +22,7 @@
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
         android:layout_marginTop="20dp"
+        android:layout_marginBottom="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -74,6 +75,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
+                android:layout_marginBottom="10dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginLeft="40dp"
                 android:text="ข้อมูลการใช้งาน"
@@ -234,6 +236,7 @@
                     android:layout_marginTop="20dp"
                     android:layout_marginRight="20dp"
                     android:layout_marginLeft="40dp"
+                    android:layout_marginBottom="10dp"
                     android:text="ผลการคำนวน"
                     android:fontFamily="@font/sarabun_medium"
                     android:textColor="@color/black"
@@ -373,11 +376,12 @@
                 android:fontFamily="@font/sarabun_regular"/>
 
             <TextView
+                android:id="@+id/textViewDegree"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:layout_marginLeft="40dp"
-                android:text="** ใช้งานที่อุณหภูมิ 36-40 C ละเดินสาย 1 ลุ่มวงจร"
+                android:text="** ใช้งานที่อุณหภูมิ 36-40 C ละเดินสาย 1 กลุ่มวงจร"
                 android:textSize="12dp"
                 android:textColor="@color/btnBlue"
                 android:fontFamily="@font/sarabun_regular"/>

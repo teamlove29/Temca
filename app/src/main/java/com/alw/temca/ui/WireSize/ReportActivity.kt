@@ -50,7 +50,6 @@ class ReportActivity : AppCompatActivity() {
 
 
         if(resultWire != null){
-
             textViewResultPhaseInReport.text = resultWire.phase
             textViewResultInstallationInReport.text = resultWire.installation
             textViewResultCableTypeInReport.text = resultWire.cableType
@@ -60,6 +59,7 @@ class ReportActivity : AppCompatActivity() {
             textViewResultWireGroundInReport.text = Html.fromHtml("${resultWire.wireGround.replace("มม2", "มม")}<sup><small><small>2</small></small></sup>")
             textViewResultConduitSize.text = resultWire.condutiSize
             textViewResultPressure.text = resultWire.pressure
+            textViewDegree.text = "** ใช้งานที่อุณหภูมิ 36-40 C\u00B0 ละเดินสาย 1 กลุ่มวงจร"
         }
 
         Dexter.withActivity(this)
@@ -133,7 +133,7 @@ class ReportActivity : AppCompatActivity() {
     fun createPDFFile(path: String, data: ReportResultWireSize?) {
         if(File(path).exists()) File(path).delete()
         try {
-            val document = Document()
+            val document = Document(PageSize.A4,40.0f,40.0f,30.0f,40.0f)
 
             //Save
             PdfWriter.getInstance(document, FileOutputStream(path))
@@ -146,6 +146,8 @@ class ReportActivity : AppCompatActivity() {
             document.addCreationDate()
             document.addAuthor("Dev")
             document.addCreator("Marutthep Rompho")
+            document.setMargins(40.0f,40.0F,30.0F,40.0F) // มีผลเฉพาะ Page 2 เท่านั้น
+//            document.isMarginMirroring = true
             // Font setting
             val colorAccent = BaseColor(14, 65, 148, 255)
             val headingFontSize = 14.0f
@@ -191,19 +193,20 @@ class ReportActivity : AppCompatActivity() {
 
 //            addNewItem(document, "", Element.ALIGN_RIGHT, titleStyleTitle)
             addNewItemWithLeftAndRight(document, "รายงานคำนวณขนาดสายไฟฟ้าและท่อไฟฟ้า", "", titleStyle, detailStyleTitle)
-                addLineSeperator(document)
-                addNewItem(document, "ข้อมูลการใช้งาน", Element.ALIGN_LEFT, headingStyle)
-                addLineSpace(document)
-                addItemAndResult(document, "                ระบบไฟฟ้า : ", data!!.phase, titleStyleTitle, valueStyle)
-                addLineSpace(document)
-                addItemAndResult(document, "                กลุ่มการติดตั้ง : ", data.installation, titleStyleTitle, valueStyle)
-                addLineSpace(document)
-                addItemAndResult(document, "                ชนิดสายไฟฟ้า : ", data.cableType, titleStyleTitle, valueStyle)
-                addLineSpace(document)
-                addItemAndResult(document, "                Circuit Breaker : ", data.breaker, titleStyleTitle, valueStyle)
-                addLineSpace(document)
-                addItemAndResult(document, "                ระยะสายไฟฟ้า : ", data.distance, titleStyleTitle, valueStyle)
-                addLineSpace(document)
+            addLineSeperator(document)
+            addNewItem(document, "ข้อมูลการใช้งาน", Element.ALIGN_LEFT, headingStyle)
+            addLineSpace(document)
+            addItemAndResult(document, "                ระบบไฟฟ้า : ", data!!.phase, titleStyleTitle, valueStyle)
+            addLineSpace(document)
+            addItemAndResult(document, "                กลุ่มการติดตั้ง : ", data.installation, titleStyleTitle, valueStyle)
+            addLineSpace(document)
+            addItemAndResult(document, "                ชนิดสายไฟฟ้า : ", data.cableType, titleStyleTitle, valueStyle)
+            addLineSpace(document)
+            addItemAndResult(document, "                Circuit Breaker : ", data.breaker, titleStyleTitle, valueStyle)
+            addLineSpace(document)
+            addItemAndResult(document, "                ระยะสายไฟฟ้า : ", data.distance, titleStyleTitle, valueStyle)
+            addLineSpace(document)
+            addLineSpace(document)
 
             addNewItem(document, "ผลการคำนวน", Element.ALIGN_LEFT, headingStyle)
             addLineSpace(document)
@@ -219,7 +222,7 @@ class ReportActivity : AppCompatActivity() {
 
             addNewItem(document, "* อ้างอิงตามมาตรฐานการติดตั้งทางไฟฟ้า วสท. 2562", Element.ALIGN_LEFT, SubvalueStyle)
             addLineSpace(document)
-            addNewItem(document, "** ใช้งานที่อุณหภูมิ 36-40 และเดินสาย 1 กลุ่มวงจร", Element.ALIGN_LEFT, SubvalueStyle)
+            addNewItem(document, "** ใช้งานที่อุณหภูมิ 36-40 C° และเดินสาย 1 กลุ่มวงจร", Element.ALIGN_LEFT, SubvalueStyle)
 
 //                // cableSize
 //                addNewItemWithLeftAndRight(document, "ขนาดสายไฟ", data!!.cableSize, titleStyle, headingStyle)
@@ -272,12 +275,10 @@ class ReportActivity : AppCompatActivity() {
 
 //        val chunkTextRight =  Chunk(textRight, rightStyle)
         val chunkTextLeft = Chunk(textLeft, leftStyle)
-
-
         val p = Paragraph(chunkTextLeft)
         p.add(Chunk(VerticalPositionMark()))
         p.add(chunkTextRight)
-        addLineSpace(document)
+//        addLineSpace(document)
         document.add(p)
     }
 
@@ -294,7 +295,7 @@ class ReportActivity : AppCompatActivity() {
 
     @Throws(DocumentException::class)
     fun addLineSpace(document: Document) {
-        document.add(Paragraph(" "))
+        document.add(Paragraph("  "))
     }
 
     @Throws(DocumentException::class)
