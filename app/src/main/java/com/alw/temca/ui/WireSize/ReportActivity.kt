@@ -53,7 +53,7 @@ class ReportActivity : AppCompatActivity() {
             textViewResultPhaseInReport.text = resultWire.phase
             textViewResultInstallationInReport.text = resultWire.installation
             textViewResultCableTypeInReport.text = resultWire.cableType
-            textViewResultBreakerInReportData.text = "${resultWire.breaker}A"
+            textViewResultBreakerInReportData.text = "${resultWire.breaker}"
             textViewResultDistanceInReport.text = "${resultWire.distance} เมตร"
             textViewResultWireSize.text = Html.fromHtml("${resultWire.cableSize.replace("มม2", "มม")}<sup><small><small>2</small></small></sup>")
             textViewResultWireGroundInReport.text = Html.fromHtml("${resultWire.wireGround.replace("มม2", "มม")}<sup><small><small>2</small></small></sup>")

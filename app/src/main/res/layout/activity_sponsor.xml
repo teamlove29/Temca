@@ -9,6 +9,9 @@ android:orientation="vertical"
 android:background="#EEEEEE"
 tools:context=".ui.SponsorActivity">
 
+
+
+
 <RelativeLayout
     android:paddingBottom="40dp"
     android:paddingLeft="20dp"
@@ -41,100 +44,113 @@ tools:context=".ui.SponsorActivity">
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/white"
+        android:padding="20dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginBottom="20dp"
         android:orientation="vertical">
 
-        <RelativeLayout
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewSponsor"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:stretchMode="columnWidth"
+            android:paddingLeft="5dp"
+            android:numColumns="auto_fit"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal">
+            android:layout_height="match_parent" />
 
-            <ImageView
-                android:id="@+id/logoSponsor1"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_margin="10dp"
-                android:background="@drawable/building"/>
+<!--        <RelativeLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:gravity="center_horizontal">-->
 
-            <ImageView
-                android:id="@+id/logoSponsor2"
-                android:layout_toRightOf="@+id/logoSponsor1"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_margin="10dp"
-                android:background="@drawable/solar_energy"/>
+<!--            <ImageView-->
+<!--                android:id="@+id/logoSponsor1"-->
+<!--                android:layout_width="100dp"-->
+<!--                android:layout_height="100dp"-->
+<!--                android:layout_margin="10dp"-->
+<!--                android:background="@drawable/building"/>-->
 
-            <ImageView
-                android:id="@+id/logoSponsor3"
-                android:layout_toRightOf="@+id/logoSponsor2"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_margin="10dp"
-                android:background="@drawable/helmet"/>
+<!--            <ImageView-->
+<!--                android:id="@+id/logoSponsor2"-->
+<!--                android:layout_toRightOf="@+id/logoSponsor1"-->
+<!--                android:layout_width="100dp"-->
+<!--                android:layout_height="100dp"-->
+<!--                android:layout_margin="10dp"-->
+<!--                android:background="@drawable/solar_energy"/>-->
 
-        </RelativeLayout>
+<!--            <ImageView-->
+<!--                android:id="@+id/logoSponsor3"-->
+<!--                android:layout_toRightOf="@+id/logoSponsor2"-->
+<!--                android:layout_width="100dp"-->
+<!--                android:layout_height="100dp"-->
+<!--                android:layout_margin="10dp"-->
+<!--                android:background="@drawable/helmet"/>-->
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal">
+<!--        </RelativeLayout>-->
 
-            <ImageView
-                android:id="@+id/logoSponsor4"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_margin="10dp"
-                android:background="@drawable/screwdriver"/>
+<!--        <RelativeLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:gravity="center_horizontal">-->
 
-            <ImageView
-                android:id="@+id/logoSponsor5"
-                android:layout_toRightOf="@+id/logoSponsor4"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_margin="10dp"
-                android:background="@drawable/saw"/>
+<!--            <ImageView-->
+<!--                android:id="@+id/logoSponsor4"-->
+<!--                android:layout_width="100dp"-->
+<!--                android:layout_height="100dp"-->
+<!--                android:layout_margin="10dp"-->
+<!--                android:background="@drawable/screwdriver"/>-->
 
-            <ImageView
-                android:id="@+id/logoSponsor6"
-                android:layout_toRightOf="@+id/logoSponsor5"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_margin="10dp"
-                android:background="@drawable/extinguisher"/>
+<!--            <ImageView-->
+<!--                android:id="@+id/logoSponsor5"-->
+<!--                android:layout_toRightOf="@+id/logoSponsor4"-->
+<!--                android:layout_width="100dp"-->
+<!--                android:layout_height="100dp"-->
+<!--                android:layout_margin="10dp"-->
+<!--                android:background="@drawable/saw"/>-->
 
-        </RelativeLayout>
+<!--            <ImageView-->
+<!--                android:id="@+id/logoSponsor6"-->
+<!--                android:layout_toRightOf="@+id/logoSponsor5"-->
+<!--                android:layout_width="100dp"-->
+<!--                android:layout_height="100dp"-->
+<!--                android:layout_margin="10dp"-->
+<!--                android:background="@drawable/extinguisher"/>-->
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal">
+<!--        </RelativeLayout>-->
 
-            <ImageView
-                android:id="@+id/logoSponsor7"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_margin="10dp"
-                android:background="@drawable/clipboard"/>
+<!--        <RelativeLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:gravity="center_horizontal">-->
 
-            <ImageView
-                android:id="@+id/logoSponsor8"
-                android:layout_toRightOf="@+id/logoSponsor7"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_margin="10dp"
-                android:background="@drawable/goggles"/>
+<!--            <ImageView-->
+<!--                android:id="@+id/logoSponsor7"-->
+<!--                android:layout_width="100dp"-->
+<!--                android:layout_height="100dp"-->
+<!--                android:layout_margin="10dp"-->
+<!--                android:background="@drawable/clipboard"/>-->
 
-            <ImageView
-                android:id="@+id/logoSponsor9"
-                android:layout_toRightOf="@+id/logoSponsor8"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_margin="10dp"
-                android:background="@drawable/switch_on_off"/>
+<!--            <ImageView-->
+<!--                android:id="@+id/logoSponsor8"-->
+<!--                android:layout_toRightOf="@+id/logoSponsor7"-->
+<!--                android:layout_width="100dp"-->
+<!--                android:layout_height="100dp"-->
+<!--                android:layout_margin="10dp"-->
+<!--                android:background="@drawable/goggles"/>-->
 
-        </RelativeLayout>
+<!--            <ImageView-->
+<!--                android:id="@+id/logoSponsor9"-->
+<!--                android:layout_toRightOf="@+id/logoSponsor8"-->
+<!--                android:layout_width="100dp"-->
+<!--                android:layout_height="100dp"-->
+<!--                android:layout_margin="10dp"-->
+<!--                android:background="@drawable/switch_on_off"/>-->
+
+<!--        </RelativeLayout>-->
 
 
     </LinearLayout>
