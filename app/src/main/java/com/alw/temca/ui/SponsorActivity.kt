@@ -1,10 +1,12 @@
 package com.alw.temca.ui
 
 
+import android.R.attr.spacing
 import android.content.Intent
+import android.content.res.Configuration
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import com.alw.temca.Adapter.InstallationonClickAdapterListener
 import com.alw.temca.Adapter.SponsorAdapter
@@ -20,20 +22,20 @@ class SponsorActivity : AppCompatActivity(), InstallationonClickAdapterListener 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sponsor)
 
-        val sponsor1 =  SponsorModel(1,resources.getDrawable(R.drawable.temca_logo_mini))
-        val sponsor2 =  SponsorModel(2,resources.getDrawable(R.drawable.temca_logo))
-        val sponsor3 =  SponsorModel(3,resources.getDrawable(R.drawable.temca_logo_2))
-        val sponsor4 =  SponsorModel(4,resources.getDrawable(R.drawable.logo_pdf_temca))
-        val sponsor5 =  SponsorModel(5,resources.getDrawable(R.drawable.temca_logo_mini))
-        val sponsor6 =  SponsorModel(6,resources.getDrawable(R.drawable.temca_logo_mini))
-        val sponsor7 =  SponsorModel(7,resources.getDrawable(R.drawable.temca_logo_mini))
-        val sponsor8 =  SponsorModel(8,resources.getDrawable(R.drawable.logo_pdf_temca))
-        val sponsor9 =  SponsorModel(9,resources.getDrawable(R.drawable.temca_logo_mini))
-        val sponsor10 =  SponsorModel(10,resources.getDrawable(R.drawable.logo_pdf_temca))
-        val sponsor11 =  SponsorModel(11,resources.getDrawable(R.drawable.temca_logo_mini))
-        val sponsor12 =  SponsorModel(12,resources.getDrawable(R.drawable.temca_logo_mini))
+        val sponsor1 =  SponsorModel(1, resources.getDrawable(R.drawable.temca_logo_mini))
+        val sponsor2 =  SponsorModel(2, resources.getDrawable(R.drawable.temca_logo))
+        val sponsor3 =  SponsorModel(3, resources.getDrawable(R.drawable.temca_logo_2))
+        val sponsor4 =  SponsorModel(4, resources.getDrawable(R.drawable.logo_pdf_temca))
+        val sponsor5 =  SponsorModel(5, resources.getDrawable(R.drawable.temca_logo_mini))
+        val sponsor6 =  SponsorModel(6, resources.getDrawable(R.drawable.temca_logo_mini))
+        val sponsor7 =  SponsorModel(7, resources.getDrawable(R.drawable.temca_logo_mini))
+        val sponsor8 =  SponsorModel(8, resources.getDrawable(R.drawable.logo_pdf_temca))
+        val sponsor9 =  SponsorModel(9, resources.getDrawable(R.drawable.temca_logo_mini))
+        val sponsor10 =  SponsorModel(10, resources.getDrawable(R.drawable.logo_pdf_temca))
+        val sponsor11 =  SponsorModel(11, resources.getDrawable(R.drawable.temca_logo_mini))
+        val sponsor12 =  SponsorModel(12, resources.getDrawable(R.drawable.temca_logo_mini))
 //        val test =  SponsorModel(null)
-        val listSponsor = arrayListOf<SponsorModel>(sponsor1,sponsor2,sponsor3,sponsor4,sponsor5,sponsor6,sponsor7,sponsor8,sponsor9,sponsor10,sponsor11,sponsor12)
+        val listSponsor = arrayListOf<SponsorModel>(sponsor1, sponsor2, sponsor3, sponsor4, sponsor5, sponsor6, sponsor7, sponsor8, sponsor9, sponsor10, sponsor11, sponsor12)
         val listSponsor2 = ArrayList<SponsorModel>()
 
 
@@ -43,8 +45,15 @@ class SponsorActivity : AppCompatActivity(), InstallationonClickAdapterListener 
             listSponsor.remove(uniqueRand)
         }
 
-        recyclerViewSponsor.adapter = SponsorAdapter(listSponsor2,this)
-        recyclerViewSponsor.layoutManager = GridLayoutManager(this,3)
+        val checkScape = resources.configuration.orientation
+
+        recyclerViewSponsor.adapter = SponsorAdapter(listSponsor2, this)
+        if (checkScape == Configuration.ORIENTATION_LANDSCAPE) {
+            recyclerViewSponsor.layoutManager = GridLayoutManager(this, 5)
+        } else {
+            recyclerViewSponsor.layoutManager = GridLayoutManager(this, 3)
+        }
+        recyclerViewSponsor.isNestedScrollingEnabled = false
 
 
 

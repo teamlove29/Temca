@@ -6,19 +6,24 @@
     android:layout_height="wrap_content"
     android:foreground="@drawable/bg_border_sponsor"
     app:cardCornerRadius="23dp"
-    android:layout_marginBottom="10dp"
-    android:layout_marginRight="10dp"
+    android:layout_margin="10dp"
+    android:layout_centerHorizontal="true"
+    android:layout_gravity="center_horizontal"
+    android:scaleType="center"
     app:cardElevation="0dp">
 
     <ImageView
+        android:layout_centerInParent="true"
         android:id="@+id/logoSponsor"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
+        android:scaleType="centerInside"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
         android:layout_margin="10dp" />
 
     <TextView
         android:id="@+id/textViewSponser"
         android:layout_gravity="center"
+        android:gravity="center_horizontal"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:text="Sponsor 1"/>
