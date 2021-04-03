@@ -33,7 +33,7 @@ class InstallationActivity : AppCompatActivity(), InstallationonClickAdapterList
         installItem.add(InstallationModel(resources.getDrawable(setResourceImage2),"กลุ่ม 2","เดินเกาะผนัง,เพดาน,ฝังคอนกรีต"))
 //        installItem.add(InstallationModel(resources.getDrawable(setResourceImage3),"กลุ่ม 3","เดินเกาะผนังไม่มีสิ่งปิดหุ้ม"))
 //        installItem.add(InstallationModel(resources.getDrawable(setResourceImage4),"กลุ่ม 4","สายแกนเดี่ยวเดินบนฉนวนลูกถ้วย"))
-//        installItem.add(InstallationModel(resources.getDrawable(setResourceImage5),"กลุ่ม 5","เดินในท่อฝังดิน"))
+        installItem.add(InstallationModel(resources.getDrawable(setResourceImage5),"กลุ่ม 5","เดินในท่อฝังดิน"))
 //        installItem.add(InstallationModel(resources.getDrawable(setResourceImage6),"กลุ่ม 6","เดินฝังดินโดยตรง"))
 //        installItem.add(InstallationModel(resources.getDrawable(setResourceImage7),"กลุ่ม 7","เดินในรางเคเบิล"))
 

@@ -14,7 +14,6 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.FileProvider
-import androidx.core.graphics.scale
 import com.alw.temca.Common.ApplicationSelectorReceiver
 import com.alw.temca.Common.Common
 import com.alw.temca.Model.ReportResultWireSize
@@ -54,11 +53,16 @@ class ReportActivity : AppCompatActivity() {
             textViewResultInstallationInReport.text = resultWire.installation
             textViewResultCableTypeInReport.text = resultWire.cableType
             textViewResultBreakerInReportData.text = "${resultWire.breaker}"
-            textViewResultDistanceInReport.text = "${resultWire.distance} เมตร"
-            textViewResultWireSize.text = Html.fromHtml("${resultWire.cableSize.replace("มม2", "มม")}<sup><small><small>2</small></small></sup>")
-            textViewResultWireGroundInReport.text = Html.fromHtml("${resultWire.wireGround.replace("มม2", "มม")}<sup><small><small>2</small></small></sup>")
+            textViewResultDistanceInReport.text = "${resultWire.distance} M"
+            textViewResultWireSize.text = Html.fromHtml("${resultWire.cableSize.replace("mm2", "mm")}<sup><small><small>2</small></small></sup>")
+            textViewResultWireGroundInReport.text = Html.fromHtml("${resultWire.wireGround.replace("mm2", "mm")}<sup><small><small>2</small></small></sup>")
             textViewResultConduitSize.text = resultWire.condutiSize
             textViewResultPressure.text = resultWire.pressure
+            if(resultWire.phase == "1 เฟส"){
+                textViewReferenceVoltageInReport.text = "(แรงดันอ้างอิง 230V)"
+            }else{
+                textViewReferenceVoltageInReport.text = "(แรงดันอ้างอิง 400V)"
+            }
             textViewDegree.text = "** ใช้งานที่อุณหภูมิ 36-40 C\u00B0 ละเดินสาย 1 กลุ่มวงจร"
         }
 
@@ -133,7 +137,7 @@ class ReportActivity : AppCompatActivity() {
     fun createPDFFile(path: String, data: ReportResultWireSize?) {
         if(File(path).exists()) File(path).delete()
         try {
-            val document = Document(PageSize.A4,40.0f,40.0f,30.0f,40.0f)
+            val document = Document(PageSize.A4, 40.0f, 40.0f, 30.0f, 40.0f)
 
             //Save
             PdfWriter.getInstance(document, FileOutputStream(path))
@@ -146,7 +150,7 @@ class ReportActivity : AppCompatActivity() {
             document.addCreationDate()
             document.addAuthor("Dev")
             document.addCreator("Marutthep Rompho")
-            document.setMargins(40.0f,40.0F,30.0F,40.0F) // มีผลเฉพาะ Page 2 เท่านั้น
+            document.setMargins(40.0f, 40.0F, 30.0F, 40.0F) // มีผลเฉพาะ Page 2 เท่านั้น
 //            document.isMarginMirroring = true
             // Font setting
             val colorAccent = BaseColor(14, 65, 148, 255)
@@ -168,6 +172,7 @@ class ReportActivity : AppCompatActivity() {
 
             // Add Title to document
             val titleStyleTitle = Font(fontNameBoldStyle, 14.0f, Font.NORMAL, BaseColor.BLACK)
+            val subTitleStyle = Font(fontNameBoldStyle, 12.0f, Font.NORMAL, BaseColor.BLACK)
             val detailStyleTitle = Font(fontNameBoldStyle, 12.0f, Font.NORMAL, colorAccent)
             val titleStyle = Font(fontName, 20.0f, Font.NORMAL, BaseColor.BLACK)
             val headingStyle = Font(fontName, headingFontSize, Font.BOLD, BaseColor.BLACK)
@@ -217,6 +222,7 @@ class ReportActivity : AppCompatActivity() {
             addItemAndResult(document, "                ขนาดท่อไฟฟ้า                         ", data.condutiSize, titleStyleTitle, valueStyle)
             addLineSpace(document)
             addItemAndResult(document, "                แรงดันตก                                 ", data.pressure, titleStyleTitle, valueStyle)
+            addItemAndResult(document, "                   ${textViewReferenceVoltageInReport.text}", "", subTitleStyle, valueStyle)
             addLineSpace(document)
             addLineSpace(document)
 
@@ -267,7 +273,7 @@ class ReportActivity : AppCompatActivity() {
             Chunk(textRight, rightStyle)
         }
 
-//        val chunkTextRight = if (textRight.indexOf("มม2") > 1){
+//        val chunkTextRight = if (textRight.indexOf("mm2") > 1){
 //            Chunk("${textRight.replace("2", "")}\u00B2", rightStyle)
 //        }else{
 //            Chunk(textRight, rightStyle)
@@ -311,7 +317,7 @@ class ReportActivity : AppCompatActivity() {
        val p = Paragraph()
        p.add(Chunk(text1, style1))
 
-       if (text2.indexOf("มม2") > 1){
+       if (text2.indexOf("mm2") > 1){
            p.add(Chunk("${text2.replace("2", "")}\u00B2", style2))
        }else{
            p.add(Chunk(text2, style2))

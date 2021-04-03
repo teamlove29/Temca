@@ -18,8 +18,8 @@ class PhaseActivity : AppCompatActivity(), onClickAdapterListener {
         setContentView(R.layout.activity_phase)
 
         val phaseItem = ArrayList<PhaseModel>()
-        phaseItem.add(PhaseModel(1,"เฟส (2 สาย)"))
-        phaseItem.add(PhaseModel(3,"เฟส (4 สาย)"))
+        phaseItem.add(PhaseModel(1,"เฟส 2สาย (230 V)"))
+        phaseItem.add(PhaseModel(3,"เฟส 4สาย (400 V)"))
 
         recyclerViewPhase.adapter = PhaseAdapter(phaseItem,this)
         recyclerViewPhase.layoutManager = LinearLayoutManager(this)

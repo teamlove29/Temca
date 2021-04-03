@@ -10,7 +10,7 @@
     android:layout_height="wrap_content">
 
     <RelativeLayout
-        android:padding="15dp"
+        android:padding="12dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -18,9 +18,7 @@
             android:id="@+id/imageViewGroup"
             android:layout_width="75dp"
             android:layout_height="50dp"
-
-            android:layout_centerVertical="true"
-            android:src="@drawable/setting_group1"/>
+            android:src="@drawable/setting_group2"/>
 
         <TextView
             android:id="@+id/textViewInstallationTitle"

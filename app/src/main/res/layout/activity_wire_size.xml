@@ -204,7 +204,7 @@
                     android:layout_height="wrap_content"
 
                     android:textSize="18dp"
-                    android:text="Circuit Breaker / กระแสใช้งาน"
+                    android:text="Circuit Breaker"
                     android:fontFamily="@font/mitr_regular"
                     android:textColor="@color/black"
                     android:layout_centerVertical="true"/>
@@ -253,7 +253,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginRight="10dp"
                     android:layout_marginLeft="5dp"
-                    android:text="ระยะทาง(เมตร)"
+                    android:text="ระยะทาง(M.)"
                     android:textSize="18dp"
                     android:fontFamily="@font/mitr_regular"
                     android:textColor="@color/black"
@@ -450,6 +450,16 @@
                 android:fontFamily="@font/mitr_regular"
                 android:textColor="@color/white" />
 
+            <TextView
+                android:id="@+id/textViewReferenceVoltage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textViewShow5"
+                android:text="(แรงดันอ้างอิง -V)"
+                android:textSize="14dp"
+                android:fontFamily="@font/mitr_regular"
+                android:textColor="@color/white" />
+
 
             <TextView
                 android:id="@+id/textViewShow6"
@@ -475,10 +485,10 @@
                 <com.google.android.material.button.MaterialButton
                     android:onClick="ReportOnClick"
                     android:id="@+id/btnCreateReports"
+                    android:layout_marginTop="20dp"
                     android:layout_marginBottom="20dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-
                     app:cornerRadius="10dp"
                     android:padding="10dp"
                     android:textSize="20dp"

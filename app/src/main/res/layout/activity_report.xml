@@ -105,7 +105,7 @@
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@+id/textViewPhaseInReport"
                     android:fontFamily="@font/sarabun_regular"
-                    android:text="1 เฟส"
+                    android:text="- เฟส"
                     android:textColor="@color/btnBlue"
                     android:textSize="12dp" />
 
@@ -132,7 +132,7 @@
                     android:layout_toRightOf="@+id/textViewInstallationInReport"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="กลุ่มที่ 2"
+                    android:text="กลุ่ม -"
                     android:textColor="@color/btnBlue"
                     android:fontFamily="@font/sarabun_regular"
                     android:textSize="12dp"/>
@@ -161,7 +161,7 @@
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@+id/textViewCableTypeInReport"
                     android:fontFamily="@font/sarabun_regular"
-                    android:text="IEC01 (THW)"
+                    android:text="-"
                     android:textColor="@color/btnBlue"
                     android:textSize="12dp" />
 
@@ -188,7 +188,7 @@
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@+id/textViewBreakerInReport"
                     android:fontFamily="@font/sarabun_regular"
-                    android:text="32A"
+                    android:text="- A"
                     android:textColor="@color/btnBlue"
                     android:textSize="12dp" />
 
@@ -215,7 +215,7 @@
                     android:layout_toRightOf="@+id/textViewDistanceInReport"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="800 เมตร"
+                    android:text="- M"
                     android:textColor="@color/btnBlue"
                     android:fontFamily="@font/sarabun_regular"
                     android:textSize="12dp"/>
@@ -265,7 +265,7 @@
                             android:layout_toRightOf="@+id/textViewWireSize"
                             android:layout_marginLeft="30dp"
                             android:fontFamily="@font/sarabun_regular"
-                            android:text="10 sq.mm."
+                            android:text="- mm"
                             android:textColor="@color/btnBlue"
                             android:textSize="12dp" />
 
@@ -293,7 +293,7 @@
                         android:layout_marginLeft="45dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="10 sq.mm."
+                        android:text="- mm"
                         android:textColor="@color/btnBlue"
                         android:fontFamily="@font/sarabun_regular"
                         android:textSize="12dp"/>
@@ -323,7 +323,7 @@
                             android:layout_toRightOf="@+id/textViewConduitSize"
                             android:layout_marginLeft="90dp"
                             android:fontFamily="@font/sarabun_regular"
-                            android:text="3/4"
+                            android:text="-"
                             android:textColor="@color/btnBlue"
                             android:textSize="12dp" />
 
@@ -343,6 +343,17 @@
                             android:textColor="@color/black"
                             android:fontFamily="@font/sarabun_medium"
                             android:textSize="12dp"/>
+
+                        <TextView
+                            android:id="@+id/textViewReferenceVoltageInReport"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="70dp"
+                            android:layout_below="@+id/textViewPressure"
+                            android:text="(แรงดันอ้างอิง -V)"
+                            android:textSize="10dp"
+                            android:textColor="@color/black"
+                            android:fontFamily="@font/sarabun_medium" />
 
                         <TextView
                             android:id="@+id/textViewResultPressure"

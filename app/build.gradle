@@ -7,7 +7,9 @@ plugins {
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
-
+//    packagingOptions {
+//        exclude "META-INF/DEPENDENCIES"
+//    }
 //    buildFeatures {
 //        viewBinding true
 //    }

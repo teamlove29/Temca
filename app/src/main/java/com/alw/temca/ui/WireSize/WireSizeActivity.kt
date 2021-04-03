@@ -1,33 +1,24 @@
 package com.alw.temca.ui.WireSize
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
-import android.graphics.Color
 import android.os.Bundle
-import android.provider.CalendarContract
 import android.text.Editable
 import android.text.Html
 import android.text.TextWatcher
-import android.text.method.TextKeyListener.clear
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.util.rangeTo
-import androidx.core.widget.addTextChangedListener
+import com.alw.temca.Function.FindCableSizeInTable
 import com.alw.temca.Function.FindDetailInstallation
-import com.alw.temca.MainActivity
-import com.alw.temca.Model.ReportReslutPipeSizeModel
 import com.alw.temca.Model.ReportResultWireSize
 import com.alw.temca.R
 import com.alw.temca.ui.SponsorActivity
 import jxl.Workbook
-import kotlinx.android.synthetic.main.activity_circuit.*
-import kotlinx.android.synthetic.main.activity_pipe_size.*
 import kotlinx.android.synthetic.main.activity_wire_size.*
 import kotlinx.android.synthetic.main.activity_wire_size.typeCableTextView
 import kotlinx.android.synthetic.main.activity_wire_size.wayBackActivity1
-import org.apache.log4j.NDC.clear
 import java.io.IOException
 
 
@@ -193,9 +184,10 @@ class WireSizeActivity : AppCompatActivity() {
         imm.showSoftInput(editTextDistance, InputMethodManager.SHOW_IMPLICIT)
     }
 
+    @SuppressLint("SetTextI18n")
     fun calculatorOnClick(view: View) {
         if (editTextDistance.text.isEmpty()){
-            editTextDistance.setText("100")
+            editTextDistance.setText("10")
         }
         btnCal.visibility = View.GONE
         tableBeforeCalculate.visibility = View.VISIBLE
@@ -246,9 +238,14 @@ class WireSizeActivity : AppCompatActivity() {
             else -> return
         }
 
+        val installationInTable = when(installationTextView.text){
+            "กลุ่ม 2" -> "WireGroup_Group2.xls"
+            "กลุ่ม 5" -> "WireGroup_Group5.xls"
+            else -> return
+        }
 
         try {
-            val typeCable = applicationContext.assets.open("WireGroup_Group2.xls")
+            val typeCable = applicationContext.assets.open(installationInTable)
             val wb = Workbook.getWorkbook(typeCable)
             val sheet = wb.getSheet(typeCableFile)
 
@@ -270,7 +267,7 @@ class WireSizeActivity : AppCompatActivity() {
                                     if (2 < checkCableSizeInTable2){ // 2 is PhaseSize
                                         val getConduitSize2InTable = sheet.getCell(g, 0).contents // result
                                         for (h in 2..20){
-                                            val pressureCable = applicationContext.assets.open("qwerty.xls")
+                                            val pressureCable = applicationContext.assets.open("qwerty.xls") // pressure_drop_file
                                             val wbPressure  = Workbook.getWorkbook(pressureCable)
                                             val sheetPressure = wbPressure.getSheet(0)
                                             val fineCabletypeInTable = sheetPressure.getCell(0, h).contents
@@ -280,17 +277,19 @@ class WireSizeActivity : AppCompatActivity() {
                                                 val getreslutInTable = sheetPressure.getCell(1, h).contents.toFloat()
                                                 val pullResult = fineCabletypeInTable.toFloat() * getreslutInTable * amountDeistance / 1000 // result
                                                 val PercentPressure  = 100 * pullResult / 230 // result
-                                                textViewShow2.text = Html.fromHtml("${getCableSizeInTable} มม<sup><small><small>2</small></small></sup>")
-                                                textViewShow4.text = "${getConduitSize2InTable} (สูงสุด ${checkCableSizeInTable2} เส้น)"
+                                                val resultSizeConduit = FindCableSizeInTable(getConduitSize2InTable.replace("\"",""))
+                                                textViewShow2.text = Html.fromHtml("$getCableSizeInTable mm<sup><small><small>2</small></small></sup>")
+                                                textViewShow4.text = "$getConduitSize2InTable $resultSizeConduit mm (สูงสุด $checkCableSizeInTable2 เส้น)"
                                                 textViewShow6.text = "${"%.2f V".format(pullResult)} (${"%.2f".format(PercentPressure)}%) "
+                                                textViewReferenceVoltage.text = "(แรงดันอ้างอิง 230V)"
                                                 fineWireGround(circuitTextView.text.toString())
                                                 break
                                             }
                                         }
                                         break
                                     }else{
-                                        textViewShow2.text = Html.fromHtml("- มม<sup><small><small>2</small></small></sup>")
-                                        textViewResultWireGround.text = Html.fromHtml("- มม<sup><small><small>2</small></small></sup>")
+                                        textViewShow2.text = Html.fromHtml("- mm<sup><small><small>2</small></small></sup>")
+                                        textViewResultWireGround.text = Html.fromHtml("- mm<sup><small><small>2</small></small></sup>")
                                         textViewShow4.text = "- (สูงสุด - เส้น)"
                                         textViewShow6.text = "- V"
                                     }
@@ -300,8 +299,8 @@ class WireSizeActivity : AppCompatActivity() {
                         }
                         break
                     }else{
-                        textViewShow2.text = Html.fromHtml("- มม<sup><small><small>2</small></small></sup>")
-                        textViewResultWireGround.text = Html.fromHtml("- มม<sup><small><small>2</small></small></sup>")
+                        textViewShow2.text = Html.fromHtml("- mm<sup><small><small>2</small></small></sup>")
+                        textViewResultWireGround.text = Html.fromHtml("- mm<sup><small><small>2</small></small></sup>")
                         textViewShow4.text = "- (สูงสุด - เส้น)"
                         textViewShow6.text = "- V"
                     }
@@ -326,7 +325,7 @@ class WireSizeActivity : AppCompatActivity() {
                                     if (4 < checkCableSizeInTable2){ // 4 is PhaseSize
                                         val getCableSize2InTable = sheet.getCell(g, 0).contents // result
                                         for (h in 2..20){
-                                            val pressureCable = applicationContext.assets.open("qwerty.xls")
+                                            val pressureCable = applicationContext.assets.open("qwerty.xls") // pressure_drop_file
                                             val wbPressure  = Workbook.getWorkbook(pressureCable)
                                             val sheetPressure = wbPressure.getSheet(0)
                                             val fineCabletypeInTable = sheetPressure.getCell(0, h).contents
@@ -336,17 +335,19 @@ class WireSizeActivity : AppCompatActivity() {
                                                 val getreslutInTable = sheetPressure.getCell(2, h).contents.toFloat()
                                                 val pullResult = fineCabletypeInTable.toFloat() * getreslutInTable * amountDeistance / 1000 // result
                                                 val PercentPressure  = 100 * pullResult / 400 // result
-                                                textViewShow2.text = Html.fromHtml("${getCableSizeInTable} มม<sup><small><small>2</small></small></sup>")
-                                                textViewShow4.text = "${getCableSize2InTable} (สูงสุด ${checkCableSizeInTable2} เส้น)"
+                                                val resultSizeConduit = FindCableSizeInTable(getCableSize2InTable.replace("\"",""))
+                                                textViewShow2.text = Html.fromHtml("$getCableSizeInTable mm<sup><small><small>2</small></small></sup>")
+                                                textViewShow4.text = "$getCableSize2InTable $resultSizeConduit mm (สูงสุด $checkCableSizeInTable2 เส้น)"
                                                 textViewShow6.text = "${"%.2f V".format(pullResult)} (${"%.2f".format(PercentPressure)}%) "
+                                                textViewReferenceVoltage.text = "(แรงดันอ้างอิง 400V)"
                                                 fineWireGround(circuitTextView.text.toString())
                                                 break
                                             }
                                         }
                                         break
                                     }else{
-                                        textViewShow2.text = Html.fromHtml("- มม<sup><small><small>2</small></small></sup>")
-                                        textViewResultWireGround.text = Html.fromHtml("- มม<sup><small><small>2</small></small></sup>")
+                                        textViewShow2.text = Html.fromHtml("- mm<sup><small><small>2</small></small></sup>")
+                                        textViewResultWireGround.text = Html.fromHtml("- mm<sup><small><small>2</small></small></sup>")
                                         textViewShow4.text = "- (สูงสุด - เส้น)"
                                         textViewShow6.text = "- V"
                                     }
@@ -355,8 +356,8 @@ class WireSizeActivity : AppCompatActivity() {
                         }
                         break
                     }else{
-                        textViewShow2.text = Html.fromHtml("- มม<sup><small><small>2</small></small></sup>")
-                        textViewResultWireGround.text = Html.fromHtml("- มม<sup><small><small>2</small></small></sup>")
+                        textViewShow2.text = Html.fromHtml("- mm<sup><small><small>2</small></small></sup>")
+                        textViewResultWireGround.text = Html.fromHtml("- mm<sup><small><small>2</small></small></sup>")
                         textViewShow4.text = "- (สูงสุด - เส้น)"
                         textViewShow6.text = "- V"
                     }
@@ -403,7 +404,7 @@ class WireSizeActivity : AppCompatActivity() {
         val dataOfInstallation = sharedPref.getString(TASK_LIST_PREF_KEY_INSTALLATION, "กลุ่ม 2")
         val dataOfTypeCable = sharedPref.getString(TASK_LIST_PREF_KEY_TYPE_CABLE, "IEC01(THW)")
         val dataOfCircuit = sharedPref.getString(TASK_LIST_PREF_KEY_CIRCUIT, "40A")
-        val dataOfDistance = sharedPref.getString(TASK_LIST_PREF_KEY_DISTANCE, "100")
+        val dataOfDistance = sharedPref.getString(TASK_LIST_PREF_KEY_DISTANCE, "10")
 
         phaseTextView.text = "$dataOfPhase เฟส"
         installationTextView.text = dataOfInstallation!!.slice(0..6)
@@ -434,15 +435,15 @@ class WireSizeActivity : AppCompatActivity() {
                 val sizeCirCuit = sheet.getCell(0, i).contents.toInt()
                 if (sToInt <= sizeCirCuit) {
                         val sizeWireGround = sheet.getCell(2, i).contents
-                        textViewResultWireGround.text = Html.fromHtml("${sizeWireGround} มม<sup><small><small>2</small></small></sup>")
+                        textViewResultWireGround.text = Html.fromHtml("${sizeWireGround} mm<sup><small><small>2</small></small></sup>")
                     break
                 } else {
-                     textViewResultWireGround.text = Html.fromHtml("- มม<sup><small><small>2</small></small></sup>")
+                     textViewResultWireGround.text = Html.fromHtml("- mm<sup><small><small>2</small></small></sup>")
                 }
             }
 
         } else {
-                    textViewResultWireGround.text = Html.fromHtml("- มม<sup><small><small>2</small></small></sup>")
+                    textViewResultWireGround.text = Html.fromHtml("- mm<sup><small><small>2</small></small></sup>")
         }
     }
 
