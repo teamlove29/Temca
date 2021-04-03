@@ -1,6 +1,7 @@
 package com.alw.temca.ui.WireSize
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.app.PendingIntent
 import android.content.Intent
 import android.graphics.Bitmap
@@ -40,6 +41,7 @@ import java.io.FileOutputStream
 class ReportActivity : AppCompatActivity() {
     val file_name:String = "_result_calculate.pdf"
     val MY_REQUEST_CODE = 0
+
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP_MR1)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,8 +54,8 @@ class ReportActivity : AppCompatActivity() {
             textViewResultPhaseInReport.text = resultWire.phase
             textViewResultInstallationInReport.text = resultWire.installation
             textViewResultCableTypeInReport.text = resultWire.cableType
-            textViewResultBreakerInReportData.text = "${resultWire.breaker}"
-            textViewResultDistanceInReport.text = "${resultWire.distance} M"
+            textViewResultBreakerInReportData.text = resultWire.breaker
+            textViewResultDistanceInReport.text = "${resultWire.distance}M"
             textViewResultWireSize.text = Html.fromHtml("${resultWire.cableSize.replace("mm2", "mm")}<sup><small><small>2</small></small></sup>")
             textViewResultWireGroundInReport.text = Html.fromHtml("${resultWire.wireGround.replace("mm2", "mm")}<sup><small><small>2</small></small></sup>")
             textViewResultConduitSize.text = resultWire.condutiSize
@@ -209,7 +211,7 @@ class ReportActivity : AppCompatActivity() {
             addLineSpace(document)
             addItemAndResult(document, "                Circuit Breaker : ", data.breaker, titleStyleTitle, valueStyle)
             addLineSpace(document)
-            addItemAndResult(document, "                ระยะสายไฟฟ้า : ", data.distance, titleStyleTitle, valueStyle)
+            addItemAndResult(document, "                ระยะสายไฟฟ้า : ", "${data.distance}M", titleStyleTitle, valueStyle)
             addLineSpace(document)
             addLineSpace(document)
 
