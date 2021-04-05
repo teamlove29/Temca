@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.alw.temca.Function.FindCableSizeInTable
 import com.alw.temca.Function.FindDetailInstallation
 import com.alw.temca.Model.ReportResultWireSize
+import com.alw.temca.Model.TypeCableModel
 import com.alw.temca.R
 import com.alw.temca.ui.SponsorActivity
 import jxl.Workbook
@@ -78,6 +79,7 @@ class WireSizeActivity : AppCompatActivity() {
 
 
 
+
 //        editTextAmountCable.addTextChangedListener(object : TextWatcher {
 //            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
 //                //ก่อนเปลี่ยนคือ ?
@@ -123,7 +125,16 @@ class WireSizeActivity : AppCompatActivity() {
                     saveData("phase", dataPhase.toString())
                 }
                 if (dataInstallation != null) {
-                    installationTextView.text = dataInstallation.slice(0..6)
+                    val dataInstallationSlice = dataInstallation.slice(0..6)
+                    val listRemoveGroup5 = arrayListOf<String>("IEC01(THW)","IEC10 2C","IEC10 3C","IEC10 4C")
+                    if(dataInstallationSlice == "กลุ่ม 5"){
+                        listRemoveGroup5.forEach {
+                            if (it == typeCableTextView.text){
+                                typeCableTextView.text = "NYY 1C"
+                            }
+                        }
+                    }
+                    installationTextView.text = dataInstallationSlice
                     saveData("installation", dataInstallation)
                 }
                 if (dataTypeCable != null) {
@@ -148,6 +159,9 @@ class WireSizeActivity : AppCompatActivity() {
 
     }  fun typeCableOnClick(view: View) {
         val intent = Intent(this, TypeCableActivity::class.java)
+        if(installationTextView.text == "กลุ่ม 5"){
+            intent.putExtra("Activity", "Group5")
+        }
         startActivityForResult(intent,TASK_NAME_REQUEST_CODE)
     }
     fun CircuitOnClick(view: View) {
@@ -198,12 +212,12 @@ class WireSizeActivity : AppCompatActivity() {
             hideKeyboard()
         }
 
-        lateinit var groupInstallation:String
-        when(installationTextView.text){
-//            "กลุ่ม 1" -> groupInstallation = "Group1"
-            "กลุ่ม 2" -> groupInstallation = "Group2"
-            else -> groupInstallation = "Group2"
-        }
+//        lateinit var groupInstallation:String
+//        when(installationTextView.text){
+////            "กลุ่ม 1" -> groupInstallation = "Group1"
+//            "กลุ่ม 2" -> groupInstallation = "Group2"
+//            else -> groupInstallation = "Group2"
+//        }
 
         val typeCableFile:Int
         typeCableFile = when(typeCableTextView.text){
@@ -244,13 +258,13 @@ class WireSizeActivity : AppCompatActivity() {
             else -> return
         }
 
+
         try {
             val typeCable = applicationContext.assets.open(installationInTable)
             val wb = Workbook.getWorkbook(typeCable)
             val sheet = wb.getSheet(typeCableFile)
-
             if(phaseTextView.text == "1 เฟส"){
-                for(i in 2..20){
+                for(i in 2..23){
                     val findInOnePhase = sheet.getCell(1, i).contents
                     val circuitToInt = Integer.parseInt(circuitTextView.text.toString().replace("A",""))
                     if (circuitToInt <= findInOnePhase.toInt()){
@@ -264,10 +278,10 @@ class WireSizeActivity : AppCompatActivity() {
                             if(checkCableSizeInTable == getCableSizeInTable){
                                 for (g in 1..12){
                                     val checkCableSizeInTable2 = sheet.getCell(g, k).contents.toInt()
-                                    if (2 < checkCableSizeInTable2){ // 2 is PhaseSize
+                                    if (2 < checkCableSizeInTable2){ // 2 is PhaseSize ถ้าน้อยกว่า 2 จะไม่แสดงค่า
                                         val getConduitSize2InTable = sheet.getCell(g, 0).contents // result
                                         for (h in 2..20){
-                                            val pressureCable = applicationContext.assets.open("qwerty.xls") // pressure_drop_file
+                                            val pressureCable = applicationContext.assets.open("pressure_drop.xls") // pressure_drop_file
                                             val wbPressure  = Workbook.getWorkbook(pressureCable)
                                             val sheetPressure = wbPressure.getSheet(0)
                                             val fineCabletypeInTable = sheetPressure.getCell(0, h).contents
@@ -278,7 +292,12 @@ class WireSizeActivity : AppCompatActivity() {
                                                 val pullResult = fineCabletypeInTable.toFloat() * getreslutInTable * amountDeistance / 1000 // result
                                                 val PercentPressure  = 100 * pullResult / 230 // result
                                                 val resultSizeConduit = FindCableSizeInTable(getConduitSize2InTable.replace("\"",""))
-                                                textViewShow2.text = Html.fromHtml("$getCableSizeInTable mm<sup><small><small>2</small></small></sup>")
+
+                                                if(findInOnePhase.toInt() >= 630){
+                                                    textViewShow2.text = Html.fromHtml("2ชุด - $getCableSizeInTable mm<sup><small><small>2</small></small></sup>")
+                                                }else{
+                                                    textViewShow2.text = Html.fromHtml("$getCableSizeInTable mm<sup><small><small>2</small></small></sup>")
+                                                }
                                                 textViewShow4.text = "$getConduitSize2InTable $resultSizeConduit mm (สูงสุด $checkCableSizeInTable2 เส้น)"
                                                 textViewShow6.text = "${"%.2f V".format(pullResult)} (${"%.2f".format(PercentPressure)}%) "
                                                 textViewReferenceVoltage.text = "(แรงดันอ้างอิง 230V)"
@@ -298,7 +317,7 @@ class WireSizeActivity : AppCompatActivity() {
                             }
                         }
                         break
-                    }else{
+                    }else{ //กรณีที่ไม่มีค่า || มากกว่าที่ค่ามีในตาราง
                         textViewShow2.text = Html.fromHtml("- mm<sup><small><small>2</small></small></sup>")
                         textViewResultWireGround.text = Html.fromHtml("- mm<sup><small><small>2</small></small></sup>")
                         textViewShow4.text = "- (สูงสุด - เส้น)"
@@ -322,10 +341,10 @@ class WireSizeActivity : AppCompatActivity() {
                             if(checkCableSizeInTable == getCableSizeInTable){
                                 for (g in 1..12){
                                     val checkCableSizeInTable2 = sheet.getCell(g, k).contents.toInt()
-                                    if (4 < checkCableSizeInTable2){ // 4 is PhaseSize
+                                    if (4 < checkCableSizeInTable2){ // 4 is PhaseSize ถ้าน้อยกว่า 4 จะไม่แสดงค่า
                                         val getCableSize2InTable = sheet.getCell(g, 0).contents // result
                                         for (h in 2..20){
-                                            val pressureCable = applicationContext.assets.open("qwerty.xls") // pressure_drop_file
+                                            val pressureCable = applicationContext.assets.open("pressure_drop.xls") // pressure_drop_file
                                             val wbPressure  = Workbook.getWorkbook(pressureCable)
                                             val sheetPressure = wbPressure.getSheet(0)
                                             val fineCabletypeInTable = sheetPressure.getCell(0, h).contents
@@ -336,7 +355,12 @@ class WireSizeActivity : AppCompatActivity() {
                                                 val pullResult = fineCabletypeInTable.toFloat() * getreslutInTable * amountDeistance / 1000 // result
                                                 val PercentPressure  = 100 * pullResult / 400 // result
                                                 val resultSizeConduit = FindCableSizeInTable(getCableSize2InTable.replace("\"",""))
-                                                textViewShow2.text = Html.fromHtml("$getCableSizeInTable mm<sup><small><small>2</small></small></sup>")
+
+                                                if(findInthreePhase.toInt() >= 630){
+                                                    textViewShow2.text = Html.fromHtml("2ชุด - $getCableSizeInTable mm<sup><small><small>2</small></small></sup>")
+                                                }else{
+                                                    textViewShow2.text = Html.fromHtml("$getCableSizeInTable mm<sup><small><small>2</small></small></sup>")
+                                                }
                                                 textViewShow4.text = "$getCableSize2InTable $resultSizeConduit mm (สูงสุด $checkCableSizeInTable2 เส้น)"
                                                 textViewShow6.text = "${"%.2f V".format(pullResult)} (${"%.2f".format(PercentPressure)}%) "
                                                 textViewReferenceVoltage.text = "(แรงดันอ้างอิง 400V)"
@@ -355,7 +379,7 @@ class WireSizeActivity : AppCompatActivity() {
                             }
                         }
                         break
-                    }else{
+                    }else{ //กรณีที่ไม่มีค่า || มากกว่าที่ค่ามีในตาราง
                         textViewShow2.text = Html.fromHtml("- mm<sup><small><small>2</small></small></sup>")
                         textViewResultWireGround.text = Html.fromHtml("- mm<sup><small><small>2</small></small></sup>")
                         textViewShow4.text = "- (สูงสุด - เส้น)"
@@ -402,15 +426,23 @@ class WireSizeActivity : AppCompatActivity() {
         val sharedPref = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
         val dataOfPhase = sharedPref.getString(TASK_LIST_PREF_KEY_PHASE, "1")
         val dataOfInstallation = sharedPref.getString(TASK_LIST_PREF_KEY_INSTALLATION, "กลุ่ม 2")
-        val dataOfTypeCable = sharedPref.getString(TASK_LIST_PREF_KEY_TYPE_CABLE, "IEC01(THW)")
+//        val dataOfTypeCable = sharedPref.getString(TASK_LIST_PREF_KEY_TYPE_CABLE, "IEC01(THW)")
         val dataOfCircuit = sharedPref.getString(TASK_LIST_PREF_KEY_CIRCUIT, "40A")
         val dataOfDistance = sharedPref.getString(TASK_LIST_PREF_KEY_DISTANCE, "10")
+
+        val dataOfTypeCable = if(dataOfInstallation!!.slice(0..6) == "กลุ่ม 5" ){
+            sharedPref.getString(TASK_LIST_PREF_KEY_TYPE_CABLE, "NYY 1C")
+        }else{
+            sharedPref.getString(TASK_LIST_PREF_KEY_TYPE_CABLE, "IEC01(THW)")
+        }
 
         phaseTextView.text = "$dataOfPhase เฟส"
         installationTextView.text = dataOfInstallation!!.slice(0..6)
         typeCableTextView.text = dataOfTypeCable
         circuitTextView.text = dataOfCircuit
         editTextDistance.setText(dataOfDistance)
+
+
 
     }
 
@@ -426,16 +458,16 @@ class WireSizeActivity : AppCompatActivity() {
     fun fineWireGround(breaker:String){
         val breakerReA =  breaker.replace("A","")
         if (breakerReA.isNotEmpty()) {
-            val typeCable = applicationContext.assets.open("CircuitSize.xls")
+            val typeCable = applicationContext.assets.open("CircuitSize.xls") // สายดิน
             val wb = Workbook.getWorkbook(typeCable)
             val sheet = wb.getSheet(0)
             val sToInt = Integer.parseInt(breakerReA)
 
-            for (i in 0..17) {
+            for (i in 0..18) {
                 val sizeCirCuit = sheet.getCell(0, i).contents.toInt()
                 if (sToInt <= sizeCirCuit) {
                         val sizeWireGround = sheet.getCell(2, i).contents
-                        textViewResultWireGround.text = Html.fromHtml("${sizeWireGround} mm<sup><small><small>2</small></small></sup>")
+                        textViewResultWireGround.text = Html.fromHtml("$sizeWireGround mm<sup><small><small>2</small></small></sup>")
                     break
                 } else {
                      textViewResultWireGround.text = Html.fromHtml("- mm<sup><small><small>2</small></small></sup>")

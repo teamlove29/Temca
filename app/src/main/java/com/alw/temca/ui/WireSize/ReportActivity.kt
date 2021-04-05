@@ -217,7 +217,8 @@ class ReportActivity : AppCompatActivity() {
 
             addNewItem(document, "ผลการคำนวน", Element.ALIGN_LEFT, headingStyle)
             addLineSpace(document)
-            addItemAndResult(document, "                ขนาดสายไฟฟ้าที่เหมาะสม     ", data.cableSize, titleStyleTitle, valueStyle)
+            println("data.cableSize ${data.cableSize}")
+            addItemAndResult(document, "                ขนาดสายไฟฟ้าที่เหมาะสม     ", "2ชุด - 240 mm2", titleStyleTitle, valueStyle)
             addLineSpace(document)
             addItemAndResult(document, "                ขนาดสายดินที่เหมาะสม          ", data.wireGround, titleStyleTitle, valueStyle)
             addLineSpace(document)
@@ -298,7 +299,6 @@ class ReportActivity : AppCompatActivity() {
         addLineSpace(document)
         document.add(Chunk(lineSeparator))
         addLineSpace(document)
-
     }
 
     @Throws(DocumentException::class)

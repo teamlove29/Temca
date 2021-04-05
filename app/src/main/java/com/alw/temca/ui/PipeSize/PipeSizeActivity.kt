@@ -289,7 +289,7 @@ class PipeSizeActivity : AppCompatActivity() {
 
     fun typeCableOnClickInPipeSize(view: View) {
             val intent = Intent(this, TypeCableActivity::class.java)
-             intent.putExtra("Activity", "PipeSize");
+             intent.putExtra("Activity", "PipeSize")
                 startActivityForResult(intent, TASK_NAME_REQUEST_CODE)
     }
     fun sizeCableOnClickInPipeSize(view: View) {
