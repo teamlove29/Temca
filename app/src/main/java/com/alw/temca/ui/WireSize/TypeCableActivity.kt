@@ -41,9 +41,10 @@ class TypeCableActivity : AppCompatActivity() , InstallationonClickAdapterListen
             typeCableItem.add(TypeCableModel("XLPE 2C"))
             typeCableItem.add(TypeCableModel("XLPE 3C"))
             typeCableItem.add(TypeCableModel("XLPE 4C"))
-//            typeCableItem.add(TypeCableModel("VCT 2C"))
-//            typeCableItem.add(TypeCableModel("VCT 3C"))
-//            typeCableItem.add(TypeCableModel("VCT 4C"))
+            typeCableItem.add(TypeCableModel("VCT 1C"))
+            typeCableItem.add(TypeCableModel("VCT 2C"))
+            typeCableItem.add(TypeCableModel("VCT 3C"))
+            typeCableItem.add(TypeCableModel("VCT 4C"))
         }
 
         if (checkActivity.equals("PipeSize")){

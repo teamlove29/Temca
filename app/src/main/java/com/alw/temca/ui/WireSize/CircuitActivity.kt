@@ -59,7 +59,7 @@ class CircuitActivity : AppCompatActivity() {
 //                            textViewGroundWire.text = Html.fromHtml("${sizeWireGround} มม<sup><small><small>2</small></small></sup>")
                             break
                         } else {
-                            textViewCircuit.text = "800A"
+                            textViewCircuit.text = "1000A"
 //                            textViewGroundWire.text = Html.fromHtml("70 มม<sup><small><small>2</small></small></sup>")
                         }
                     }

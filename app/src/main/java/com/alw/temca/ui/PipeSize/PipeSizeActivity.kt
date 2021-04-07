@@ -150,9 +150,9 @@ class PipeSizeActivity : AppCompatActivity() {
 
     fun calculatorOnClick(view: View) {
 
-        val sizeCable = arrayListOf<String>("1 มม2", "1.5 มม2", "2.5 มม2", "4 มม2", "6 มม2", "10 มม2", "16 มม2", "25 มม2", "35 มม2", "50 มม2", "70 มม2", "95 มม2", "120 มม2", "150 มม2", "185 มม2", "240 มม2", "300 มม2", "400 มม2", "500 มม2")
+        val sizeCable = arrayListOf<String>("1 มม2", "1.5 มม2", "2.5 มม2", "4 มม2", "6 มม2", "10 มม2", "16 มม2", "25 มม2", "35 มม2", "50 มม2", "70 มม2", "95 มม2", "120 มม2", "150 มม2", "185 มม2", "240 มม2", "300 มม2", "400 มม2", "500 มม2", "630 มม2", "800 มม2")
         val sizeConduit = arrayListOf<String>("50x75 มม.", "50x100 มม.", "75x100 มม.", "100x100 มม.", "100x150 มม.", "100x200 มม.", "100x250 มม.", "100x300 มม.", "150x300 มม.")
-        var typeCable = ""
+//        var typeCable = ""
         if (editTextAmountCable.text.isEmpty()){
             editTextAmountCable.setText("20")
         }
@@ -179,11 +179,12 @@ class PipeSizeActivity : AppCompatActivity() {
                     "XLPE 2C" -> 9
                     "XLPE 3C" -> 10
                     "XLPE 4C" -> 11
+                    "VCT 1C" -> 12
+                    "VCT 2C" -> 13
+                    "VCT 3C" -> 14
+                    "VCT 4C" -> 15
                     else -> return
         }
-
-
-
 
         if(switchButtonPipeSize.isChecked == false){
             try {
@@ -192,9 +193,9 @@ class PipeSizeActivity : AppCompatActivity() {
                 val sheet = wb.getSheet(fineSheetInTableCableSize)
                 val typeCabletitle = sheet.getCell(0, 0).contents
                 if (typeCableTextView.text == typeCabletitle){
-                    sizeCable.forEachIndexed { index, size  ->
+                    sizeCable.forEachIndexed { index, size  -> // หาขนาดสาย mm2
                         if (cableSizeTextView.text == size){
-                            for (i in 1..12){
+                            for (i in 1..12){ // แนวนอนขนาดสาย
                                 //  i is col result ขนาดท่อ
                                 if (editTextAmountCable.text.toString().toInt() <= sheet.getCell(i, index + 1).contents.toInt()){
                                     textViewShow4InPipe.text = "${sheet.getCell(i, 0).contents} (${sheet.getCell(i, index + 1).contents} เส้น)"
@@ -206,7 +207,7 @@ class PipeSizeActivity : AppCompatActivity() {
 //                                    }
                                 }
                             }
-                            for (j in 14..22){
+                            for (j in 14..22){ // แนวนอนขนาดท่อ
                                 //  j is col result ขนาดราง
                                 if(editTextAmountCable.text.toString().toInt() <= sheet.getCell(j, index + 1).contents.toInt()){
                                     textViewShow6InPipe.text = "${sheet.getCell(j, 0).contents} (${sheet.getCell(j, index + 1).contents} เส้น)"
@@ -232,7 +233,7 @@ class PipeSizeActivity : AppCompatActivity() {
                 val sheet = wb.getSheet(fineSheetInTableCableSize)
                 val typeCabletitle = sheet.getCell(0, 0).contents
                 if (typeCableTextView.text == typeCabletitle){
-                    sizeCable.forEachIndexed { indexSize, size  ->
+                    sizeCable.forEachIndexed { indexSize, size  -> // หาขนาดสาย mm2
                         if (cableSizeTextView.text == size){
                             sizeConduit.forEachIndexed{ indexConduit, conduit ->
                                 if(SizeConduitTextView.text == conduit ){
@@ -364,13 +365,13 @@ class PipeSizeActivity : AppCompatActivity() {
 
         if(switchButtonPipeSize.isChecked == true){
             bundle.putParcelable("resultMaxCable",ReportReslutPipeSizeModel(
-                    typeCableTextView.text.toString(),cableSizeTextView.text.toString(),
+                    typeCableTextView.text.toString(),cableSizeTextView.text.toString().replace("มม2",""),
                     "","","",SizeConduitTextView.text.toString(),textViewShow8InPipe.text.toString()))
             intent.putExtras(bundle)
 
         }else{
             bundle.putParcelable("resultPipeSize",ReportReslutPipeSizeModel(
-                    typeCableTextView.text.toString(),cableSizeTextView.text.toString(),
+                    typeCableTextView.text.toString(),cableSizeTextView.text.toString().replace("มม2",""),
                     editTextAmountCable.text.toString(), textViewShow4InPipe.text.toString(),
                     textViewShow6InPipe.text.toString(),"",""))
             intent.putExtras(bundle)

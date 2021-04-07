@@ -200,7 +200,6 @@
                     android:maxLength="3"
                     android:layout_marginRight="40dp"
                     android:hint="20"
-                    android:textDirection="rtl"
                     android:fontFamily="@font/mitr_regular"
                     android:background="@null"
                     android:layout_alignParentRight="true"

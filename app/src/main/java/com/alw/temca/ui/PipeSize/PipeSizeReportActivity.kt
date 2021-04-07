@@ -99,7 +99,7 @@ class PipeSizeReportActivity : AppCompatActivity() {
             CableSizeInPipeReport2.visibility = View.VISIBLE
             textViewConduitSizeInPipeReport2.visibility = View.VISIBLE
             CableSizeInPipeReport.visibility = View.GONE
-            textViewReslutCableTypeInPipeReport.text = Html.fromHtml("${resultPipe!!.cabletype} x ${resultPipe.sizecable.replace("มม2","มม")}<sup>2</sup>")
+            textViewReslutCableTypeInPipeReport.text = Html.fromHtml("${resultPipe!!.cabletype} x ${resultPipe.sizecable}mm<small><small><sup>2</sup></small></small>")
             textViewReslutAmountCableInPipeReport.text = "${resultPipe.amount}"
             textViewResultPipeSizeInPipeReport.text = "${resultPipe.pipesize}"
             textViewResultConduitSizeInPipeReport.text = "${resultPipe.conduitsize}"
@@ -107,7 +107,7 @@ class PipeSizeReportActivity : AppCompatActivity() {
             CableSizeInPipeReport2.visibility = View.GONE
             textViewConduitSizeInPipeReport2.visibility = View.GONE
             CableSizeInPipeReport.visibility = View.VISIBLE
-            textViewReslutCableTypeInPipeReport.text = Html.fromHtml("${resultMax!!.cabletype} x ${resultMax.sizecable.replace("มม2","มม")}<sup>2</sup>")
+            textViewReslutCableTypeInPipeReport.text = Html.fromHtml("${resultMax!!.cabletype} x ${resultMax.sizecable}mm<small><small><sup>2</sup></small></small>")
             textViewResultConduitSizeInPipeReport.text = "${resultMax.conduitsizechoose}"
             textViewReslutCableSizeInPipeReport.text = "${resultMax!!.amountcablemax}"
         }
@@ -230,7 +230,7 @@ class PipeSizeReportActivity : AppCompatActivity() {
             addLineSpace(document)
 
             //cabletype
-            addNewItemWithLeftAndRight(document, "ชนิดสายไฟ", "${data!!.cabletype} x ${data.sizecable.replace("2","")}\u00B2", titleStyle, headingStyle)
+            addNewItemWithLeftAndRight(document, "ชนิดสายไฟ", "${data!!.cabletype} x ${data.sizecable}mm\u00B2", titleStyle, headingStyle)
             addLineSpace(document)
 
             if(data!!.amountcablemax == ""){

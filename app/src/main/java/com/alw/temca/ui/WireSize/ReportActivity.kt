@@ -217,8 +217,7 @@ class ReportActivity : AppCompatActivity() {
 
             addNewItem(document, "ผลการคำนวน", Element.ALIGN_LEFT, headingStyle)
             addLineSpace(document)
-            println("data.cableSize ${data.cableSize}")
-            addItemAndResult(document, "                ขนาดสายไฟฟ้าที่เหมาะสม     ", "2ชุด - 240 mm2", titleStyleTitle, valueStyle)
+            addItemAndResult(document, "                ขนาดสายไฟฟ้าที่เหมาะสม     ", data.cableSize, titleStyleTitle, valueStyle)
             addLineSpace(document)
             addItemAndResult(document, "                ขนาดสายดินที่เหมาะสม          ", data.wireGround, titleStyleTitle, valueStyle)
             addLineSpace(document)
@@ -314,15 +313,16 @@ class ReportActivity : AppCompatActivity() {
         document.add(p)
     }
 
-   fun addItemAndResult(document: Document, text1: String, text2: String, style1: Font, style2: Font){
+   fun addItemAndResult(document: Document, textLeft: String, textRight: String, leftStyle: Font, rightStyle: Font){
+
        val glue =  Chunk(VerticalPositionMark())
        val p = Paragraph()
-       p.add(Chunk(text1, style1))
+       p.add(Chunk(textLeft, leftStyle))
 
-       if (text2.indexOf("mm2") > 1){
-           p.add(Chunk("${text2.replace("2", "")}\u00B2", style2))
+       if (textRight.indexOf("mm2") > 1){
+           p.add(Chunk("${textRight.replace("mm2", "mm")}\u00B2", rightStyle))
        }else{
-           p.add(Chunk(text2, style2))
+           p.add(Chunk(textRight, rightStyle))
        }
 
        document.add(p)

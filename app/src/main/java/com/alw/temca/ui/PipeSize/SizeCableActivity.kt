@@ -38,6 +38,8 @@ class SizeCableActivity : AppCompatActivity() , InstallationonClickAdapterListen
         listSizeCable.add(SizeCableModel("300 มม2"))
         listSizeCable.add(SizeCableModel("400 มม2"))
         listSizeCable.add(SizeCableModel("500 มม2"))
+        listSizeCable.add(SizeCableModel("630 มม2"))
+        listSizeCable.add(SizeCableModel("800 มม2"))
 
         recyclerViewSizeCable.adapter = SizeCableAdapter(listSizeCable,this)
         recyclerViewSizeCable.layoutManager = LinearLayoutManager(this)
