@@ -34,12 +34,18 @@ class SponsorActivity : AppCompatActivity(), InstallationonClickAdapterListener 
         val sponsor10 =  SponsorModel(10, resources.getDrawable(R.drawable.logo_pdf_temca))
         val sponsor11 =  SponsorModel(11, resources.getDrawable(R.drawable.temca_logo_mini))
         val sponsor12 =  SponsorModel(12, resources.getDrawable(R.drawable.temca_logo_mini))
+        val sponsor13 =  SponsorModel(13, resources.getDrawable(R.drawable.temca_logo_mini))
+        val sponsor14 =  SponsorModel(14, resources.getDrawable(R.drawable.temca_logo_mini))
+        val sponsor15 =  SponsorModel(15, resources.getDrawable(R.drawable.temca_logo_mini))
+        val sponsor16 =  SponsorModel(16, resources.getDrawable(R.drawable.temca_logo_mini))
+        val sponsor17 =  SponsorModel(17, resources.getDrawable(R.drawable.temca_logo_mini))
+        val sponsor18 =  SponsorModel(18, resources.getDrawable(R.drawable.temca_logo_mini))
 //        val test =  SponsorModel(null)
-        val listSponsor = arrayListOf<SponsorModel>(sponsor1, sponsor2, sponsor3, sponsor4, sponsor5, sponsor6, sponsor7, sponsor8, sponsor9, sponsor10, sponsor11, sponsor12)
+        val listSponsor = arrayListOf<SponsorModel>(sponsor1, sponsor2, sponsor3, sponsor4, sponsor5, sponsor6, sponsor7, sponsor8, sponsor9, sponsor10, sponsor11, sponsor12,sponsor13,sponsor14,sponsor15,sponsor16,sponsor17,sponsor18)
         val listSponsor2 = ArrayList<SponsorModel>()
 
 
-        for (i in 0 until 12){
+        for (i in 0 until 16){
             val uniqueRand = listSponsor.random()
             listSponsor2.add(uniqueRand)
             listSponsor.remove(uniqueRand)
@@ -49,9 +55,9 @@ class SponsorActivity : AppCompatActivity(), InstallationonClickAdapterListener 
 
         recyclerViewSponsor.adapter = SponsorAdapter(listSponsor2, this)
         if (checkScape == Configuration.ORIENTATION_LANDSCAPE) {
-            recyclerViewSponsor.layoutManager = GridLayoutManager(this, 5)
+            recyclerViewSponsor.layoutManager = GridLayoutManager(this, 9)
         } else {
-            recyclerViewSponsor.layoutManager = GridLayoutManager(this, 3)
+            recyclerViewSponsor.layoutManager = GridLayoutManager(this, 4)
         }
         recyclerViewSponsor.isNestedScrollingEnabled = false
 

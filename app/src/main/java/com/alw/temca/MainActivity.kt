@@ -8,6 +8,7 @@ import android.widget.Toast
 import com.alw.temca.ui.PipeSize.PipeSizeActivity
 import com.alw.temca.ui.SoonActivity
 import com.alw.temca.ui.SponsorActivity
+import com.alw.temca.ui.Transformer.TransformerActivity
 import com.alw.temca.ui.WireSize.WireSizeActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -28,9 +29,9 @@ class MainActivity : AppCompatActivity() {
                 val intent = Intent(this,PipeSizeActivity::class.java)
                 startActivity(intent)
             }
-            button3 -> {
-                val intent = Intent(this,SoonActivity::class.java)
-                intent.putExtra("txt",button3.text)
+            buttonTransformer -> {
+                val intent = Intent(this,TransformerActivity::class.java)
+//                intent.putExtra("txt",buttonTransformer.text)
                 startActivity(intent)
             }
             button4 -> {
@@ -54,7 +55,6 @@ class MainActivity : AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        println("dasdad  ${requestCode}")
         if(requestCode == 100){
             Toast.makeText(this, "SUCCESS !", Toast.LENGTH_LONG).show()
         }

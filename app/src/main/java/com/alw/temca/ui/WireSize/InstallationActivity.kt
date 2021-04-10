@@ -14,12 +14,12 @@ import kotlinx.android.synthetic.main.activity_installation.*
 
 
 class InstallationActivity : AppCompatActivity(), InstallationonClickAdapterListener {
-    val installItem = ArrayList<InstallationModel>()
+    private val installItem = ArrayList<InstallationModel>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_installation)
 
-
+//        val dataIntent = intent.getStringExtra("Activity")
 
         val setResourceImage1 = getResources().getIdentifier("setting_group1", "drawable", this.packageName)
         val setResourceImage2 = getResources().getIdentifier("setting_group2", "drawable", this.packageName)

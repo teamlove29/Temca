@@ -34,7 +34,7 @@ class PhaseActivity : AppCompatActivity(), onClickAdapterListener {
 //        intent.putExtra("dataPhase",value)
 //        startActivity(intent)
         val resultIntent = Intent()
-        resultIntent.putExtra("dataPhase",value);
+        resultIntent.putExtra("dataPhase",value)
         setResult(Activity.RESULT_OK, resultIntent)
         finish()
     }

@@ -19,36 +19,44 @@ class TypeCableActivity : AppCompatActivity() , InstallationonClickAdapterListen
 
         val checkActivity = intent.getStringExtra("Activity")
 
-        if(checkActivity.equals("Group5")){
-            typeCableItem.add(TypeCableModel("NYY 1C"))
-            typeCableItem.add(TypeCableModel("NYY 2C"))
-            typeCableItem.add(TypeCableModel("NYY 3C"))
-            typeCableItem.add(TypeCableModel("NYY 4C"))
-            typeCableItem.add(TypeCableModel("XLPE 1C"))
-            typeCableItem.add(TypeCableModel("XLPE 2C"))
-            typeCableItem.add(TypeCableModel("XLPE 3C"))
-            typeCableItem.add(TypeCableModel("XLPE 4C"))
-        }else{
-            typeCableItem.add(TypeCableModel("IEC01(THW)"))
-            typeCableItem.add(TypeCableModel("IEC10 2C"))
-            typeCableItem.add(TypeCableModel("IEC10 3C"))
-            typeCableItem.add(TypeCableModel("IEC10 4C"))
-            typeCableItem.add(TypeCableModel("NYY 1C"))
-            typeCableItem.add(TypeCableModel("NYY 2C"))
-            typeCableItem.add(TypeCableModel("NYY 3C"))
-            typeCableItem.add(TypeCableModel("NYY 4C"))
-            typeCableItem.add(TypeCableModel("XLPE 1C"))
-            typeCableItem.add(TypeCableModel("XLPE 2C"))
-            typeCableItem.add(TypeCableModel("XLPE 3C"))
-            typeCableItem.add(TypeCableModel("XLPE 4C"))
-            typeCableItem.add(TypeCableModel("VCT 1C"))
-            typeCableItem.add(TypeCableModel("VCT 2C"))
-            typeCableItem.add(TypeCableModel("VCT 3C"))
-            typeCableItem.add(TypeCableModel("VCT 4C"))
-        }
-
         if (checkActivity.equals("PipeSize")){
             headerTypeCable.text = "หาขนาดท่อและราง"
+        }
+
+        if (checkActivity.equals("Transformer")){
+            typeCableItem.add(TypeCableModel("NYY"))
+        }else{
+            if(checkActivity.equals("Group5")){
+                typeCableItem.add(TypeCableModel("NYY 1C"))
+                typeCableItem.add(TypeCableModel("NYY 2C"))
+                typeCableItem.add(TypeCableModel("NYY 3C"))
+                typeCableItem.add(TypeCableModel("NYY 4C"))
+                typeCableItem.add(TypeCableModel("XLPE 1C"))
+                typeCableItem.add(TypeCableModel("XLPE 2C"))
+                typeCableItem.add(TypeCableModel("XLPE 3C"))
+                typeCableItem.add(TypeCableModel("XLPE 4C"))
+                typeCableItem.add(TypeCableModel("VCT 1C"))
+                typeCableItem.add(TypeCableModel("VCT 2C"))
+                typeCableItem.add(TypeCableModel("VCT 3C"))
+                typeCableItem.add(TypeCableModel("VCT 4C"))
+            }else{
+                typeCableItem.add(TypeCableModel("IEC01(THW)"))
+                typeCableItem.add(TypeCableModel("IEC10 2C"))
+                typeCableItem.add(TypeCableModel("IEC10 3C"))
+                typeCableItem.add(TypeCableModel("IEC10 4C"))
+                typeCableItem.add(TypeCableModel("NYY 1C"))
+                typeCableItem.add(TypeCableModel("NYY 2C"))
+                typeCableItem.add(TypeCableModel("NYY 3C"))
+                typeCableItem.add(TypeCableModel("NYY 4C"))
+                typeCableItem.add(TypeCableModel("XLPE 1C"))
+                typeCableItem.add(TypeCableModel("XLPE 2C"))
+                typeCableItem.add(TypeCableModel("XLPE 3C"))
+                typeCableItem.add(TypeCableModel("XLPE 4C"))
+                typeCableItem.add(TypeCableModel("VCT 1C"))
+                typeCableItem.add(TypeCableModel("VCT 2C"))
+                typeCableItem.add(TypeCableModel("VCT 3C"))
+                typeCableItem.add(TypeCableModel("VCT 4C"))
+            }
         }
 
 

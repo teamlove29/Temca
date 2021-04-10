@@ -207,7 +207,6 @@ class WireSizeActivity : AppCompatActivity() {
         tableBeforeCalculate.visibility = View.VISIBLE
         wayBackActivity1.visibility = View.GONE
         editTextDistance.clearFocus()
-        editTextDistance.clearFocus()
         btnCal.apply {
             hideKeyboard()
         }

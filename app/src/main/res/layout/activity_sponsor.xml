@@ -57,8 +57,8 @@ tools:context=".ui.SponsorActivity">
             android:gravity="center_horizontal"
             android:overScrollMode="never"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-            app:spanCount="3"
-            tools:itemCount="12"
+            app:spanCount="4"
+            tools:itemCount="16"
             tools:listitem="@layout/sponsor_list" />
 
         <!--        <RelativeLayout-->
