@@ -1,5 +1,6 @@
 package com.alw.temca.Adapter
 
+import android.text.Html
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -7,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.alw.temca.Model.TransformerSizeModal
 import com.alw.temca.Model.TransformerSizeModalResult
 import com.alw.temca.R
+import kotlinx.android.synthetic.main.activity_report.*
 import kotlinx.android.synthetic.main.phase_list.view.*
 import kotlinx.android.synthetic.main.result_transformer_list.view.*
 
@@ -47,10 +49,12 @@ class TransformerSizeAdapterResult(var ItemList : ArrayList<TransformerSizeModal
     class TransformerSizeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         fun bind(itemList: TransformerSizeModalResult){
-            itemView.TextViewTransformerSizeResult1.text = itemList.cableSize
+            itemView.TextViewTransformerSizeResult1.text = Html.fromHtml("${itemList.cableSize.replace("mm2", "mm<sup><small><small>2</small></small></sup>")}")
             itemView.TextViewTransformerSizeResult3.text = "${itemList.conduitSize}mm."
-            itemView.TextViewTransformerSizeResult5.text = itemList.pressureDrop
-            itemView.TextViewTransformerSizeResult6.text = "(แรงดันอ้างอิง ${itemList.referenceVoltage}V)"
+            itemView.TextViewTransformerSizeResult5.text = "-V(%)"
+//            itemView.TextViewTransformerSizeResult5.text = itemList.pressureDrop
+            itemView.TextViewTransformerSizeResult6.text = "(แรงดันอ้างอิง 400V)"
+//            itemView.TextViewTransformerSizeResult6.text = "(แรงดันอ้างอิง ${itemList.referenceVoltage}V)"
 
         }
     }

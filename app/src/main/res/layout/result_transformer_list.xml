@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_marginTop="15dp"
+    android:layout_marginBottom="10dp"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
@@ -13,7 +13,7 @@
         android:text="2(3x300mm2, 1x150mm2)"
         android:textSize="16dp"
         android:fontFamily="@font/mitr_regular"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:layout_centerVertical="true"/>
 
     <RelativeLayout
@@ -26,7 +26,7 @@
             android:text="รางขนาด"
             android:textSize="16dp"
             android:fontFamily="@font/mitr_regular"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:layout_centerVertical="true"/>
 
         <TextView
@@ -36,7 +36,7 @@
             android:layout_alignParentRight="true"
             android:fontFamily="@font/mitr_regular"
             android:text="400x100mm."
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="16dp" />
     </RelativeLayout>
 
@@ -51,7 +51,7 @@
             android:text="แรงดันตก"
             android:textSize="16dp"
             android:fontFamily="@font/mitr_regular"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:layout_centerVertical="true"/>
 
         <TextView
@@ -61,7 +61,7 @@
             android:text="-V (%)"
             android:textSize="16dp"
             android:fontFamily="@font/mitr_regular"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"/>
     </RelativeLayout>
@@ -70,10 +70,10 @@
         android:id="@+id/TextViewTransformerSizeResult6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="(แรงดันอ้างอิง -V)"
+        android:text="(แรงดันอ้างอิง 400V)"
         android:textSize="14dp"
         android:fontFamily="@font/mitr_regular"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:layout_centerVertical="true"/>
 
 

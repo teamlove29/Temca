@@ -32,7 +32,7 @@
                 android:fontFamily="@font/mitr_regular"
                 android:textColor="@color/black"
                 android:text="หาขนาดสายไฟ"
-                android:textSize="35dp"/>
+                android:textSize="30dp"/>
 
         </RelativeLayout>
 

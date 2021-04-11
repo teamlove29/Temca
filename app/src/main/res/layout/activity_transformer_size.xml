@@ -31,8 +31,8 @@ tools:context=".ui.Transformer.TransformerSizeActivity">
         android:layout_centerVertical="true"
         android:fontFamily="@font/mitr_regular"
         android:textColor="@color/black"
-        android:text="ขนาดหม้อแปลง"
-        android:textSize="35dp"/>
+        android:text="หาขนาดสายหม้อแปลง"
+        android:textSize="30dp"/>
 
 </RelativeLayout>
 

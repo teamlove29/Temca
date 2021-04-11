@@ -24,6 +24,7 @@ class TypeCableActivity : AppCompatActivity() , InstallationonClickAdapterListen
         }
 
         if (checkActivity.equals("Transformer")){
+            headerTypeCable.text = "หาขนาดสายหม้อแปลง"
             typeCableItem.add(TypeCableModel("NYY"))
         }else{
             if(checkActivity.equals("Group5")){
