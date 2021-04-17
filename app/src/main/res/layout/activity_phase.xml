@@ -25,6 +25,7 @@
                 android:background="@drawable/temca_logo_mini"/>
 
             <TextView
+                android:id="@+id/textViewTitlePhase"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@id/logoImageView"

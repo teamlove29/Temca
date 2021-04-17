@@ -17,9 +17,18 @@ class PhaseActivity : AppCompatActivity(), onClickAdapterListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_phase)
 
+        val intent = intent
+        val comeForm = intent.getStringExtra("Activity")
         val phaseItem = ArrayList<PhaseModel>()
-        phaseItem.add(PhaseModel(1,"เฟส 2สาย (230 V)"))
-        phaseItem.add(PhaseModel(3,"เฟส 4สาย (400 V)"))
+
+        if(comeForm == "Moter"){
+            textViewTitlePhase.text = "ขนาดสายมอเตอร์"
+            phaseItem.add(PhaseModel(1,"เฟส"))
+            phaseItem.add(PhaseModel(3,"เฟส"))
+        }else{
+            phaseItem.add(PhaseModel(1,"เฟส 2สาย (230 V)"))
+            phaseItem.add(PhaseModel(3,"เฟส 4สาย (400 V)"))
+        }
 
         recyclerViewPhase.adapter = PhaseAdapter(phaseItem,this)
         recyclerViewPhase.layoutManager = LinearLayoutManager(this)
@@ -28,11 +37,6 @@ class PhaseActivity : AppCompatActivity(), onClickAdapterListener {
 
 
     override fun onClick(postion: Int, value: Int) {
-//        val intent = Intent(this,WireSizeActivity::class.java)
-////        val bundle = Bundle()
-////        bundle.putParcelable("restaurant", foodList[postion])
-//        intent.putExtra("dataPhase",value)
-//        startActivity(intent)
         val resultIntent = Intent()
         resultIntent.putExtra("dataPhase",value)
         setResult(Activity.RESULT_OK, resultIntent)

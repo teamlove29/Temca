@@ -25,18 +25,17 @@ import java.io.IOException
 
 class WireSizeActivity : AppCompatActivity() {
     final val TASK_NAME_REQUEST_CODE = 100
-    final val TASK_LIST_PREF_KEY_PHASE = "task_list_phase"
-    final val TASK_LIST_PREF_KEY_INSTALLATION = "task_list_installation"
-    final val TASK_LIST_PREF_KEY_TYPE_CABLE = "task_list_type_cable"
-    final val TASK_LIST_PREF_KEY_CIRCUIT = "task_list_circuit"
-    final val TASK_LIST_PREF_KEY_DISTANCE = "task_list_distance"
-    final val PREF_NAME = "task_name"
+    final val TASK_LIST_PREF_KEY_PHASE_IN_WIRESIZE = "task_list_phase_in_wiresize"
+    final val TASK_LIST_PREF_KEY_INSTALLATION_IN_WIRESIZE = "task_list_installation_in_wiresize"
+    final val TASK_LIST_PREF_KEY_TYPE_CABLE_IN_WIRESIZE = "task_list_type_cable_in_wiresize"
+    final val TASK_LIST_PREF_KEY_CIRCUIT_IN_WIRESIZE = "task_list_circuit_in_wiresize"
+    final val TASK_LIST_PREF_KEY_DISTANCE_IN_WIRESIZE = "task_list_distance_in_wiresize"
+    final val PREF_NAME = "task_wire"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_wire_size)
         tableBeforeCalculate.visibility = View.GONE
-
 
         val codeStart = intent.extras?.getBoolean("code")
         if(codeStart == true){
@@ -45,16 +44,12 @@ class WireSizeActivity : AppCompatActivity() {
         }
 
         loadData()
-
         intent = getIntent()
         val dataCircuit = intent.extras?.getString("dataCircuit")
-
         if (dataCircuit != null){
             circuitTextView.text = dataCircuit
             saveData("circuit", dataCircuit)
         }
-
-
         editTextDistance.addTextChangedListener(object : TextWatcher{
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
                 //ก่อนเปลี่ยนคือ ?
@@ -152,12 +147,11 @@ class WireSizeActivity : AppCompatActivity() {
         val intent = Intent(this, PhaseActivity::class.java)
         startActivityForResult(intent,TASK_NAME_REQUEST_CODE)
     }
-
     fun installationOnClick(view: View) {
         val intent = Intent(this, InstallationActivity::class.java)
         startActivityForResult(intent,TASK_NAME_REQUEST_CODE)
-
-    }  fun typeCableOnClick(view: View) {
+    }
+    fun typeCableOnClick(view: View) {
         val intent = Intent(this, TypeCableActivity::class.java)
         if(installationTextView.text == "กลุ่ม 5"){
             intent.putExtra("Activity", "Group5")
@@ -192,7 +186,7 @@ class WireSizeActivity : AppCompatActivity() {
 
     fun DestanceOnClick(view: View) {
         editTextDistance.setText("")
-        editTextDistance.hint = " "
+        editTextDistance.hint = "20"
         editTextDistance.requestFocus()
         val imm = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
         imm.showSoftInput(editTextDistance, InputMethodManager.SHOW_IMPLICIT)
@@ -320,7 +314,12 @@ class WireSizeActivity : AppCompatActivity() {
 
                                             if (getCableSizeInTable == fineCabletypeInTable){
                                                 val getreslutInTable = sheetPressure.getCell(1, h).contents.toFloat()
-                                                val pullResult = fineCabletypeInTable.toFloat() * getreslutInTable * amountDeistance / 1000 // result
+//                                                val pullResult = fineCabletypeInTable.toFloat() * getreslutInTable * amountDeistance / 1000 // result
+                                                val pullResult =
+                                                            getreslutInTable *
+                                                            Integer.parseInt(circuitTextView.text.toString().replace("A","")) *
+                                                            amountDeistance / 1000 // result
+
                                                 val PercentPressure  = 100 * pullResult / 230 // result
                                                 val resultSizeConduit = FindCableSizeInTable(getConduitSize2InTable.replace("\"",""))
 
@@ -389,8 +388,13 @@ class WireSizeActivity : AppCompatActivity() {
 
                                             if (getCableSizeInTable == fineCabletypeInTable){
                                                 val getreslutInTable = sheetPressure.getCell(2, h).contents.toFloat()
-                                                val pullResult = fineCabletypeInTable.toFloat() * getreslutInTable * amountDeistance / 1000 // result
+//                                                val pullResult = fineCabletypeInTable.toFloat() * getreslutInTable * amountDeistance / 1000 // result
+                                                val pullResult =
+                                                    getreslutInTable *
+                                                            Integer.parseInt(circuitTextView.text.toString().replace("A","")) *
+                                                            amountDeistance / 1000 // result
                                                 val PercentPressure  = 100 * pullResult / 400 // result
+
                                                 val resultSizeConduit = FindCableSizeInTable(getCableSize2InTable.replace("\"",""))
 
                                                 if(findInthreePhase.toInt() >= 630 && typeCableTextView.text != "XLPE 1C"){
@@ -443,19 +447,19 @@ class WireSizeActivity : AppCompatActivity() {
         val sharedPref = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE) ?: return
         with(sharedPref.edit()) {
             if (type == "phase"){
-                putString(TASK_LIST_PREF_KEY_PHASE, data)
+                putString(TASK_LIST_PREF_KEY_PHASE_IN_WIRESIZE, data)
             }
             if (type == "installation"){
-                putString(TASK_LIST_PREF_KEY_INSTALLATION, data)
+                putString(TASK_LIST_PREF_KEY_INSTALLATION_IN_WIRESIZE, data)
             }
             if (type == "typeCable"){
-                putString(TASK_LIST_PREF_KEY_TYPE_CABLE, data)
+                putString(TASK_LIST_PREF_KEY_TYPE_CABLE_IN_WIRESIZE, data)
             }
             if (type == "circuit"){
-                putString(TASK_LIST_PREF_KEY_CIRCUIT, data)
+                putString(TASK_LIST_PREF_KEY_CIRCUIT_IN_WIRESIZE, data)
             }
             if (type == "distance"){
-                putString(TASK_LIST_PREF_KEY_DISTANCE, data)
+                putString(TASK_LIST_PREF_KEY_DISTANCE_IN_WIRESIZE, data)
             }
             commit()
         }
@@ -463,16 +467,16 @@ class WireSizeActivity : AppCompatActivity() {
 
     fun loadData(){
         val sharedPref = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
-        val dataOfPhase = sharedPref.getString(TASK_LIST_PREF_KEY_PHASE, "1")
-        val dataOfInstallation = sharedPref.getString(TASK_LIST_PREF_KEY_INSTALLATION, "กลุ่ม 2")
-//        val dataOfTypeCable = sharedPref.getString(TASK_LIST_PREF_KEY_TYPE_CABLE, "IEC01(THW)")
-        val dataOfCircuit = sharedPref.getString(TASK_LIST_PREF_KEY_CIRCUIT, "40A")
-        val dataOfDistance = sharedPref.getString(TASK_LIST_PREF_KEY_DISTANCE, "10")
+        val dataOfPhase = sharedPref.getString(TASK_LIST_PREF_KEY_PHASE_IN_WIRESIZE, "1")
+        val dataOfInstallation = sharedPref.getString(TASK_LIST_PREF_KEY_INSTALLATION_IN_WIRESIZE, "กลุ่ม 2")
+//        val dataOfTypeCable = sharedPref.getString(TASK_LIST_PREF_KEY_TYPE_CABLE_IN_WIRESIZE, "IEC01(THW)")
+        val dataOfCircuit = sharedPref.getString(TASK_LIST_PREF_KEY_CIRCUIT_IN_WIRESIZE, "40A")
+        val dataOfDistance = sharedPref.getString(TASK_LIST_PREF_KEY_DISTANCE_IN_WIRESIZE, "10")
 
         val dataOfTypeCable = if(dataOfInstallation!!.slice(0..6) == "กลุ่ม 5" ){
-            sharedPref.getString(TASK_LIST_PREF_KEY_TYPE_CABLE, "NYY 1C")
+            sharedPref.getString(TASK_LIST_PREF_KEY_TYPE_CABLE_IN_WIRESIZE, "NYY 1C")
         }else{
-            sharedPref.getString(TASK_LIST_PREF_KEY_TYPE_CABLE, "IEC01(THW)")
+            sharedPref.getString(TASK_LIST_PREF_KEY_TYPE_CABLE_IN_WIRESIZE, "IEC01(THW)")
         }
 
         phaseTextView.text = "$dataOfPhase เฟส"
@@ -480,8 +484,6 @@ class WireSizeActivity : AppCompatActivity() {
         typeCableTextView.text = dataOfTypeCable
         circuitTextView.text = dataOfCircuit
         editTextDistance.setText(dataOfDistance)
-
-
 
     }
 

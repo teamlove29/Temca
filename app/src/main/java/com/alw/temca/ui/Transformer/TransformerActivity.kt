@@ -25,7 +25,7 @@ import kotlinx.android.synthetic.main.activity_wire_size.*
 
 class TransformerActivity : AppCompatActivity() {
     val TASK_NAME_REQUEST_CODE = 100
-    val PREF_NAME = "task_name"
+    val PREF_NAME = "task_transformer"
     val TASK_LIST_PREF_KEY_SIZE_TRANSFORMER = "task_list_size_transformer"
     val TASK_LIST_PREF_KEY_INSTALLATION_GROUP = "task_list_installation_group"
     val TASK_LIST_PREF_KEY_INSTALLATION = "task_list_installation"
@@ -78,7 +78,7 @@ class TransformerActivity : AppCompatActivity() {
 
     fun setDistanceOnClick(view: View) {
         editTextDistanceInTransformer.setText("")
-        editTextDistanceInTransformer.hint = " "
+        editTextDistanceInTransformer.hint = "20"
         editTextDistanceInTransformer.requestFocus()
         val imm = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
         imm.showSoftInput(editTextDistanceInTransformer, InputMethodManager.SHOW_IMPLICIT)
@@ -86,8 +86,12 @@ class TransformerActivity : AppCompatActivity() {
     fun TransformerReportOnClick(view: View) {}
 
     fun calculatorTransformerOnClick(view: View) {
-        val editTextToString = Integer.parseInt(editTextDistanceInTransformer.text.toString())
-        if(editTextDistanceInTransformer.text.isEmpty() || editTextToString <= 0){
+
+        if(editTextDistanceInTransformer.text.isEmpty() ){
+//            val editTextToString = Integer.parseInt(editTextDistanceInTransformer.text.toString())
+//            if(editTextToString <= 0){
+//                editTextDistanceInTransformer.setText("20")
+//            }
             editTextDistanceInTransformer.setText("20")
         }
 

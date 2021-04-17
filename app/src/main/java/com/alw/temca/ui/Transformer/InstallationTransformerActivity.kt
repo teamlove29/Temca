@@ -19,22 +19,25 @@ class InstallationTransformerActivity : AppCompatActivity(), InstallationonClick
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_installation_transformer)
 
+        val intent = intent
+        val comeForm = intent.getStringExtra("Activity")
+
+        if(comeForm == "Moter"){
+            textViewTitleInstallTransformer.text = "ขนาดสายหม้อแปลง"
+        }else{
+
+        }
 
         installItem.add(InstallationModelInTransformer("กลุ่ม 7", "เดินเคเบิ้ลแบบระบายอากาศ"))
         installItem.add(InstallationModelInTransformer("กลุ่ม 7", "เดินคเบิ้ลแบบขั้นบันได"))
 
-
-        recyclerViewInstallationTransformer.adapter = InstallationInTransformerAdapter(
-            installItem,
-            this
-        )
+        recyclerViewInstallationTransformer.adapter = InstallationInTransformerAdapter(installItem, this)
         recyclerViewInstallationTransformer.layoutManager = LinearLayoutManager(this)
 
 
     }
 
     override fun onClick(postion: Int) {
-
         val resultIntent = Intent()
         val bundle = Bundle()
         bundle.putParcelable("dataInstall",installItem[postion])

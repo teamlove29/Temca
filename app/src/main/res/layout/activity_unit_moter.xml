@@ -7,7 +7,7 @@ android:layout_width="match_parent"
 android:layout_height="match_parent"
 android:orientation="vertical"
 android:background="#EEEEEE"
-tools:context=".ui.Transformer.InstallationTransformerActivity">
+tools:context=".ui.Moter.UnitMoterActivity">
 
 <RelativeLayout
     android:paddingBottom="40dp"
@@ -25,32 +25,30 @@ tools:context=".ui.Transformer.InstallationTransformerActivity">
         android:background="@drawable/temca_logo_mini"/>
 
     <TextView
-        android:id="@+id/textViewTitleInstallTransformer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/logoImageView"
         android:layout_centerVertical="true"
         android:fontFamily="@font/mitr_regular"
-        android:textColor="@color/black"
-        android:text="หาขนาดสายหม้อแปลง"
+        android:textColor="@color/btnBlue"
+        android:text="หาขนาดสายมอเตอร์"
         android:textSize="30dp"/>
 
 </RelativeLayout>
 
-<TextView
-    android:paddingLeft="15dp"
-    android:paddingBottom="5dp"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:fontFamily="@font/mitr_regular"
-    android:textColor="@color/black"
-    android:textSize="20dp"
-    android:text="กลุ่มการติดตั้ง"/>
+        <TextView
+            android:paddingLeft="15dp"
+            android:paddingBottom="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/mitr_regular"
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:text="หน่วยมอเตอร์"/>
 
 <androidx.recyclerview.widget.RecyclerView
-    android:id="@+id/recyclerViewInstallationTransformer"
+    android:id="@+id/recyclerViewUnitMoter"
     android:layout_width="match_parent"
     android:layout_height="wrap_content" />
-
 
 </LinearLayout>

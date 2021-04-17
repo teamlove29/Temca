@@ -39,11 +39,11 @@ import com.karumi.dexter.listener.single.PermissionListener
 
 class PipeSizeActivity : AppCompatActivity() {
     final val TASK_NAME_REQUEST_CODE = 100
-    final val TASK_LIST_PREF_KEY_SWITCH = "task_list_switch"
+    final val TASK_LIST_PREF_KEY_SWITCH = "task_list_switch_in_pipe"
     final val TASK_LIST_PREF_KEY_TYPE_CABLE_IN_PIPE = "task_list_type_cable_in_pipe"
-    final val TASK_LIST_PREF_KEY_SIZE = "task_list_size"
-    final val TASK_LIST_PREF_KEY_AMOUNT = "task_list_amount"
-    final val TASK_LIST_PREF_KEY_CONDUIT = "task_list_conduit"
+    final val TASK_LIST_PREF_KEY_SIZE_IN_PIPE = "task_list_size_in_pipe"
+    final val TASK_LIST_PREF_KEY_AMOUNT_IN_PIPE = "task_list_amount_in_pipe"
+    final val TASK_LIST_PREF_KEY_CONDUIT_IN_PIPE = "task_list_conduit_in_pipe"
     final val PREF_NAME = "task_pipe"
 
 
@@ -316,16 +316,16 @@ class PipeSizeActivity : AppCompatActivity() {
         with(sharedPref.edit()) {
 
             if (type == "sizeCable"){
-                putString(TASK_LIST_PREF_KEY_SIZE, data)
+                putString(TASK_LIST_PREF_KEY_SIZE_IN_PIPE, data)
             }
             if (type == "typeCable"){
                 putString(TASK_LIST_PREF_KEY_TYPE_CABLE_IN_PIPE, data)
             }
             if (type == "amount"){
-                putString(TASK_LIST_PREF_KEY_AMOUNT, data)
+                putString(TASK_LIST_PREF_KEY_AMOUNT_IN_PIPE, data)
             }
             if (type == "conduit"){
-                putString(TASK_LIST_PREF_KEY_CONDUIT, data)
+                putString(TASK_LIST_PREF_KEY_CONDUIT_IN_PIPE, data)
             }
             commit()
         }
@@ -333,10 +333,10 @@ class PipeSizeActivity : AppCompatActivity() {
 
     fun loadData(){
     val sharedPref = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
-    val dataOfSizeCable = sharedPref.getString(TASK_LIST_PREF_KEY_SIZE, "2.5 มม2")
+    val dataOfSizeCable = sharedPref.getString(TASK_LIST_PREF_KEY_SIZE_IN_PIPE, "2.5 มม2")
     val dataOfTypeCable = sharedPref.getString(TASK_LIST_PREF_KEY_TYPE_CABLE_IN_PIPE, "IEC01")
-    val dataOfAmount = sharedPref.getString(TASK_LIST_PREF_KEY_AMOUNT, null)
-    val dataOfConduit = sharedPref.getString(TASK_LIST_PREF_KEY_CONDUIT, "50x75 มม.")
+    val dataOfAmount = sharedPref.getString(TASK_LIST_PREF_KEY_AMOUNT_IN_PIPE, null)
+    val dataOfConduit = sharedPref.getString(TASK_LIST_PREF_KEY_CONDUIT_IN_PIPE, "50x75 มม.")
 
     SizeConduitTextView.text = dataOfConduit
     cableSizeTextView.text = dataOfSizeCable
@@ -353,7 +353,7 @@ class PipeSizeActivity : AppCompatActivity() {
 
     fun setAmountOnClick(view: View) {
         editTextAmountCable.setText("")
-        editTextAmountCable.hint = " "
+        editTextAmountCable.hint = "20"
         editTextAmountCable.requestFocus()
         val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.showSoftInput(editTextAmountCable, InputMethodManager.SHOW_IMPLICIT)

@@ -201,6 +201,8 @@
                     android:layout_marginRight="40dp"
                     android:hint="20"
                     android:fontFamily="@font/mitr_regular"
+                    android:gravity="right"
+                    android:ellipsize="end"
                     android:background="@null"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"

@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import com.alw.temca.ui.Moter.MoterActivity
 import com.alw.temca.ui.PipeSize.PipeSizeActivity
 import com.alw.temca.ui.SoonActivity
 import com.alw.temca.ui.SponsorActivity
@@ -34,9 +35,9 @@ class MainActivity : AppCompatActivity() {
 //                intent.putExtra("txt",buttonTransformer.text)
                 startActivity(intent)
             }
-            button4 -> {
-                val intent = Intent(this,SoonActivity::class.java)
-                intent.putExtra("txt",button4.text)
+            buttonMoter -> {
+                val intent = Intent(this,MoterActivity::class.java)
+//                intent.putExtra("txt",buttonMoter.text)
                 startActivity(intent)
             }
             button5 -> {

@@ -15,7 +15,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Temca">
-        <activity android:name=".ui.Transformer.InstallationTransformerActivity"></activity>
+        <activity android:name=".ui.Moter.UnitMoterActivity"></activity>
+        <activity android:name=".ui.Moter.MoterActivity" />
+        <activity android:name=".ui.Transformer.InstallationTransformerActivity" />
         <activity android:name=".ui.Transformer.TransformerSizeActivity" />
         <activity android:name=".ui.Transformer.TransformerActivity" />
         <activity android:name=".ui.WireSize.CircuitBreakerActivity" />

@@ -102,7 +102,7 @@
                 android:onClick="HandleOnClick"/>
 
             <Button
-                android:id="@+id/button4"
+                android:id="@+id/buttonMoter"
                 android:layout_width="170dp"
                 android:layout_height="100dp"
                 android:layout_margin="5dp"
@@ -117,7 +117,7 @@
                 android:backgroundTint="#092B61"
                 android:fontFamily="@font/mitr_regular"
                 android:textSize="15dp"
-                android:text="Module 4"
+                android:text="หาขนาดสายมอเตอร์"
                 android:textColor="@color/white"
                 android:gravity="bottom|center_horizontal"
                 android:onClick="HandleOnClick"/>
@@ -144,7 +144,7 @@
                 android:layout_height="100dp"
                 android:layout_margin="5dp"
                 android:padding="10dp"
-                android:layout_below="@+id/button4"
+                android:layout_below="@+id/buttonMoter"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
