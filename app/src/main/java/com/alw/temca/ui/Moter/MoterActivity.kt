@@ -17,7 +17,7 @@ import com.alw.temca.ui.WireSize.TypeCableActivity
 import kotlinx.android.synthetic.main.activity_moter.*
 import kotlinx.android.synthetic.main.activity_moter.btnCalInPipeSize
 import kotlinx.android.synthetic.main.activity_moter.phaseTextView
-import kotlinx.android.synthetic.main.activity_transformer.*
+
 
 class MoterActivity : AppCompatActivity() {
     val TASK_NAME_REQUEST_CODE = 100
@@ -47,6 +47,7 @@ class MoterActivity : AppCompatActivity() {
 
                 tableBeforeCalculateInMoter.visibility = View.GONE
                 btnCalInPipeSize.visibility = View.VISIBLE
+                wayBackActivity1.visibility = View.VISIBLE
             }
             override fun afterTextChanged(s: Editable?) {
                 //หลังจากพิมพ์ผลลัพคือ ?
@@ -54,7 +55,6 @@ class MoterActivity : AppCompatActivity() {
             }
 
         })
-
     }
 
     fun moterSizeOnClick(view: View) {
@@ -86,13 +86,23 @@ class MoterActivity : AppCompatActivity() {
         editTextDistanceInMoter.requestFocus()
         val imm = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
         imm.showSoftInput(editTextDistanceInMoter, InputMethodManager.SHOW_IMPLICIT)
+        wayBackActivity1.visibility = View.VISIBLE
     }
 
     fun unitOnClick(view: View) {
         val intent = Intent(this, UnitMoterActivity::class.java)
         startActivityForResult(intent,TASK_NAME_REQUEST_CODE)
     }
-    fun calculatorMoterOnClick(view: View) {}
+    fun calculatorMoterOnClick(view: View) {
+        btnCalInPipeSize.visibility = View.GONE
+        tableBeforeCalculateInMoter.visibility = View.VISIBLE
+//        wayBackActivity1.visibility = View.GONE
+        editTextDistanceInMoter.clearFocus()
+        btnCalInPipeSize.apply {
+            hideKeyboard()
+        }
+        wayBackActivity1.visibility = View.GONE
+    }
 
     fun moterReportOnClick(view: View) {}
 
@@ -125,6 +135,7 @@ class MoterActivity : AppCompatActivity() {
                 }
 
             }
+            wayBackActivity1.visibility = View.VISIBLE
         }
     }
 

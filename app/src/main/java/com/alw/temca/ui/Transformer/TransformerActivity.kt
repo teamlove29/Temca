@@ -19,7 +19,10 @@ import com.alw.temca.R
 import com.alw.temca.ui.SponsorActivity
 import com.alw.temca.ui.WireSize.TypeCableActivity
 import jxl.Workbook
+import kotlinx.android.synthetic.main.activity_moter.*
 import kotlinx.android.synthetic.main.activity_transformer.*
+import kotlinx.android.synthetic.main.activity_transformer.btnCalInPipeSize
+import kotlinx.android.synthetic.main.activity_transformer.textViewElectricCurrenResult
 import kotlinx.android.synthetic.main.activity_transformer.wayBackActivity1
 import kotlinx.android.synthetic.main.activity_wire_size.*
 
@@ -50,6 +53,7 @@ class TransformerActivity : AppCompatActivity() {
                 }
                 tableBeforeCalculateInTransformer.visibility = View.GONE
                 btnCalInPipeSize.visibility = View.VISIBLE
+                wayBackActivity1.visibility = View.VISIBLE
             }
             override fun afterTextChanged(s: Editable?) {
                 //หลังจากพิมพ์ผลลัพคือ ?
@@ -82,6 +86,7 @@ class TransformerActivity : AppCompatActivity() {
         editTextDistanceInTransformer.requestFocus()
         val imm = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
         imm.showSoftInput(editTextDistanceInTransformer, InputMethodManager.SHOW_IMPLICIT)
+        wayBackActivity1.visibility = View.VISIBLE
     }
     fun TransformerReportOnClick(view: View) {}
 
@@ -176,6 +181,7 @@ class TransformerActivity : AppCompatActivity() {
 ////                }
 //                }
             }
+            wayBackActivity1.visibility = View.VISIBLE
         }
 
         tableBeforeCalculateInTransformer.visibility = View.GONE

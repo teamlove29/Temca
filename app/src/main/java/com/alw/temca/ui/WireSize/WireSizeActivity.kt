@@ -17,7 +17,9 @@ import com.alw.temca.Model.TypeCableModel
 import com.alw.temca.R
 import com.alw.temca.ui.SponsorActivity
 import jxl.Workbook
+import kotlinx.android.synthetic.main.activity_moter.*
 import kotlinx.android.synthetic.main.activity_wire_size.*
+import kotlinx.android.synthetic.main.activity_wire_size.phaseTextView
 import kotlinx.android.synthetic.main.activity_wire_size.typeCableTextView
 import kotlinx.android.synthetic.main.activity_wire_size.wayBackActivity1
 import java.io.IOException
@@ -63,6 +65,7 @@ class WireSizeActivity : AppCompatActivity() {
 //                sponsorImageView.visibility = View.VISIBLE
                 tableBeforeCalculate.visibility = View.GONE
                 btnCal.visibility = View.VISIBLE
+                wayBackActivity1.visibility = View.VISIBLE
             }
             override fun afterTextChanged(s: Editable?) {
                 //หลังจากพิมพ์ผลลัพคือ ?
@@ -137,6 +140,7 @@ class WireSizeActivity : AppCompatActivity() {
                     saveData("typeCable", dataTypeCable)
                 }
             }
+            wayBackActivity1.visibility = View.VISIBLE
         }
 //        sponsorImageView.visibility = View.VISIBLE
         tableBeforeCalculate.visibility = View.GONE
@@ -190,6 +194,7 @@ class WireSizeActivity : AppCompatActivity() {
         editTextDistance.requestFocus()
         val imm = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
         imm.showSoftInput(editTextDistance, InputMethodManager.SHOW_IMPLICIT)
+        wayBackActivity1.visibility = View.VISIBLE
     }
 
     @SuppressLint("SetTextI18n")
