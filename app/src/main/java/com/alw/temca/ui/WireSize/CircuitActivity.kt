@@ -17,62 +17,57 @@ import kotlinx.android.synthetic.main.activity_wire_size.*
 
 
 class CircuitActivity : AppCompatActivity() {
-    final val TASK_LIST_PREF_KEY_CIRCUIT = "task_list_circuit"
-    final val PREF_NAME = "task_name"
-
+    private val TASK_LIST_PREF_KEY_CIRCUIT = "task_list_circuit"
+    private val TASK_LIST_PREF_AMOUNT_ROW = "task_list_amount_row"
+    private val PREF_NAME = "task_name"
+    private var RowAmountAmpMain:Int = 99
+    private val listAmp = arrayListOf<String>("16","20","25","32","40","50","63","80","100","125","160","200","250","320","400","500","630","800","1000")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_circuit)
 
-        loadData()
         var intent: Intent
+        intent = getIntent()
+        val nameA = intent.getStringExtra("data")
+        val RowAmountAmp = intent.getIntExtra("RowAmountAmp",99)
 
-        cardViewCircuitBreaker.setOnClickListener {
-            intent = Intent(this, CircuitBreakerActivity::class.java)
-            startActivity(intent)
-            finish()
+
+        if (RowAmountAmp != 99){
+            RowAmountAmpMain = RowAmountAmp
+            saveData("RowAmountAmp",RowAmountAmp.toString())
+        }else{
+            loadData()
         }
 
-        intent = getIntent()
-        val nameA = intent.extras?.getString("data")
+        if(RowAmountAmpMain != 99) {
+            cardViewCircuitBreaker.setOnClickListener {
+                intent = Intent(this, CircuitBreakerActivity::class.java)
+                intent.putExtra("RowAmountAmp",RowAmountAmpMain)
+                startActivity(intent)
+                finish()
+            }
+        }
+
         if (nameA != null){
             textViewCircuit.text = nameA
             editTextOperating.setText(nameA.replace("A",""))
         }
 
-
-
         editTextOperating.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                if (s!!.isNotEmpty()) {
-                    val typeCable = applicationContext.assets.open("CircuitSize.xls")
-                    val wb = Workbook.getWorkbook(typeCable)
-                    val sheet = wb.getSheet(0)
+                if (s!!.isNotEmpty() && RowAmountAmpMain!= 99) {
                     val sToInt = Integer.parseInt(s.toString())
-
-                    for (i in 0..17) {
-                        val sizeCirCuit = sheet.getCell(0, i).contents.toInt()
-                        if (sToInt <= sizeCirCuit) {
-//                            val sizeWireGround = sheet.getCell(2, i).contents
-                            textViewCircuit.text = "${sizeCirCuit}A"
-//                            textViewGroundWire.text = Html.fromHtml("${sizeWireGround} มม<sup><small><small>2</small></small></sup>")
+                    for (i in 0..RowAmountAmpMain){
+                        if(sToInt <= listAmp[i].toInt()){
+                            textViewCircuit.text = "${listAmp[i]}A"
                             break
-                        } else {
-                            textViewCircuit.text = "1000A"
-//                            textViewGroundWire.text = Html.fromHtml("70 มม<sup><small><small>2</small></small></sup>")
-                        }
+                        }else textViewCircuit.text = "${listAmp[RowAmountAmpMain]}A"
                     }
-
-                } else {
-                    textViewCircuit.text = "40A"
-//                    textViewGroundWire.text = Html.fromHtml("4 มม<sup><small><small>2</small></small></sup>")
-                }
+                } else textViewCircuit.text = "40A"
             }
-
             override fun afterTextChanged(s: Editable?) {}
         })
-
     }
 
     fun SubmitCircuitOnClick(view: View) {
@@ -83,23 +78,21 @@ class CircuitActivity : AppCompatActivity() {
         finish()
     }
 
-//    fun saveData(type: String, value: String){
-//        val data = value
-//        val sharedPref = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE) ?: return
-//        with(sharedPref.edit()) {
-//            if (type == "circuit"){
-//                putString(TASK_LIST_PREF_KEY_CIRCUIT, data)
-//            }
-//            commit()
-//        }
-//    }
-
     fun loadData(){
         val sharedPref = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
         val dataOfCircuit = sharedPref.getString(TASK_LIST_PREF_KEY_CIRCUIT, "40A")
+        val rowAmountOfCircuit = sharedPref.getString(TASK_LIST_PREF_AMOUNT_ROW, "99")
+        RowAmountAmpMain = rowAmountOfCircuit!!.toInt()
         textViewCircuit.text = dataOfCircuit
         editTextOperating.setText(dataOfCircuit!!.replace("A",""))
     }
 
-
+    fun saveData(type: String, value: String){
+        val data = value
+        val sharedPref = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE) ?: return
+        with(sharedPref.edit()) {
+            if (type == "RowAmountAmp") putString(TASK_LIST_PREF_AMOUNT_ROW, data)
+            commit()
+        }
+    }
 }

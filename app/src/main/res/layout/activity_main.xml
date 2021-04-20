@@ -63,7 +63,7 @@
                 android:backgroundTint="#092B61"
                 android:fontFamily="@font/mitr_regular"
                 android:textSize="15dp"
-                android:text="หาขนาดสายวงจรย่อย"
+                android:text="หาขนาดสายไฟ"
                 android:textColor="@color/white"
                 android:gravity="bottom|center_horizontal"
                 android:onClick="HandleOnClick" />

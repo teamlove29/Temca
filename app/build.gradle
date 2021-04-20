@@ -40,6 +40,9 @@ android {
     dexOptions {
         incremental true
     }
+    lintOptions {
+        checkReleaseBuilds false
+    }
 }
 
 dependencies {

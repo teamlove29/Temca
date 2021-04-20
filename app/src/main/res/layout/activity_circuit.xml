@@ -126,6 +126,7 @@
                 android:layout_marginBottom="10dp"
                 android:inputType="number"
                 android:hint="40"
+                android:maxLength="4"
                 android:fontFamily="@font/mitr_regular"
                 android:layout_toRightOf="@+id/textViewOperating"
                 android:background="@null"

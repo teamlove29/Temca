@@ -51,37 +51,14 @@ class TypeCableActivity : AppCompatActivity() , InstallationonClickAdapterListen
             headerTypeCable.text = "หาขนาดสายหม้อแปลง"
             typeCableItem.add(TypeCableModel("NYY"))
         }else{
-            if(checkActivity.equals("Group5")){
-                typeCableItem.add(TypeCableModel("NYY 1C"))
-                typeCableItem.add(TypeCableModel("NYY 2C"))
-                typeCableItem.add(TypeCableModel("NYY 3C"))
-                typeCableItem.add(TypeCableModel("NYY 4C"))
-                typeCableItem.add(TypeCableModel("XLPE 1C"))
-                typeCableItem.add(TypeCableModel("XLPE 2C"))
-                typeCableItem.add(TypeCableModel("XLPE 3C"))
-                typeCableItem.add(TypeCableModel("XLPE 4C"))
-                typeCableItem.add(TypeCableModel("VCT 1C"))
-                typeCableItem.add(TypeCableModel("VCT 2C"))
-                typeCableItem.add(TypeCableModel("VCT 3C"))
-                typeCableItem.add(TypeCableModel("VCT 4C"))
-            }else{
-                typeCableItem.add(TypeCableModel("IEC01(THW)"))
-                typeCableItem.add(TypeCableModel("IEC10 2C"))
-                typeCableItem.add(TypeCableModel("IEC10 3C"))
-                typeCableItem.add(TypeCableModel("IEC10 4C"))
-                typeCableItem.add(TypeCableModel("NYY 1C"))
-                typeCableItem.add(TypeCableModel("NYY 2C"))
-                typeCableItem.add(TypeCableModel("NYY 3C"))
-                typeCableItem.add(TypeCableModel("NYY 4C"))
-                typeCableItem.add(TypeCableModel("XLPE 1C"))
-                typeCableItem.add(TypeCableModel("XLPE 2C"))
-                typeCableItem.add(TypeCableModel("XLPE 3C"))
-                typeCableItem.add(TypeCableModel("XLPE 4C"))
-                typeCableItem.add(TypeCableModel("VCT 1C"))
-                typeCableItem.add(TypeCableModel("VCT 2C"))
-                typeCableItem.add(TypeCableModel("VCT 3C"))
-                typeCableItem.add(TypeCableModel("VCT 4C"))
+            if(checkActivity!="Group5"){
+                typeCableItem.add(TypeCableModel("IEC01"))
             }
+            typeCableItem.add(TypeCableModel("NYY"))
+            typeCableItem.add(TypeCableModel("XLPE"))
+            typeCableItem.add(TypeCableModel("VCT"))
+            typeCableItem.add(TypeCableModel("NYY-G"))
+            typeCableItem.add(TypeCableModel("VCT-G"))
         }
 
 
@@ -90,9 +67,6 @@ class TypeCableActivity : AppCompatActivity() , InstallationonClickAdapterListen
     }
 
     override fun onClick(postion: Int) {
-//        val intent = Intent(this,WireSizeActivity::class.java)
-//        intent.putExtra("dataTypeCable",typeCableItem[postion].name)
-//        startActivity(intent)
         val resultIntent = Intent()
         resultIntent.putExtra("dataTypeCable",typeCableItem[postion].name)
         setResult(Activity.RESULT_OK, resultIntent)
