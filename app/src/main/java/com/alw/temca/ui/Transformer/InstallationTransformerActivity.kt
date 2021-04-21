@@ -28,8 +28,8 @@ class InstallationTransformerActivity : AppCompatActivity(), InstallationonClick
 
         }
 
-        installItem.add(InstallationModelInTransformer("กลุ่ม 7", "เดินเคเบิ้ลแบบระบายอากาศ"))
-        installItem.add(InstallationModelInTransformer("กลุ่ม 7", "เดินคเบิ้ลแบบขั้นบันได"))
+        installItem.add(InstallationModelInTransformer("กลุ่ม 7", "ไม่มีฝาปิดแบบระบายอากาศ"))
+        installItem.add(InstallationModelInTransformer("กลุ่ม 7", "ไม่มีฝาปิดแบบบันได"))
 
         recyclerViewInstallationTransformer.adapter = InstallationInTransformerAdapter(installItem, this)
         recyclerViewInstallationTransformer.layoutManager = LinearLayoutManager(this)
