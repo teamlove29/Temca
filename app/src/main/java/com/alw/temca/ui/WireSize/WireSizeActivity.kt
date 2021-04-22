@@ -231,20 +231,22 @@ class WireSizeActivity : AppCompatActivity() {
                     val temp:String
                     var pressureDropIndexTable:Int
                     if(resultSizeConduitOfInch == "-") temp = "${resultSizeConduitOfmm}mm"
-                    else temp = "${resultSizeConduitOfmm}mm ( ${resultSizeConduitOfInch} inch )"
+                    else temp = "${resultSizeConduitOfmm} mm ( ${resultSizeConduitOfInch} inch )"
 
                     val s = SpannableString(temp.trim())
                     if (temp.indexOf('/') != -1) {
                         val len = temp.length
                         s.setSpan(SuperscriptSpan(), len - 10, len - 9, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) // ตัวเศษ
-                        s.setSpan(TextAppearanceSpan(null, 0, 30, null, null), len - 10, len - 9, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) // ตัวเศษ
-                        s.setSpan(TextAppearanceSpan(null, 0, 30, null, null), len - 9, len - 8, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) // ตัว /
+                        s.setSpan(TextAppearanceSpan(null, 0, 40, null, null), len - 10, len - 9, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) // ตัวเศษ
+                        s.setSpan(TextAppearanceSpan(null, 0, 40, null, null), len - 9, len - 8, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) // ตัว /
                         s.setSpan(SubscriptSpan(), len - 8, len - 7, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) // ตัวส่วน
-                        s.setSpan(TextAppearanceSpan(null, 0, 30, null, null), len - 8, len-7, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) // ตัวส่วน
+                        s.setSpan(TextAppearanceSpan(null, 0, 40, null, null), len - 8, len-7, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) // ตัวส่วน
                     }
+                    println("cableSize.length ${cableSize.length}")
+                    if(cableSize.length > 10) textViewShow2.text = Html.fromHtml("${cableSize.replace("mm","mm<sup><small><small>2</small></small></sup>")}")
+                    else textViewShow2.text = Html.fromHtml("$cableSize mm<sup><small><small>2</small></small></sup>")
 
-                    textViewShow2.text = Html.fromHtml("$cableSize mm<sup><small><small>2</small></small></sup>")
-
+                    println("cableSize.length ${cableSize.length}")
                     if(typeCableTextView.text == "NYY-G" || typeCableTextView.text == "VCT-G"){
                         textViewResultWireGround.text = "-"
                         pressureDropIndexTable = 2

@@ -385,7 +385,7 @@
                 android:id="@+id/textViewShow3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="ขนาดสายไฟฟ้าที่เหมาะสม"
+                android:text="ขนาดสายไฟฟ้า"
                 android:textSize="16dp"
                 android:fontFamily="@font/mitr_regular"
                 android:textColor="@color/white" />
