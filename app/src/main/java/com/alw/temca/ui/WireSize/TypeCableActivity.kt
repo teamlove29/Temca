@@ -50,6 +50,7 @@ class TypeCableActivity : AppCompatActivity() , InstallationonClickAdapterListen
         else if (checkActivity.equals("Transformer")){
             headerTypeCable.text = "หาขนาดสายหม้อแปลง"
             typeCableItem.add(TypeCableModel("NYY"))
+            typeCableItem.add(TypeCableModel("XLPE"))
         }else{
             if(checkActivity!="Group5"){
                 typeCableItem.add(TypeCableModel("IEC01"))
