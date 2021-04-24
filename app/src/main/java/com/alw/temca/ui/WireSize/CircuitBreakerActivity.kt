@@ -12,8 +12,8 @@ import com.alw.temca.R
 import kotlinx.android.synthetic.main.activity_circuit_breaker.*
 
 class CircuitBreakerActivity : AppCompatActivity(), InstallationonClickAdapterListener {
-    val listAmp = arrayListOf<String>("16","20","25","32","40","50","63","80","100","125","160","200","250","320","400","500","630","800","1000")
-    val CircuitItem = ArrayList<CircuitModel>()
+    private val listAmp = arrayListOf<String>("16","20","25","32","40","50","63","80","100","125","160","200","250","320","400","500","630","800","1000")
+    private val CircuitItem = ArrayList<CircuitModel>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_circuit_breaker)

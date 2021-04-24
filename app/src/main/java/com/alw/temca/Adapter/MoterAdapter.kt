@@ -4,7 +4,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.alw.temca.Model.InstallationModelInTransformer
 import com.alw.temca.Model.MoterModel
 import com.alw.temca.R
 import kotlinx.android.synthetic.main.unit_moter_list.view.*
@@ -36,6 +35,5 @@ class MoterAdapter(
     override fun getItemCount(): Int {
         return unitList.size
     }
-
 
 }

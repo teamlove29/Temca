@@ -8,9 +8,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.alw.temca.Model.TransformerSizeModal
 import com.alw.temca.Model.TransformerSizeModalResult
 import com.alw.temca.R
-import jxl.Workbook
-import kotlinx.android.synthetic.main.activity_report.*
-import kotlinx.android.synthetic.main.activity_wire_size.*
 import kotlinx.android.synthetic.main.phase_list.view.*
 import kotlinx.android.synthetic.main.result_transformer_list.view.*
 

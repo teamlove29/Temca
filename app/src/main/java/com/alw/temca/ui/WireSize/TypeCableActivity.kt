@@ -12,7 +12,7 @@ import com.alw.temca.R
 import kotlinx.android.synthetic.main.activity_type_cable.*
 
 class TypeCableActivity : AppCompatActivity() , InstallationonClickAdapterListener {
-    val typeCableItem = ArrayList<TypeCableModel>()
+    private val typeCableItem = ArrayList<TypeCableModel>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_type_cable)

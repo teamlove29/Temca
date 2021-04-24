@@ -5,36 +5,32 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
-import android.text.Html
 import android.text.TextWatcher
 import android.view.View
 import android.view.inputmethod.InputMethodManager
-import android.widget.LinearLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.alw.temca.Adapter.TransformerSizeAdapterResult
-import com.alw.temca.Function.FindCableSizeInTable
 import com.alw.temca.Model.InstallationModelInTransformer
 import com.alw.temca.Model.TransformerSizeModalResult
 import com.alw.temca.R
 import com.alw.temca.ui.SponsorActivity
 import com.alw.temca.ui.WireSize.TypeCableActivity
 import jxl.Workbook
-import kotlinx.android.synthetic.main.activity_moter.*
 import kotlinx.android.synthetic.main.activity_transformer.*
 import kotlinx.android.synthetic.main.activity_transformer.btnCalInPipeSize
 import kotlinx.android.synthetic.main.activity_transformer.textViewElectricCurrenResult
 import kotlinx.android.synthetic.main.activity_transformer.wayBackActivity1
-import kotlinx.android.synthetic.main.activity_wire_size.*
 
 class TransformerActivity : AppCompatActivity() {
-    val TASK_NAME_REQUEST_CODE = 100
-    val PREF_NAME = "task_transformer"
-    val TASK_LIST_PREF_KEY_SIZE_TRANSFORMER = "task_list_size_transformer"
-    val TASK_LIST_PREF_KEY_INSTALLATION_GROUP = "task_list_installation_group_transformer"
-    val TASK_LIST_PREF_KEY_INSTALLATION = "task_list_installation_transformer"
-    val TASK_LIST_PREF_KEY_TYPE_CABLE = "task_list_type_cable_transformer"
-    val TASK_LIST_PREF_KEY_DISTANCE_TRANSFORMER = "task_list_distance_transformer"
-    var pressureDropIndexTable:Int = 0
+    private val TASK_NAME_REQUEST_CODE = 100
+    private val PREF_NAME = "task_transformer"
+    private val TASK_LIST_PREF_KEY_PRESSURE = "task_list_pressure_volts"
+    private val TASK_LIST_PREF_KEY_SIZE_TRANSFORMER = "task_list_size_transformer"
+    private val TASK_LIST_PREF_KEY_INSTALLATION_GROUP = "task_list_installation_group_transformer"
+    private val TASK_LIST_PREF_KEY_INSTALLATION = "task_list_installation_transformer"
+    private val TASK_LIST_PREF_KEY_TYPE_CABLE = "task_list_type_cable_transformer"
+    private val TASK_LIST_PREF_KEY_DISTANCE_TRANSFORMER = "task_list_distance_transformer"
+    private var pressureDropIndexTable:Int = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_transformer)
@@ -58,10 +54,12 @@ class TransformerActivity : AppCompatActivity() {
                 //หลังจากพิมพ์ผลลัพคือ ?
                 saveData("distance",s.toString())
             }
-
         })
     }
-
+    fun choosePressureOnClick(view: View) {
+        val intent = Intent(this, PressureVoltsActivity::class.java)
+        startActivityForResult(intent,TASK_NAME_REQUEST_CODE)
+    }
     fun transformerSizeOnClick(view: View) {
         val intent = Intent(this,TransformerSizeActivity::class.java)
         startActivityForResult(intent,TASK_NAME_REQUEST_CODE)
@@ -101,18 +99,21 @@ class TransformerActivity : AppCompatActivity() {
         val dataOfGroupInstall = sharedPref.getString(TASK_LIST_PREF_KEY_INSTALLATION_GROUP,"กลุ่ม 7")
 
         val transformerGroupInTable = when(dataOfGroupInstall){
-            "กลุ่ม 7" -> "transformer_group7.xls"
+            "กลุ่ม 7" -> {
+                if (TextViewPressure.text == "230/400 V")  "transformer_group7_400.xls"
+                else "transformer_group7_416.xls"
+            }
             else -> return
         }
         val transformerCableTypeInTable = when(TextViewCableType.text){
             "NYY" -> {
                 pressureDropIndexTable = 0
-                if(TextViewGroupInstallation.text == "เดินเคเบิ้ลแบบระบายอากาศ") 0
+                if(TextViewGroupInstallation.text == "เคเบิลไม่มีฝาปิดแบบระบายอากาศ") 0
                 else 1
             }
             "XLPE" -> {
                 pressureDropIndexTable = 2
-                if(TextViewGroupInstallation.text == "เดินเคเบิ้ลแบบระบายอากาศ") 2
+                if(TextViewGroupInstallation.text == "เคเบิลไม่มีฝาปิดแบบบันได") 2
                 else 3
             }
             else -> return
@@ -171,9 +172,10 @@ class TransformerActivity : AppCompatActivity() {
         if (requestCode === TASK_NAME_REQUEST_CODE){
             if(resultCode == RESULT_OK){
                 val dataTransformerSize = data!!.getStringExtra("dataTransformerSize")
-                val dataInstallation = data!!.getParcelableExtra<InstallationModelInTransformer>("dataInstall")
-                val dataTypeCable = data!!.getStringExtra("dataTypeCable")
-//                val dataCircuit = data!!.getStringExtra("dataCircuit")
+                val dataInstallation = data.getParcelableExtra<InstallationModelInTransformer>("dataInstall")
+                val dataTypeCable = data.getStringExtra("dataTypeCable")
+                val dataOfPressureVolts = data.getStringExtra("dataOfPressureVolts")
+
                 if (dataTransformerSize != null){
                     TextViewTransformerSize.text = dataTransformerSize
                     saveData("transformerSize", dataTransformerSize)
@@ -187,6 +189,10 @@ class TransformerActivity : AppCompatActivity() {
                 if (dataTypeCable != null) {
                     TextViewCableType.text = dataTypeCable
                     saveData("typeCable", dataTypeCable)
+                }
+                if (dataOfPressureVolts != null) {
+                    TextViewPressure.text = dataOfPressureVolts
+                    saveData("PressureVolts", dataOfPressureVolts)
                 }
             }
             wayBackActivity1.visibility = View.VISIBLE
@@ -211,16 +217,21 @@ class TransformerActivity : AppCompatActivity() {
             if (type == "typeCable"){
                 putString(TASK_LIST_PREF_KEY_TYPE_CABLE, data)
             }
+            if (type == "PressureVolts"){
+                putString(TASK_LIST_PREF_KEY_PRESSURE, data)
+            }
         }
     }
 
     fun loadData(){
         val sharedPref = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
+        val dataOfPressureVolt = sharedPref.getString(TASK_LIST_PREF_KEY_PRESSURE,"230/400 V")
         val dataOfSizeTransformer = sharedPref.getString(TASK_LIST_PREF_KEY_SIZE_TRANSFORMER,"500 kVA")
         val dataOfGroupInstall = sharedPref.getString(TASK_LIST_PREF_KEY_INSTALLATION,"เดินเคเบิลแบบระบายอากาศ")
         val dataOfCableType = sharedPref.getString(TASK_LIST_PREF_KEY_TYPE_CABLE,"NYY")
         val dataOfDistanceInTransformer = sharedPref.getString(TASK_LIST_PREF_KEY_DISTANCE_TRANSFORMER,"20")
 
+        TextViewPressure.text = dataOfPressureVolt
         TextViewTransformerSize.text = dataOfSizeTransformer
         TextViewGroupInstallation.text = dataOfGroupInstall
         TextViewCableType.text = dataOfCableType
@@ -237,6 +248,8 @@ class TransformerActivity : AppCompatActivity() {
         val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.hideSoftInputFromWindow(windowToken, 0)
     }
+
+
 }
 
 

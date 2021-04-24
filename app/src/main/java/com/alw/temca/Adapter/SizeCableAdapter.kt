@@ -5,7 +5,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.alw.temca.Model.SizeCableModel
-import com.alw.temca.Model.TypeCableModel
 import com.alw.temca.R
 import kotlinx.android.synthetic.main.type_cable_list.view.*
 

@@ -13,7 +13,7 @@ import kotlinx.android.synthetic.main.activity_phase.recyclerViewPhase
 import kotlinx.android.synthetic.main.activity_transformer_size.*
 
 class TransformerSizeActivity : AppCompatActivity() , InstallationonClickAdapterListener {
-    val TransformerSizeItem = ArrayList<TransformerSizeModal>()
+    private val TransformerSizeItem = ArrayList<TransformerSizeModal>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_transformer_size)

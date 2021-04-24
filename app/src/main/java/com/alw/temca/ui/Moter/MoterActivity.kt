@@ -17,6 +17,7 @@ import com.alw.temca.ui.WireSize.TypeCableActivity
 import kotlinx.android.synthetic.main.activity_moter.*
 import kotlinx.android.synthetic.main.activity_moter.btnCalInPipeSize
 import kotlinx.android.synthetic.main.activity_moter.phaseTextView
+import kotlinx.android.synthetic.main.activity_moter.wayBackActivity1
 
 
 class MoterActivity : AppCompatActivity() {
@@ -48,6 +49,30 @@ class MoterActivity : AppCompatActivity() {
                 tableBeforeCalculateInMoter.visibility = View.GONE
                 btnCalInPipeSize.visibility = View.VISIBLE
                 wayBackActivity1.visibility = View.VISIBLE
+
+            }
+            override fun afterTextChanged(s: Editable?) {
+                //หลังจากพิมพ์ผลลัพคือ ?
+                saveData("distance",s.toString())
+            }
+
+        })
+
+        editTextAmountMoterSize.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                //ก่อนเปลี่ยนคือ ?
+            }
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                if (s!!.isEmpty()){
+                    editTextAmountMoterSize.hint = "45"
+                }else{
+                    editTextAmountMoterSize.hint = ""
+                }
+
+                tableBeforeCalculateInMoter.visibility = View.GONE
+                btnCalInPipeSize.visibility = View.VISIBLE
+                wayBackActivity1.visibility = View.VISIBLE
+
             }
             override fun afterTextChanged(s: Editable?) {
                 //หลังจากพิมพ์ผลลัพคือ ?
@@ -96,12 +121,19 @@ class MoterActivity : AppCompatActivity() {
     fun calculatorMoterOnClick(view: View) {
         btnCalInPipeSize.visibility = View.GONE
         tableBeforeCalculateInMoter.visibility = View.VISIBLE
-//        wayBackActivity1.visibility = View.GONE
         editTextDistanceInMoter.clearFocus()
         btnCalInPipeSize.apply {
             hideKeyboard()
         }
+
+        if(editTextAmountMoterSize.text.isEmpty()) editTextAmountMoterSize.setText("45")
+        if(editTextDistanceInMoter.text.isEmpty()) editTextDistanceInMoter.setText("20")
+
+
         wayBackActivity1.visibility = View.GONE
+        btnCalInPipeSize.visibility = View.GONE
+        tableBeforeCalculateInMoter.visibility = View.VISIBLE
+
     }
 
     fun moterReportOnClick(view: View) {}
@@ -113,8 +145,8 @@ class MoterActivity : AppCompatActivity() {
 
                 val dataUnitMoter = data!!.getStringExtra("dataUnitMoter")
                 val dataPhase = data.getIntExtra("dataPhase",0)
-                val dataInstallation = data!!.getParcelableExtra<InstallationModelInTransformer>("dataInstall")
-////                val dataTypeCable = data!!.getStringExtra("dataTypeCable")
+                val dataInstallation = data.getParcelableExtra<InstallationModelInTransformer>("dataInstall")
+                val dataTypeCable = data!!.getStringExtra("dataTypeCable")
 ////                val dataCircuit = data!!.getStringExtra("dataCircuit")
 
                 if (dataUnitMoter != null){
@@ -133,9 +165,15 @@ class MoterActivity : AppCompatActivity() {
                     saveData("group", dataInstallation.title)
                     saveData("installation", dataInstallation.des)
                 }
+                if (dataTypeCable != null){
+                    TextViewCableTypeInMoter.text = dataTypeCable
+                    saveData("dataTypeCable", dataTypeCable)
+                }
 
             }
             wayBackActivity1.visibility = View.VISIBLE
+            btnCalInPipeSize.visibility = View.VISIBLE
+            tableBeforeCalculateInMoter.visibility = View.GONE
         }
     }
 
@@ -151,6 +189,9 @@ class MoterActivity : AppCompatActivity() {
             }
             if (type == "installation"){
                 putString(TASK_LIST_PREF_KEY_INSTALLATION_IN_MOTER, data)
+            }
+            if (type == "dataTypeCable"){
+                putString(TASK_LIST_PREF_KEY_TYPE_CABLE_IN_MOTER, data)
             }
         }
     }
