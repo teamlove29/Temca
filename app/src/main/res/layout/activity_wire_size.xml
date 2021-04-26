@@ -425,20 +425,19 @@
                 android:fontFamily="@font/mitr_regular"
                 android:textColor="@color/white" />
 
-
             <TextView
                 android:id="@+id/textViewShow4"
                 android:layout_width="wrap_content"
-                android:layout_height="30dp"
+                android:layout_height="wrap_content"
                 android:layout_below="@+id/textViewResultWireGround"
-                android:layout_marginTop="20dp"
+                android:paddingTop="15dp"
+                android:paddingBottom="10dp"
                 android:layout_alignParentRight="true"
                 android:text="- mm (1/2)"
                 android:textSize="16dp"
                 android:fontFamily="@font/mitr_regular"
                 android:layout_centerVertical="true"
                 android:textColor="@color/white" />
-
 
             <TextView
                 android:id="@+id/textViewShow5"

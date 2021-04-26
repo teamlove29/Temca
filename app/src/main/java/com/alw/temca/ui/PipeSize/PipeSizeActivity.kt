@@ -56,14 +56,6 @@ class PipeSizeActivity : AppCompatActivity() {
         tableBeforeCalculateInPipe.visibility = View.GONE
         calculator()
 
-
-
-//        editTextAmountCable.setOnFocusChangeListener { v, hasFocus ->
-//            if (hasFocus){
-//                editTextAmountCable.hint = " "
-//            }
-//        }
-
         editTextAmountCable.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
                 //ก่อนเปลี่ยนคือ ?
@@ -92,9 +84,7 @@ class PipeSizeActivity : AppCompatActivity() {
     }
 
     private fun calculator() {
-
     }
-
     fun switchButton(){
         if (switchButtonPipeSize.isChecked == false){
             titlePipeSize.text = "หาขนาดท่อและราง"
@@ -258,7 +248,7 @@ class PipeSizeActivity : AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode === TASK_NAME_REQUEST_CODE){
+        if (requestCode == TASK_NAME_REQUEST_CODE){
             if(resultCode == RESULT_OK){
 
 //                val dataPhase = data!!.getIntExtra("dataPhase",0)
@@ -302,15 +292,12 @@ class PipeSizeActivity : AppCompatActivity() {
              startActivityForResult(intent, TASK_NAME_REQUEST_CODE)
     }
 
-
-
-
-    fun View.hideKeyboard() {
+    private fun View.hideKeyboard() {
         val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.hideSoftInputFromWindow(windowToken, 0)
     }
 
-    fun saveData(type: String, value: String){
+    private fun saveData(type: String, value: String){
         val data = value
         val sharedPref = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE) ?: return
         with(sharedPref.edit()) {
@@ -331,11 +318,11 @@ class PipeSizeActivity : AppCompatActivity() {
         }
     }
 
-    fun loadData(){
+    private fun loadData(){
     val sharedPref = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
     val dataOfSizeCable = sharedPref.getString(TASK_LIST_PREF_KEY_SIZE_IN_PIPE, "2.5 มม2")
     val dataOfTypeCable = sharedPref.getString(TASK_LIST_PREF_KEY_TYPE_CABLE_IN_PIPE, "IEC01")
-    val dataOfAmount = sharedPref.getString(TASK_LIST_PREF_KEY_AMOUNT_IN_PIPE, null)
+//    val dataOfAmount = sharedPref.getString(TASK_LIST_PREF_KEY_AMOUNT_IN_PIPE, null)
     val dataOfConduit = sharedPref.getString(TASK_LIST_PREF_KEY_CONDUIT_IN_PIPE, "50x75 มม.")
 
     SizeConduitTextView.text = dataOfConduit
@@ -344,14 +331,13 @@ class PipeSizeActivity : AppCompatActivity() {
 //    editTextAmountCable.setText(dataOfAmount)
     }
 
-
     override fun onRestart() {
         super.onRestart()
             val sharedPref = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE).edit().clear()
             sharedPref.apply()
     }
 
-    fun setAmountOnClick(view: View) {
+     fun setAmountOnClick(view: View) {
         editTextAmountCable.setText("")
         editTextAmountCable.hint = "20"
         editTextAmountCable.requestFocus()
@@ -359,7 +345,7 @@ class PipeSizeActivity : AppCompatActivity() {
         imm.showSoftInput(editTextAmountCable, InputMethodManager.SHOW_IMPLICIT)
     }
 
-    fun pipeSizeReportOnClick(view: View) {
+     fun pipeSizeReportOnClick(view: View) {
         val intent = Intent(this,PipeSizeReportActivity::class.java)
         val bundle = Bundle()
 
@@ -381,8 +367,6 @@ class PipeSizeActivity : AppCompatActivity() {
         finish()
     }
 
-
-
     fun backOnClick(view: View) {
         finish()
     }
@@ -391,7 +375,6 @@ class PipeSizeActivity : AppCompatActivity() {
         val intent = Intent(this,SponsorActivity::class.java)
         startActivity(intent)
     }
-
 
 }
 

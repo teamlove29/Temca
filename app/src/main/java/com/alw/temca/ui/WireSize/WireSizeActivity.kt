@@ -153,6 +153,7 @@ class WireSizeActivity : AppCompatActivity() {
         val intent = Intent(this, ReportActivity::class.java)
         val bundle = Bundle()
         val textInstallation = FindDetailInstallation(installationTextView.text.toString())
+
         bundle.putParcelable("reportWireSize", ReportResultWireSize(
                 phaseTextView.text.toString(),
                 textInstallation,
@@ -182,6 +183,9 @@ class WireSizeActivity : AppCompatActivity() {
     fun calculatorOnClick(view: View) {
         if (editTextDistance.text.isEmpty()){
             editTextDistance.setText("10")
+        }
+        if (circuitTextView.text.isEmpty()){
+            circuitTextView.text = "40A"
         }
         btnCal.visibility = View.GONE
         tableBeforeCalculate.visibility = View.VISIBLE
@@ -216,10 +220,10 @@ class WireSizeActivity : AppCompatActivity() {
                     if (temp.indexOf('/') != -1) {
                         val len = temp.length
                         s.setSpan(SuperscriptSpan(), len - 10, len - 9, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) // ตัวเศษ
-                        s.setSpan(TextAppearanceSpan(null, 0, 40, null, null), len - 10, len - 9, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) // ตัวเศษ
-                        s.setSpan(TextAppearanceSpan(null, 0, 40, null, null), len - 9, len - 8, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) // ตัว /
+                        s.setSpan( applicationContext,len - 10, len - 9, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) // ตัวเศษ
+                        s.setSpan(applicationContext, len - 9, len - 8, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) // ตัว /
                         s.setSpan(SubscriptSpan(), len - 8, len - 7, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) // ตัวส่วน
-                        s.setSpan(TextAppearanceSpan(null, 0, 40, null, null), len - 8, len-7, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) // ตัวส่วน
+                        s.setSpan(applicationContext, len - 8, len-7, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) // ตัวส่วน
                     }
 
                     if(cableSize.length > 10) textViewShow2.text = Html.fromHtml("${cableSize.replace("mm","mm<sup><small><small>2</small></small></sup>")}")
@@ -257,12 +261,12 @@ class WireSizeActivity : AppCompatActivity() {
             }
         }catch (e: IOException){ println("Error : $e") }
     }
-    fun View.hideKeyboard() {
+    private fun View.hideKeyboard() {
         val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.hideSoftInputFromWindow(windowToken, 0)
     }
 
-    fun saveData(type: String, value: String){
+    private fun saveData(type: String, value: String){
         val data = value
         val sharedPref = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE) ?: return
         with(sharedPref.edit()) {
@@ -285,7 +289,7 @@ class WireSizeActivity : AppCompatActivity() {
         }
     }
 
-    fun loadData(){
+    private fun loadData(){
         val sharedPref = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
         val dataOfPhase = sharedPref.getString(TASK_LIST_PREF_KEY_PHASE_IN_WIRESIZE, "1")
         val dataOfInstallation = sharedPref.getString(TASK_LIST_PREF_KEY_INSTALLATION_IN_WIRESIZE, "กลุ่ม 2")
@@ -298,7 +302,6 @@ class WireSizeActivity : AppCompatActivity() {
         }else{
             sharedPref.getString(TASK_LIST_PREF_KEY_TYPE_CABLE_IN_WIRESIZE, "IEC01")
         }
-
         phaseTextView.text = "$dataOfPhase เฟส"
         installationTextView.text = dataOfInstallation!!.slice(0..6)
         typeCableTextView.text = dataOfTypeCable

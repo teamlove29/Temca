@@ -31,6 +31,7 @@ class TransformerActivity : AppCompatActivity() {
     private val TASK_LIST_PREF_KEY_TYPE_CABLE = "task_list_type_cable_transformer"
     private val TASK_LIST_PREF_KEY_DISTANCE_TRANSFORMER = "task_list_distance_transformer"
     private var pressureDropIndexTable:Int = 0
+    private var checkPressureVolts:Int = 400
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_transformer)
@@ -97,11 +98,17 @@ class TransformerActivity : AppCompatActivity() {
 
         val sharedPref = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
         val dataOfGroupInstall = sharedPref.getString(TASK_LIST_PREF_KEY_INSTALLATION_GROUP,"กลุ่ม 7")
-
-        val transformerGroupInTable = when(dataOfGroupInstall){
+        val transformerGroupInTable:String
+          when(dataOfGroupInstall){
             "กลุ่ม 7" -> {
-                if (TextViewPressure.text == "230/400 V")  "transformer_group7_400.xls"
-                else "transformer_group7_416.xls"
+                if (TextViewPressure.text == "230/400 V")  {
+                    transformerGroupInTable ="transformer_group7_400.xls"
+                    checkPressureVolts = 400
+                }
+                else {
+                    transformerGroupInTable ="transformer_group7_416.xls"
+                    checkPressureVolts = 416
+                }
             }
             else -> return
         }
@@ -145,10 +152,11 @@ class TransformerActivity : AppCompatActivity() {
                         val amountDeistance = Integer.parseInt(editTextDistanceInTransformer.text.toString())
 
                         if (getCableTypeInTable == fineCableTypeInTable) { //
-                            val getreslutInTable = sheetPressure.getCell(1, h).contents.toDouble() // 1 เฟส
+                            val getreslutInTable = sheetPressure.getCell(2, h).contents.toDouble() // 1 เฟส
                             val pullResult = getreslutInTable * getAmpInTable * amountDeistance / 1000 // result
-                            val PercentPressure  = 100 * pullResult / 230 // result
-                           val sumPullAndPercent =  "${"%.2f V".format(pullResult)} (${"%.2f".format(PercentPressure)}%)"
+                            val percentPressure  = 100 * pullResult / checkPressureVolts // result
+                            println("checkPressureVolts $checkPressureVolts")
+                           val sumPullAndPercent =  "${"%.2f V".format(pullResult)} (${"%.2f".format(percentPressure)}%)"
 
                             dataListOfTable.add(TransformerSizeModalResult(
                                     getDataElectricCurrentInTable,
@@ -192,7 +200,7 @@ class TransformerActivity : AppCompatActivity() {
                 }
                 if (dataOfPressureVolts != null) {
                     TextViewPressure.text = dataOfPressureVolts
-                    saveData("PressureVolts", dataOfPressureVolts)
+                    saveData("PressureVolts",dataOfPressureVolts)
                 }
             }
             wayBackActivity1.visibility = View.VISIBLE
@@ -201,7 +209,7 @@ class TransformerActivity : AppCompatActivity() {
         btnCalInPipeSize.visibility = View.VISIBLE
     }
 
-    fun saveData(type: String, value: String){
+    private  fun saveData(type: String, value: String){
         val data = value
         val sharedPref = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE) ?: return
         with(sharedPref.edit()){
@@ -223,7 +231,7 @@ class TransformerActivity : AppCompatActivity() {
         }
     }
 
-    fun loadData(){
+    private fun loadData(){
         val sharedPref = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
         val dataOfPressureVolt = sharedPref.getString(TASK_LIST_PREF_KEY_PRESSURE,"230/400 V")
         val dataOfSizeTransformer = sharedPref.getString(TASK_LIST_PREF_KEY_SIZE_TRANSFORMER,"500 kVA")
@@ -244,7 +252,7 @@ class TransformerActivity : AppCompatActivity() {
     }
     fun backOnClick(view: View) {finish()}
 
-    fun View.hideKeyboard() {
+    private fun View.hideKeyboard() {
         val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.hideSoftInputFromWindow(windowToken, 0)
     }

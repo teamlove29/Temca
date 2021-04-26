@@ -1,15 +1,24 @@
 package com.alw.temca.ui.WireSize
 
 import android.Manifest
-import android.annotation.SuppressLint
+import android.app.AlertDialog
 import android.app.PendingIntent
+import android.content.DialogInterface
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.os.Environment
+import android.provider.Settings
 import android.text.Html
+import android.text.Spannable
+import android.text.SpannableString
+import android.text.style.SubscriptSpan
+import android.text.style.SuperscriptSpan
+import android.text.style.TextAppearanceSpan
 import android.util.Log
 import android.widget.Toast
 import androidx.annotation.RequiresApi
@@ -49,7 +58,6 @@ class ReportActivity : AppCompatActivity() {
 
         val resultWire = intent.getParcelableExtra<ReportResultWireSize>("reportWireSize")
 
-
         if(resultWire != null){
             textViewResultPhaseInReport.text = resultWire.phase
             textViewResultInstallationInReport.text = resultWire.installation
@@ -57,7 +65,10 @@ class ReportActivity : AppCompatActivity() {
             textViewResultBreakerInReportData.text = resultWire.breaker
             textViewResultDistanceInReport.text = "${resultWire.distance}M"
             textViewResultWireSize.text = Html.fromHtml("${resultWire.cableSize.replace("mm2", "mm")}<sup><small><small>2</small></small></sup>")
-            textViewResultWireGroundInReport.text = Html.fromHtml("${resultWire.wireGround.replace("mm2", "mm")}<sup><small><small>2</small></small></sup>")
+
+            if(resultWire.wireGround != "-") textViewResultWireGroundInReport.text = Html.fromHtml("${resultWire.wireGround.replace("mm2", "mm")}<sup><small><small>2</small></small></sup>")
+            else textViewResultWireGroundInReport.text = "-"
+
             textViewResultConduitSize.text = resultWire.condutiSize
             textViewResultPressure.text = resultWire.pressure
             if(resultWire.phase == "1 เฟส"){
@@ -78,15 +89,14 @@ class ReportActivity : AppCompatActivity() {
                             )
                         }
                     }
-
                     override fun onPermissionDenied(p0: PermissionDeniedResponse?) {
+                        showSettingsDialog()
                         Toast.makeText(
                                 this@ReportActivity,
                                 "Denied Permission",
                                 Toast.LENGTH_LONG
                         ).show()
                     }
-
                     override fun onPermissionRationaleShouldBeShown(
                             p0: PermissionRequest?,
                             p1: PermissionToken?
@@ -95,6 +105,7 @@ class ReportActivity : AppCompatActivity() {
                     }
                 })
                 .check()
+
 
         btnSendEmailInWireSize.setOnClickListener {
             try {
@@ -113,7 +124,16 @@ class ReportActivity : AppCompatActivity() {
                 sendIntent.putExtra(Intent.EXTRA_SUBJECT, "รายงานผลการคำนวณหาขนาดสาย")
                 sendIntent.putExtra(Intent.EXTRA_TEXT, "รายงานผลการคำนวณขนาดสายตามไฟล์ที่แนบ...")
                 sendIntent.putExtra(Intent.EXTRA_STREAM, uri)
-                startActivityForResult(Intent.createChooser(sendIntent, "SHARE", pendingIntent.intentSender), MY_REQUEST_CODE)
+//                startActivityForResult(Intent.createChooser(sendIntent, "SHARE", pendingIntent.intentSender), MY_REQUEST_CODE)
+                val chooser = Intent.createChooser(sendIntent, "Share File")
+                val resInfoList = this.packageManager.queryIntentActivities(chooser, PackageManager.MATCH_DEFAULT_ONLY)
+
+                for (resolveInfo in resInfoList) {
+                    val packageName = resolveInfo.activityInfo.packageName
+                    grantUriPermission(packageName, uri, Intent.FLAG_GRANT_WRITE_URI_PERMISSION or Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                }
+                startActivity(chooser)
+
             } catch (e: Exception) {
                 Toast.makeText(this, "Error : $e", Toast.LENGTH_SHORT).show()
 //                println("Error : $e")
@@ -245,7 +265,7 @@ class ReportActivity : AppCompatActivity() {
             document.close()
 
         }catch (e: Exception){
-            println("Error : $e")
+            println("Error Create: $e")
         }
     }
 
@@ -313,20 +333,51 @@ class ReportActivity : AppCompatActivity() {
         document.add(p)
     }
 
+
+
    fun addItemAndResult(document: Document, textLeft: String, textRight: String, leftStyle: Font, rightStyle: Font){
 
        val glue =  Chunk(VerticalPositionMark())
        val p = Paragraph()
-       p.add(Chunk(textLeft, leftStyle))
+       val s = SpannableString(textRight.trim())
+       if (textRight.indexOf('/') != -1) {
+           val len = textRight.length
+           s.setSpan(SuperscriptSpan(), len - 10, len - 9, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) // ตัวเศษ
+           s.setSpan(TextAppearanceSpan(null, 0, 40, null, null), len - 10, len - 9, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) // ตัวเศษ
+           s.setSpan(TextAppearanceSpan(null, 0, 40, null, null), len - 9, len - 8, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) // ตัว /
+           s.setSpan(SubscriptSpan(), len - 8, len - 7, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) // ตัวส่วน
+           s.setSpan(TextAppearanceSpan(null, 0, 40, null, null), len - 8, len - 7, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) // ตัวส่วน
+       }
 
+       println("dasasdadsa $s")
+
+       p.add(Chunk(textLeft, leftStyle))
        if (textRight.indexOf("mm2") > 1){
            p.add(Chunk("${textRight.replace("mm2", "mm")}\u00B2", rightStyle))
        }else{
-           p.add(Chunk(textRight, rightStyle))
-       }
+           if(textRight.indexOf('/') != -1) p.add(Chunk("$s", rightStyle))
+           else p.add(Chunk(textRight, rightStyle))
+//           p.add(Chunk(textRight, rightStyle))
 
+       }
        document.add(p)
 
     }
-
+    private fun showSettingsDialog() {
+        val builder: AlertDialog.Builder = AlertDialog.Builder(this)
+        builder.setTitle("Need Permissions")
+        builder.setMessage("This app needs permission to use this feature. You can grant them in app settings.")
+        builder.setPositiveButton("GOTO SETTINGS", DialogInterface.OnClickListener { dialog, which ->
+            dialog.cancel()
+            openSettings()
+        })
+        builder.setNegativeButton("Cancel", DialogInterface.OnClickListener { dialog, which -> dialog.cancel() })
+        builder.show()
+    }
+    private fun openSettings() {
+        val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
+        val uri: Uri = Uri.fromParts("package", packageName, null)
+        intent.data = uri
+        startActivityForResult(intent, 101)
+    }
 }
