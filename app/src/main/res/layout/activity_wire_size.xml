@@ -76,6 +76,8 @@
                   android:textSize="18dp"
                   android:layout_toLeftOf="@+id/iconPhase"
                   android:fontFamily="@font/mitr_regular"
+                  android:textColorHint="@color/defaulthint"
+                  android:textColor="@color/defaulthint"
                   android:layout_centerVertical="true"/>
 
               <ImageView
@@ -123,6 +125,8 @@
                 android:textSize="18dp"
                 android:layout_toLeftOf="@+id/iconInstallation"
                 android:fontFamily="@font/mitr_regular"
+                android:textColorHint="@color/defaulthint"
+                android:textColor="@color/defaulthint"
                 android:layout_centerVertical="true"/>
 
             <ImageView
@@ -170,6 +174,8 @@
                     android:textSize="18dp"
                     android:layout_toLeftOf="@+id/iconWireType"
                     android:fontFamily="@font/mitr_regular"
+                    android:textColorHint="@color/defaulthint"
+                    android:textColor="@color/defaulthint"
                     android:layout_centerVertical="true"/>
 
                 <ImageView
@@ -218,6 +224,8 @@
                     android:textSize="18dp"
                     android:layout_toLeftOf="@+id/iconCircuitBreakere"
                     android:fontFamily="@font/mitr_regular"
+                    android:textColorHint="@color/defaulthint"
+                    android:textColor="@color/defaulthint"
                     android:layout_centerVertical="true"/>
 
                 <ImageView
@@ -271,6 +279,7 @@
                     android:fontFamily="@font/mitr_regular"
                     android:layout_toRightOf="@+id/textViewDistance"
                     android:background="@null"
+                    android:textColorHint="@color/defaulthint"
                     android:layout_centerVertical="true"
                     />
 

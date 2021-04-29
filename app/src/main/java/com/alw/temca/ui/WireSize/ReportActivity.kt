@@ -310,7 +310,6 @@ class ReportActivity : AppCompatActivity() {
         document.add(p)
     }
 
-
     @Throws(DocumentException::class)
     fun addLineSeperator(document: Document) {
         val lineSeparator = LineSeparator()
@@ -348,8 +347,6 @@ class ReportActivity : AppCompatActivity() {
            s.setSpan(SubscriptSpan(), len - 8, len - 7, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) // ตัวส่วน
            s.setSpan(TextAppearanceSpan(null, 0, 40, null, null), len - 8, len - 7, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) // ตัวส่วน
        }
-
-       println("dasasdadsa $s")
 
        p.add(Chunk(textLeft, leftStyle))
        if (textRight.indexOf("mm2") > 1){

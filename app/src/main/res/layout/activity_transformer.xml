@@ -76,6 +76,8 @@ tools:context=".ui.Transformer.TransformerActivity">
                 android:hint="230/400 V"
                 android:textSize="18dp"
                 android:layout_toLeftOf="@+id/iconPressure"
+                android:textColorHint="@color/defaulthint"
+                android:textColor="@color/defaulthint"
                 android:fontFamily="@font/mitr_regular" />
 
             <ImageView
@@ -127,6 +129,8 @@ tools:context=".ui.Transformer.TransformerActivity">
                 android:textSize="18dp"
                 android:layout_toLeftOf="@+id/iconGroupInstallation"
                 android:fontFamily="@font/mitr_regular"
+                android:textColorHint="@color/defaulthint"
+                android:textColor="@color/defaulthint"
                 android:layout_centerVertical="true"/>
 
             <ImageView
@@ -175,6 +179,8 @@ tools:context=".ui.Transformer.TransformerActivity">
                 android:textSize="18dp"
                 android:layout_toLeftOf="@+id/iconCableType"
                 android:fontFamily="@font/mitr_regular"
+                android:textColorHint="@color/defaulthint"
+                android:textColor="@color/defaulthint"
                 android:layout_centerVertical="true"/>
 
             <ImageView
@@ -221,6 +227,8 @@ tools:context=".ui.Transformer.TransformerActivity">
                 android:hint="500 kVA"
                 android:textSize="18dp"
                 android:layout_toLeftOf="@+id/iconTransformerSize"
+                android:textColorHint="@color/defaulthint"
+                android:textColor="@color/defaulthint"
                 android:fontFamily="@font/mitr_regular" />
 
             <ImageView
@@ -274,6 +282,8 @@ tools:context=".ui.Transformer.TransformerActivity">
                 android:fontFamily="@font/mitr_regular"
                 android:background="@null"
                 android:layout_centerVertical="true"
+                android:textColorHint="@color/defaulthint"
+                android:textColor="@color/defaulthint"
                 />
 
         </RelativeLayout>

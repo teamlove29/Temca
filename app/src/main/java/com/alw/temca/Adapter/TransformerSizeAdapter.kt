@@ -53,7 +53,7 @@ class TransformerSizeAdapterResult(var ItemList : ArrayList<TransformerSizeModal
             itemView.TextViewTransformerSizeResult3.text = "${itemList.conduitSize}mm."
             itemView.TextViewTransformerSizeResult5.text = "-V(%)"
             itemView.TextViewTransformerSizeResult5.text = itemList.pressureDrop
-            itemView.TextViewTransformerSizeResult6.text = "(แรงดันอ้างอิง 230V)"
+            itemView.TextViewTransformerSizeResult6.text = "(แรงดันอ้างอิง ${itemList.referenceVoltage}V)"
 //            itemView.TextViewTransformerSizeResult6.text = "(แรงดันอ้างอิง ${itemList.referenceVoltage}V)"
 
         }

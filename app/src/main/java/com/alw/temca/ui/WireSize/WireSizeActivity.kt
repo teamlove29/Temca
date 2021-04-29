@@ -54,7 +54,7 @@ class WireSizeActivity : AppCompatActivity() {
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 if (s!!.isEmpty()) {
-                    editTextDistance.hint = "2000"
+                    editTextDistance.hint = " "
                 } else {
                     editTextDistance.hint = ""
                 }
@@ -172,7 +172,7 @@ class WireSizeActivity : AppCompatActivity() {
 
     fun DestanceOnClick(view: View) {
         editTextDistance.setText("")
-        editTextDistance.hint = "20"
+        editTextDistance.hint = " "
         editTextDistance.requestFocus()
         val imm = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
         imm.showSoftInput(editTextDistance, InputMethodManager.SHOW_IMPLICIT)

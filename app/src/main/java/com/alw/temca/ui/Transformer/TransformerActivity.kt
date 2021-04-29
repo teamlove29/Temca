@@ -78,7 +78,7 @@ class TransformerActivity : AppCompatActivity() {
 
     fun setDistanceOnClick(view: View) {
         editTextDistanceInTransformer.setText("")
-        editTextDistanceInTransformer.hint = "20"
+        editTextDistanceInTransformer.hint = " "
         editTextDistanceInTransformer.requestFocus()
         val imm = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
         imm.showSoftInput(editTextDistanceInTransformer, InputMethodManager.SHOW_IMPLICIT)
@@ -158,12 +158,14 @@ class TransformerActivity : AppCompatActivity() {
                             println("checkPressureVolts $checkPressureVolts")
                            val sumPullAndPercent =  "${"%.2f V".format(pullResult)} (${"%.2f".format(percentPressure)}%)"
 
+
+
                             dataListOfTable.add(TransformerSizeModalResult(
                                     getDataElectricCurrentInTable,
                                     getDataSizeCableInTable,
                                     getDataSizeConduitInTable,
                                     sumPullAndPercent,
-                                    ""))
+                                    checkPressureVolts.toString()))
                         }
                     }
                 }

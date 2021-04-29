@@ -79,6 +79,8 @@
             android:textSize="18dp"
             android:layout_toLeftOf="@+id/iconWireType"
             android:fontFamily="@font/mitr_regular"
+            android:textColorHint="@color/defaulthint"
+            android:textColor="@color/defaulthint"
             android:layout_centerVertical="true"/>
 
         <ImageView
@@ -94,6 +96,7 @@
 
 
     <androidx.cardview.widget.CardView
+        android:onClick="AmpOnClick"
         android:id="@+id/cardViewDistance"
         app:cardCornerRadius="5dp"
         android:layout_marginBottom="1dp"
@@ -121,15 +124,17 @@
 
             <EditText
                 android:id="@+id/editTextOperating"
-                android:layout_width="250dp"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:inputType="number"
-                android:hint="40"
+                android:text="40"
                 android:maxLength="4"
                 android:fontFamily="@font/mitr_regular"
                 android:layout_toRightOf="@+id/textViewOperating"
                 android:background="@null"
+                android:textColorHint="@color/defaulthint"
+                android:textColor="@color/defaulthint"
                 android:layout_centerVertical="true"
                 />
         </RelativeLayout>

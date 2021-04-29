@@ -41,7 +41,7 @@ class MoterActivity : AppCompatActivity() {
             }
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 if (s!!.isEmpty()){
-                    editTextDistanceInMoter.hint = "20"
+                    editTextDistanceInMoter.hint = " "
                 }else{
                     editTextDistanceInMoter.hint = ""
                 }
@@ -64,7 +64,7 @@ class MoterActivity : AppCompatActivity() {
             }
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 if (s!!.isEmpty()){
-                    editTextAmountMoterSize.hint = "45"
+                    editTextAmountMoterSize.hint = " "
                 }else{
                     editTextAmountMoterSize.hint = ""
                 }
@@ -84,7 +84,7 @@ class MoterActivity : AppCompatActivity() {
 
     fun moterSizeOnClick(view: View) {
         editTextAmountMoterSize.setText("")
-        editTextAmountMoterSize.hint = "45"
+        editTextAmountMoterSize.hint = " "
         editTextAmountMoterSize.requestFocus()
         val imm = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
         imm.showSoftInput(editTextAmountMoterSize, InputMethodManager.SHOW_IMPLICIT)
@@ -107,7 +107,7 @@ class MoterActivity : AppCompatActivity() {
 
     fun setDistanceOnClick(view: View) {
         editTextDistanceInMoter.setText("")
-        editTextDistanceInMoter.hint = "20"
+        editTextDistanceInMoter.hint = " "
         editTextDistanceInMoter.requestFocus()
         val imm = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
         imm.showSoftInput(editTextDistanceInMoter, InputMethodManager.SHOW_IMPLICIT)

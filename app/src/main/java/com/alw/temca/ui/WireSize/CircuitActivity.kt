@@ -1,16 +1,17 @@
 package com.alw.temca.ui.WireSize
 
-import android.app.Activity
+
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
-import android.text.Html
+
 import android.text.TextWatcher
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
 import com.alw.temca.R
-import jxl.Workbook
+
 import kotlinx.android.synthetic.main.activity_circuit.*
 import kotlinx.android.synthetic.main.activity_circuit.cardViewCircuitBreaker
 import kotlinx.android.synthetic.main.activity_wire_size.*
@@ -61,8 +62,12 @@ class CircuitActivity : AppCompatActivity() {
                     for (i in 0..RowAmountAmpMain){
                         if(sToInt <= listAmp[i].toInt()){
                             textViewCircuit.text = "${listAmp[i]}A"
+                            editTextOperating.hint = " "
                             break
-                        }else textViewCircuit.text = "${listAmp[RowAmountAmpMain]}A"
+                        }else {
+                            textViewCircuit.text = "${listAmp[RowAmountAmpMain]}A"
+                            editTextOperating.hint = ""
+                        }
                     }
                 } else textViewCircuit.text = "40A"
             }
@@ -94,5 +99,14 @@ class CircuitActivity : AppCompatActivity() {
             if (type == "RowAmountAmp") putString(TASK_LIST_PREF_AMOUNT_ROW, data)
             commit()
         }
+    }
+
+    fun AmpOnClick(view: View) {
+        editTextOperating.setText("")
+        editTextOperating.hint = " "
+        editTextOperating.requestFocus()
+        val imm = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.showSoftInput(editTextOperating, InputMethodManager.SHOW_IMPLICIT)
+
     }
 }

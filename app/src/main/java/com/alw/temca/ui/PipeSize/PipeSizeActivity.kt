@@ -339,7 +339,7 @@ class PipeSizeActivity : AppCompatActivity() {
 
      fun setAmountOnClick(view: View) {
         editTextAmountCable.setText("")
-        editTextAmountCable.hint = "20"
+        editTextAmountCable.hint = " "
         editTextAmountCable.requestFocus()
         val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.showSoftInput(editTextAmountCable, InputMethodManager.SHOW_IMPLICIT)

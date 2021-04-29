@@ -73,13 +73,15 @@ tools:context=".ui.Moter.MoterActivity">
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:padding="5dp"
-                android:hint="45"
+                android:text="45"
                 android:layout_toLeftOf="@+id/textUnit"
                 android:layout_centerVertical="true"
                 android:inputType="number"
                 android:textSize="17dp"
                 android:maxLines="1"
                 android:fontFamily="@font/mitr_regular"
+                android:textColorHint="@color/defaulthint"
+                android:textColor="@color/defaulthint"
                 android:background="@drawable/edittext_background" />
 
             <TextView
@@ -135,6 +137,8 @@ tools:context=".ui.Moter.MoterActivity">
                 android:textSize="18dp"
                 android:layout_toLeftOf="@+id/iconPhase"
                 android:fontFamily="@font/mitr_regular"
+                android:textColorHint="@color/defaulthint"
+                android:textColor="@color/defaulthint"
                 android:layout_centerVertical="true"/>
 
             <ImageView
@@ -186,6 +190,8 @@ tools:context=".ui.Moter.MoterActivity">
                 android:textSize="18dp"
                 android:layout_toLeftOf="@+id/iconGroupInstallation"
                 android:fontFamily="@font/mitr_regular"
+                android:textColorHint="@color/defaulthint"
+                android:textColor="@color/defaulthint"
                 android:layout_centerVertical="true"/>
 
             <ImageView
@@ -233,6 +239,8 @@ tools:context=".ui.Moter.MoterActivity">
                 android:textSize="18dp"
                 android:fontFamily="@font/mitr_regular"
                 android:layout_centerVertical="true"
+                android:textColorHint="@color/defaulthint"
+                android:textColor="@color/defaulthint"
                 android:layout_alignParentRight="true"/>
 
 <!--            <ImageView-->
@@ -281,6 +289,8 @@ tools:context=".ui.Moter.MoterActivity">
                 android:textSize="18dp"
                 android:layout_toLeftOf="@+id/iconCableType"
                 android:fontFamily="@font/mitr_regular"
+                android:textColorHint="@color/defaulthint"
+                android:textColor="@color/defaulthint"
                 android:layout_centerVertical="true"/>
 
             <ImageView
@@ -335,7 +345,8 @@ tools:context=".ui.Moter.MoterActivity">
                 android:hint="20"
                 android:fontFamily="@font/mitr_regular"
                 android:background="@null"
-
+                android:textColorHint="@color/defaulthint"
+                android:textColor="@color/defaulthint"
                 android:layout_centerVertical="true"
                 />
 
