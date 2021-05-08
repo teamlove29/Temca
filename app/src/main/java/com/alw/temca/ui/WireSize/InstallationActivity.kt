@@ -35,7 +35,8 @@ class InstallationActivity : AppCompatActivity(), InstallationonClickAdapterList
 //        installItem.add(InstallationModel(resources.getDrawable(setResourceImage4),"กลุ่ม 4","สายแกนเดี่ยวเดินบนฉนวนลูกถ้วย"))
         installItem.add(InstallationModel(resources.getDrawable(setResourceImage5),"กลุ่ม 5","เดินในท่อฝังดิน"))
 //        installItem.add(InstallationModel(resources.getDrawable(setResourceImage6),"กลุ่ม 6","เดินฝังดินโดยตรง"))
-//        installItem.add(InstallationModel(resources.getDrawable(setResourceImage7),"กลุ่ม 7","เดินในรางเคเบิล"))
+        installItem.add(InstallationModel(resources.getDrawable(setResourceImage7),"กลุ่ม 7","วางบนรางเคเบิ้ล ไม่มีฝาปิดแบบระบายอากาศ"))
+        installItem.add(InstallationModel(resources.getDrawable(setResourceImage7),"กลุ่ม 7","วางแบนรางเคเบิ้ล ไม่มีผาปิดแบบบันได"))
 
         recyclerViewInstallation.adapter = InstallationAdapter(installItem,this)
         recyclerViewInstallation.layoutManager = LinearLayoutManager(this)
@@ -45,6 +46,7 @@ class InstallationActivity : AppCompatActivity(), InstallationonClickAdapterList
     override fun onClick(postion: Int) {
         val resultIntent = Intent()
         resultIntent.putExtra("dataInstall",installItem[postion].title)
+        resultIntent.putExtra("dataInstallDes",installItem[postion].des)
         setResult(Activity.RESULT_OK, resultIntent)
         finish()
     }

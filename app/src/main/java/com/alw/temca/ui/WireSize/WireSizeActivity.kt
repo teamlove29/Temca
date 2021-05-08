@@ -12,7 +12,10 @@ import android.text.style.TextAppearanceSpan
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.alw.temca.Adapter.WireSizeAdapter
 import com.alw.temca.Function.FindDetailInstallation
+import com.alw.temca.Model.RailSizeModel
 import com.alw.temca.Model.ReportResultWireSize
 import com.alw.temca.R
 import com.alw.temca.ui.SponsorActivity
@@ -25,6 +28,7 @@ class WireSizeActivity : AppCompatActivity() {
     private val TASK_NAME_REQUEST_CODE = 100
     private val TASK_LIST_PREF_KEY_PHASE_IN_WIRESIZE = "task_list_phase_in_wiresize"
     private val TASK_LIST_PREF_KEY_INSTALLATION_IN_WIRESIZE = "task_list_installation_in_wiresize"
+    private val TASK_LIST_PREF_KEY_INSTALLATION_IN_WIRESIZE_DES = "task_list_installation_in_wiresize_des"
     private val TASK_LIST_PREF_KEY_TYPE_CABLE_IN_WIRESIZE = "task_list_type_cable_in_wiresize"
     private val TASK_LIST_PREF_KEY_CIRCUIT_IN_WIRESIZE = "task_list_circuit_in_wiresize"
     private val TASK_LIST_PREF_KEY_DISTANCE_IN_WIRESIZE = "task_list_distance_in_wiresize"
@@ -78,8 +82,9 @@ class WireSizeActivity : AppCompatActivity() {
         if (requestCode === TASK_NAME_REQUEST_CODE){
             if(resultCode == RESULT_OK){
                 val dataPhase = data!!.getIntExtra("dataPhase", 0)
-                val dataInstallation = data!!.getStringExtra("dataInstall")
-                val dataTypeCable = data!!.getStringExtra("dataTypeCable")
+                val dataInstallation = data.getStringExtra("dataInstall")
+                val dataInstallationDes = data.getStringExtra("dataInstallDes").toString()
+                val dataTypeCable = data.getStringExtra("dataTypeCable")
 //                val dataCircuit = data!!.getStringExtra("dataCircuit")
 
                 if (dataPhase != 0){
@@ -89,12 +94,23 @@ class WireSizeActivity : AppCompatActivity() {
                 if (dataInstallation != null) {
                     val dataInstallationSlice = dataInstallation.slice(0..6)
                     if(dataInstallationSlice == "กลุ่ม 5"){
-                            if (typeCableTextView.text.equals("IEC01")){
+                            if (typeCableTextView.text != "NYY" && typeCableTextView.text != "XLPE" && typeCableTextView.text != "VCT" && typeCableTextView.text != "NYY-G" && typeCableTextView.text != "VCT-G"){
                                 typeCableTextView.text = "NYY"
                             }
-                    }
+                        circuitTextView.text = "40A"
+                    }else if(dataInstallationSlice == "กลุ่ม 7"){
+                        if(typeCableTextView.text != "NYY 1C" && typeCableTextView.text != "NYY 4C" && typeCableTextView.text != "XLPE 1C" && typeCableTextView.text != "XLPE 4C"){
+                            typeCableTextView.text = "NYY 1C"
+                        }
+                        if(phaseTextView.text != "3 เฟส"){
+                            phaseTextView.text = "3 เฟส"
+                        }
+                        circuitTextView.text = "400A"
+                    }else circuitTextView.text = "40A"
+
                     installationTextView.text = dataInstallationSlice
                     saveData("installation", dataInstallation)
+                    saveData("installationDes", dataInstallationDes)
                 }
                 if (dataTypeCable != null) {
                     typeCableTextView.text = dataTypeCable
@@ -106,11 +122,14 @@ class WireSizeActivity : AppCompatActivity() {
 //        sponsorImageView.visibility = View.VISIBLE
         tableBeforeCalculate.visibility = View.GONE
         btnCal.visibility = View.VISIBLE
-        circuitTextView.text = "40A"
+//        circuitTextView.text = "40A"
     }
 
     fun phaseOnClick(view: View){
         val intent = Intent(this, PhaseActivity::class.java)
+        if(installationTextView.text == "กลุ่ม 7"){
+            intent.putExtra("Activity", "Group7")
+        }
         startActivityForResult(intent, TASK_NAME_REQUEST_CODE)
     }
     fun installationOnClick(view: View) {
@@ -122,31 +141,43 @@ class WireSizeActivity : AppCompatActivity() {
         if(installationTextView.text == "กลุ่ม 5"){
             intent.putExtra("Activity", "Group5")
         }
+        else if(installationTextView.text == "กลุ่ม 7"){
+            intent.putExtra("Activity", "Group7")
+        }
         startActivityForResult(intent, TASK_NAME_REQUEST_CODE)
     }
     fun CircuitOnClick(view: View) {
 
         val intent = Intent(this, CircuitActivity::class.java)
-
         val circuitCheckGroup:String = installationOfTable(installationTextView.text.toString())
         val circuitCheckCableType:Int = circuitCheckPhaseAndCableType(phaseTextView.text.toString(), typeCableTextView.text.toString())
         val typeCable = applicationContext.assets.open(circuitCheckGroup)
         val wb = Workbook.getWorkbook(typeCable)
-        val sheet = wb.getSheet(circuitCheckCableType)
-        for(i in 2..20){
-            val checkAmountAmp = sheet.getCell(0, i).contents.toInt()
 
-            if(checkAmountAmp == 0 || checkAmountAmp == 1000){
-                val rowAmount = when(checkAmountAmp){
-                    1000 -> i - 2
-                    else -> i-3
+        if(circuitCheckGroup != "WireGroup_Group7.xls"){
+            val sheet = wb.getSheet(circuitCheckCableType)
+            for(i in 2..20){
+                val checkAmountAmp = sheet.getCell(0, i).contents.toInt()
+
+                if(checkAmountAmp == 0 || checkAmountAmp == 1000){
+                    val rowAmount = when(checkAmountAmp){
+                        1000 -> i - 2
+                        else -> i - 3
+                    }
+                    intent.putExtra("RowAmountAmp", rowAmount)
+
+                    startActivity(intent)
+                    finish()
+                    break
                 }
-                intent.putExtra("RowAmountAmp", rowAmount)
-                startActivity(intent)
-                finish()
-                break
             }
+        }else{
+                    intent.putExtra("RowAmountAmp", 77)
+                    startActivity(intent)
+                    finish()
+
         }
+
     }
 
     fun ReportOnClick(view: View) {
@@ -195,6 +226,13 @@ class WireSizeActivity : AppCompatActivity() {
             hideKeyboard()
         }
 
+        val test = ArrayList<RailSizeModel>()
+        test.add(RailSizeModel("dasdasd"))
+        test.add(RailSizeModel("dasdasd"))
+        recycerViewWireSize.adapter = WireSizeAdapter(test)
+        recycerViewWireSize.layoutManager = LinearLayoutManager(this)
+        // TODO
+
         try {
             val circuitCheckGroup:String = installationOfTable(installationTextView.text.toString())
             val circuitCheckCableType:Int = circuitCheckPhaseAndCableType(phaseTextView.text.toString(), typeCableTextView.text.toString())
@@ -229,8 +267,6 @@ class WireSizeActivity : AppCompatActivity() {
                     if(cableSize.length > 10) textViewShow2.text = Html.fromHtml("${cableSize.replace("mm","mm<sup><small><small>2</small></small></sup>")}")
                     else textViewShow2.text = Html.fromHtml("$cableSize mm<sup><small><small>2</small></small></sup>")
 
-
-
                     if(typeCableTextView.text == "NYY-G" || typeCableTextView.text == "VCT-G"){
                         textViewResultWireGround.text = "-"
                         pressureDropIndexTable = 1
@@ -238,7 +274,6 @@ class WireSizeActivity : AppCompatActivity() {
                         textViewResultWireGround.text = Html.fromHtml("$sizeWireGround mm<sup><small><small>2</small></small></sup>")
                         if(typeCableTextView.text == "XLPE") pressureDropIndexTable = 2
                         else pressureDropIndexTable = 0
-
                     }
                     textViewShow4.text = s
 
@@ -275,6 +310,9 @@ class WireSizeActivity : AppCompatActivity() {
             }
             if (type == "installation"){
                 putString(TASK_LIST_PREF_KEY_INSTALLATION_IN_WIRESIZE, data)
+            }
+            if (type == "installationDes"){
+                putString(TASK_LIST_PREF_KEY_INSTALLATION_IN_WIRESIZE_DES, data)
             }
             if (type == "typeCable"){
                 putString(TASK_LIST_PREF_KEY_TYPE_CABLE_IN_WIRESIZE, data)
@@ -323,11 +361,15 @@ class WireSizeActivity : AppCompatActivity() {
         return when(installation){
             "กลุ่ม 2" -> "WireGroup_Group2.xls"
             "กลุ่ม 5" -> "WireGroup_Group5.xls"
+            "กลุ่ม 7" -> "WireGroup_Group7.xls"
             else -> ""
         }
     }
 
     private fun circuitCheckPhaseAndCableType(phase: String, cableType: String):Int{
+        val sharedPref = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
+        val dataOfInstallationDes = sharedPref.getString(TASK_LIST_PREF_KEY_INSTALLATION_IN_WIRESIZE_DES, null)
+
         return if(phase == "1 เฟส"){
             textViewReferenceVoltage.text = "(แรงดันอ้างอิง 230V)"
             when(cableType){
@@ -340,16 +382,39 @@ class WireSizeActivity : AppCompatActivity() {
                 else -> 0
             }
         }else{ // 3 เฟส
-            textViewReferenceVoltage.text = "(แรงดันอ้างอิง 400V)"
-            when(cableType){
-                "IEC01" -> 6
-                "NYY" -> 7
-                "VCT" -> 8
-                "XLPE" -> 9
-                "NYY-G" -> 10
-                "VCT-G" -> 11
-                else -> 0
+            if(installationTextView.text == "กลุ่ม 7"){
+                textViewReferenceVoltage.text = "(แรงดันอ้างอิง 400V)"
+
+                if(dataOfInstallationDes == "วางบนรางเคเบิ้ล ไม่มีฝาปิดแบบระบายอากาศ"){
+                    when(cableType){
+                        "NYY 1C" -> 0
+                        "NYY 4C" -> 2
+                        "XLPE 1C" -> 4
+                        "XLPE 4C" -> 6
+                        else -> 0
+                    }
+                }else{
+                    when(cableType){
+                        "NYY 1C" -> 1
+                        "NYY 4C" -> 3
+                        "XLPE 1C" -> 5
+                        "XLPE 4C" -> 7
+                        else -> 0
+                    }
+                }
+            }else{
+                textViewReferenceVoltage.text = "(แรงดันอ้างอิง 400V)"
+                when(cableType){
+                    "IEC01" -> 6
+                    "NYY" -> 7
+                    "VCT" -> 8
+                    "XLPE" -> 9
+                    "NYY-G" -> 10
+                    "VCT-G" -> 11
+                    else -> 0
+                }
             }
+
         }
     }
 

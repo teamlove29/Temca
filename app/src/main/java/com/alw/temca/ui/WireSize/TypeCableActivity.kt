@@ -61,6 +61,14 @@ class TypeCableActivity : AppCompatActivity() , InstallationonClickAdapterListen
             typeCableItem.add(TypeCableModel("NYY-G"))
             typeCableItem.add(TypeCableModel("VCT-G"))
         }
+        if(checkActivity == "Group7"){
+            typeCableItem.clear()
+            typeCableItem.add(TypeCableModel("NYY 1C"))
+            typeCableItem.add(TypeCableModel("NYY 4C"))
+            typeCableItem.add(TypeCableModel("XLPE 1C"))
+            typeCableItem.add(TypeCableModel("XLPE 4C"))
+
+        }
 
 
         recyclerViewTypeCable.adapter = TypeCableAdapter(typeCableItem,this)

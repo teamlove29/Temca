@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.alw.temca.Adapter.PhaseAdapter
 import com.alw.temca.Adapter.onClickAdapterListener
 import com.alw.temca.Model.PhaseModel
+import com.alw.temca.Model.TypeCableModel
 import com.alw.temca.R
 import kotlinx.android.synthetic.main.activity_phase.*
 
@@ -29,6 +30,13 @@ class PhaseActivity : AppCompatActivity(), onClickAdapterListener {
             phaseItem.add(PhaseModel(1,"เฟส 2สาย (230 V)"))
             phaseItem.add(PhaseModel(3,"เฟส 4สาย (400 V)"))
         }
+
+        if(comeForm == "Group7"){
+            phaseItem.clear()
+            phaseItem.add(PhaseModel(3,"เฟส 4สาย (400 V)"))
+        }
+
+
 
         recyclerViewPhase.adapter = PhaseAdapter(phaseItem,this)
         recyclerViewPhase.layoutManager = LinearLayoutManager(this)

@@ -7,6 +7,7 @@
     android:layout_height="wrap_content">
 
     <TextView
+        android:gravity="center"
         android:id="@+id/TextViewTransformerSizeResult1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -33,7 +34,8 @@
             android:id="@+id/TextViewTransformerSizeResult3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
+            android:layout_toRightOf="@+id/TextViewTransformerSizeResult2"
+            android:layout_marginLeft="20dp"
             android:fontFamily="@font/mitr_regular"
             android:text="400x100mm."
             android:textColor="@color/white"
@@ -41,40 +43,40 @@
     </RelativeLayout>
 
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:id="@+id/TextViewTransformerSizeResult4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="แรงดันตก"
-            android:textSize="16dp"
-            android:fontFamily="@font/mitr_regular"
-            android:textColor="@color/white"
-            android:layout_centerVertical="true"/>
+<!--    <RelativeLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content">-->
+<!--        <TextView-->
+<!--            android:id="@+id/TextViewTransformerSizeResult4"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="แรงดันตก"-->
+<!--            android:textSize="16dp"-->
+<!--            android:fontFamily="@font/mitr_regular"-->
+<!--            android:textColor="@color/white"-->
+<!--            android:layout_centerVertical="true"/>-->
 
-        <TextView
-            android:id="@+id/TextViewTransformerSizeResult5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="-V (%)"
-            android:textSize="16dp"
-            android:fontFamily="@font/mitr_regular"
-            android:textColor="@color/white"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"/>
-    </RelativeLayout>
+<!--        <TextView-->
+<!--            android:id="@+id/TextViewTransformerSizeResult5"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="-V (%)"-->
+<!--            android:textSize="16dp"-->
+<!--            android:fontFamily="@font/mitr_regular"-->
+<!--            android:textColor="@color/white"-->
+<!--            android:layout_alignParentRight="true"-->
+<!--            android:layout_centerVertical="true"/>-->
+<!--    </RelativeLayout>-->
 
-    <TextView
-        android:id="@+id/TextViewTransformerSizeResult6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="(แรงดันอ้างอิง 400V)"
-        android:textSize="14dp"
-        android:fontFamily="@font/mitr_regular"
-        android:textColor="@color/white"
-        android:layout_centerVertical="true"/>
+<!--    <TextView-->
+<!--        android:id="@+id/TextViewTransformerSizeResult6"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="(แรงดันอ้างอิง 400V)"-->
+<!--        android:textSize="14dp"-->
+<!--        android:fontFamily="@font/mitr_regular"-->
+<!--        android:textColor="@color/white"-->
+<!--        android:layout_centerVertical="true"/>-->
 
 
 

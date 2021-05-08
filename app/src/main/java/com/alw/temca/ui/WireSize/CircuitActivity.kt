@@ -20,56 +20,97 @@ import kotlinx.android.synthetic.main.activity_wire_size.*
 class CircuitActivity : AppCompatActivity() {
     private val TASK_LIST_PREF_KEY_CIRCUIT = "task_list_circuit"
     private val TASK_LIST_PREF_AMOUNT_ROW = "task_list_amount_row"
+    private val TASK_LIST_PREF_AMOUNT_ROW_GROUP_7 = "task_list_amount_row_group_7"
     private val PREF_NAME = "task_name"
-    private var RowAmountAmpMain:Int = 99
     private val listAmp = arrayListOf<String>("16","20","25","32","40","50","63","80","100","125","160","200","250","320","400","500","630","800","1000")
+    private val listAmpGroup7 = arrayListOf<String>("400","500","630","800","1000","1250","1600","2000")
+    private var RowAmountAmpMain:Int = 99
+    private var RowAmountAmpGroup7:Int = 7
+    private var memoryGroup:Int = 99
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_circuit)
 
         var intent: Intent
         intent = getIntent()
-        val nameA = intent.getStringExtra("data")
-        val RowAmountAmp = intent.getIntExtra("RowAmountAmp",99)
-
+        val nameA = intent.getStringExtra("data") // รับค่าจากการเลือก amp
+        val RowAmountAmp = intent.getIntExtra("RowAmountAmp",99) //รับค่าจากหน้าหลัก
 
         if (RowAmountAmp != 99){
-            RowAmountAmpMain = RowAmountAmp
-            saveData("RowAmountAmp",RowAmountAmp.toString())
-        }else{
+            if(RowAmountAmp == 77){ // ถ้าส่งข้อมูลมาเป็น 77 ให้ save RowAmountAmpMain เป็น 7 และ memoryGroup = 7 ถ้าไม่ก็จะปกติ
+                RowAmountAmpMain = RowAmountAmpGroup7
+                memoryGroup = 7
+                textViewCircuit.text = "400A" // Circuit Breaker
+                editTextOperating.setText("400") // กระแสใช้งาน A
+            }else{
+                RowAmountAmpMain = RowAmountAmp
+            }
+            saveData("RowAmountAmp",RowAmountAmpMain.toString())
+            saveData("memoryGroup",memoryGroup.toString())
+        }
+        else{
             loadData()
         }
 
         if(RowAmountAmpMain != 99) {
-            cardViewCircuitBreaker.setOnClickListener {
-                intent = Intent(this, CircuitBreakerActivity::class.java)
-                intent.putExtra("RowAmountAmp",RowAmountAmpMain)
-                startActivity(intent)
-                finish()
+            if(RowAmountAmpMain == 7){
+                cardViewCircuitBreaker.setOnClickListener {
+                    intent = Intent(this, CircuitBreakerActivity::class.java)
+                    intent.putExtra("RowAmountAmp",77)
+                    startActivity(intent)
+                    finish()
+                }
+            }else{
+                cardViewCircuitBreaker.setOnClickListener {
+                    intent = Intent(this, CircuitBreakerActivity::class.java)
+                    intent.putExtra("RowAmountAmp",RowAmountAmpMain)
+                    startActivity(intent)
+                    finish()
+                }
             }
         }
 
         if (nameA != null){
-            textViewCircuit.text = nameA
-            editTextOperating.setText(nameA.replace("A",""))
+            textViewCircuit.text = nameA // Circuit Breaker
+            editTextOperating.setText(nameA.replace("A","")) // กระแสใช้งาน A
         }
 
         editTextOperating.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+
                 if (s!!.isNotEmpty() && RowAmountAmpMain!= 99) {
                     val sToInt = Integer.parseInt(s.toString())
-                    for (i in 0..RowAmountAmpMain){
-                        if(sToInt <= listAmp[i].toInt()){
-                            textViewCircuit.text = "${listAmp[i]}A"
+                    if(memoryGroup == 7){
+                        for (i in 0..RowAmountAmpMain){
+                        if(sToInt <= listAmpGroup7[i].toInt()){
+                            textViewCircuit.text = "${listAmpGroup7[i]}A"
                             editTextOperating.hint = " "
                             break
                         }else {
-                            textViewCircuit.text = "${listAmp[RowAmountAmpMain]}A"
-                            editTextOperating.hint = ""
+                            textViewCircuit.text = "${listAmpGroup7[RowAmountAmpGroup7]}A"
+                            editTextOperating.hint = " "
                         }
                     }
-                } else textViewCircuit.text = "40A"
+                    }
+                        else{
+                            for (i in 0..RowAmountAmpMain){
+                                if(sToInt <= listAmp[i].toInt()){
+                                    textViewCircuit.text = "${listAmp[i]}A"
+                                    editTextOperating.hint = " "
+                                    break
+                                }else {
+                                    textViewCircuit.text = "${listAmp[RowAmountAmpMain]}A"
+                                    editTextOperating.hint = ""
+                                }
+                            }
+                    }
+
+                } else {
+                        if(memoryGroup == 7) textViewCircuit.text = "400A"
+                            else textViewCircuit.text = "40A"
+                }
             }
             override fun afterTextChanged(s: Editable?) {}
         })
@@ -82,13 +123,16 @@ class CircuitActivity : AppCompatActivity() {
         startActivity(Intent)
         finish()
     }
-
+//
     fun loadData(){
         val sharedPref = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
         val dataOfCircuit = sharedPref.getString(TASK_LIST_PREF_KEY_CIRCUIT, "40A")
         val rowAmountOfCircuit = sharedPref.getString(TASK_LIST_PREF_AMOUNT_ROW, "99")
+        val rowAmountOfCircuitGroup7 = sharedPref.getString(TASK_LIST_PREF_AMOUNT_ROW_GROUP_7, "99")
+
         RowAmountAmpMain = rowAmountOfCircuit!!.toInt()
-        textViewCircuit.text = dataOfCircuit
+        memoryGroup = rowAmountOfCircuitGroup7!!.toInt()
+         textViewCircuit.text = dataOfCircuit
         editTextOperating.setText(dataOfCircuit!!.replace("A",""))
     }
 
@@ -97,6 +141,7 @@ class CircuitActivity : AppCompatActivity() {
         val sharedPref = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE) ?: return
         with(sharedPref.edit()) {
             if (type == "RowAmountAmp") putString(TASK_LIST_PREF_AMOUNT_ROW, data)
+            if (type == "memoryGroup") putString(TASK_LIST_PREF_AMOUNT_ROW_GROUP_7, data)
             commit()
         }
     }

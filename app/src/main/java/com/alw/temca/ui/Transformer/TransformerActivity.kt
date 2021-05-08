@@ -37,25 +37,25 @@ class TransformerActivity : AppCompatActivity() {
         setContentView(R.layout.activity_transformer)
         tableBeforeCalculateInTransformer.visibility =  View.GONE
         loadData()
-        editTextDistanceInTransformer.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-                //ก่อนเปลี่ยนคือ ?
-            }
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                if (s!!.isEmpty()){
-                    editTextDistanceInTransformer.hint = "20"
-                }else{
-                    editTextDistanceInTransformer.hint = ""
-                }
-                tableBeforeCalculateInTransformer.visibility = View.GONE
-                btnCalInPipeSize.visibility = View.VISIBLE
-                wayBackActivity1.visibility = View.VISIBLE
-            }
-            override fun afterTextChanged(s: Editable?) {
-                //หลังจากพิมพ์ผลลัพคือ ?
-                saveData("distance",s.toString())
-            }
-        })
+//        editTextDistanceInTransformer.addTextChangedListener(object : TextWatcher {
+//            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+//                //ก่อนเปลี่ยนคือ ?
+//            }
+//            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+//                if (s!!.isEmpty()){
+//                    editTextDistanceInTransformer.hint = "20"
+//                }else{
+//                    editTextDistanceInTransformer.hint = ""
+//                }
+//                tableBeforeCalculateInTransformer.visibility = View.GONE
+//                btnCalInPipeSize.visibility = View.VISIBLE
+//                wayBackActivity1.visibility = View.VISIBLE
+//            }
+//            override fun afterTextChanged(s: Editable?) {
+//                //หลังจากพิมพ์ผลลัพคือ ?
+//                saveData("distance",s.toString())
+//            }
+//        })
     }
     fun choosePressureOnClick(view: View) {
         val intent = Intent(this, PressureVoltsActivity::class.java)
@@ -76,21 +76,21 @@ class TransformerActivity : AppCompatActivity() {
         startActivityForResult(intent,TASK_NAME_REQUEST_CODE)
     }
 
-    fun setDistanceOnClick(view: View) {
-        editTextDistanceInTransformer.setText("")
-        editTextDistanceInTransformer.hint = " "
-        editTextDistanceInTransformer.requestFocus()
-        val imm = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
-        imm.showSoftInput(editTextDistanceInTransformer, InputMethodManager.SHOW_IMPLICIT)
-        wayBackActivity1.visibility = View.VISIBLE
-    }
+//    fun setDistanceOnClick(view: View) {
+//        editTextDistanceInTransformer.setText("")
+//        editTextDistanceInTransformer.hint = " "
+//        editTextDistanceInTransformer.requestFocus()
+//        val imm = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+//        imm.showSoftInput(editTextDistanceInTransformer, InputMethodManager.SHOW_IMPLICIT)
+//        wayBackActivity1.visibility = View.VISIBLE
+//    }
     fun TransformerReportOnClick(view: View) {}
 
     fun calculatorTransformerOnClick(view: View) {
 
-        if(editTextDistanceInTransformer.text.isEmpty()) editTextDistanceInTransformer.setText("20")
+//        if(editTextDistanceInTransformer.text.isEmpty()) editTextDistanceInTransformer.setText("20")
 
-        editTextDistanceInTransformer.clearFocus()
+//        editTextDistanceInTransformer.clearFocus()
         btnCalInPipeSize.apply { hideKeyboard() }
         wayBackActivity1.visibility = View.GONE
         btnCalInPipeSize.visibility = View.GONE
@@ -144,30 +144,31 @@ class TransformerActivity : AppCompatActivity() {
                 val getCableTypeInTable = sheet.getCell(5, j).contents // get TableType
                 val getAmpInTable = sheet.getCell(6, i).contents.toInt() // get branker circuit
 
-                    for (h in 2..20) {
-                        val pressureCable = applicationContext.assets.open("pressure_drop.xls") // pressure_drop_file
-                        val wbPressure = Workbook.getWorkbook(pressureCable)
-                        val sheetPressure = wbPressure.getSheet(pressureDropIndexTable)
-                        val fineCableTypeInTable = sheetPressure.getCell(0, h).contents
-                        val amountDeistance = Integer.parseInt(editTextDistanceInTransformer.text.toString())
-
-                        if (getCableTypeInTable == fineCableTypeInTable) { //
-                            val getreslutInTable = sheetPressure.getCell(2, h).contents.toDouble() // 1 เฟส
-                            val pullResult = getreslutInTable * getAmpInTable * amountDeistance / 1000 // result
-                            val percentPressure  = 100 * pullResult / checkPressureVolts // result
-                            println("checkPressureVolts $checkPressureVolts")
-                           val sumPullAndPercent =  "${"%.2f V".format(pullResult)} (${"%.2f".format(percentPressure)}%)"
-
-
-
-                            dataListOfTable.add(TransformerSizeModalResult(
-                                    getDataElectricCurrentInTable,
-                                    getDataSizeCableInTable,
-                                    getDataSizeConduitInTable,
-                                    sumPullAndPercent,
-                                    checkPressureVolts.toString()))
-                        }
-                    }
+//                    for (h in 2..20) {
+//                        val pressureCable = applicationContext.assets.open("pressure_drop.xls") // pressure_drop_file
+//                        val wbPressure = Workbook.getWorkbook(pressureCable)
+//                        val sheetPressure = wbPressure.getSheet(pressureDropIndexTable)
+//                        val fineCableTypeInTable = sheetPressure.getCell(0, h).contents
+//                        val amountDeistance = Integer.parseInt(editTextDistanceInTransformer.text.toString())
+//
+//                        if (getCableTypeInTable == fineCableTypeInTable) { //
+//                            val getreslutInTable = sheetPressure.getCell(2, h).contents.toDouble() // 1 เฟส
+//                            val pullResult = getreslutInTable * getAmpInTable * amountDeistance / 1000 // result
+//                            val percentPressure  = 100 * pullResult / checkPressureVolts // result
+//                            println("checkPressureVolts $checkPressureVolts")
+//                           val sumPullAndPercent =  "${"%.2f V".format(pullResult)} (${"%.2f".format(percentPressure)}%)"
+//
+//
+//
+//
+//                        }
+//                    }
+                    dataListOfTable.add(TransformerSizeModalResult(
+                            getDataElectricCurrentInTable,
+                            getDataSizeCableInTable,
+                            getDataSizeConduitInTable,
+                            "",
+                            ""))
                 }
                 recyclerViewResultTransformer.adapter = TransformerSizeAdapterResult(dataListOfTable)
                 recyclerViewResultTransformer.layoutManager = LinearLayoutManager(this)
@@ -239,13 +240,13 @@ class TransformerActivity : AppCompatActivity() {
         val dataOfSizeTransformer = sharedPref.getString(TASK_LIST_PREF_KEY_SIZE_TRANSFORMER,"500 kVA")
         val dataOfGroupInstall = sharedPref.getString(TASK_LIST_PREF_KEY_INSTALLATION,"เดินเคเบิลแบบระบายอากาศ")
         val dataOfCableType = sharedPref.getString(TASK_LIST_PREF_KEY_TYPE_CABLE,"NYY")
-        val dataOfDistanceInTransformer = sharedPref.getString(TASK_LIST_PREF_KEY_DISTANCE_TRANSFORMER,"20")
+//        val dataOfDistanceInTransformer = sharedPref.getString(TASK_LIST_PREF_KEY_DISTANCE_TRANSFORMER,"20")
 
         TextViewPressure.text = dataOfPressureVolt
         TextViewTransformerSize.text = dataOfSizeTransformer
         TextViewGroupInstallation.text = dataOfGroupInstall
         TextViewCableType.text = dataOfCableType
-        editTextDistanceInTransformer.setText(dataOfDistanceInTransformer)
+//        editTextDistanceInTransformer.setText(dataOfDistanceInTransformer)
     }
 
     fun sponsorOnClick(view: View) {
