@@ -5,10 +5,8 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.text.*
-import android.text.style.RelativeSizeSpan
 import android.text.style.SubscriptSpan
 import android.text.style.SuperscriptSpan
-import android.text.style.TextAppearanceSpan
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
@@ -37,6 +35,8 @@ class WireSizeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_wire_size)
         tableBeforeCalculate.visibility = View.GONE
+        tableBeforeCalculateGroup7.visibility = View.GONE
+
 
         val codeStart = intent.extras?.getBoolean("code")
         if(codeStart == true){
@@ -64,6 +64,7 @@ class WireSizeActivity : AppCompatActivity() {
                 }
 //                sponsorImageView.visibility = View.VISIBLE
                 tableBeforeCalculate.visibility = View.GONE
+                tableBeforeCalculateGroup7.visibility = View.GONE
                 btnCal.visibility = View.VISIBLE
                 wayBackActivity1.visibility = View.VISIBLE
             }
@@ -121,6 +122,7 @@ class WireSizeActivity : AppCompatActivity() {
         }
 //        sponsorImageView.visibility = View.VISIBLE
         tableBeforeCalculate.visibility = View.GONE
+        tableBeforeCalculateGroup7.visibility = View.GONE
         btnCal.visibility = View.VISIBLE
 //        circuitTextView.text = "40A"
     }
@@ -226,74 +228,141 @@ class WireSizeActivity : AppCompatActivity() {
             hideKeyboard()
         }
 
-        val test = ArrayList<RailSizeModel>()
-        test.add(RailSizeModel("dasdasd"))
-        test.add(RailSizeModel("dasdasd"))
-        recycerViewWireSize.adapter = WireSizeAdapter(test)
-        recycerViewWireSize.layoutManager = LinearLayoutManager(this)
-        // TODO
-
         try {
             val circuitCheckGroup:String = installationOfTable(installationTextView.text.toString())
             val circuitCheckCableType:Int = circuitCheckPhaseAndCableType(phaseTextView.text.toString(), typeCableTextView.text.toString())
             val typeCable = applicationContext.assets.open(circuitCheckGroup)
             val wb = Workbook.getWorkbook(typeCable)
             val sheet = wb.getSheet(circuitCheckCableType)
-            for(i in 2..20){
-                val checkAmp = sheet.getCell(0, i).contents.toInt()
-                val circuitTextViewToInt = Integer.parseInt(circuitTextView.text.toString().replace("A", ""))
-                if(circuitTextViewToInt <= checkAmp){
 
-                    val cableSize = sheet.getCell(1, i).contents
-                    val cableSizeWithOutX = sheet.getCell(6, i).contents
-                    val sizeWireGround = sheet.getCell(2, i).contents
-                    val resultSizeConduitOfmm = sheet.getCell(3, i).contents
-                    val resultSizeConduitOfInch = sheet.getCell(4, i).contents
-                    val temp:String
-                    var pressureDropIndexTable:Int
-                    if(resultSizeConduitOfInch == "-") temp = "${resultSizeConduitOfmm}mm"
-                    else temp = "${resultSizeConduitOfmm} mm ( ${resultSizeConduitOfInch} inch )"
+            // if group 7
+            if(installationTextView.text == "กลุ่ม 7"){
+                val railSizeList = ArrayList<RailSizeModel>()
+                tableBeforeCalculateGroup7.visibility = View.VISIBLE
+                tableBeforeCalculate.visibility = View.GONE
 
-                    val s = SpannableString(temp.trim())
-                    if (temp.indexOf('/') != -1) {
-                        val len = temp.length
-                        s.setSpan(SuperscriptSpan(), len - 10, len - 9, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) // ตัวเศษ
-                        s.setSpan( applicationContext,len - 10, len - 9, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) // ตัวเศษ
-                        s.setSpan(applicationContext, len - 9, len - 8, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) // ตัว /
-                        s.setSpan(SubscriptSpan(), len - 8, len - 7, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) // ตัวส่วน
-                        s.setSpan(applicationContext, len - 8, len-7, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) // ตัวส่วน
-                    }
+                for(i in 2..17){
+                    val checkAmp = sheet.getCell(0, i).contents
+                    if(checkAmp != ""){
+                        if(circuitTextView.text.toString().replace("A","") == checkAmp){
+                            for(j in i..i+1){
+                                val getCableSizeInTable = sheet.getCell(1, j).contents
+                                val getGroudSizeInTable = sheet.getCell(2, j).contents
+                                val getRailSizeInTable = sheet.getCell(3, j).contents
+                                val getSizeCableIntable = sheet.getCell(6, j).contents
 
-                    if(cableSize.length > 10) textViewShow2.text = Html.fromHtml("${cableSize.replace("mm","mm<sup><small><small>2</small></small></sup>")}")
-                    else textViewShow2.text = Html.fromHtml("$cableSize mm<sup><small><small>2</small></small></sup>")
+                                var pressureDropIndexTable:Int
 
-                    if(typeCableTextView.text == "NYY-G" || typeCableTextView.text == "VCT-G"){
-                        textViewResultWireGround.text = "-"
-                        pressureDropIndexTable = 1
-                    }else{
-                        textViewResultWireGround.text = Html.fromHtml("$sizeWireGround mm<sup><small><small>2</small></small></sup>")
-                        if(typeCableTextView.text == "XLPE") pressureDropIndexTable = 2
-                        else pressureDropIndexTable = 0
-                    }
-                    textViewShow4.text = s
+                                pressureDropIndexTable =  when(typeCableTextView.text){
+                                    "NYY 1C" -> 0
+                                    "NYY 4C" -> 1
+                                    "XLPE 1C" -> 2
+                                    "XLPE 4C" -> 3
+                                    else -> 0
+                                }
 
-                    for (h in 2..20) {
-                    val pressureCable = applicationContext.assets.open("pressure_drop.xls") // pressure_drop_file
-                        val wbPressure = Workbook.getWorkbook(pressureCable)
-                        val sheetPressure = wbPressure.getSheet(pressureDropIndexTable)
-                        val fineCableTypeInTable = sheetPressure.getCell(0, h).contents
-                        val amountDeistance = Integer.parseInt(editTextDistance.text.toString())
+                                for (h in 2..20) {
+                                    val pressureCable = applicationContext.assets.open("pressure_drop.xls") // pressure_drop_file
+                                    val wbPressure = Workbook.getWorkbook(pressureCable)
+                                    val sheetPressure = wbPressure.getSheet(pressureDropIndexTable)
+                                    val fineCableTypeInTable = sheetPressure.getCell(0, h).contents
+                                    val amountDeistance = Integer.parseInt(editTextDistance.text.toString())
 
-                        if (cableSizeWithOutX == fineCableTypeInTable) { // แก้ cableSize ตัดคำออก
-                            val getreslutInTable = sheetPressure.getCell(1, h).contents.toDouble()
-                            val pullResult = getreslutInTable * Integer.parseInt(circuitTextView.text.toString().replace("A", "")) * amountDeistance / 1000 // result
-                            val PercentPressure  = 100 * pullResult / 230 // result
-                            textViewShow6.text = "${"%.2f V".format(pullResult)} (${"%.2f".format(PercentPressure)}%) "
+                                    println("getSizeCableIntable $getSizeCableIntable")
+                                    println("fineCableTypeInTable $fineCableTypeInTable")
+
+                                    if (getSizeCableIntable == fineCableTypeInTable) { // แก้ cableSize ตัดคำออก
+                                        val getreslutInTable = sheetPressure.getCell(1, h).contents.toDouble()
+                                        val pullResult = getreslutInTable * Integer.parseInt(circuitTextView.text.toString().replace("A", "")) * amountDeistance / 1000 // result
+                                        val PercentPressure  = 100 * pullResult / 400 // result
+                                        val resultRefPressure = "${"%.2f V".format(pullResult)} (${"%.2f".format(PercentPressure)}%)"
+
+                                        railSizeList.add(RailSizeModel(getCableSizeInTable
+                                                , getGroudSizeInTable
+                                                , getRailSizeInTable
+                                                , "400V"
+                                                , resultRefPressure))
+
+                                    }
+
+                                }
+
+                            }
+                            recycerViewWireSize.adapter = WireSizeAdapter(railSizeList)
+                            recycerViewWireSize.layoutManager = LinearLayoutManager(this)
+                            break
                         }
+
+                    }else{
+                        println("Nooooo")
                     }
-                    break
+                }
+
+
+////                val test = ArrayList<RailSizeModel>()
+
+
+            }else{
+                tableBeforeCalculateGroup7.visibility = View.GONE
+                tableBeforeCalculate.visibility = View.VISIBLE
+                for(i in 2..20){
+                    val checkAmp = sheet.getCell(0, i).contents.toInt()
+                    val circuitTextViewToInt = Integer.parseInt(circuitTextView.text.toString().replace("A", ""))
+                    if(circuitTextViewToInt <= checkAmp){
+
+                        val cableSize = sheet.getCell(1, i).contents
+                        val cableSizeWithOutX = sheet.getCell(6, i).contents
+                        val sizeWireGround = sheet.getCell(2, i).contents
+                        val resultSizeConduitOfmm = sheet.getCell(3, i).contents
+                        val resultSizeConduitOfInch = sheet.getCell(4, i).contents
+                        val temp:String
+                        var pressureDropIndexTable:Int
+                        if(resultSizeConduitOfInch == "-") temp = "${resultSizeConduitOfmm}mm"
+                        else temp = "${resultSizeConduitOfmm} mm ( ${resultSizeConduitOfInch} inch )"
+
+                        val s = SpannableString(temp.trim())
+                        if (temp.indexOf('/') != -1) {
+                            val len = temp.length
+                            s.setSpan(SuperscriptSpan(), len - 10, len - 9, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) // ตัวเศษ
+                            s.setSpan( applicationContext,len - 10, len - 9, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) // ตัวเศษ
+                            s.setSpan(applicationContext, len - 9, len - 8, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) // ตัว /
+                            s.setSpan(SubscriptSpan(), len - 8, len - 7, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) // ตัวส่วน
+                            s.setSpan(applicationContext, len - 8, len-7, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) // ตัวส่วน
+                        }
+
+                        if(cableSize.length > 10) textViewShow2.text = Html.fromHtml("${cableSize.replace("mm","mm<sup><small><small>2</small></small></sup>")}")
+                        else textViewShow2.text = Html.fromHtml("$cableSize mm<sup><small><small>2</small></small></sup>")
+
+                        if(typeCableTextView.text == "NYY-G" || typeCableTextView.text == "VCT-G"){
+                            textViewResultWireGround.text = "-"
+                            pressureDropIndexTable = 1
+                        }else{
+                            textViewResultWireGround.text = Html.fromHtml("$sizeWireGround mm<sup><small><small>2</small></small></sup>")
+                            if(typeCableTextView.text == "XLPE") pressureDropIndexTable = 2
+                            else pressureDropIndexTable = 0
+                        }
+                        textViewShow4.text = s
+
+                        for (h in 2..20) {
+                            val pressureCable = applicationContext.assets.open("pressure_drop.xls") // pressure_drop_file
+                            val wbPressure = Workbook.getWorkbook(pressureCable)
+                            val sheetPressure = wbPressure.getSheet(pressureDropIndexTable)
+                            val fineCableTypeInTable = sheetPressure.getCell(0, h).contents
+                            val amountDeistance = Integer.parseInt(editTextDistance.text.toString())
+
+                            if (cableSizeWithOutX == fineCableTypeInTable) { // แก้ cableSize ตัดคำออก
+                                val getreslutInTable = sheetPressure.getCell(1, h).contents.toDouble()
+                                val pullResult = getreslutInTable * Integer.parseInt(circuitTextView.text.toString().replace("A", "")) * amountDeistance / 1000 // result
+                                val PercentPressure  = 100 * pullResult / 230 // result
+                                textViewShow6.text = "${"%.2f V".format(pullResult)} (${"%.2f".format(PercentPressure)}%) "
+                            }
+                        }
+                        break
+                    }
                 }
             }
+
+
         }catch (e: IOException){ println("Error : $e") }
     }
     private fun View.hideKeyboard() {
@@ -347,11 +416,10 @@ class WireSizeActivity : AppCompatActivity() {
         editTextDistance.setText(dataOfDistance)
 
     }
-
-
     fun backOnClick(view: View) {
         finish()
     }
+
     fun sponsorOnClick(view: View) {
         val intent = Intent(this, SponsorActivity::class.java)
         startActivity(intent)

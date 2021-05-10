@@ -1,35 +1,121 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
 xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
 android:layout_marginBottom="10dp"
 android:orientation="vertical"
 android:layout_width="match_parent"
 android:layout_height="wrap_content">
 
-<RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/TextViewRailSize"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="ขนาดราง"
-        android:textSize="16dp"
-        android:fontFamily="@font/mitr_regular"
-        android:textColor="@color/black"
-        android:layout_centerVertical="true"/>
+    <RelativeLayout
+        android:id="@+id/resultWireSizeNotGroup7"
+        android:layout_marginBottom="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/TextViewRailSizeResult"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="2(3x300mm2, 1x150mm2)"
-        android:textSize="16dp"
-        android:fontFamily="@font/mitr_regular"
-        android:textColor="@color/black"
-        android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"/>
 
-</RelativeLayout>
+        <TextView
+            android:id="@+id/textViewWireSizeInList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ขนาดสายไฟฟ้า"
+            android:textSize="16dp"
+            android:fontFamily="@font/mitr_regular"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/textViewResultWireSizeInList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:paddingTop="3dp"
+            android:text="- มม"
+            android:textSize="16dp"
+            android:fontFamily="@font/mitr_regular"
+            android:textColor="@color/white" />
+
+
+        <TextView
+            android:id="@+id/textViewWireGround"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textViewWireSizeInList"
+            android:layout_marginTop="10dp"
+            android:text="ขนาดสายดินที่เหมาะสม"
+            android:textSize="16dp"
+            android:fontFamily="@font/mitr_regular"
+            android:textColor="@color/white" />
+
+
+        <TextView
+            android:id="@+id/textViewResultWireGround"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textViewResultWireSizeInList"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="10dp"
+            android:text="- มม"
+            android:textSize="16dp"
+            android:fontFamily="@font/mitr_regular"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/textViewRailSize"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textViewWireGround"
+            android:layout_marginTop="10dp"
+            android:text="ขนาดราง"
+            android:textSize="16dp"
+            android:fontFamily="@font/mitr_regular"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/textViewResultRailSize"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textViewResultWireGround"
+            android:paddingTop="8dp"
+            android:layout_alignParentRight="true"
+            android:text="- mm (1/2)"
+            android:textSize="16dp"
+            android:fontFamily="@font/mitr_regular"
+            android:layout_centerVertical="true"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/textViewPreessureInList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/textViewRailSize"
+            android:text="แรงดันตก"
+            android:textSize="16dp"
+            android:fontFamily="@font/mitr_regular"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/textViewReferenceVoltage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textViewPreessureInList"
+            android:text="(แรงดันอ้างอิง -V)"
+            android:textSize="14dp"
+            android:fontFamily="@font/mitr_regular"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/textResultPreessureInList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/textViewResultRailSize"
+            android:layout_alignParentRight="true"
+            android:text="-%"
+            android:textSize="16dp"
+            android:fontFamily="@font/mitr_regular"
+            android:textColor="@color/white" />
+
+    </RelativeLayout>
 </LinearLayout>

@@ -1,5 +1,6 @@
 package com.alw.temca.Adapter
 
+import android.text.Html
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,7 +14,11 @@ class WireSizeAdapter(var listCircuit : ArrayList<RailSizeModel>) : RecyclerView
     class WireSizeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         fun bind(itemList: RailSizeModel){
-            itemView.TextViewRailSizeResult.text = itemList.name
+            itemView.textViewResultWireSizeInList.text = Html.fromHtml("${itemList.wireSize.replace("mm","mm<sup><small><small>2</small></small></sup>")}")
+            itemView.textViewResultWireGround.text = Html.fromHtml("${itemList.groundSize} mm<sup><small><small>2</small></small></sup>")
+            itemView.textViewResultRailSize.text = "${itemList.railSize} mm"
+            itemView.textViewReferenceVoltage.text = "(แรงดันอ้างอิง ${itemList.refPressure})"
+            itemView.textResultPreessureInList.text = itemList.resultPressure
 
         }
     }
