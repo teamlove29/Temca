@@ -21,19 +21,20 @@ import kotlinx.android.synthetic.main.activity_moter.wayBackActivity1
 
 
 class MoterActivity : AppCompatActivity() {
-    val TASK_NAME_REQUEST_CODE = 100
-    val PREF_NAME = "task_moter"
-    val TASK_LIST_PREF_KEY_SIZE_UNIT = "task_list_unit"
-    val TASK_LIST_PREF_KEY_PHASE_IN_MOTER = "task_list_phase_in_moter"
-    val TASK_LIST_PREF_KEY_INSTALLATION_IN_MOTER = "task_list_installation_in_moter"
-    val TASK_LIST_PREF_KEY_TYPE_CABLE_IN_MOTER = "task_list_type_cable_in_moter"
-    val TASK_LIST_PREF_KEY_DISTANCE_IN_MOTER = "task_list_distance_in_moter"
+    private val TASK_NAME_REQUEST_CODE = 100
+    private val PREF_NAME = "task_moter"
+    private val TASK_LIST_PREF_KEY_SIZE_UNIT = "task_list_unit"
+    private val TASK_LIST_PREF_KEY_PHASE_IN_MOTER = "task_list_phase_in_moter"
+    private val TASK_LIST_PREF_KEY_INSTALLATION_IN_MOTER = "task_list_installation_in_moter"
+    private val TASK_LIST_PREF_KEY_STARTPANTERN_IN_MOTER = "task_list_startpantern_in_moter"
+    private val TASK_LIST_PREF_KEY_TYPE_CABLE_IN_MOTER = "task_list_type_cable_in_moter"
+    private val TASK_LIST_PREF_KEY_DISTANCE_IN_MOTER = "task_list_distance_in_moter"
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_moter)
         tableBeforeCalculateInMoter.visibility = View.GONE
         loadData()
-
 
         editTextDistanceInMoter.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
@@ -45,17 +46,14 @@ class MoterActivity : AppCompatActivity() {
                 }else{
                     editTextDistanceInMoter.hint = ""
                 }
-
                 tableBeforeCalculateInMoter.visibility = View.GONE
                 btnCalInPipeSize.visibility = View.VISIBLE
                 wayBackActivity1.visibility = View.VISIBLE
-
             }
             override fun afterTextChanged(s: Editable?) {
                 //หลังจากพิมพ์ผลลัพคือ ?
                 saveData("distance",s.toString())
             }
-
         })
 
         editTextAmountMoterSize.addTextChangedListener(object : TextWatcher {
@@ -72,15 +70,14 @@ class MoterActivity : AppCompatActivity() {
                 tableBeforeCalculateInMoter.visibility = View.GONE
                 btnCalInPipeSize.visibility = View.VISIBLE
                 wayBackActivity1.visibility = View.VISIBLE
-
             }
             override fun afterTextChanged(s: Editable?) {
                 //หลังจากพิมพ์ผลลัพคือ ?
                 saveData("distance",s.toString())
             }
-
         })
     }
+
 
     fun moterSizeOnClick(view: View) {
         editTextAmountMoterSize.setText("")
@@ -102,6 +99,11 @@ class MoterActivity : AppCompatActivity() {
     fun sizeCableTypeOnClick(view: View) {
         val intent = Intent(this, TypeCableActivity::class.java)
         intent.putExtra("Activity","Moter")
+        startActivityForResult(intent,TASK_NAME_REQUEST_CODE)
+    }
+
+    fun startPantternOnClick(view: View) {
+        val intent = Intent(this, StartPatternActivity::class.java)
         startActivityForResult(intent,TASK_NAME_REQUEST_CODE)
     }
 
@@ -146,8 +148,8 @@ class MoterActivity : AppCompatActivity() {
                 val dataUnitMoter = data!!.getStringExtra("dataUnitMoter")
                 val dataPhase = data.getIntExtra("dataPhase",0)
                 val dataInstallation = data.getParcelableExtra<InstallationModelInTransformer>("dataInstall")
+                val dataStartPantern = data!!.getStringExtra("dataStartPantern")
                 val dataTypeCable = data!!.getStringExtra("dataTypeCable")
-////                val dataCircuit = data!!.getStringExtra("dataCircuit")
 
                 if (dataUnitMoter != null){
                     textUnit.text = dataUnitMoter
@@ -165,6 +167,12 @@ class MoterActivity : AppCompatActivity() {
                     saveData("group", dataInstallation.title)
                     saveData("installation", dataInstallation.des)
                 }
+
+                if (dataStartPantern != null){
+                    TextViewStartPantern.text = dataStartPantern
+                    saveData("dataStartPantern", dataStartPantern)
+                }
+
                 if (dataTypeCable != null){
                     TextViewCableTypeInMoter.text = dataTypeCable
                     saveData("dataTypeCable", dataTypeCable)
@@ -190,6 +198,9 @@ class MoterActivity : AppCompatActivity() {
             if (type == "installation"){
                 putString(TASK_LIST_PREF_KEY_INSTALLATION_IN_MOTER, data)
             }
+            if (type == "dataStartPantern"){
+                putString(TASK_LIST_PREF_KEY_STARTPANTERN_IN_MOTER, data)
+            }
             if (type == "dataTypeCable"){
                 putString(TASK_LIST_PREF_KEY_TYPE_CABLE_IN_MOTER, data)
             }
@@ -200,12 +211,14 @@ class MoterActivity : AppCompatActivity() {
         val dataOfUnitMoter = sharedPref.getString(TASK_LIST_PREF_KEY_SIZE_UNIT,"HP")
         val dataOfPhase = sharedPref.getString(TASK_LIST_PREF_KEY_PHASE_IN_MOTER,"1 เฟส")
         val dataOfInstall = sharedPref.getString(TASK_LIST_PREF_KEY_INSTALLATION_IN_MOTER,"เดินเคเบิลแบบระบายอากาศ")
+        val dataOfStartPantern = sharedPref.getString(TASK_LIST_PREF_KEY_STARTPANTERN_IN_MOTER,"DOL")
         val dataOfCableSize = sharedPref.getString(TASK_LIST_PREF_KEY_TYPE_CABLE_IN_MOTER,"NYY")
         val dataOfDistanceInTransformer = sharedPref.getString(TASK_LIST_PREF_KEY_DISTANCE_IN_MOTER,"20")
 
         textUnit.text = dataOfUnitMoter
         phaseTextView.text = dataOfPhase
         TextViewGroupInstallations.text = dataOfInstall
+        TextViewStartPantern.text = dataOfStartPantern
         TextViewCableTypeInMoter.text = dataOfCableSize
         editTextDistanceInMoter.setText(dataOfDistanceInTransformer)
     }
@@ -219,4 +232,6 @@ class MoterActivity : AppCompatActivity() {
         val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.hideSoftInputFromWindow(windowToken, 0)
     }
+
+
 }

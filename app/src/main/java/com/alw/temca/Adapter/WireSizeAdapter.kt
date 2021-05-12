@@ -19,7 +19,6 @@ class WireSizeAdapter(var listCircuit : ArrayList<RailSizeModel>) : RecyclerView
             itemView.textViewResultRailSize.text = "${itemList.railSize} mm"
             itemView.textViewReferenceVoltage.text = "(แรงดันอ้างอิง ${itemList.refPressure})"
             itemView.textResultPreessureInList.text = itemList.resultPressure
-
         }
     }
 

@@ -209,6 +209,7 @@ tools:context=".ui.Moter.MoterActivity">
 
     // Start
     <androidx.cardview.widget.CardView
+        android:onClick="startPantternOnClick"
         android:id="@+id/cardViewStart"
         android:clickable="true"
         android:focusable="true"
@@ -232,6 +233,7 @@ tools:context=".ui.Moter.MoterActivity">
                 android:layout_centerVertical="true"/>
 
             <TextView
+                android:id="@+id/TextViewStartPantern"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="35dp"
@@ -243,13 +245,13 @@ tools:context=".ui.Moter.MoterActivity">
                 android:textColor="@color/defaulthint"
                 android:layout_alignParentRight="true"/>
 
-<!--            <ImageView-->
-<!--                android:id="@+id/iconCableType"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:src="@drawable/ic_baseline_keyboard_arrow_right_24"-->
-<!--                android:layout_centerVertical="true"-->
-<!--                android:layout_alignParentRight="true"/>-->
+            <ImageView
+                android:id="@+id/iconImageViewToPage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_baseline_keyboard_arrow_right_24"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"/>
 
         </RelativeLayout>
 

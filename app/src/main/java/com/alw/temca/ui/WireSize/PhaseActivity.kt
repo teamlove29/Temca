@@ -24,8 +24,8 @@ class PhaseActivity : AppCompatActivity(), onClickAdapterListener {
 
         if(comeForm == "Moter"){
             textViewTitlePhase.text = "ขนาดสายมอเตอร์"
-            phaseItem.add(PhaseModel(1,"เฟส"))
-            phaseItem.add(PhaseModel(3,"เฟส"))
+            phaseItem.add(PhaseModel(1,"เฟส 2w (230 V)"))
+            phaseItem.add(PhaseModel(3,"เฟส 3w (400 V)"))
         }else{
             phaseItem.add(PhaseModel(1,"เฟส 2สาย (230 V)"))
             phaseItem.add(PhaseModel(3,"เฟส 4สาย (400 V)"))
