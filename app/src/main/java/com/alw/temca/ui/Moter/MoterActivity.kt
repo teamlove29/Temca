@@ -5,6 +5,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
+import android.text.Html
 import android.text.TextWatcher
 import android.view.View
 import android.view.inputmethod.InputMethodManager
@@ -14,6 +15,7 @@ import com.alw.temca.ui.SponsorActivity
 import com.alw.temca.ui.Transformer.InstallationTransformerActivity
 import com.alw.temca.ui.WireSize.PhaseActivity
 import com.alw.temca.ui.WireSize.TypeCableActivity
+import jxl.Workbook
 import kotlinx.android.synthetic.main.activity_moter.*
 import kotlinx.android.synthetic.main.activity_moter.btnCalInPipeSize
 import kotlinx.android.synthetic.main.activity_moter.phaseTextView
@@ -76,6 +78,10 @@ class MoterActivity : AppCompatActivity() {
                 saveData("distance",s.toString())
             }
         })
+
+        if(phaseTextView.text == "1 เฟส") iconImageViewToPage.visibility = View.GONE
+        else iconImageViewToPage.visibility = View.VISIBLE
+
     }
 
 
@@ -99,14 +105,18 @@ class MoterActivity : AppCompatActivity() {
     fun sizeCableTypeOnClick(view: View) {
         val intent = Intent(this, TypeCableActivity::class.java)
         intent.putExtra("Activity","Moter")
+        if(TextViewStartPantern.text == "STAR DELTA")  intent.putExtra("Type","DELTA")
+
+
         startActivityForResult(intent,TASK_NAME_REQUEST_CODE)
     }
 
     fun startPantternOnClick(view: View) {
-        val intent = Intent(this, StartPatternActivity::class.java)
-        startActivityForResult(intent,TASK_NAME_REQUEST_CODE)
+        if(phaseTextView.text != "1 เฟส"){
+            val intent = Intent(this, StartPatternActivity::class.java)
+            startActivityForResult(intent,TASK_NAME_REQUEST_CODE)
+        }
     }
-
     fun setDistanceOnClick(view: View) {
         editTextDistanceInMoter.setText("")
         editTextDistanceInMoter.hint = " "
@@ -128,13 +138,110 @@ class MoterActivity : AppCompatActivity() {
             hideKeyboard()
         }
 
-        if(editTextAmountMoterSize.text.isEmpty()) editTextAmountMoterSize.setText("45")
+        if(editTextAmountMoterSize.text.isEmpty()) editTextAmountMoterSize.setText("10")
         if(editTextDistanceInMoter.text.isEmpty()) editTextDistanceInMoter.setText("20")
 
 
         wayBackActivity1.visibility = View.GONE
         btnCalInPipeSize.visibility = View.GONE
         tableBeforeCalculateInMoter.visibility = View.VISIBLE
+
+        var stepInFor:Int = 0
+        var maxRowsheet:Int
+        val indexSheetInMoter:Int
+        if(phaseTextView.text == "1 เฟส") {
+            maxRowsheet = 53
+            stepInFor = 4
+            indexSheetInMoter = 0
+        } else {
+            if(TextViewStartPantern.text == "STAR DELTA") {
+                maxRowsheet = 46
+                stepInFor = 3
+                indexSheetInMoter = 2
+            }else {
+                maxRowsheet = 93
+                stepInFor = 4
+                indexSheetInMoter = 1
+            }
+        }
+
+
+        val typeCable = applicationContext.assets.open("moter.xls")
+        val wb = Workbook.getWorkbook(typeCable)
+        val sheet = wb.getSheet(indexSheetInMoter)
+        val columnIntable:Int = when(textUnit.text){
+            "kW" -> 0
+            "HP" -> 1
+            "A" -> 10
+            else -> 0
+        }
+
+        val pressureDropIndexTable:Int =  when(TextViewCableTypeInMoter.text){
+            "ICE 01" -> 0
+            "NYY 1C" -> 0
+            "NYY 2C-G" -> 1
+            "XLPE 1C" -> 2
+            else -> 0
+        }
+
+        var voteInMoter:Int
+
+        if(phaseTextView.text == "1 เฟส") {
+            textViewCableSize.text = "แรงดัน(230V)"
+            voteInMoter = 230
+        }
+            else {
+            textViewCableSize.text = "แรงดัน(400V)"
+            voteInMoter = 400
+        }
+
+        for(i in 2..maxRowsheet step stepInFor){
+            val editTextToDouble:Double = java.lang.Double.parseDouble(editTextAmountMoterSize.text.toString())
+            val checkAmpInTable = sheet.getCell(columnIntable, i).contents.toDouble()
+
+
+            if(editTextToDouble <= checkAmpInTable){
+                for(j in i..i+3){
+                    val checkCableType = sheet.getCell(3, j).contents // เทียบค่าชนิดสายในตาราง
+                    val cableTypeIntable = sheet.getCell(4, j).contents // ขนาดสายในตาราง
+                    val powerRatingIntable = sheet.getCell(2, i).contents // พิกัดกระแสไฟในตาราง
+                    val calbeGroundIntable = sheet.getCell(7, i).contents // ขนาดสายดินในตาราง
+                    val conduitInTable = sheet.getCell(5, i).contents // ขนาดท่อร้อยสายในตาราง
+                    val breakerInTable = sheet.getCell(6, i).contents // ขนาดเบรกเกอร์ในตาราง
+                    val cableSizeWithOutX = sheet.getCell(9, i).contents // ขนาดเบรกเกอร์ในตาราง
+
+                    if(TextViewCableTypeInMoter.text == checkCableType){
+
+                        textViewElectricCurrenResult.text = powerRatingIntable
+                        textViewSizeCableResult.text = Html.fromHtml("${cableTypeIntable.replace("mm2","mm<sup><small><small>2</small></small></sup>")}")
+                        if(TextViewCableTypeInMoter.text != "NYY 2C-G") textViewGroundSizeResult.text = Html.fromHtml("${calbeGroundIntable.replace("mm2","mm<sup><small><small>2</small></small></sup>")}")
+                        else textViewGroundSizeResult.text = Html.fromHtml("- mm<sup><small><small>2</small></small></sup>")
+                        textViewConduitSizeResult.text = conduitInTable
+                        textViewBreakerResult.text = breakerInTable
+
+                        for (h in 2..20) {
+                            val pressureCable = applicationContext.assets.open("pressure_drop.xls") // pressure_drop_file
+                            val wbPressure = Workbook.getWorkbook(pressureCable)
+                            val sheetPressure = wbPressure.getSheet(pressureDropIndexTable)
+                            val fineCableTypeInTable = sheetPressure.getCell(0, h).contents
+                            val amountDeistance = Integer.parseInt(editTextDistanceInMoter.text.toString())
+                            if (cableSizeWithOutX == fineCableTypeInTable) { // แก้ cableSize ตัดคำออก
+                                val getreslutInTable = sheetPressure.getCell(1, h).contents.toDouble()
+                                val pullResult = getreslutInTable * Integer.parseInt(breakerInTable.toString().replace(" A", "")) * amountDeistance / 1000 // result
+                                val PercentPressure  = 100 * pullResult / voteInMoter // result
+                                textViewPressureResult.text = "${"%.2f V".format(pullResult)} (${"%.2f".format(PercentPressure)}%) "
+                                break
+                            }
+                        }
+                        break
+                    }
+                }
+                break
+            }
+
+        }
+
+
 
     }
 
@@ -182,6 +289,26 @@ class MoterActivity : AppCompatActivity() {
             wayBackActivity1.visibility = View.VISIBLE
             btnCalInPipeSize.visibility = View.VISIBLE
             tableBeforeCalculateInMoter.visibility = View.GONE
+
+
+            if(phaseTextView.text == "1 เฟส") {
+                iconImageViewToPage.visibility = View.GONE
+                TextViewStartPantern.text = "DOL"
+                saveData("dataStartPantern", "DOL")
+            }
+            else {
+                if(TextViewStartPantern.text == "STAR DELTA") {
+                    println("dasdasd ${TextViewCableTypeInMoter.text}")
+                    if(TextViewCableTypeInMoter.text == "NYY 2C-G"){
+                        TextViewCableTypeInMoter.text = "NYY 1C"
+                        saveData("dataTypeCable", "NYY 1C")
+                    }
+                }
+                iconImageViewToPage.visibility = View.VISIBLE
+            }
+
+
+
         }
     }
 
@@ -212,7 +339,7 @@ class MoterActivity : AppCompatActivity() {
         val dataOfPhase = sharedPref.getString(TASK_LIST_PREF_KEY_PHASE_IN_MOTER,"1 เฟส")
         val dataOfInstall = sharedPref.getString(TASK_LIST_PREF_KEY_INSTALLATION_IN_MOTER,"เดินเคเบิลแบบระบายอากาศ")
         val dataOfStartPantern = sharedPref.getString(TASK_LIST_PREF_KEY_STARTPANTERN_IN_MOTER,"DOL")
-        val dataOfCableSize = sharedPref.getString(TASK_LIST_PREF_KEY_TYPE_CABLE_IN_MOTER,"NYY")
+        val dataOfCableSize = sharedPref.getString(TASK_LIST_PREF_KEY_TYPE_CABLE_IN_MOTER,"NYY 1C")
         val dataOfDistanceInTransformer = sharedPref.getString(TASK_LIST_PREF_KEY_DISTANCE_IN_MOTER,"20")
 
         textUnit.text = dataOfUnitMoter
