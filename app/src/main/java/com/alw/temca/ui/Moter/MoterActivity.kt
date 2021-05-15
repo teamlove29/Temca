@@ -4,9 +4,9 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.Editable
-import android.text.Html
-import android.text.TextWatcher
+import android.text.*
+import android.text.style.SubscriptSpan
+import android.text.style.SuperscriptSpan
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import com.alw.temca.Model.InstallationModelInTransformer
@@ -20,6 +20,7 @@ import kotlinx.android.synthetic.main.activity_moter.*
 import kotlinx.android.synthetic.main.activity_moter.btnCalInPipeSize
 import kotlinx.android.synthetic.main.activity_moter.phaseTextView
 import kotlinx.android.synthetic.main.activity_moter.wayBackActivity1
+import kotlinx.android.synthetic.main.activity_wire_size.*
 
 
 class MoterActivity : AppCompatActivity() {
@@ -186,29 +187,19 @@ class MoterActivity : AppCompatActivity() {
 
         var voteInMoter:Int
 
-        if(phaseTextView.text == "1 เฟส") {
-            textViewCableSize.text = "แรงดัน(230V)"
-            voteInMoter = 230
-        }
-            else {
-            textViewCableSize.text = "แรงดัน(400V)"
-            voteInMoter = 400
-        }
-
         for(i in 2..maxRowsheet step stepInFor){
             val editTextToDouble:Double = java.lang.Double.parseDouble(editTextAmountMoterSize.text.toString())
             val checkAmpInTable = sheet.getCell(columnIntable, i).contents.toDouble()
-
 
             if(editTextToDouble <= checkAmpInTable){
                 for(j in i..i+3){
                     val checkCableType = sheet.getCell(3, j).contents // เทียบค่าชนิดสายในตาราง
                     val cableTypeIntable = sheet.getCell(4, j).contents // ขนาดสายในตาราง
                     val powerRatingIntable = sheet.getCell(2, i).contents // พิกัดกระแสไฟในตาราง
-                    val calbeGroundIntable = sheet.getCell(7, i).contents // ขนาดสายดินในตาราง
-                    val conduitInTable = sheet.getCell(5, i).contents // ขนาดท่อร้อยสายในตาราง
+                    val calbeGroundIntable = sheet.getCell(7, j).contents // ขนาดสายดินในตาราง
+                    val conduitInTable = sheet.getCell(5, j).contents // ขนาดท่อร้อยสายในตาราง
                     val breakerInTable = sheet.getCell(6, i).contents // ขนาดเบรกเกอร์ในตาราง
-                    val cableSizeWithOutX = sheet.getCell(9, i).contents // ขนาดเบรกเกอร์ในตาราง
+                    val cableSizeWithOutX = sheet.getCell(9, j).contents // ขนาดเบรกเกอร์ในตาราง
 
                     if(TextViewCableTypeInMoter.text == checkCableType){
 
@@ -216,8 +207,31 @@ class MoterActivity : AppCompatActivity() {
                         textViewSizeCableResult.text = Html.fromHtml("${cableTypeIntable.replace("mm2","mm<sup><small><small>2</small></small></sup>")}")
                         if(TextViewCableTypeInMoter.text != "NYY 2C-G") textViewGroundSizeResult.text = Html.fromHtml("${calbeGroundIntable.replace("mm2","mm<sup><small><small>2</small></small></sup>")}")
                         else textViewGroundSizeResult.text = Html.fromHtml("- mm<sup><small><small>2</small></small></sup>")
-                        textViewConduitSizeResult.text = conduitInTable
+//                        textViewConduitSizeResult.text = conduitInTable
                         textViewBreakerResult.text = breakerInTable
+
+                        val temp:String = conduitInTable.replace(")"," inch )")
+                        val s = SpannableString(temp.trim())
+                        if (temp.indexOf('/') != -1) {
+                            val len = temp.length
+                            s.setSpan(SuperscriptSpan(), len -10, len -9, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) // ตัวเศษ
+                            s.setSpan( applicationContext,len -10, len -9, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) // ตัวเศษ
+                            s.setSpan(applicationContext, len - 9, len - 8, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) // ตัว /
+                            s.setSpan(SubscriptSpan(), len - 8, len - 7, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) // ตัวส่วน
+//                            s.setSpan(applicationContext, len - 7, len-6, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) // ตัวส่วน
+                        }
+
+
+                        if(phaseTextView.text == "1 เฟส") {
+                            textViewCableSize.text = "แรงดัน(230V)"
+                            voteInMoter = 230
+                        }
+                        else {
+                            textViewCableSize.text = "แรงดัน(400V)"
+                            voteInMoter = 400
+                        }
+
+                        textViewConduitSizeResult.text = s
 
                         for (h in 2..20) {
                             val pressureCable = applicationContext.assets.open("pressure_drop.xls") // pressure_drop_file
@@ -229,14 +243,25 @@ class MoterActivity : AppCompatActivity() {
                                 val getreslutInTable = sheetPressure.getCell(1, h).contents.toDouble()
                                 val pullResult = getreslutInTable * Integer.parseInt(breakerInTable.toString().replace(" A", "")) * amountDeistance / 1000 // result
                                 val PercentPressure  = 100 * pullResult / voteInMoter // result
-                                textViewPressureResult.text = "${"%.2f V".format(pullResult)} (${"%.2f".format(PercentPressure)}%) "
+                                textViewPressureResult.text = "${"%.2f V".format(pullResult)} (${"%.2f".format(PercentPressure)}%)"
                                 break
                             }
                         }
+
+
+
                         break
                     }
                 }
                 break
+            }else{
+                textViewCableSize.text = "แรงดัน(-V)"
+                textViewElectricCurrenResult.text = "-"
+                textViewSizeCableResult.text = "-"
+                textViewGroundSizeResult.text = "-"
+                textViewConduitSizeResult.text = "-"
+                textViewBreakerResult.text = "-"
+                textViewPressureResult.text = "-"
             }
 
         }
@@ -268,12 +293,12 @@ class MoterActivity : AppCompatActivity() {
                     saveData("phase", "$dataPhase เฟส")
                 }
 
-                if (dataInstallation != null) {
-//                    val dataInstallationSlice = dataInstallation
-                    TextViewGroupInstallations.text = dataInstallation.des
-                    saveData("group", dataInstallation.title)
-                    saveData("installation", dataInstallation.des)
-                }
+//                if (dataInstallation != null) {
+////                    val dataInstallationSlice = dataInstallation
+//                    TextViewGroupInstallations.text = dataInstallation.des
+//                    saveData("group", dataInstallation.title)
+//                    saveData("installation", dataInstallation.des)
+//                }
 
                 if (dataStartPantern != null){
                     TextViewStartPantern.text = dataStartPantern
@@ -344,7 +369,7 @@ class MoterActivity : AppCompatActivity() {
 
         textUnit.text = dataOfUnitMoter
         phaseTextView.text = dataOfPhase
-        TextViewGroupInstallations.text = dataOfInstall
+//        TextViewGroupInstallations.text = dataOfInstall
         TextViewStartPantern.text = dataOfStartPantern
         TextViewCableTypeInMoter.text = dataOfCableSize
         editTextDistanceInMoter.setText(dataOfDistanceInTransformer)

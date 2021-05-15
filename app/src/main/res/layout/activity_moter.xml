@@ -76,7 +76,7 @@ tools:context=".ui.Moter.MoterActivity">
                 android:text="10"
                 android:layout_toLeftOf="@+id/textUnit"
                 android:layout_centerVertical="true"
-                android:inputType="number"
+                android:inputType="numberDecimal"
                 android:textSize="17dp"
                 android:maxLines="1"
                 android:fontFamily="@font/mitr_regular"
@@ -156,55 +156,55 @@ tools:context=".ui.Moter.MoterActivity">
 
 
     // GroupInstallation
-    <androidx.cardview.widget.CardView
-        android:onClick="GroupInstallationOnClick"
-        android:id="@+id/cardViewSizeCable"
-        android:clickable="true"
-        android:focusable="true"
-        android:foreground="?android:selectableItemBackground"
-        app:cardCornerRadius="5dp"
-        android:layout_marginBottom="1dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+<!--    <androidx.cardview.widget.CardView-->
+<!--        android:onClick="GroupInstallationOnClick"-->
+<!--        android:id="@+id/cardViewSizeCable"-->
+<!--        android:clickable="true"-->
+<!--        android:focusable="true"-->
+<!--        android:foreground="?android:selectableItemBackground"-->
+<!--        app:cardCornerRadius="5dp"-->
+<!--        android:layout_marginBottom="1dp"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content">-->
 
-        <RelativeLayout
-            android:padding="15dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="กลุ่มการติดตั้ง"
-                android:textSize="18dp"
-                android:fontFamily="@font/mitr_regular"
-                android:textColor="@color/black"
-                android:layout_centerVertical="true"/>
+<!--        <RelativeLayout-->
+<!--            android:padding="15dp"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content">-->
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="กลุ่มการติดตั้ง"-->
+<!--                android:textSize="18dp"-->
+<!--                android:fontFamily="@font/mitr_regular"-->
+<!--                android:textColor="@color/black"-->
+<!--                android:layout_centerVertical="true"/>-->
 
-            <TextView
-                android:id="@+id/TextViewGroupInstallations"
-                android:gravity="right"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
-                android:hint="เดินเคเบิลแบบระบายอากาศ"
-                android:textSize="18dp"
-                android:layout_toLeftOf="@+id/iconGroupInstallation"
-                android:fontFamily="@font/mitr_regular"
-                android:textColorHint="@color/defaulthint"
-                android:textColor="@color/defaulthint"
-                android:layout_centerVertical="true"/>
+<!--            <TextView-->
+<!--                android:id="@+id/TextViewGroupInstallations"-->
+<!--                android:gravity="right"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginRight="10dp"-->
+<!--                android:hint="เดินเคเบิลแบบระบายอากาศ"-->
+<!--                android:textSize="18dp"-->
+<!--                android:layout_toLeftOf="@+id/iconGroupInstallation"-->
+<!--                android:fontFamily="@font/mitr_regular"-->
+<!--                android:textColorHint="@color/defaulthint"-->
+<!--                android:textColor="@color/defaulthint"-->
+<!--                android:layout_centerVertical="true"/>-->
 
-            <ImageView
-                android:id="@+id/iconGroupInstallation"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_baseline_keyboard_arrow_right_24"
-                android:layout_centerVertical="true"
-                android:layout_alignParentRight="true"/>
+<!--            <ImageView-->
+<!--                android:id="@+id/iconGroupInstallation"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:src="@drawable/ic_baseline_keyboard_arrow_right_24"-->
+<!--                android:layout_centerVertical="true"-->
+<!--                android:layout_alignParentRight="true"/>-->
 
-        </RelativeLayout>
+<!--        </RelativeLayout>-->
 
-    </androidx.cardview.widget.CardView>
+<!--    </androidx.cardview.widget.CardView>-->
 
 
     // Start
@@ -273,14 +273,15 @@ tools:context=".ui.Moter.MoterActivity">
             android:padding="15dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="ชนิดสายไฟ"
-                android:textSize="18dp"
+                android:layout_centerVertical="true"
                 android:fontFamily="@font/mitr_regular"
+                android:text="ชนิดสายไฟ"
                 android:textColor="@color/black"
-                android:layout_centerVertical="true"/>
+                android:textSize="18dp" />
 
             <TextView
                 android:id="@+id/TextViewCableTypeInMoter"
@@ -454,7 +455,7 @@ tools:context=".ui.Moter.MoterActivity">
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:layout_below="@+id/textViewTitleResult"
-                android:text="พิกัดกระแส (1.25In)"
+                android:text="พิกัดกระแส"
                 android:textSize="16dp"
                 android:fontFamily="@font/mitr_regular"
                 android:textColor="@color/white" />
@@ -558,7 +559,8 @@ tools:context=".ui.Moter.MoterActivity">
                 android:id="@+id/textViewConduitSizeResult"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
                 android:layout_below="@+id/textViewGroundSizeResult"
                 android:layout_alignParentRight="true"
                 android:text="1-1/2"
@@ -581,7 +583,6 @@ tools:context=".ui.Moter.MoterActivity">
                 android:id="@+id/textViewBreakerResult"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
                 android:layout_below="@+id/textViewConduitSizeResult"
                 android:layout_alignParentRight="true"
                 android:text="50A"
