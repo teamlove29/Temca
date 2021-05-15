@@ -156,6 +156,7 @@ class MoterActivity : AppCompatActivity() {
             indexSheetInMoter = 0
         } else {
             if(TextViewStartPantern.text == "STAR DELTA") {
+
                 maxRowsheet = 46
                 stepInFor = 3
                 indexSheetInMoter = 2
@@ -178,7 +179,7 @@ class MoterActivity : AppCompatActivity() {
         }
 
         val pressureDropIndexTable:Int =  when(TextViewCableTypeInMoter.text){
-            "ICE 01" -> 0
+            "IEC 01" -> 0
             "NYY 1C" -> 0
             "NYY 2C-G" -> 1
             "XLPE 1C" -> 2
@@ -202,7 +203,7 @@ class MoterActivity : AppCompatActivity() {
                     val cableSizeWithOutX = sheet.getCell(9, j).contents // ขนาดเบรกเกอร์ในตาราง
 
                     if(TextViewCableTypeInMoter.text == checkCableType){
-
+                        println("TRUE")
                         textViewElectricCurrenResult.text = powerRatingIntable
                         textViewSizeCableResult.text = Html.fromHtml("${cableTypeIntable.replace("mm2","mm<sup><small><small>2</small></small></sup>")}")
                         if(TextViewCableTypeInMoter.text != "NYY 2C-G") textViewGroundSizeResult.text = Html.fromHtml("${calbeGroundIntable.replace("mm2","mm<sup><small><small>2</small></small></sup>")}")
