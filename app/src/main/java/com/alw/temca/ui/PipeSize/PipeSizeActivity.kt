@@ -25,7 +25,6 @@ import com.itextpdf.text.pdf.draw.LineSeparator
 import com.itextpdf.text.pdf.draw.VerticalPositionMark
 import jxl.Workbook
 import kotlinx.android.synthetic.main.activity_pipe_size.*
-import kotlinx.android.synthetic.main.activity_wire_size.typeCableTextView
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
@@ -35,6 +34,13 @@ import com.karumi.dexter.listener.PermissionDeniedResponse
 import com.karumi.dexter.listener.PermissionGrantedResponse
 import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.single.PermissionListener
+import kotlinx.android.synthetic.main.activity_moter.*
+import kotlinx.android.synthetic.main.activity_pipe_size.btnCalInPipeSize
+import kotlinx.android.synthetic.main.activity_pipe_size.cardViewSizeConduit
+import kotlinx.android.synthetic.main.activity_pipe_size.wayBackActivity1
+import kotlinx.android.synthetic.main.activity_pipe_size.wayBackActivity2
+import kotlinx.android.synthetic.main.activity_wire_size.*
+import kotlinx.android.synthetic.main.activity_wire_size.typeCableTextView
 
 
 class PipeSizeActivity : AppCompatActivity() {
@@ -145,6 +151,19 @@ class PipeSizeActivity : AppCompatActivity() {
 //        var typeCable = ""
         if (editTextAmountCable.text.isEmpty()){
             editTextAmountCable.setText("20")
+        }
+
+        if(editTextAmountCable.length() > 0 ){
+            if(editTextAmountCable.text.toString() == "0" ) editTextAmountCable.setText("20")
+            else if(editTextAmountCable.text.toString() == "00") editTextAmountCable.setText("20")
+            else if(editTextAmountCable.text.toString() == "000") editTextAmountCable.setText("20")
+            else if(editTextAmountCable.text.toString() == "0000") editTextAmountCable.setText("20")
+            else if(editTextAmountCable.text.toString().slice(0..0) == "0"){
+                for(i in 0..3){
+                    if(editTextAmountCable.text.toString().slice(0..0) != "0") break
+                    else editTextAmountCable.setText(editTextAmountCable.text.toString().slice(1..editTextAmountCable.length()-1))
+                }
+            }
         }
 
         tableBeforeCalculateInPipe.visibility = View.VISIBLE

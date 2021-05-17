@@ -131,7 +131,7 @@
                 android:backgroundTint="#092B61"
                 android:fontFamily="@font/mitr_regular"
                 android:textSize="15dp"
-                android:text="Module 5"
+                android:text="มาตาฐานการติดตั้ง"
                 android:textColor="@color/white"
                 android:gravity="bottom|center_horizontal"
                 android:onClick="HandleOnClick"/>
@@ -152,7 +152,7 @@
                 android:backgroundTint="#092B61"
                 android:fontFamily="@font/mitr_regular"
                 android:textSize="15dp"
-                android:text="Module 6"
+                android:text="วิธีการใช้งาน"
                 android:textColor="@color/white"
                 android:gravity="bottom|center_horizontal"
                 android:onClick="HandleOnClick"/>

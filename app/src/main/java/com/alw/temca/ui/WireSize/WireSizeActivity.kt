@@ -18,7 +18,10 @@ import com.alw.temca.Model.ReportResultWireSize
 import com.alw.temca.R
 import com.alw.temca.ui.SponsorActivity
 import jxl.Workbook
+import kotlinx.android.synthetic.main.activity_moter.*
 import kotlinx.android.synthetic.main.activity_wire_size.*
+import kotlinx.android.synthetic.main.activity_wire_size.phaseTextView
+import kotlinx.android.synthetic.main.activity_wire_size.wayBackActivity1
 import java.io.IOException
 
 
@@ -177,9 +180,7 @@ class WireSizeActivity : AppCompatActivity() {
                     intent.putExtra("RowAmountAmp", 77)
                     startActivity(intent)
                     finish()
-
         }
-
     }
 
     fun ReportOnClick(view: View) {
@@ -228,6 +229,19 @@ class WireSizeActivity : AppCompatActivity() {
             hideKeyboard()
         }
 
+        if(editTextDistance.length() > 0 ){
+            if(editTextDistance.text.toString() == "0" ) editTextDistance.setText("20")
+            else if(editTextDistance.text.toString() == "00") editTextDistance.setText("20")
+            else if(editTextDistance.text.toString() == "000") editTextDistance.setText("20")
+            else if(editTextDistance.text.toString() == "0000") editTextDistance.setText("20")
+            else if(editTextDistance.text.toString().slice(0..0) == "0"){
+                for(i in 0..3){
+                    if(editTextDistance.text.toString().slice(0..0) != "0") break
+                    else editTextDistance.setText(editTextDistance.text.toString().slice(1..editTextDistance.length()-1))
+                }
+            }
+        }
+
         try {
             val circuitCheckGroup:String = installationOfTable(installationTextView.text.toString())
             val circuitCheckCableType:Int = circuitCheckPhaseAndCableType(phaseTextView.text.toString(), typeCableTextView.text.toString())
@@ -267,9 +281,6 @@ class WireSizeActivity : AppCompatActivity() {
                                     val sheetPressure = wbPressure.getSheet(pressureDropIndexTable)
                                     val fineCableTypeInTable = sheetPressure.getCell(0, h).contents
                                     val amountDeistance = Integer.parseInt(editTextDistance.text.toString())
-
-                                    println("getSizeCableIntable $getSizeCableIntable")
-                                    println("fineCableTypeInTable $fineCableTypeInTable")
 
                                     if (getSizeCableIntable == fineCableTypeInTable) { // แก้ cableSize ตัดคำออก
                                         val getreslutInTable = sheetPressure.getCell(1, h).contents.toDouble()

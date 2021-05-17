@@ -9,6 +9,8 @@ import android.text.style.SubscriptSpan
 import android.text.style.SuperscriptSpan
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import android.widget.Toast
+import com.alw.temca.Model.DataToSizeMoterModel
 import com.alw.temca.Model.InstallationModelInTransformer
 import com.alw.temca.R
 import com.alw.temca.ui.SponsorActivity
@@ -26,6 +28,7 @@ import kotlinx.android.synthetic.main.activity_wire_size.*
 class MoterActivity : AppCompatActivity() {
     private val TASK_NAME_REQUEST_CODE = 100
     private val PREF_NAME = "task_moter"
+    private val TASK_LIST_PREF_KEY_SIZE_MOTER = "task_list_size_moter"
     private val TASK_LIST_PREF_KEY_SIZE_UNIT = "task_list_unit"
     private val TASK_LIST_PREF_KEY_PHASE_IN_MOTER = "task_list_phase_in_moter"
     private val TASK_LIST_PREF_KEY_INSTALLATION_IN_MOTER = "task_list_installation_in_moter"
@@ -59,26 +62,26 @@ class MoterActivity : AppCompatActivity() {
             }
         })
 
-        editTextAmountMoterSize.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-                //ก่อนเปลี่ยนคือ ?
-            }
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                if (s!!.isEmpty()){
-                    editTextAmountMoterSize.hint = " "
-                }else{
-                    editTextAmountMoterSize.hint = ""
-                }
-
-                tableBeforeCalculateInMoter.visibility = View.GONE
-                btnCalInPipeSize.visibility = View.VISIBLE
-                wayBackActivity1.visibility = View.VISIBLE
-            }
-            override fun afterTextChanged(s: Editable?) {
-                //หลังจากพิมพ์ผลลัพคือ ?
-                saveData("distance",s.toString())
-            }
-        })
+//        editTextAmountMoterSize.addTextChangedListener(object : TextWatcher {
+//            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+//                //ก่อนเปลี่ยนคือ ?
+//            }
+//            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+//                if (s!!.isEmpty()){
+//                    editTextAmountMoterSize.hint = " "
+//                }else{
+//                    editTextAmountMoterSize.hint = ""
+//                }
+//
+//                tableBeforeCalculateInMoter.visibility = View.GONE
+//                btnCalInPipeSize.visibility = View.VISIBLE
+//                wayBackActivity1.visibility = View.VISIBLE
+//            }
+//            override fun afterTextChanged(s: Editable?) {
+//                //หลังจากพิมพ์ผลลัพคือ ?
+//                saveData("distance",s.toString())
+//            }
+//        })
 
         if(phaseTextView.text == "1 เฟส") iconImageViewToPage.visibility = View.GONE
         else iconImageViewToPage.visibility = View.VISIBLE
@@ -86,22 +89,32 @@ class MoterActivity : AppCompatActivity() {
     }
 
 
-    fun moterSizeOnClick(view: View) {
-        editTextAmountMoterSize.setText("")
-        editTextAmountMoterSize.hint = " "
-        editTextAmountMoterSize.requestFocus()
-        val imm = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
-        imm.showSoftInput(editTextAmountMoterSize, InputMethodManager.SHOW_IMPLICIT)
+    fun OnClickAmuontSizeMoter(view: View) {
+        val intent = Intent(this, SizeMoterActivity::class.java)
+        val dataToSizemoter = ArrayList<DataToSizeMoterModel>()
+        dataToSizemoter.add(DataToSizeMoterModel(phaseTextView.text.toString(),TextViewStartPantern.text.toString(),textUnit.text.toString()))
+        intent.putParcelableArrayListExtra("Unit",dataToSizemoter)
+        startActivityForResult(intent,TASK_NAME_REQUEST_CODE)
     }
+
+//    fun moterSizeOnClick(view: View) {
+//        editTextAmountMoterSize.setText("")
+//        editTextAmountMoterSize.hint = " "
+//        editTextAmountMoterSize.requestFocus()
+//        val imm = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+//        imm.showSoftInput(editTextAmountMoterSize, InputMethodManager.SHOW_IMPLICIT)
+//    }
+
     fun phaseOnClick(view: View) {
         val intent = Intent(this, PhaseActivity::class.java)
         intent.putExtra("Activity","Moter")
         startActivityForResult(intent,TASK_NAME_REQUEST_CODE)
     }
     fun GroupInstallationOnClick(view: View) {
-        val intent = Intent(this, InstallationTransformerActivity::class.java)
-        intent.putExtra("Activity","Moter")
-        startActivityForResult(intent,TASK_NAME_REQUEST_CODE)
+        val intent = Intent(this, InstallationTransformerActivity::class.java).also {
+            it.putExtra("Activity","Moter")
+            startActivityForResult(it,TASK_NAME_REQUEST_CODE)
+        }
     }
     fun sizeCableTypeOnClick(view: View) {
         val intent = Intent(this, TypeCableActivity::class.java)
@@ -132,6 +145,7 @@ class MoterActivity : AppCompatActivity() {
         startActivityForResult(intent,TASK_NAME_REQUEST_CODE)
     }
     fun calculatorMoterOnClick(view: View) {
+
         btnCalInPipeSize.visibility = View.GONE
         tableBeforeCalculateInMoter.visibility = View.VISIBLE
         editTextDistanceInMoter.clearFocus()
@@ -139,16 +153,55 @@ class MoterActivity : AppCompatActivity() {
             hideKeyboard()
         }
 
-        if(editTextAmountMoterSize.text.isEmpty()) editTextAmountMoterSize.setText("10")
+//        if(TextAmountMoterSize.text.isEmpty()) TextAmountMoterSize.setText("10")
         if(editTextDistanceInMoter.text.isEmpty()) editTextDistanceInMoter.setText("20")
 
+        if(editTextDistanceInMoter.length() > 0 ){
+            if(editTextDistanceInMoter.text.toString() == "0" ) editTextDistanceInMoter.setText("20")
+            else if(editTextDistanceInMoter.text.toString() == "00") editTextDistanceInMoter.setText("20")
+            else if(editTextDistanceInMoter.text.toString() == "000") editTextDistanceInMoter.setText("20")
+            else if(editTextDistanceInMoter.text.toString() == "0000") editTextDistanceInMoter.setText("20")
+            else if(editTextDistanceInMoter.text.toString().slice(0..0) == "0"){
+                for(i in 0..3){
+                    if(editTextDistanceInMoter.text.toString().slice(0..0) != "0") break
+                    else editTextDistanceInMoter.setText(editTextDistanceInMoter.text.toString().slice(1..editTextDistanceInMoter.length()-1))
+                }
+            }
+        }
 
+//        if(editTextAmountMoterSize.length() > 0 ){
+//            if(editTextAmountMoterSize.text.toString() == "0." ) editTextAmountMoterSize.setText("10")
+//            else if(editTextAmountMoterSize.text.toString() == "00.") editTextAmountMoterSize.setText("10")
+//            else if(editTextAmountMoterSize.text.toString() == "000.") editTextAmountMoterSize.setText("10")
+//            else if(editTextAmountMoterSize.text.toString() == ".0") editTextAmountMoterSize.setText("10")
+//            else if(editTextAmountMoterSize.text.toString() == ".00") editTextAmountMoterSize.setText("10")
+//            else if(editTextAmountMoterSize.text.toString() == ".000") editTextAmountMoterSize.setText("10")
+//            else if(editTextAmountMoterSize.text.toString() == "0") editTextAmountMoterSize.setText("10")
+//            else if(editTextAmountMoterSize.text.toString() == "00") editTextAmountMoterSize.setText("10")
+//            else if(editTextAmountMoterSize.text.toString() == "000") editTextAmountMoterSize.setText("10")
+//            else if(editTextAmountMoterSize.text.toString() == "0000") editTextAmountMoterSize.setText("10")
+//            else if(editTextAmountMoterSize.text.toString().slice(0..1) == "00" || editTextAmountMoterSize.text.toString().slice(0..0) == ".") {
+//                   for(i in 0..3){
+//                       println(i)
+//                    if(editTextAmountMoterSize.text.toString().slice(0..1) == "0." &&  editTextAmountMoterSize.text.toString().slice(0..0) != ".") break
+//                    else editTextAmountMoterSize.setText(editTextAmountMoterSize.text.toString().slice(1..editTextAmountMoterSize.length()-1))
+//                }
+//
+//                if(editTextDistanceInMoter.text.toString().slice(0..0) == "0"){
+//                    for(i in 0..3){
+//                        if(editTextDistanceInMoter.text.toString().slice(0..0) != "0") break
+//                        else editTextDistanceInMoter.setText(editTextDistanceInMoter.text.toString().slice(1..editTextDistanceInMoter.length()-1))
+//                    }
+//                }
+//
+//            }
+//        }
         wayBackActivity1.visibility = View.GONE
         btnCalInPipeSize.visibility = View.GONE
         tableBeforeCalculateInMoter.visibility = View.VISIBLE
 
         var stepInFor:Int = 0
-        var maxRowsheet:Int
+        val maxRowsheet:Int
         val indexSheetInMoter:Int
         if(phaseTextView.text == "1 เฟส") {
             maxRowsheet = 53
@@ -156,7 +209,6 @@ class MoterActivity : AppCompatActivity() {
             indexSheetInMoter = 0
         } else {
             if(TextViewStartPantern.text == "STAR DELTA") {
-
                 maxRowsheet = 46
                 stepInFor = 3
                 indexSheetInMoter = 2
@@ -189,7 +241,7 @@ class MoterActivity : AppCompatActivity() {
         var voteInMoter:Int
 
         for(i in 2..maxRowsheet step stepInFor){
-            val editTextToDouble:Double = java.lang.Double.parseDouble(editTextAmountMoterSize.text.toString())
+            val editTextToDouble:Double = java.lang.Double.parseDouble(TextAmountMoterSize.text.toString())
             val checkAmpInTable = sheet.getCell(columnIntable, i).contents.toDouble()
 
             if(editTextToDouble <= checkAmpInTable){
@@ -203,7 +255,6 @@ class MoterActivity : AppCompatActivity() {
                     val cableSizeWithOutX = sheet.getCell(9, j).contents // ขนาดเบรกเกอร์ในตาราง
 
                     if(TextViewCableTypeInMoter.text == checkCableType){
-                        println("TRUE")
                         textViewElectricCurrenResult.text = powerRatingIntable
                         textViewSizeCableResult.text = Html.fromHtml("${cableTypeIntable.replace("mm2","mm<sup><small><small>2</small></small></sup>")}")
                         if(TextViewCableTypeInMoter.text != "NYY 2C-G") textViewGroundSizeResult.text = Html.fromHtml("${calbeGroundIntable.replace("mm2","mm<sup><small><small>2</small></small></sup>")}")
@@ -248,9 +299,6 @@ class MoterActivity : AppCompatActivity() {
                                 break
                             }
                         }
-
-
-
                         break
                     }
                 }
@@ -263,6 +311,7 @@ class MoterActivity : AppCompatActivity() {
                 textViewConduitSizeResult.text = "-"
                 textViewBreakerResult.text = "-"
                 textViewPressureResult.text = "-"
+                if(i == maxRowsheet-3)Toast.makeText(this,"ไม่สามารถคำนวนได้หรือใส่รูปแบบผิด",Toast.LENGTH_SHORT).show()
             }
 
         }
@@ -278,13 +327,23 @@ class MoterActivity : AppCompatActivity() {
         if (requestCode === TASK_NAME_REQUEST_CODE){
             if(resultCode == RESULT_OK){
 
+                val dataSizeMoter = data!!.getStringExtra("dataSizeMoter")
                 val dataUnitMoter = data!!.getStringExtra("dataUnitMoter")
                 val dataPhase = data.getIntExtra("dataPhase",0)
                 val dataInstallation = data.getParcelableExtra<InstallationModelInTransformer>("dataInstall")
                 val dataStartPantern = data!!.getStringExtra("dataStartPantern")
                 val dataTypeCable = data!!.getStringExtra("dataTypeCable")
 
+                if (dataSizeMoter != null){
+                    TextAmountMoterSize.text = dataSizeMoter
+                    saveData("dataSizeMoter", dataSizeMoter)
+                }
+
                 if (dataUnitMoter != null){
+                    if(textUnit.text != dataUnitMoter){
+                        TextAmountMoterSize.text = "10"
+                        saveData("dataSizeMoter", "10")
+                    }
                     textUnit.text = dataUnitMoter
                     saveData("unitMoter", dataUnitMoter)
                 }
@@ -292,6 +351,9 @@ class MoterActivity : AppCompatActivity() {
                 if (dataPhase != 0) {
                     phaseTextView.text = "$dataPhase เฟส"
                     saveData("phase", "$dataPhase เฟส")
+
+                    TextAmountMoterSize.text = "10"
+                    saveData("dataSizeMoter", "10")
                 }
 
 //                if (dataInstallation != null) {
@@ -304,11 +366,17 @@ class MoterActivity : AppCompatActivity() {
                 if (dataStartPantern != null){
                     TextViewStartPantern.text = dataStartPantern
                     saveData("dataStartPantern", dataStartPantern)
+
+                    TextAmountMoterSize.text = "10"
+                    saveData("dataSizeMoter", "10")
                 }
 
                 if (dataTypeCable != null){
                     TextViewCableTypeInMoter.text = dataTypeCable
                     saveData("dataTypeCable", dataTypeCable)
+
+                    TextAmountMoterSize.text = "10"
+                    saveData("dataSizeMoter", "10")
                 }
 
             }
@@ -333,8 +401,6 @@ class MoterActivity : AppCompatActivity() {
                 iconImageViewToPage.visibility = View.VISIBLE
             }
 
-
-
         }
     }
 
@@ -342,6 +408,9 @@ class MoterActivity : AppCompatActivity() {
         val data = value
         val sharedPref = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE) ?: return
         with(sharedPref.edit()){
+            if (type == "dataSizeMoter"){
+                putString(TASK_LIST_PREF_KEY_SIZE_MOTER, data)
+            }
             if (type == "unitMoter"){
                 putString(TASK_LIST_PREF_KEY_SIZE_UNIT, data)
             }
@@ -361,13 +430,15 @@ class MoterActivity : AppCompatActivity() {
     }
     fun loadData(){
         val sharedPref = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
+        val dataSizeOfMoter = sharedPref.getString(TASK_LIST_PREF_KEY_SIZE_MOTER,"10")
         val dataOfUnitMoter = sharedPref.getString(TASK_LIST_PREF_KEY_SIZE_UNIT,"HP")
         val dataOfPhase = sharedPref.getString(TASK_LIST_PREF_KEY_PHASE_IN_MOTER,"1 เฟส")
-        val dataOfInstall = sharedPref.getString(TASK_LIST_PREF_KEY_INSTALLATION_IN_MOTER,"เดินเคเบิลแบบระบายอากาศ")
+//        val dataOfInstall = sharedPref.getString(TASK_LIST_PREF_KEY_INSTALLATION_IN_MOTER,"เดินเคเบิลแบบระบายอากาศ")
         val dataOfStartPantern = sharedPref.getString(TASK_LIST_PREF_KEY_STARTPANTERN_IN_MOTER,"DOL")
         val dataOfCableSize = sharedPref.getString(TASK_LIST_PREF_KEY_TYPE_CABLE_IN_MOTER,"NYY 1C")
         val dataOfDistanceInTransformer = sharedPref.getString(TASK_LIST_PREF_KEY_DISTANCE_IN_MOTER,"20")
 
+        TextAmountMoterSize.text = dataSizeOfMoter
         textUnit.text = dataOfUnitMoter
         phaseTextView.text = dataOfPhase
 //        TextViewGroupInstallations.text = dataOfInstall
@@ -385,6 +456,8 @@ class MoterActivity : AppCompatActivity() {
         val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.hideSoftInputFromWindow(windowToken, 0)
     }
+
+
 
 
 }
