@@ -13,6 +13,11 @@ import android.os.Environment
 import android.print.PrintAttributes
 import android.print.PrintManager
 import android.text.Html
+import android.text.Spannable
+import android.text.SpannableString
+import android.text.style.SubscriptSpan
+import android.text.style.SuperscriptSpan
+import android.text.style.TextAppearanceSpan
 import android.util.Log
 import android.view.View
 import android.widget.Toast
@@ -39,6 +44,9 @@ import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.single.PermissionListener
 import kotlinx.android.synthetic.main.activity_pipe_size.*
 import kotlinx.android.synthetic.main.activity_pipe_size_report.*
+import kotlinx.android.synthetic.main.activity_pipe_size_report.textViewReferenceVoltageInReport2
+import kotlinx.android.synthetic.main.activity_pipe_size_report.textViewResultConduitSize
+import kotlinx.android.synthetic.main.activity_report.*
 import kotlinx.android.synthetic.main.activity_wire_size.*
 import java.io.ByteArrayOutputStream
 import java.io.File
@@ -55,8 +63,8 @@ class PipeSizeReportActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pipe_size_report)
 
-        val resultPipe = intent.getParcelableExtra<ReportReslutPipeSizeModel>("resultPipeSize")
-        val resultMax = intent.getParcelableExtra<ReportReslutPipeSizeModel>("resultMaxCable")
+        val resultPipe = intent.getParcelableExtra<ReportReslutPipeSizeModel>("resultPipeSize") // have not railSize
+        val resultMax = intent.getParcelableExtra<ReportReslutPipeSizeModel>("resultMaxCable") // have not amount
 
         Dexter.withActivity(this)
             .withPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)
@@ -96,20 +104,36 @@ class PipeSizeReportActivity : AppCompatActivity() {
 
 
         if(resultPipe != null){
-            CableSizeInPipeReport2.visibility = View.VISIBLE
-            textViewConduitSizeInPipeReport2.visibility = View.VISIBLE
-            CableSizeInPipeReport.visibility = View.GONE
-            textViewReslutCableTypeInPipeReport.text = Html.fromHtml("${resultPipe!!.cabletype} x ${resultPipe.sizecable}mm<small><small><sup>2</sup></small></small>")
-            textViewReslutAmountCableInPipeReport.text = "${resultPipe.amount}"
-            textViewResultPipeSizeInPipeReport.text = "${resultPipe.pipesize}"
-            textViewResultConduitSizeInPipeReport.text = "${resultPipe.conduitsize}"
+            textViewMainBreakerInReport.visibility = View.VISIBLE // จำนวนเส้น
+            textViewMainResultBreakerInReportData.visibility = View.VISIBLE // result จำนวนเส้น
+            textViewMainCableTypeInReport.visibility = View.GONE // ขนาดราง
+            textViewMainResultCableTypeInReport.visibility = View.GONE // result ขนาดราง
+            textViewAmountCableInPipeReport.visibility = View.GONE // จำนวนสายไฟ
+            textViewReslutAmountCableInPipeReport.visibility = View.GONE // result จำนวนสายไฟ
+            textViewReslutMainCableTypeInPipeReport.text = resultPipe.cabletype
+            textViewMainResultInstallationInReport.text = resultPipe.sizecable
+            textViewMainResultBreakerInReportData.text = resultPipe.amount
+            textViewResultConduitSize.text = resultPipe.pipesize
+            textViewResultRailSizeInReportPipeSize.text = resultPipe.conduitsize
         }else{
-            CableSizeInPipeReport2.visibility = View.GONE
-            textViewConduitSizeInPipeReport2.visibility = View.GONE
-            CableSizeInPipeReport.visibility = View.VISIBLE
-            textViewReslutCableTypeInPipeReport.text = Html.fromHtml("${resultMax!!.cabletype} x ${resultMax.sizecable}mm<small><small><sup>2</sup></small></small>")
-            textViewResultConduitSizeInPipeReport.text = "${resultMax.conduitsizechoose}"
-            textViewReslutCableSizeInPipeReport.text = "${resultMax!!.amountcablemax}"
+            println(resultMax)
+            textViewMainBreakerInReport.visibility = View.GONE // จำนวนเส้น
+            textViewMainResultBreakerInReportData.visibility = View.GONE // result จำนวนเส้น
+            textViewPipeSizeInPipeReport.visibility = View.GONE
+            textViewReferenceVoltageInReport2.visibility = View.GONE
+            textViewResultConduitSize.visibility = View.GONE
+            textViewRailSizeInReportPipeSize.visibility = View.GONE
+            textViewRailSizeInReportPipeSize2.visibility = View.GONE
+            textViewResultRailSizeInReportPipeSize.visibility = View.GONE
+
+            textViewMainCableTypeInReport.visibility = View.VISIBLE // ขนาดราง
+            textViewMainResultCableTypeInReport.visibility = View.VISIBLE // result ขนาดราง
+            textViewAmountCableInPipeReport.visibility = View.VISIBLE // จำนวนสายไฟ
+            textViewReslutAmountCableInPipeReport.visibility = View.VISIBLE // result จำนวนสายไฟ
+            textViewReslutMainCableTypeInPipeReport.text = resultMax!!.cabletype
+            textViewMainResultInstallationInReport.text = resultMax.sizecable
+            textViewMainResultCableTypeInReport.text = resultMax.conduitsizechoose
+            textViewReslutAmountCableInPipeReport.text = resultMax.amountcablemax
         }
 
 //        btnPrint.setOnClickListener {
@@ -141,44 +165,44 @@ class PipeSizeReportActivity : AppCompatActivity() {
         }
     }
 
-//    private fun printPDF() {
-//        val printManager = getSystemService(Context.PRINT_SERVICE) as PrintManager
-//        try {
-//            val printAdapter = PdfDocumentAdapter(this,Common.getAppPath(this) + file_name)
-//            printManager.print("Document",printAdapter, PrintAttributes.Builder().build())
-//        }catch (e:Exception){
-//            Log.e("Error Report", e.message.toString())
+    private fun printPDF() {
+        val printManager = getSystemService(Context.PRINT_SERVICE) as PrintManager
+        try {
+            val printAdapter = PdfDocumentAdapter(this,Common.getAppPath(this) + file_name)
+            printManager.print("Document",printAdapter, PrintAttributes.Builder().build())
+        }catch (e:Exception){
+            Log.e("Error Report", e.message.toString())
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+//                println("requestCode ${requestCode}")
+//                println("mailClientOpened ${mailClientOpened}")
+//                println("resultCode ${resultCode}")
+//                println("resultCode2222 ${Activity.RESULT_OK}")
+
+//        if(requestCode == 800){
+////            val intent = Intent(this,MainActivity::class.java)
+////            startActivityForResult(intent,100)
 //        }
-//    }
-
-//    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-//        super.onActivityResult(requestCode, resultCode, data)
+//        if (resultCode == Activity.RESULT_OK) {
+//            Toast.makeText(this, "Successfully Sharing", Toast.LENGTH_SHORT).show()
 //
-////                println("requestCode ${requestCode}")
-////                println("mailClientOpened ${mailClientOpened}")
-////                println("resultCode ${resultCode}")
-////                println("resultCode2222 ${Activity.RESULT_OK}")
-//
-////        if(requestCode == 800){
-//////            val intent = Intent(this,MainActivity::class.java)
-//////            startActivityForResult(intent,100)
-////        }
-////        if (resultCode == Activity.RESULT_OK) {
-////            Toast.makeText(this, "Successfully Sharing", Toast.LENGTH_SHORT).show()
-////
-////        }
-//    }
+//        }
+    }
 
 
-//    override fun onResume() {
-//        super.onResume()
-//        mailClientOpened = false
-//    }
-//
-//    override fun onStop() {
-//        super.onStop()
-//        mailClientOpened = true
-//    }
+    override fun onResume() {
+        super.onResume()
+        mailClientOpened = false
+    }
+
+    override fun onStop() {
+        super.onStop()
+        mailClientOpened = true
+    }
 
     fun createPDFFile(path: String, data: ReportReslutPipeSizeModel?) {
         if(File(path).exists()) File(path).delete()
@@ -196,12 +220,13 @@ class PipeSizeReportActivity : AppCompatActivity() {
             document.addCreationDate()
             document.addAuthor("Dev")
             document.addCreator("Marutthep Rompho")
-
+            document.setMargins(40.0f, 40.0F, 30.0F, 40.0F) // มีผลเฉพาะ Page 2 เท่านั้น
+//            document.isMarginMirroring = true
             // Font setting
-            val colorAccent = BaseColor(0, 153, 204, 255)
-            val headingFontSize = 26.0f
-            val valueFontSzie = 26.0f
-            val SubvalueFontSzie = 20.0f
+            val colorAccent = BaseColor(14, 65, 148, 255)
+            val headingFontSize = 12.0f
+            val valueFontSzie = 12.0f
+            val SubvalueFontSzie = 10.0f
 
             // Custom font
             val fontName = BaseFont.createFont(
@@ -216,47 +241,81 @@ class PipeSizeReportActivity : AppCompatActivity() {
             )
 
             // Add Title to document
-            val titleStyleTitle = Font(fontNameBoldStyle, 30.0f, Font.NORMAL, BaseColor.BLACK)
-            val titleStyle = Font(fontName, 26.0f, Font.NORMAL, BaseColor.BLACK)
-            var headingStyle = Font(fontName, headingFontSize, Font.NORMAL, BaseColor.BLACK)
-            var valueStyle = Font(fontName, valueFontSzie, Font.NORMAL, BaseColor.BLACK)
-            var SubvalueStyle = Font(fontName, SubvalueFontSzie, Font.NORMAL, BaseColor.BLACK)
+            val titleStyleTitle = Font(fontNameBoldStyle, 12.0f, Font.NORMAL, BaseColor.BLACK)
+            val subTitleStyle = Font(fontNameBoldStyle, 9.0f, Font.NORMAL, BaseColor.BLACK)
+            val detailStyleTitle = Font(fontNameBoldStyle, 12.0f, Font.NORMAL, colorAccent)
+            val titleStyle = Font(fontName, 18.0f, Font.NORMAL, BaseColor.BLACK)
+            val headingStyle = Font(fontName, headingFontSize, Font.BOLD, BaseColor.BLACK)
+            var valueStyle = Font(fontName, valueFontSzie, Font.NORMAL, colorAccent)
+            var SubvalueStyle = Font(fontName, SubvalueFontSzie, Font.NORMAL, colorAccent)
 
 
-            addNewItemWithLeftAndRight(document, "", "Cable and Conduit Calculator", titleStyle, titleStyleTitle)
-            addLineSpace(document)
+            addNewItemWithLeftAndRight(document, "รายงานคำนวนขนาดท่อและราง", "", titleStyle, detailStyleTitle)
             addLineSeperator(document)
-            addNewItem(document, "รายงานผลการคำนวณขนาดท่อและราง", Element.ALIGN_CENTER, titleStyleTitle)
+//            addNewItem(document, "รายงานผลการคำนวณขนาดท่อและราง", Element.ALIGN_CENTER, titleStyleTitle)
+//            addLineSpace(document)
+
+//            addNewItemWithLeftAndRight(document, "รายงานคำนวณขนาดสายไฟฟ้าและท่อไฟฟ้า", "", titleStyle, detailStyleTitle)
+//            addLineSeperator(document)
+
+            addNewItem(document, "ข้อมูลการใช้งาน", Element.ALIGN_LEFT, headingStyle)
             addLineSpace(document)
 
-            //cabletype
-            addNewItemWithLeftAndRight(document, "ชนิดสายไฟ", "${data!!.cabletype} x ${data.sizecable}mm\u00B2", titleStyle, headingStyle)
+            addItemAndResult(document, "                ชนิดสายไฟ : ", data!!.cabletype, titleStyleTitle, valueStyle)
             addLineSpace(document)
-
-            if(data!!.amountcablemax == ""){
-                //amount
-                addNewItemWithLeftAndRight(document, "จำนวน", "${data.amount}", titleStyle, headingStyle)
-
-                //conduit Size
-                addNewItemWithLeftAndRight(document, "ขนาดท่อ", "${data.pipesize}", titleStyle, headingStyle)
-                addNewItemWithLeftAndRight(document, "(จำนวนสูงสุด)", "", SubvalueStyle, SubvalueStyle)
-
-                //Rail  Size
-                addNewItemWithLeftAndRight(document, "ขนาดราง", "${data.conduitsize}", titleStyle, headingStyle)
-                addNewItemWithLeftAndRight(document, "(จำนวนสูงสุด)", "", SubvalueStyle, SubvalueStyle)
-
-            }else{
-                //////////////  resultMax
-
-                //Rail  Size
-                addNewItemWithLeftAndRight(document, "ขนาดราง", "${data.conduitsizechoose}", titleStyle, headingStyle)
+            addItemAndResult(document, "                ขนาดสาย :   ", data.sizecable, titleStyleTitle, valueStyle)
+            addLineSpace(document)
+            if(data.amountcablemax == ""){
+                addItemAndResult(document, "                จำนวน :       ", data.amount, titleStyleTitle, valueStyle)
                 addLineSpace(document)
-
-
-                //Cable Size Max
-                addNewItemWithLeftAndRight(document, "ขนาดไฟสูงสุด", "${data.amountcablemax}", titleStyle, headingStyle)
+            }else{
+                addItemAndResult(document, "                ขนาดราง :   ", data.conduitsizechoose, titleStyleTitle, valueStyle)
                 addLineSpace(document)
             }
+            addNewItem(document, "ผลการคำนวน", Element.ALIGN_LEFT, headingStyle)
+            addLineSpace(document)
+
+            if(data.amountcablemax == ""){
+                addItemAndResult(document, "                ขนาดท่อ                    ", data.pipesize, titleStyleTitle, valueStyle)
+                addItemAndResult(document, "                   (จำนวนสูงสุด)", "", subTitleStyle, valueStyle)
+                addLineSpace(document)
+                addItemAndResult(document, "                ขนาดราง                    ", data.conduitsize, titleStyleTitle, valueStyle)
+                addItemAndResult(document, "                   (จำนวนสูงสุด)", "", subTitleStyle, valueStyle)
+                addLineSpace(document)
+            }else{
+                addItemAndResult(document, "                จำนวนสายไฟ                    ", data.amountcablemax, titleStyleTitle, valueStyle)
+                addLineSpace(document)
+            }
+
+
+            //cabletype
+//            addNewItemWithLeftAndRight(document, "ชนิดสายไฟ", "${data!!.cabletype} x ${data.sizecable}mm\u00B2", titleStyle, headingStyle)
+//            addLineSpace(document)
+
+//            if(data!!.amountcablemax == ""){
+//                //amount
+//                addNewItemWithLeftAndRight(document, "จำนวน", "${data.amount}", titleStyle, headingStyle)
+//
+//                //conduit Size
+//                addNewItemWithLeftAndRight(document, "ขนาดท่อ", "${data.pipesize}", titleStyle, headingStyle)
+//                addNewItemWithLeftAndRight(document, "(จำนวนสูงสุด)", "", SubvalueStyle, SubvalueStyle)
+//
+//                //Rail  Size
+//                addNewItemWithLeftAndRight(document, "ขนาดราง", "${data.conduitsize}", titleStyle, headingStyle)
+//                addNewItemWithLeftAndRight(document, "(จำนวนสูงสุด)", "", SubvalueStyle, SubvalueStyle)
+//
+//            }else{
+//                //////////////  resultMax
+//
+//                //Rail  Size
+//                addNewItemWithLeftAndRight(document, "ขนาดราง", "${data.conduitsizechoose}", titleStyle, headingStyle)
+//                addLineSpace(document)
+//
+//
+//                //Cable Size Max
+//                addNewItemWithLeftAndRight(document, "ขนาดไฟสูงสุด", "${data.amountcablemax}", titleStyle, headingStyle)
+//                addLineSpace(document)
+//            }
 
 //            addLineSeperator(document)
 //            addNewItem(document,"Account Name:",Element.ALIGN_LEFT,headingStyle)
@@ -271,6 +330,26 @@ class PipeSizeReportActivity : AppCompatActivity() {
         }
     }
 
+    @Throws(DocumentException::class)
+    fun addItemAndResult(document: Document, textLeft: String, textRight: String, leftStyle: Font, rightStyle: Font){
+        val glue =  Chunk(VerticalPositionMark())
+        val p = Paragraph()
+
+//        val s = SpannableString(textRight.trim())
+//        p.add(Chunk(textLeft, leftStyle))
+//        if (textRight.indexOf("mm2") > 1){
+//            p.add(Chunk(textRight.replace("mm2", "mm²"), rightStyle))
+//        }else{
+//            if(textRight.indexOf('/') != -1) p.add(Chunk("$s", rightStyle))
+//            else p.add(Chunk(textRight, rightStyle))
+////
+//
+//        }
+        p.add(Chunk(textLeft, leftStyle))
+        p.add(Chunk(textRight, rightStyle))
+        document.add(p)
+
+    }
 
 
     @Throws(DocumentException::class)
@@ -282,29 +361,21 @@ class PipeSizeReportActivity : AppCompatActivity() {
             rightStyle: Font
     ) {
         //add Image
-        val d = resources.getDrawable(R.drawable.temca_logo_mini)
+        val d = resources.getDrawable(R.drawable.logo_pdf_temca)
         val bitDw = d as BitmapDrawable
         val bmp = bitDw.bitmap
         val stream = ByteArrayOutputStream()
         bmp.compress(Bitmap.CompressFormat.PNG, 100, stream)
-        bmp.scale(200, 500)
         val image: Image = Image.getInstance(stream.toByteArray())
-
-//        document.add(image)
-
-        var chunkTextLeft = if (textRight == "Cable and Conduit Calculator"){
-            Chunk(image, 25.0F, -10.0F, true)
+        var chunkTextRight = if (textLeft == "รายงานคำนวนขนาดท่อและราง"){
+            Chunk(image, 0F, -20F, true)
         }else{
-            Chunk(textLeft, leftStyle)
+            Chunk(textRight, rightStyle)
         }
-
-//        val chunkTextLeft = Chunk(textLeft, leftStyle)
-        val chunkTextRight = Chunk(textRight, rightStyle)
-
+        val chunkTextLeft = Chunk(textLeft, leftStyle)
         val p = Paragraph(chunkTextLeft)
         p.add(Chunk(VerticalPositionMark()))
         p.add(chunkTextRight)
-        addLineSpace(document)
         document.add(p)
     }
 

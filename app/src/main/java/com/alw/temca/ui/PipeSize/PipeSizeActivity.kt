@@ -370,15 +370,23 @@ class PipeSizeActivity : AppCompatActivity() {
 
         if(switchButtonPipeSize.isChecked == true){
             bundle.putParcelable("resultMaxCable",ReportReslutPipeSizeModel(
-                    typeCableTextView.text.toString(),cableSizeTextView.text.toString().replace("มม2",""),
-                    "","","",SizeConduitTextView.text.toString(),textViewShow8InPipe.text.toString()))
+                    typeCableTextView.text.toString(),
+                    cableSizeTextView.text.toString().replace("มม2",""),
+                    "",
+                    "",
+                    "",
+                    SizeConduitTextView.text.toString(),textViewShow8InPipe.text.toString()))
             intent.putExtras(bundle)
 
         }else{
             bundle.putParcelable("resultPipeSize",ReportReslutPipeSizeModel(
-                    typeCableTextView.text.toString(),cableSizeTextView.text.toString().replace("มม2",""),
-                    editTextAmountCable.text.toString(), textViewShow4InPipe.text.toString(),
-                    textViewShow6InPipe.text.toString(),"",""))
+                    typeCableTextView.text.toString(),
+                    cableSizeTextView.text.toString().replace("มม2",""),
+                    editTextAmountCable.text.toString(),
+                    textViewShow4InPipe.text.toString(),
+                    textViewShow6InPipe.text.toString(),
+                    "",
+                    ""))
             intent.putExtras(bundle)
         }
 

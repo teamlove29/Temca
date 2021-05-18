@@ -197,7 +197,7 @@ class WireSizeActivity : AppCompatActivity() {
                     typeCableTextView.text.toString(), // typcable
                     circuitTextView.text.toString(), // CB
                     editTextDistance.text.toString(), // amountDis
-                    textViewShow2.text.toString(), // text2 is cablesize
+                    textViewShow2.text.toString().replace("mm2","mm"), // text2 is cablesize
                     textViewResultWireGround.text.toString(), // wiresizegroud
                     textViewShow4.text.toString(), // text4 is conduitsize
                     textViewShow6.text.toString()) // result presure
@@ -348,10 +348,6 @@ class WireSizeActivity : AppCompatActivity() {
                         println("Nooooo")
                     }
                 }
-
-
-////                val test = ArrayList<RailSizeModel>()
-
 
             }else{
                 tableBeforeCalculateGroup7.visibility = View.GONE

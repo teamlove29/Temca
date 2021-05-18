@@ -40,7 +40,6 @@ import com.karumi.dexter.listener.PermissionDeniedResponse
 import com.karumi.dexter.listener.PermissionGrantedResponse
 import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.single.PermissionListener
-import kotlinx.android.synthetic.main.activity_pipe_size_report.*
 import kotlinx.android.synthetic.main.activity_report.*
 import kotlinx.android.synthetic.main.activity_wire_size.*
 import java.io.ByteArrayOutputStream
@@ -61,7 +60,6 @@ class ReportActivity : AppCompatActivity() {
 
         val DataFromWireSize = intent.getParcelableArrayListExtra<ReportResultWireSize>("DataFromWireSize")!!
 
-println(DataFromWireSize)
         textViewResultPhaseInReport.text = DataFromWireSize[0].phase
         textViewResultInstallationInReport.text =  DataFromWireSize[0].installation
         textViewResultCableTypeInReport.text =  DataFromWireSize[0].cableType
@@ -69,7 +67,7 @@ println(DataFromWireSize)
         textViewResultDistanceInReport.text = "${DataFromWireSize[0].distance}M"
 
         resultTwoInReportWireSize.visibility = View.GONE
-        textViewResultWireSize.text = Html.fromHtml(DataFromWireSize[0].cableSize.replace("mm2", "mm<sup><small><small>2</small></small></sup>"))
+        textViewResultWireSize.text = Html.fromHtml(DataFromWireSize[0].cableSize.replace("mm", "mm<sup><small><small>2</small></small></sup>"))
         if(DataFromWireSize[0].wireGround != "-")
             textViewResultWireGroundInReport.text = Html.fromHtml(DataFromWireSize[0].wireGround.replace("mm2", "mm<sup><small><small>2</small></small></sup>"))
         else
@@ -85,7 +83,7 @@ println(DataFromWireSize)
 
         if(DataFromWireSize.size >= 2){
             resultTwoInReportWireSize.visibility = View.VISIBLE
-            textViewResultWireSize2.text = Html.fromHtml(DataFromWireSize[1].cableSize.replace("mm2", "mm<sup><small><small>2</small></small></sup>"))
+            textViewResultWireSize2.text = Html.fromHtml(DataFromWireSize[1].cableSize.replace("mm", "mm<sup><small><small>2</small></small></sup>"))
             if(DataFromWireSize[1].wireGround != "-")
                 textViewResultWireGroundInReport2.text = Html.fromHtml(DataFromWireSize[1].wireGround.replace("mm2", "mm<sup><small><small>2</small></small></sup>"))
             else
@@ -126,7 +124,7 @@ println(DataFromWireSize)
                     override fun onPermissionGranted(p0: PermissionGrantedResponse?) {
                         if (DataFromWireSize.size > 0 ) {
                             createPDFFile(
-                                    Common.getAppPath(this@ReportActivity) + file_name, resultWire
+                                    Common.getAppPath(this@ReportActivity) + file_name, DataFromWireSize
                             )
                         }
                     }
@@ -197,7 +195,7 @@ println(DataFromWireSize)
         finish() // to end your activity when toast is shown
     }
 
-    fun createPDFFile(path: String, data: ReportResultWireSize?) {
+    fun createPDFFile(path: String, data: ArrayList<ReportResultWireSize>) {
         if(File(path).exists()) File(path).delete()
         try {
             val document = Document(PageSize.A4, 40.0f, 40.0f, 30.0f, 40.0f)
@@ -217,9 +215,9 @@ println(DataFromWireSize)
 //            document.isMarginMirroring = true
             // Font setting
             val colorAccent = BaseColor(14, 65, 148, 255)
-            val headingFontSize = 14.0f
-            val valueFontSzie = 14.0f
-            val SubvalueFontSzie = 14.0f
+            val headingFontSize = 12.0f
+            val valueFontSzie = 12.0f
+            val SubvalueFontSzie = 10.0f
 
             // Custom font
             val fontName = BaseFont.createFont(
@@ -234,10 +232,10 @@ println(DataFromWireSize)
             )
 
             // Add Title to document
-            val titleStyleTitle = Font(fontNameBoldStyle, 14.0f, Font.NORMAL, BaseColor.BLACK)
-            val subTitleStyle = Font(fontNameBoldStyle, 12.0f, Font.NORMAL, BaseColor.BLACK)
+            val titleStyleTitle = Font(fontNameBoldStyle, 12.0f, Font.NORMAL, BaseColor.BLACK)
+            val subTitleStyle = Font(fontNameBoldStyle, 9.0f, Font.NORMAL, BaseColor.BLACK)
             val detailStyleTitle = Font(fontNameBoldStyle, 12.0f, Font.NORMAL, colorAccent)
-            val titleStyle = Font(fontName, 20.0f, Font.NORMAL, BaseColor.BLACK)
+            val titleStyle = Font(fontName, 18.0f, Font.NORMAL, BaseColor.BLACK)
             val headingStyle = Font(fontName, headingFontSize, Font.BOLD, BaseColor.BLACK)
             var valueStyle = Font(fontName, valueFontSzie, Font.NORMAL, colorAccent)
             var SubvalueStyle = Font(fontName, SubvalueFontSzie, Font.NORMAL, colorAccent)
@@ -258,75 +256,52 @@ println(DataFromWireSize)
 //            val p = Paragraph(chunk)
 //            p.alignment = Element.ALIGN_RIGHT
 //            document.add(p)
-
 //            addNewItem(document, "", Element.ALIGN_RIGHT, titleStyleTitle)
+
             addNewItemWithLeftAndRight(document, "รายงานคำนวณขนาดสายไฟฟ้าและท่อไฟฟ้า", "", titleStyle, detailStyleTitle)
             addLineSeperator(document)
             addNewItem(document, "ข้อมูลการใช้งาน", Element.ALIGN_LEFT, headingStyle)
             addLineSpace(document)
-            addItemAndResult(document, "                ระบบไฟฟ้า : ", data!!.phase, titleStyleTitle, valueStyle)
+            addItemAndResult(document, "                ระบบไฟฟ้า : ", data[0].phase, titleStyleTitle, valueStyle)
             addLineSpace(document)
-            addItemAndResult(document, "                กลุ่มการติดตั้ง : ", data.installation, titleStyleTitle, valueStyle)
+            addItemAndResult(document, "                กลุ่มการติดตั้ง : ", data[0].installation, titleStyleTitle, valueStyle)
             addLineSpace(document)
-            addItemAndResult(document, "                ชนิดสายไฟฟ้า : ", data.cableType, titleStyleTitle, valueStyle)
+            addItemAndResult(document, "                ชนิดสายไฟฟ้า : ", data[0].cableType, titleStyleTitle, valueStyle)
             addLineSpace(document)
-            addItemAndResult(document, "                Circuit Breaker : ", data.breaker, titleStyleTitle, valueStyle)
+            addItemAndResult(document, "                Circuit Breaker : ", data[0].breaker, titleStyleTitle, valueStyle)
             addLineSpace(document)
-            addItemAndResult(document, "                ระยะสายไฟฟ้า : ", "${data.distance}M", titleStyleTitle, valueStyle)
-            addLineSpace(document)
+            addItemAndResult(document, "                ระยะสายไฟฟ้า : ", "${data[0].distance}M", titleStyleTitle, valueStyle)
             addLineSpace(document)
 
             addNewItem(document, "ผลการคำนวน", Element.ALIGN_LEFT, headingStyle)
             addLineSpace(document)
-            addItemAndResult(document, "                ขนาดสายไฟฟ้าที่เหมาะสม     ", data.cableSize, titleStyleTitle, valueStyle)
+            addItemAndResult(document, "                ขนาดสายไฟฟ้าที่เหมาะสม     ", data[0].cableSize.replace("mm", "mm2"), titleStyleTitle, valueStyle)
             addLineSpace(document)
-            addItemAndResult(document, "                ขนาดสายดินที่เหมาะสม          ", data.wireGround, titleStyleTitle, valueStyle)
+            addItemAndResult(document, "                ขนาดสายดินที่เหมาะสม          ", data[0].wireGround, titleStyleTitle, valueStyle)
             addLineSpace(document)
-            addItemAndResult(document, "                ขนาดท่อไฟฟ้า                         ", data.condutiSize, titleStyleTitle, valueStyle)
+            addItemAndResult(document, "                ขนาดท่อไฟฟ้า                         ", data[0].condutiSize, titleStyleTitle, valueStyle)
             addLineSpace(document)
-            addItemAndResult(document, "                แรงดันตก                                 ", data.pressure, titleStyleTitle, valueStyle)
-            addItemAndResult(document, "                   ${textViewReferenceVoltageInReport.text}", "", subTitleStyle, valueStyle)
+            addItemAndResult(document, "                แรงดันตก                                 ", data[0].pressure, titleStyleTitle, valueStyle)
+            addItemAndResult(document, "                     ${textViewReferenceVoltageInReport.text}", "", subTitleStyle, valueStyle)
             addLineSpace(document)
             addLineSpace(document)
+
+            if(data.size >=2 ){
+            addItemAndResult(document, "                ขนาดสายไฟฟ้าที่เหมาะสม     ", data[1].cableSize.replace("mm", "mm2"), titleStyleTitle, valueStyle)
+            addLineSpace(document)
+            addItemAndResult(document, "                ขนาดสายดินที่เหมาะสม          ", data[1].wireGround, titleStyleTitle, valueStyle)
+            addLineSpace(document)
+            addItemAndResult(document, "                ขนาดท่อไฟฟ้า                         ", data[1].condutiSize, titleStyleTitle, valueStyle)
+            addLineSpace(document)
+            addItemAndResult(document, "                แรงดันตก                                 ", data[1].pressure, titleStyleTitle, valueStyle)
+            addItemAndResult(document, "                     ${textViewReferenceVoltageInReport.text}", "", subTitleStyle, valueStyle)
+            addLineSpace(document)
+            addLineSpace(document)
+            }
 
             addNewItem(document, "* อ้างอิงตามมาตรฐานการติดตั้งทางไฟฟ้า วสท. 2562", Element.ALIGN_LEFT, SubvalueStyle)
-            addLineSpace(document)
             addNewItem(document, "** ใช้งานที่อุณหภูมิ 36-40 C° และเดินสาย 1 กลุ่มวงจร", Element.ALIGN_LEFT, SubvalueStyle)
 
-
-
-//            addNewItemWithLeftAndRight(document, "รายงานคำนวณขนาดสายไฟฟ้าและท่อไฟฟ้า", "", titleStyle, detailStyleTitle)
-//            addLineSeperator(document)
-//            addNewItem(document, "ข้อมูลการใช้งาน", Element.ALIGN_LEFT, headingStyle)
-//            addLineSpace(document)
-//            addItemAndResult(document, "                ระบบไฟฟ้า : ", data!!.phase, titleStyleTitle, valueStyle)
-//            addLineSpace(document)
-//            addItemAndResult(document, "                กลุ่มการติดตั้ง : ", data.installation, titleStyleTitle, valueStyle)
-//            addLineSpace(document)
-//            addItemAndResult(document, "                ชนิดสายไฟฟ้า : ", data.cableType, titleStyleTitle, valueStyle)
-//            addLineSpace(document)
-//            addItemAndResult(document, "                Circuit Breaker : ", data.breaker, titleStyleTitle, valueStyle)
-//            addLineSpace(document)
-//            addItemAndResult(document, "                ระยะสายไฟฟ้า : ", "${data.distance}M", titleStyleTitle, valueStyle)
-//            addLineSpace(document)
-//            addLineSpace(document)
-//
-//            addNewItem(document, "ผลการคำนวน", Element.ALIGN_LEFT, headingStyle)
-//            addLineSpace(document)
-//            addItemAndResult(document, "                ขนาดสายไฟฟ้าที่เหมาะสม     ", data.cableSize, titleStyleTitle, valueStyle)
-//            addLineSpace(document)
-//            addItemAndResult(document, "                ขนาดสายดินที่เหมาะสม          ", data.wireGround, titleStyleTitle, valueStyle)
-//            addLineSpace(document)
-//            addItemAndResult(document, "                ขนาดท่อไฟฟ้า                         ", data.condutiSize, titleStyleTitle, valueStyle)
-//            addLineSpace(document)
-//            addItemAndResult(document, "                แรงดันตก                                 ", data.pressure, titleStyleTitle, valueStyle)
-//            addItemAndResult(document, "                   ${textViewReferenceVoltageInReport.text}", "", subTitleStyle, valueStyle)
-//            addLineSpace(document)
-//            addLineSpace(document)
-//
-//            addNewItem(document, "* อ้างอิงตามมาตรฐานการติดตั้งทางไฟฟ้า วสท. 2562", Element.ALIGN_LEFT, SubvalueStyle)
-//            addLineSpace(document)
-//            addNewItem(document, "** ใช้งานที่อุณหภูมิ 36-40 C° และเดินสาย 1 กลุ่มวงจร", Element.ALIGN_LEFT, SubvalueStyle)
 
 //                // cableSize
 //                addNewItemWithLeftAndRight(document, "ขนาดสายไฟ", data!!.cableSize, titleStyle, headingStyle)
@@ -426,7 +401,7 @@ println(DataFromWireSize)
 
        p.add(Chunk(textLeft, leftStyle))
        if (textRight.indexOf("mm2") > 1){
-           p.add(Chunk("${textRight.replace("mm2", "mm")}\u00B2", rightStyle))
+           p.add(Chunk(textRight.replace("mm2", "mm²"), rightStyle))
        }else{
            if(textRight.indexOf('/') != -1) p.add(Chunk("$s", rightStyle))
            else p.add(Chunk(textRight, rightStyle))
