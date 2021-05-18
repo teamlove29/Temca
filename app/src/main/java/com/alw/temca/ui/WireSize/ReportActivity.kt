@@ -20,6 +20,7 @@ import android.text.style.SubscriptSpan
 import android.text.style.SuperscriptSpan
 import android.text.style.TextAppearanceSpan
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
@@ -58,32 +59,72 @@ class ReportActivity : AppCompatActivity() {
 
         val resultWire = intent.getParcelableExtra<ReportResultWireSize>("reportWireSize")
 
-        if(resultWire != null){
-            textViewResultPhaseInReport.text = resultWire.phase
-            textViewResultInstallationInReport.text = resultWire.installation
-            textViewResultCableTypeInReport.text = resultWire.cableType
-            textViewResultBreakerInReportData.text = resultWire.breaker
-            textViewResultDistanceInReport.text = "${resultWire.distance}M"
-            textViewResultWireSize.text = Html.fromHtml("${resultWire.cableSize.replace("mm2", "mm")}<sup><small><small>2</small></small></sup>")
+        val DataFromWireSize = intent.getParcelableArrayListExtra<ReportResultWireSize>("DataFromWireSize")!!
 
-            if(resultWire.wireGround != "-") textViewResultWireGroundInReport.text = Html.fromHtml("${resultWire.wireGround.replace("mm2", "mm")}<sup><small><small>2</small></small></sup>")
-            else textViewResultWireGroundInReport.text = "-"
+println(DataFromWireSize)
+        textViewResultPhaseInReport.text = DataFromWireSize[0].phase
+        textViewResultInstallationInReport.text =  DataFromWireSize[0].installation
+        textViewResultCableTypeInReport.text =  DataFromWireSize[0].cableType
+        textViewResultBreakerInReportData.text =  DataFromWireSize[0].breaker
+        textViewResultDistanceInReport.text = "${DataFromWireSize[0].distance}M"
 
-            textViewResultConduitSize.text = resultWire.condutiSize
-            textViewResultPressure.text = resultWire.pressure
-            if(resultWire.phase == "1 เฟส"){
-                textViewReferenceVoltageInReport.text = "(แรงดันอ้างอิง 230V)"
-            }else{
-                textViewReferenceVoltageInReport.text = "(แรงดันอ้างอิง 400V)"
-            }
-            textViewDegree.text = "** ใช้งานที่อุณหภูมิ 36-40 C\u00B0 ละเดินสาย 1 กลุ่มวงจร"
+        resultTwoInReportWireSize.visibility = View.GONE
+        textViewResultWireSize.text = Html.fromHtml(DataFromWireSize[0].cableSize.replace("mm2", "mm<sup><small><small>2</small></small></sup>"))
+        if(DataFromWireSize[0].wireGround != "-")
+            textViewResultWireGroundInReport.text = Html.fromHtml(DataFromWireSize[0].wireGround.replace("mm2", "mm<sup><small><small>2</small></small></sup>"))
+        else
+            textViewResultWireGroundInReport.text = "-"
+        textViewResultConduitSize.text = DataFromWireSize[0].condutiSize
+        textViewResultPressure.text = DataFromWireSize[0].pressure
+        if(DataFromWireSize[0].phase == "1 เฟส"){
+            textViewReferenceVoltageInReport.text = "(แรงดันอ้างอิง 230V)"
+        }else{
+            textViewReferenceVoltageInReport.text = "(แรงดันอ้างอิง 400V)"
         }
+        textViewDegree.text = "** ใช้งานที่อุณหภูมิ 36-40 C\u00B0 ละเดินสาย 1 กลุ่มวงจร"
+
+        if(DataFromWireSize.size >= 2){
+            resultTwoInReportWireSize.visibility = View.VISIBLE
+            textViewResultWireSize2.text = Html.fromHtml(DataFromWireSize[1].cableSize.replace("mm2", "mm<sup><small><small>2</small></small></sup>"))
+            if(DataFromWireSize[1].wireGround != "-")
+                textViewResultWireGroundInReport2.text = Html.fromHtml(DataFromWireSize[1].wireGround.replace("mm2", "mm<sup><small><small>2</small></small></sup>"))
+            else
+                textViewResultWireGroundInReport2.text = "-"
+            textViewResultConduitSize2.text = DataFromWireSize[1].condutiSize
+            textViewResultPressure2.text = DataFromWireSize[1].pressure
+            if(DataFromWireSize[1].phase == "1 เฟส"){
+                textViewReferenceVoltageInReport2.text = "(แรงดันอ้างอิง 230V)"
+            }else{
+                textViewReferenceVoltageInReport2.text = "(แรงดันอ้างอิง 400V)"
+            }
+        }
+
+//        if(resultWire != null){
+//            textViewResultPhaseInReport.text = resultWire.phase
+//            textViewResultInstallationInReport.text = resultWire.installation
+//            textViewResultCableTypeInReport.text = resultWire.cableType
+//            textViewResultBreakerInReportData.text = resultWire.breaker
+//            textViewResultDistanceInReport.text = "${resultWire.distance}M"
+//            textViewResultWireSize.text = Html.fromHtml("${resultWire.cableSize.replace("mm2", "mm")}<sup><small><small>2</small></small></sup>")
+//
+//            if(resultWire.wireGround != "-") textViewResultWireGroundInReport.text = Html.fromHtml("${resultWire.wireGround.replace("mm2", "mm")}<sup><small><small>2</small></small></sup>")
+//            else textViewResultWireGroundInReport.text = "-"
+//
+//            textViewResultConduitSize.text = resultWire.condutiSize
+//            textViewResultPressure.text = resultWire.pressure
+//            if(resultWire.phase == "1 เฟส"){
+//                textViewReferenceVoltageInReport.text = "(แรงดันอ้างอิง 230V)"
+//            }else{
+//                textViewReferenceVoltageInReport.text = "(แรงดันอ้างอิง 400V)"
+//            }
+//            textViewDegree.text = "** ใช้งานที่อุณหภูมิ 36-40 C\u00B0 ละเดินสาย 1 กลุ่มวงจร"
+//        }
 
         Dexter.withActivity(this)
                 .withPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)
                 .withListener(object : PermissionListener {
                     override fun onPermissionGranted(p0: PermissionGrantedResponse?) {
-                        if (resultWire != null) {
+                        if (DataFromWireSize.size > 0 ) {
                             createPDFFile(
                                     Common.getAppPath(this@ReportActivity) + file_name, resultWire
                             )
@@ -251,6 +292,41 @@ class ReportActivity : AppCompatActivity() {
             addNewItem(document, "* อ้างอิงตามมาตรฐานการติดตั้งทางไฟฟ้า วสท. 2562", Element.ALIGN_LEFT, SubvalueStyle)
             addLineSpace(document)
             addNewItem(document, "** ใช้งานที่อุณหภูมิ 36-40 C° และเดินสาย 1 กลุ่มวงจร", Element.ALIGN_LEFT, SubvalueStyle)
+
+
+
+//            addNewItemWithLeftAndRight(document, "รายงานคำนวณขนาดสายไฟฟ้าและท่อไฟฟ้า", "", titleStyle, detailStyleTitle)
+//            addLineSeperator(document)
+//            addNewItem(document, "ข้อมูลการใช้งาน", Element.ALIGN_LEFT, headingStyle)
+//            addLineSpace(document)
+//            addItemAndResult(document, "                ระบบไฟฟ้า : ", data!!.phase, titleStyleTitle, valueStyle)
+//            addLineSpace(document)
+//            addItemAndResult(document, "                กลุ่มการติดตั้ง : ", data.installation, titleStyleTitle, valueStyle)
+//            addLineSpace(document)
+//            addItemAndResult(document, "                ชนิดสายไฟฟ้า : ", data.cableType, titleStyleTitle, valueStyle)
+//            addLineSpace(document)
+//            addItemAndResult(document, "                Circuit Breaker : ", data.breaker, titleStyleTitle, valueStyle)
+//            addLineSpace(document)
+//            addItemAndResult(document, "                ระยะสายไฟฟ้า : ", "${data.distance}M", titleStyleTitle, valueStyle)
+//            addLineSpace(document)
+//            addLineSpace(document)
+//
+//            addNewItem(document, "ผลการคำนวน", Element.ALIGN_LEFT, headingStyle)
+//            addLineSpace(document)
+//            addItemAndResult(document, "                ขนาดสายไฟฟ้าที่เหมาะสม     ", data.cableSize, titleStyleTitle, valueStyle)
+//            addLineSpace(document)
+//            addItemAndResult(document, "                ขนาดสายดินที่เหมาะสม          ", data.wireGround, titleStyleTitle, valueStyle)
+//            addLineSpace(document)
+//            addItemAndResult(document, "                ขนาดท่อไฟฟ้า                         ", data.condutiSize, titleStyleTitle, valueStyle)
+//            addLineSpace(document)
+//            addItemAndResult(document, "                แรงดันตก                                 ", data.pressure, titleStyleTitle, valueStyle)
+//            addItemAndResult(document, "                   ${textViewReferenceVoltageInReport.text}", "", subTitleStyle, valueStyle)
+//            addLineSpace(document)
+//            addLineSpace(document)
+//
+//            addNewItem(document, "* อ้างอิงตามมาตรฐานการติดตั้งทางไฟฟ้า วสท. 2562", Element.ALIGN_LEFT, SubvalueStyle)
+//            addLineSpace(document)
+//            addNewItem(document, "** ใช้งานที่อุณหภูมิ 36-40 C° และเดินสาย 1 กลุ่มวงจร", Element.ALIGN_LEFT, SubvalueStyle)
 
 //                // cableSize
 //                addNewItemWithLeftAndRight(document, "ขนาดสายไฟ", data!!.cableSize, titleStyle, headingStyle)

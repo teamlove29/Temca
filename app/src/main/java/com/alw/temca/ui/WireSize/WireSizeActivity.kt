@@ -34,6 +34,7 @@ class WireSizeActivity : AppCompatActivity() {
     private val TASK_LIST_PREF_KEY_CIRCUIT_IN_WIRESIZE = "task_list_circuit_in_wiresize"
     private val TASK_LIST_PREF_KEY_DISTANCE_IN_WIRESIZE = "task_list_distance_in_wiresize"
     private val PREF_NAME = "task_wire"
+    private val railSizeList = ArrayList<RailSizeModel>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_wire_size)
@@ -184,25 +185,63 @@ class WireSizeActivity : AppCompatActivity() {
     }
 
     fun ReportOnClick(view: View) {
+        val dataToReport = ArrayList<ReportResultWireSize>()
         val intent = Intent(this, ReportActivity::class.java)
-        val bundle = Bundle()
+//        val bundle = Bundle()
         val textInstallation = FindDetailInstallation(installationTextView.text.toString())
 
-        bundle.putParcelable("reportWireSize", ReportResultWireSize(
-                phaseTextView.text.toString(),
-                textInstallation,
-                typeCableTextView.text.toString(),
-                circuitTextView.text.toString(),
-                editTextDistance.text.toString(),
-                textViewShow2.text.toString(), // text2 is cablesize
-                textViewResultWireGround.text.toString(),
-                textViewShow4.text.toString(), // text4 is conduitsize
-                textViewShow6.text.toString()))
-        intent.putExtras(bundle)
+        if(installationTextView.text != "กลุ่ม 7"){
+            dataToReport.add(ReportResultWireSize(
+                    phaseTextView.text.toString(), // phase
+                    textInstallation,  // groupinstallation
+                    typeCableTextView.text.toString(), // typcable
+                    circuitTextView.text.toString(), // CB
+                    editTextDistance.text.toString(), // amountDis
+                    textViewShow2.text.toString(), // text2 is cablesize
+                    textViewResultWireGround.text.toString(), // wiresizegroud
+                    textViewShow4.text.toString(), // text4 is conduitsize
+                    textViewShow6.text.toString()) // result presure
+            )
+        }else{
+            dataToReport.add(ReportResultWireSize(
+                    phaseTextView.text.toString(), // phase
+                    textInstallation,  // groupinstallation
+                    typeCableTextView.text.toString(), // typcable
+                    circuitTextView.text.toString(), // CB
+                    editTextDistance.text.toString(), // amountDis
+                    railSizeList[0].wireSize, // text2 is cablesize
+                    "${railSizeList[0].groundSize}mm2", // wiresizegroud
+                    "${railSizeList[0].railSize}mm", // text4 is conduitsize
+                    railSizeList[0].resultPressure) // result presure
+            )
+            dataToReport.add(ReportResultWireSize(
+                    phaseTextView.text.toString(), // phase
+                    textInstallation,  // groupinstallation
+                    typeCableTextView.text.toString(), // typcable
+                    circuitTextView.text.toString(), // CB
+                    editTextDistance.text.toString(), // amountDis
+                    railSizeList[1].wireSize, // text2 is cablesize
+                    "${railSizeList[1].groundSize}mm2", // wiresizegroud
+                    "${railSizeList[1].railSize}mm", // text4 is conduitsize
+                    railSizeList[1].resultPressure) // result presure
+            )
+        }
+//        bundle.putParcelable("reportWireSize", ReportResultWireSize(
+//                phaseTextView.text.toString(),
+//                textInstallation,
+//                typeCableTextView.text.toString(),
+//                circuitTextView.text.toString(),
+//                editTextDistance.text.toString(),
+//                textViewShow2.text.toString(), // text2 is cablesize
+//                textViewResultWireGround.text.toString(),
+//                textViewShow4.text.toString(), // text4 is conduitsize
+//                textViewShow6.text.toString()))
+//        intent.putExtras(bundle)
+
+        intent.putParcelableArrayListExtra("DataFromWireSize",dataToReport)
         startActivityForResult(intent, TASK_NAME_REQUEST_CODE)
         finish()
     }
-
 
     fun DestanceOnClick(view: View) {
         editTextDistance.setText("")
@@ -251,7 +290,7 @@ class WireSizeActivity : AppCompatActivity() {
 
             // if group 7
             if(installationTextView.text == "กลุ่ม 7"){
-                val railSizeList = ArrayList<RailSizeModel>()
+
                 tableBeforeCalculateGroup7.visibility = View.VISIBLE
                 tableBeforeCalculate.visibility = View.GONE
 
@@ -288,7 +327,8 @@ class WireSizeActivity : AppCompatActivity() {
                                         val PercentPressure  = 100 * pullResult / 400 // result
                                         val resultRefPressure = "${"%.2f V".format(pullResult)} (${"%.2f".format(PercentPressure)}%)"
 
-                                        railSizeList.add(RailSizeModel(getCableSizeInTable
+                                        railSizeList.add(RailSizeModel(
+                                                getCableSizeInTable
                                                 , getGroudSizeInTable
                                                 , getRailSizeInTable
                                                 , "400V"

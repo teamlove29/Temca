@@ -225,6 +225,7 @@
 
 
             <LinearLayout
+                android:id="@+id/resultOneInReportWireSize"
                 android:background="@color/white"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -368,6 +369,150 @@
 
                     </RelativeLayout>
             </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/resultTwoInReportWireSize"
+            android:background="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="40dp"
+                android:text=""
+                android:fontFamily="@font/sarabun_medium"
+                android:textColor="@color/black"
+                android:textSize="13dp"
+                android:textStyle="bold"/>
+
+            <RelativeLayout
+                android:padding="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/textViewWireSize2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="70dp"
+                    android:text="ขนาดสายไฟฟ้าที่เหมาะสม"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/sarabun_medium"
+                    android:textSize="12dp"/>
+
+                <TextView
+                    android:id="@+id/textViewResultWireSize2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/textViewWireSize2"
+                    android:layout_marginLeft="30dp"
+                    android:fontFamily="@font/sarabun_regular"
+                    android:text="- mm"
+                    android:textColor="@color/btnBlue"
+                    android:textSize="12dp" />
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:padding="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/textViewWireGround2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="70dp"
+                    android:text="ขนาดสายดินที่เหมาะสม"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/sarabun_medium"
+                    android:textSize="12dp"/>
+
+                <TextView
+                    android:id="@+id/textViewResultWireGroundInReport2"
+                    android:layout_toRightOf="@+id/textViewWireGround2"
+                    android:layout_marginLeft="45dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="- mm"
+                    android:textColor="@color/btnBlue"
+                    android:fontFamily="@font/sarabun_regular"
+                    android:textSize="12dp"/>
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:padding="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/textViewConduitSize2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="70dp"
+                    android:text="ขนาดท่อไฟฟ้า"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/sarabun_medium"
+                    android:textSize="12dp"/>
+
+                <TextView
+                    android:id="@+id/textViewResultConduitSize2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/textViewConduitSize2"
+                    android:layout_marginLeft="90dp"
+                    android:fontFamily="@font/sarabun_regular"
+                    android:text="-"
+                    android:textColor="@color/btnBlue"
+                    android:textSize="12dp" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:padding="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/textViewPressure2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="70dp"
+                    android:text="แรงดันตก"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/sarabun_medium"
+                    android:textSize="12dp"/>
+
+                <TextView
+                    android:id="@+id/textViewReferenceVoltageInReport2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="70dp"
+                    android:layout_below="@+id/textViewPressure2"
+                    android:text="(แรงดันอ้างอิง -V)"
+                    android:textSize="10dp"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/sarabun_medium" />
+
+                <TextView
+                    android:id="@+id/textViewResultPressure2"
+                    android:layout_toRightOf="@+id/textViewPressure2"
+                    android:layout_marginLeft="115dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="-%"
+                    android:textColor="@color/btnBlue"
+                    android:fontFamily="@font/sarabun_regular"
+                    android:textSize="12dp"/>
+
+            </RelativeLayout>
+        </LinearLayout>
 
 
         <LinearLayout

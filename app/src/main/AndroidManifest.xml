@@ -48,7 +48,7 @@
 
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="com.alw.temca.fileprovider"
+            android:authorities="com.alw.android.temca.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
