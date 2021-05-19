@@ -1,0 +1,387 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:orientation="vertical"
+android:background="@color/white"
+tools:context=".ui.Transformer.TransformerReportActivity">
+
+<RelativeLayout
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp"
+    android:layout_marginTop="20dp"
+    android:layout_marginBottom="10dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <TextView
+        android:id="@+id/textViewTitleReport"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:fontFamily="@font/mitr_regular"
+        android:textColor="@color/black"
+        android:text="รายงานคำนวนขนาดสายหม้อแปลง"
+        android:layout_marginLeft="10dp"
+        android:textSize="14dp"/>
+
+    <ImageView
+        android:id="@+id/logoImageView"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_width="100dp"
+        android:layout_height="70dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/logo_pdf_temca"/>
+
+</RelativeLayout>
+<TextView
+    android:gravity="center_horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="3dp"
+    android:background="@color/placeHolderBG"
+    android:layout_marginLeft="15dp"
+    android:layout_marginRight="15dp"
+    android:textColor="@color/black" />
+
+<LinearLayout
+    android:background="@color/white"
+    android:layout_weight="1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="40dp"
+            android:text="ข้อมูลการใช้งาน"
+            android:fontFamily="@font/sarabun_bold"
+            android:textColor="@color/black"
+            android:textSize="13dp" />
+
+        <RelativeLayout
+            android:padding="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/textViewSizePressureInTransformerReport"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="70dp"
+                android:text="ขนาดแรงดัน : "
+                android:textColor="@color/black"
+                android:fontFamily="@font/sarabun_medium"
+                android:textSize="12dp"/>
+
+            <TextView
+                android:id="@+id/textViewReslutPressureInTransformerReport"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/textViewSizePressureInTransformerReport"
+                android:fontFamily="@font/sarabun_regular"
+                android:text="-"
+                android:textColor="@color/btnBlue"
+                android:textSize="12dp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:padding="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/textViewMainInstallationInTransformerReport"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="70dp"
+                android:text="กลุ่มการติดตั้ง : "
+                android:textColor="@color/black"
+                android:fontFamily="@font/sarabun_medium"
+                android:textSize="12dp"/>
+
+            <TextView
+                android:id="@+id/textViewMainResultInstallationInTransformerReport"
+                android:layout_toRightOf="@+id/textViewMainInstallationInTransformerReport"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="-"
+                android:textColor="@color/btnBlue"
+                android:fontFamily="@font/sarabun_regular"
+                android:textSize="12dp"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:padding="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/textViewMainCableTypeInTransformerReport"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="70dp"
+                android:text="ชนิดสายไฟ : "
+                android:textColor="@color/black"
+                android:fontFamily="@font/sarabun_medium"
+                android:textSize="12dp"/>
+
+            <TextView
+                android:id="@+id/textViewMainResultCableTypeInTransformerReport"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/textViewMainCableTypeInTransformerReport"
+                android:fontFamily="@font/sarabun_regular"
+                android:text="-"
+                android:textColor="@color/btnBlue"
+                android:textSize="12dp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:padding="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/textViewSizeTransformerInTransformerReport"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="70dp"
+                android:text="ขนาดหม้อแปลง : "
+                android:textColor="@color/black"
+                android:fontFamily="@font/sarabun_medium"
+                android:textSize="12dp"/>
+
+            <TextView
+                android:id="@+id/textViewResultSizeTransformerInTransformerReport"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/textViewSizeTransformerInTransformerReport"
+                android:fontFamily="@font/sarabun_regular"
+                android:text="-"
+                android:textColor="@color/btnBlue"
+                android:textSize="12dp" />
+
+        </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/resultOneInTransformerReport"
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginBottom="10dp"
+            android:text="ผลการคำนวน"
+            android:fontFamily="@font/sarabun_bold"
+            android:textColor="@color/black"
+            android:textSize="13dp"
+            android:textStyle="bold"/>
+
+        <RelativeLayout
+            android:padding="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/textViewAmountCableInPipeReport"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="70dp"
+                android:text="พิกัดกระแสไฟ"
+                android:textColor="@color/black"
+                android:fontFamily="@font/sarabun_medium"
+                android:textSize="12dp"/>
+
+            <TextView
+                android:id="@+id/textViewReslutAmountCableInPipeReport"
+                android:layout_toRightOf="@+id/textViewAmountCableInPipeReport"
+                android:layout_marginLeft="40dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="-"
+                android:textColor="@color/btnBlue"
+                android:fontFamily="@font/sarabun_regular"
+                android:textSize="12dp"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:padding="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/textViewPipeSizeInPipeReport"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="70dp"
+                android:text="ขนาดสายไฟ"
+                android:textColor="@color/black"
+                android:fontFamily="@font/sarabun_medium"
+                android:textSize="12dp"/>
+
+            <TextView
+                android:id="@+id/textViewResultConduitSize"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/textViewPipeSizeInPipeReport"
+                android:layout_marginLeft="50dp"
+                android:fontFamily="@font/sarabun_regular"
+                android:text="-"
+                android:textColor="@color/btnBlue"
+                android:textSize="12dp" />
+
+            <TextView
+                android:id="@+id/textViewReferenceVoltageInReport2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textViewPipeSizeInPipeReport"
+                android:layout_marginLeft="70dp"
+                android:fontFamily="@font/sarabun_medium"
+                android:text="รางขนาด"
+                android:textColor="@color/black"
+                android:textSize="10dp" />
+
+            <TextView
+                android:id="@+id/textViewResultConduitSize2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/textViewReferenceVoltageInReport2"
+                android:layout_below="@+id/textViewPipeSizeInPipeReport"
+                android:layout_marginLeft="75dp"
+                android:fontFamily="@font/sarabun_regular"
+                android:text="-"
+                android:textColor="@color/btnBlue"
+                android:textSize="12dp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:padding="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/textViewRailSizeInTransformerReport"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="70dp"
+                android:text="ขนาดสายไฟ"
+                android:textColor="@color/black"
+                android:fontFamily="@font/sarabun_medium"
+                android:textSize="12dp"/>
+
+
+            <TextView
+                android:id="@+id/textViewResultRailSizeInTransformerReport"
+                android:layout_toRightOf="@+id/textViewRailSizeInTransformerReport"
+                android:layout_marginLeft="50dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="-"
+                android:textColor="@color/btnBlue"
+                android:fontFamily="@font/sarabun_regular"
+                android:textSize="12dp"/>
+
+            <TextView
+                android:id="@+id/textViewRailSizeInTransformerReport2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="70dp"
+                android:layout_below="@+id/textViewRailSizeInTransformerReport"
+                android:text="รางขนาด"
+                android:textSize="10dp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/sarabun_medium" />
+
+            <TextView
+                android:id="@+id/textViewResultRailSizeInTransformerReport2"
+                android:layout_toRightOf="@+id/textViewRailSizeInTransformerReport2"
+                android:layout_below="@+id/textViewRailSizeInTransformerReport"
+                android:layout_marginLeft="75dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="-"
+                android:textColor="@color/btnBlue"
+                android:fontFamily="@font/sarabun_regular"
+                android:textSize="12dp"/>
+
+        </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:gravity="bottom"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="@string/copy_right"
+            android:textColor="@color/black"
+            android:gravity="center_horizontal"
+            android:fontFamily="@font/sarabun_regular"/>
+
+        <RelativeLayout
+            android:background="#EEEEEE"
+            android:gravity="center"
+            android:padding="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <!--            <com.google.android.material.button.MaterialButton-->
+            <!--                android:id="@+id/btnPrint"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                app:cornerRadius="10dp"-->
+            <!--                android:padding="10dp"-->
+            <!--                android:layout_margin="10dp"-->
+            <!--                android:textSize="14dp"-->
+            <!--                android:backgroundTint="#50596F"-->
+            <!--                android:fontFamily="@font/mitr_regular"-->
+            <!--                android:text="พิมพ์"/>-->
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnSendEmailInTransformerReport"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/btnPrint"
+                app:cornerRadius="10dp"
+                android:padding="10dp"
+                android:layout_margin="10dp"
+                android:textSize="14dp"
+                android:backgroundTint="#50596F"
+                android:fontFamily="@font/mitr_regular"
+                android:text="@string/share"/>
+        </RelativeLayout>
+    </LinearLayout>
+</LinearLayout>
+</LinearLayout>

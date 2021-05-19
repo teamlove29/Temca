@@ -9,7 +9,9 @@ import android.text.style.SubscriptSpan
 import android.text.style.SuperscriptSpan
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import android.widget.TextView
 import android.widget.Toast
+import com.alw.temca.Model.DataToMoterReportModel
 import com.alw.temca.Model.DataToSizeMoterModel
 import com.alw.temca.Model.InstallationModelInTransformer
 import com.alw.temca.R
@@ -144,6 +146,30 @@ class MoterActivity : AppCompatActivity() {
         val intent = Intent(this, UnitMoterActivity::class.java)
         startActivityForResult(intent,TASK_NAME_REQUEST_CODE)
     }
+
+
+    fun moterReportOnClick(view: View) {
+        val dataToReport = ArrayList<DataToMoterReportModel>()
+        val intent = Intent(this, MoterReportActivity::class.java)
+        dataToReport.add(DataToMoterReportModel(
+            TextAmountMoterSize.text.toString(),
+            textUnit.text.toString(),
+            phaseTextView.text.toString(),
+            TextViewStartPantern.text.toString(),
+            TextViewCableTypeInMoter.text.toString(),
+            editTextDistanceInMoter.text.toString(),
+            textViewElectricCurrenResult.text.toString(),
+            textViewCableSize.text.toString(),
+            textViewSizeCableResult.text.toString(),
+            textViewGroundSizeResult.text.toString(),
+            textViewConduitSizeResult.text.toString(),
+            textViewBreakerResult.text.toString(),
+            textViewPressureResult.text.toString()
+        ))
+        intent.putParcelableArrayListExtra("DataFromMoter",dataToReport)
+        startActivityForResult(intent,TASK_NAME_REQUEST_CODE)
+    }
+
     fun calculatorMoterOnClick(view: View) {
 
         btnCalInPipeSize.visibility = View.GONE
@@ -238,6 +264,11 @@ class MoterActivity : AppCompatActivity() {
             else -> 0
         }
 
+        val phaseIndex:Int =  when(phaseTextView.text){
+            "1 เฟส" -> 1
+            else -> 2
+        }
+
         var voteInMoter:Int
 
         for(i in 2..maxRowsheet step stepInFor){
@@ -292,7 +323,7 @@ class MoterActivity : AppCompatActivity() {
                             val fineCableTypeInTable = sheetPressure.getCell(0, h).contents
                             val amountDeistance = Integer.parseInt(editTextDistanceInMoter.text.toString())
                             if (cableSizeWithOutX == fineCableTypeInTable) { // แก้ cableSize ตัดคำออก
-                                val getreslutInTable = sheetPressure.getCell(1, h).contents.toDouble()
+                                val getreslutInTable = sheetPressure.getCell(phaseIndex, h).contents.toDouble()
                                 val pullResult = getreslutInTable * Integer.parseInt(breakerInTable.toString().replace(" A", "")) * amountDeistance / 1000 // result
                                 val PercentPressure  = 100 * pullResult / voteInMoter // result
                                 textViewPressureResult.text = "${"%.2f V".format(pullResult)} (${"%.2f".format(PercentPressure)}%)"
@@ -319,8 +350,6 @@ class MoterActivity : AppCompatActivity() {
 
 
     }
-
-    fun moterReportOnClick(view: View) {}
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)

@@ -10,6 +10,7 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.alw.temca.Adapter.TransformerSizeAdapterResult
+import com.alw.temca.Model.DataToTransformerReportModel
 import com.alw.temca.Model.InstallationModelInTransformer
 import com.alw.temca.Model.TransformerSizeModalResult
 import com.alw.temca.R
@@ -22,6 +23,7 @@ import kotlinx.android.synthetic.main.activity_transformer.textViewElectricCurre
 import kotlinx.android.synthetic.main.activity_transformer.wayBackActivity1
 
 class TransformerActivity : AppCompatActivity() {
+    private val dataListOfTable = ArrayList<TransformerSizeModalResult>()
     private val TASK_NAME_REQUEST_CODE = 100
     private val PREF_NAME = "task_transformer"
     private val TASK_LIST_PREF_KEY_PRESSURE = "task_list_pressure_volts"
@@ -84,10 +86,31 @@ class TransformerActivity : AppCompatActivity() {
 //        imm.showSoftInput(editTextDistanceInTransformer, InputMethodManager.SHOW_IMPLICIT)
 //        wayBackActivity1.visibility = View.VISIBLE
 //    }
-    fun TransformerReportOnClick(view: View) {}
+
+    fun TransformerReportOnClick(view: View) {
+    val dataOfResultTransformer = ArrayList<DataToTransformerReportModel>()
+    val intent = Intent(this,TransformerReportActivity::class.java)
+    val sharedPref = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
+    val dataOfGroup = sharedPref.getString(TASK_LIST_PREF_KEY_INSTALLATION_GROUP,"กลุ่ม 7")
+
+    for (i in 0..dataListOfTable.size - 1){
+        dataOfResultTransformer.add(DataToTransformerReportModel(
+            TextViewPressure.text.toString(),
+            "$dataOfGroup ${TextViewGroupInstallation.text}",
+            TextViewCableType.text.toString(),
+            TextViewTransformerSize.text.toString(),
+            dataListOfTable[i].electricCurrent,
+            dataListOfTable[i].cableSize,
+            dataListOfTable[i].conduitSize,
+        ))
+    }
+
+    intent.putParcelableArrayListExtra("DataFromTransformerActivity",dataOfResultTransformer)
+    startActivityForResult(intent,TASK_NAME_REQUEST_CODE)
+    }
 
     fun calculatorTransformerOnClick(view: View) {
-
+        dataListOfTable.clear()
 //        if(editTextDistanceInTransformer.text.isEmpty()) editTextDistanceInTransformer.setText("20")
 
 //        editTextDistanceInTransformer.clearFocus()
@@ -129,7 +152,7 @@ class TransformerActivity : AppCompatActivity() {
         val transformerSizeExcel = applicationContext.assets.open(transformerGroupInTable)
         val wb = Workbook.getWorkbook(transformerSizeExcel)
         val sheet = wb.getSheet(transformerCableTypeInTable)
-        val dataListOfTable = ArrayList<TransformerSizeModalResult>()
+
 
         for(i in 3..20 step 2){ // row check transformer
 
@@ -157,12 +180,9 @@ class TransformerActivity : AppCompatActivity() {
 //                            val percentPressure  = 100 * pullResult / checkPressureVolts // result
 //                            println("checkPressureVolts $checkPressureVolts")
 //                           val sumPullAndPercent =  "${"%.2f V".format(pullResult)} (${"%.2f".format(percentPressure)}%)"
-//
-//
-//
-//
 //                        }
 //                    }
+
                     dataListOfTable.add(TransformerSizeModalResult(
                             getDataElectricCurrentInTable,
                             getDataSizeCableInTable,

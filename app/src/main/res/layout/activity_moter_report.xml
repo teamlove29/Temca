@@ -1,0 +1,469 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:orientation="vertical"
+android:background="@color/white"
+tools:context=".ui.Moter.MoterReportActivity">
+
+<RelativeLayout
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp"
+    android:layout_marginTop="20dp"
+    android:layout_marginBottom="10dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <TextView
+        android:id="@+id/textViewTitleReport"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:fontFamily="@font/mitr_regular"
+        android:textColor="@color/black"
+        android:text="รายงานคำนวนขนาดมอเตอร์"
+        android:layout_marginLeft="10dp"
+        android:textSize="14dp"/>
+
+    <ImageView
+        android:id="@+id/logoImageView"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_width="100dp"
+        android:layout_height="70dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/logo_pdf_temca"/>
+
+</RelativeLayout>
+<TextView
+    android:gravity="center_horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="3dp"
+    android:background="@color/placeHolderBG"
+    android:layout_marginLeft="15dp"
+    android:layout_marginRight="15dp"
+    android:textColor="@color/black" />
+
+<LinearLayout
+    android:background="@color/white"
+    android:layout_weight="1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="40dp"
+            android:text="ข้อมูลการใช้งาน"
+            android:fontFamily="@font/sarabun_bold"
+            android:textColor="@color/black"
+            android:textSize="13dp" />
+
+        <RelativeLayout
+            android:padding="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/textViewSizeMoterInMoterReport"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="70dp"
+                android:text="ขนาดมอเตอร์ : "
+                android:textColor="@color/black"
+                android:fontFamily="@font/sarabun_medium"
+                android:textSize="12dp"/>
+
+            <TextView
+                android:id="@+id/textViewReslutSizeMoterInMoterReport"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/textViewSizeMoterInMoterReport"
+                android:fontFamily="@font/sarabun_regular"
+                android:text="-"
+                android:textColor="@color/btnBlue"
+                android:textSize="12dp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:padding="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/textViewPhaseInMoterReport"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="70dp"
+                android:text="เฟส : "
+                android:textColor="@color/black"
+                android:fontFamily="@font/sarabun_medium"
+                android:textSize="12dp"/>
+
+            <TextView
+                android:id="@+id/textViewMainResultPhaseInMoterReport"
+                android:layout_toRightOf="@+id/textViewPhaseInMoterReport"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="-"
+                android:textColor="@color/btnBlue"
+                android:fontFamily="@font/sarabun_regular"
+                android:textSize="12dp"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:padding="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/textViewPanternInMoterReport"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="70dp"
+                android:text="รูปแบบสตาร์ท : "
+                android:textColor="@color/black"
+                android:fontFamily="@font/sarabun_medium"
+                android:textSize="12dp"/>
+
+            <TextView
+                android:id="@+id/textViewResultPanternInMoterReport"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/textViewPanternInMoterReport"
+                android:fontFamily="@font/sarabun_regular"
+                android:text="-"
+                android:textColor="@color/btnBlue"
+                android:textSize="12dp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:padding="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/textViewSizeCableInMoterReport"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="70dp"
+                android:text="ชนิดสายไฟ : "
+                android:textColor="@color/black"
+                android:fontFamily="@font/sarabun_medium"
+                android:textSize="12dp"/>
+
+            <TextView
+                android:id="@+id/textViewResultSizeCableInMoterReport"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/textViewSizeCableInMoterReport"
+                android:fontFamily="@font/sarabun_regular"
+                android:text="-"
+                android:textColor="@color/btnBlue"
+                android:textSize="12dp" />
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:padding="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/textViewAmountDistanceInMoterReport"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="70dp"
+                android:text="ระยะทาง : "
+                android:textColor="@color/black"
+                android:fontFamily="@font/sarabun_medium"
+                android:textSize="12dp"/>
+
+            <TextView
+                android:id="@+id/textViewResultAmountDistanceInMoterReport"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/textViewAmountDistanceInMoterReport"
+                android:fontFamily="@font/sarabun_regular"
+                android:text="-"
+                android:textColor="@color/btnBlue"
+                android:textSize="12dp" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/resultOneInMoterReport"
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginBottom="10dp"
+            android:text="ผลการคำนวน"
+            android:fontFamily="@font/sarabun_bold"
+            android:textColor="@color/black"
+            android:textSize="13dp"
+            android:textStyle="bold"/>
+
+        <RelativeLayout
+            android:padding="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/textViewPowerRatingInMoterReport"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="70dp"
+                android:text="พิกัดกระแสไฟ"
+                android:textColor="@color/black"
+                android:fontFamily="@font/sarabun_medium"
+                android:textSize="12dp"/>
+
+            <TextView
+                android:id="@+id/textViewReferenceVoltageInMoterReport"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textViewPowerRatingInMoterReport"
+                android:layout_marginLeft="70dp"
+                android:fontFamily="@font/sarabun_medium"
+                android:text="แรงดัน(400V)"
+                android:textColor="@color/black"
+                android:textSize="10dp" />
+
+            <TextView
+                android:id="@+id/textViewReslutPowerRatingInMoterReport"
+                android:layout_toRightOf="@+id/textViewPowerRatingInMoterReport"
+                android:layout_marginLeft="45dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="-"
+                android:textColor="@color/btnBlue"
+                android:fontFamily="@font/sarabun_regular"
+                android:textSize="12dp"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:padding="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/textViewCableSizeInMoterReport"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="70dp"
+                android:text="ขนาดสายไฟฟ้า"
+                android:textColor="@color/black"
+                android:fontFamily="@font/sarabun_medium"
+                android:textSize="12dp"/>
+
+            <TextView
+                android:id="@+id/textViewResultCableSizeInMoterReport"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/textViewCableSizeInMoterReport"
+                android:layout_marginLeft="40dp"
+                android:fontFamily="@font/sarabun_regular"
+                android:text="-"
+                android:textColor="@color/btnBlue"
+                android:textSize="12dp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:padding="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/textViewCableSizeGroudInMoterReport"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="70dp"
+                android:text="ขนาดสายดิน"
+                android:textColor="@color/black"
+                android:fontFamily="@font/sarabun_medium"
+                android:textSize="12dp"/>
+
+
+            <TextView
+                android:id="@+id/textViewResultCableSizeGroudInMoterReport"
+                android:layout_toRightOf="@+id/textViewCableSizeGroudInMoterReport"
+                android:layout_marginLeft="55dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="-"
+                android:textColor="@color/btnBlue"
+                android:fontFamily="@font/sarabun_regular"
+                android:textSize="12dp"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:padding="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/textViewRailSizeInMoterReport"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="70dp"
+                android:text="ขนาดท่อร้อยสาย"
+                android:textColor="@color/black"
+                android:fontFamily="@font/sarabun_medium"
+                android:textSize="12dp"/>
+
+
+            <TextView
+                android:id="@+id/textViewResultRailSizeInMoterReport"
+                android:layout_toRightOf="@+id/textViewRailSizeInMoterReport"
+                android:layout_marginLeft="35dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="-"
+                android:textColor="@color/btnBlue"
+                android:fontFamily="@font/sarabun_regular"
+                android:textSize="12dp"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:padding="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/textViewCircuitInMoterReport"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="70dp"
+                android:text="ขนาดเบรกเกอร์ (AT)"
+                android:textColor="@color/black"
+                android:fontFamily="@font/sarabun_medium"
+                android:textSize="12dp"/>
+
+
+            <TextView
+                android:id="@+id/textViewResultCircuitInMoterReport"
+                android:layout_toRightOf="@+id/textViewCircuitInMoterReport"
+                android:layout_marginLeft="15dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="-"
+                android:textColor="@color/btnBlue"
+                android:fontFamily="@font/sarabun_regular"
+                android:textSize="12dp"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:padding="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/textViewPressureInMoterReport"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="70dp"
+                android:text="แรงดันตก"
+                android:textColor="@color/black"
+                android:fontFamily="@font/sarabun_medium"
+                android:textSize="12dp"/>
+
+
+            <TextView
+                android:id="@+id/textViewResultPressureInMoterReport"
+                android:layout_toRightOf="@+id/textViewPressureInMoterReport"
+                android:layout_marginLeft="70dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="-"
+                android:textColor="@color/btnBlue"
+                android:fontFamily="@font/sarabun_regular"
+                android:textSize="12dp"/>
+
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:gravity="bottom"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="@string/copy_right"
+            android:textColor="@color/black"
+            android:gravity="center_horizontal"
+            android:fontFamily="@font/sarabun_regular"/>
+
+        <RelativeLayout
+            android:background="#EEEEEE"
+            android:gravity="center"
+            android:padding="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <!--            <com.google.android.material.button.MaterialButton-->
+            <!--                android:id="@+id/btnPrint"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                app:cornerRadius="10dp"-->
+            <!--                android:padding="10dp"-->
+            <!--                android:layout_margin="10dp"-->
+            <!--                android:textSize="14dp"-->
+            <!--                android:backgroundTint="#50596F"-->
+            <!--                android:fontFamily="@font/mitr_regular"-->
+            <!--                android:text="พิมพ์"/>-->
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnSendEmailInMoterReport"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/btnPrint"
+                app:cornerRadius="10dp"
+                android:padding="10dp"
+                android:layout_margin="10dp"
+                android:textSize="14dp"
+                android:backgroundTint="#50596F"
+                android:fontFamily="@font/mitr_regular"
+                android:text="@string/share"/>
+        </RelativeLayout>
+    </LinearLayout>
+</LinearLayout>
+</LinearLayout>

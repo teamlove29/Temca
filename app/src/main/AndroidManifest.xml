@@ -17,7 +17,9 @@
         android:theme="@style/Theme.Temca"
         android:versionCode="1"
         android:versionName="1.0">
-        <activity android:name=".ui.Moter.SizeMoterActivity"></activity>
+        <activity android:name=".ui.Moter.MoterReportActivity"></activity>
+        <activity android:name=".ui.Transformer.TransformerReportActivity" />
+        <activity android:name=".ui.Moter.SizeMoterActivity" />
         <activity android:name=".ui.Moter.StartPatternActivity" />
         <activity android:name=".ui.Transformer.PressureVoltsActivity" />
         <activity android:name=".ui.Moter.UnitMoterActivity" />

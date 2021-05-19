@@ -409,7 +409,6 @@ class ReportActivity : AppCompatActivity() {
 
        }
        document.add(p)
-
     }
     private fun showSettingsDialog() {
         val builder: AlertDialog.Builder = AlertDialog.Builder(this)
