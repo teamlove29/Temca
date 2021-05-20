@@ -168,6 +168,7 @@ class MoterActivity : AppCompatActivity() {
         ))
         intent.putParcelableArrayListExtra("DataFromMoter",dataToReport)
         startActivityForResult(intent,TASK_NAME_REQUEST_CODE)
+        finish()
     }
 
     fun calculatorMoterOnClick(view: View) {

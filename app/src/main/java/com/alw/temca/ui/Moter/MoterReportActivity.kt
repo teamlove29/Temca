@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Environment
 import android.provider.Settings
+import android.text.Html
 import android.text.SpannableString
 import android.widget.Toast
 import androidx.core.content.FileProvider
@@ -56,8 +57,8 @@ class MoterReportActivity : AppCompatActivity() {
         // Cal
         textViewReslutPowerRatingInMoterReport.text = DataFromMoter[0].resultpowerrate
         textViewReferenceVoltageInMoterReport.text = DataFromMoter[0].resultrefpower
-        textViewResultCableSizeInMoterReport.text = DataFromMoter[0].resultsizecable
-        textViewResultCableSizeGroudInMoterReport.text = DataFromMoter[0].resultgroudcable
+        textViewResultCableSizeInMoterReport.text = Html.fromHtml(DataFromMoter[0].resultsizecable.replace("mm2", "mm<sup><small><small>2</small></small></sup>"))
+        textViewResultCableSizeGroudInMoterReport.text = Html.fromHtml(DataFromMoter[0].resultgroudcable.replace("mm2", "mm<sup><small><small>2</small></small></sup>"))
         textViewResultRailSizeInMoterReport.text = DataFromMoter[0].resultconduit
         textViewResultCircuitInMoterReport.text = DataFromMoter[0].resultbreaker
         textViewResultPressureInMoterReport.text = DataFromMoter[0].resultpressure
@@ -67,11 +68,9 @@ class MoterReportActivity : AppCompatActivity() {
             .withPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)
             .withListener(object : PermissionListener {
                 override fun onPermissionGranted(p0: PermissionGrantedResponse?) {
-                    if (DataFromMoter.size > 0 ) {
                         createPDFFile(
                             Common.getAppPath(this@MoterReportActivity) + file_name, DataFromMoter
                         )
-                    }
                 }
                 override fun onPermissionDenied(p0: PermissionDeniedResponse?) {
                     showSettingsDialog()
@@ -99,6 +98,7 @@ class MoterReportActivity : AppCompatActivity() {
                             + file_name)
 
                 val uri = FileProvider.getUriForFile(this, this.getPackageName().toString() + ".fileprovider", fileWithinMyDir)
+
                 val sendIntent = Intent(Intent.ACTION_SEND)
                 val receiver = Intent(this, ApplicationSelectorReceiver::class.java)
                 val pendingIntent = PendingIntent.getBroadcast(this, 0, receiver, PendingIntent.FLAG_UPDATE_CURRENT)
@@ -124,12 +124,10 @@ class MoterReportActivity : AppCompatActivity() {
         }
     }
 
-
     fun createPDFFile(path: String, data: ArrayList<DataToMoterReportModel>) {
         if(File(path).exists()) File(path).delete()
         try {
             val document = Document(PageSize.A4, 40.0f, 40.0f, 30.0f, 40.0f)
-
             //Save
             PdfWriter.getInstance(document, FileOutputStream(path))
 
@@ -170,7 +168,6 @@ class MoterReportActivity : AppCompatActivity() {
             var valueStyle = Font(fontName, valueFontSzie, Font.NORMAL, colorAccent)
             var SubvalueStyle = Font(fontName, SubvalueFontSzie, Font.NORMAL, colorAccent)
 
-
 //            //add Image
 //            val d = resources.getDrawable(R.drawable.logo_pdf_temca)
 //            val bitDw = d as BitmapDrawable
@@ -179,8 +176,6 @@ class MoterReportActivity : AppCompatActivity() {
 //            bmp.compress(Bitmap.CompressFormat.PNG, 100, stream)
 ////            bmp.scale(200, 500)
 //            val image: Image = Image.getInstance(stream.toByteArray())
-//
-//
 //
 //            val chunk = Chunk(image, 0F, -40F, true)
 //            val p = Paragraph(chunk)
@@ -192,7 +187,7 @@ class MoterReportActivity : AppCompatActivity() {
             addLineSeperator(document)
             addNewItem(document, "ข้อมูลการใช้งาน", Element.ALIGN_LEFT, headingStyle)
             addLineSpace(document)
-            addItemAndResult(document, "                ขนาดมอเตอร์ : ", data[0].sizemoter, titleStyleTitle, valueStyle)
+            addItemAndResult(document, "                ขนาดมอเตอร์ : ", "${data[0].sizemoter} ${data[0].unit}", titleStyleTitle, valueStyle)
             addLineSpace(document)
             addItemAndResult(document, "                เฟส : ", data[0].phase, titleStyleTitle, valueStyle)
             addLineSpace(document)
@@ -200,28 +195,32 @@ class MoterReportActivity : AppCompatActivity() {
             addLineSpace(document)
             addItemAndResult(document, "                ชนิดสายไฟ : ", data[0].cabletype, titleStyleTitle, valueStyle)
             addLineSpace(document)
-            addItemAndResult(document, "                ชนิดสายไฟ : ", data[0].cabletype, titleStyleTitle, valueStyle)
-            addLineSpace(document)
-            addItemAndResult(document, "                ระยะทาง : ", data[0].amountdistance, titleStyleTitle, valueStyle)
+
+            addItemAndResult(document, "                ระยะทาง : ", "${data[0].amountdistance}m", titleStyleTitle, valueStyle)
             addLineSpace(document)
 
             addNewItem(document, "ผลการคำนวน", Element.ALIGN_LEFT, headingStyle)
             addLineSpace(document)
-            addNewItem(document, "* อ้างอิงตามมาตรฐานการติดตั้งทางไฟฟ้า วสท. 2562", Element.ALIGN_LEFT, SubvalueStyle)
-            addNewItem(document, "** ใช้งานที่อุณหภูมิ 36-40 C° และเดินสาย 1 กลุ่มวงจร", Element.ALIGN_LEFT, SubvalueStyle)
+            addItemAndResult(document, "                พิกัดกระแสไฟ                 ", data[0].resultpowerrate, titleStyleTitle, valueStyle)
+            addItemAndResult(document, "                       ${data[0].resultrefpower}       ", "", subTitleStyle, valueStyle)
             addLineSpace(document)
-            addItemAndResult(document, "                ขนาดสายไฟฟ้า       ", data[0].resultsizecable, titleStyleTitle, valueStyle)
-//            addItemAndResult(document, "                     รางขนาด            ", "        ${data[0].resultrailsize}mm", subTitleStyle, valueStyle)
-//            addLineSpace(document)
-//            addItemAndResult(document, "                ขนาดสายไฟ       ", data[1].resultsizecable.replace("mm", "mm2"), titleStyleTitle, valueStyle)
-//            addItemAndResult(document, "                     รางขนาด            ", "        ${data[1].resultrailsize}mm", subTitleStyle, valueStyle)
-//            addLineSpace(document)
-//
+            addItemAndResult(document, "                ขนาดสายไฟฟ้า               ", data[0].resultsizecable, titleStyleTitle, valueStyle)
+            addLineSpace(document)
+            addItemAndResult(document, "                ขนาดสายดิน                   ", data[0].resultsizecable, titleStyleTitle, valueStyle)
+            addLineSpace(document)
+            addItemAndResult(document, "                ขนาดท่อร้อยสาย            ", data[0].resultconduit, titleStyleTitle, valueStyle)
+            addLineSpace(document)
+            addItemAndResult(document, "                ขนาดเบรกเกอร์(AT)       ", data[0].resultbreaker, titleStyleTitle, valueStyle)
+            addLineSpace(document)
+            addItemAndResult(document, "                แรงดันตก                         ", data[0].resultpressure, titleStyleTitle, valueStyle)
+            addLineSpace(document)
+
 //            addItemAndResult(document, "                พิกัดกระแส : ", data[0].resultpowerrate, titleStyleTitle, valueStyle)
 //            addItemAndResult(document, "                     ${data[0].resultrefpower}           ", "", subTitleStyle, valueStyle)
 
-
-
+//            addNewItem(document, "* อ้างอิงตามมาตรฐานการติดตั้งทางไฟฟ้า วสท. 2562", Element.ALIGN_LEFT, SubvalueStyle)
+//            addNewItem(document, "** ใช้งานที่อุณหภูมิ 36-40 C° และเดินสาย 1 กลุ่มวงจร", Element.ALIGN_LEFT, SubvalueStyle)
+//            addLineSpace(document)
 
             //close
             document.close()
@@ -281,8 +280,6 @@ class MoterReportActivity : AppCompatActivity() {
         document.add(p)
     }
 
-
-
     fun addItemAndResult(document: Document, textLeft: String, textRight: String, leftStyle: Font, rightStyle: Font){
         val glue =  Chunk(VerticalPositionMark())
         val p = Paragraph()
@@ -315,5 +312,4 @@ class MoterReportActivity : AppCompatActivity() {
         intent.data = uri
         startActivityForResult(intent, 101)
     }
-
 }

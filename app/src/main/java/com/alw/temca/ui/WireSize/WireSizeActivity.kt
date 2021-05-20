@@ -18,7 +18,6 @@ import com.alw.temca.Model.ReportResultWireSize
 import com.alw.temca.R
 import com.alw.temca.ui.SponsorActivity
 import jxl.Workbook
-import kotlinx.android.synthetic.main.activity_moter.*
 import kotlinx.android.synthetic.main.activity_wire_size.*
 import kotlinx.android.synthetic.main.activity_wire_size.phaseTextView
 import kotlinx.android.synthetic.main.activity_wire_size.wayBackActivity1
@@ -322,7 +321,7 @@ class WireSizeActivity : AppCompatActivity() {
                                     val amountDeistance = Integer.parseInt(editTextDistance.text.toString())
 
                                     if (getSizeCableIntable == fineCableTypeInTable) { // แก้ cableSize ตัดคำออก
-                                        val getreslutInTable = sheetPressure.getCell(1, h).contents.toDouble()
+                                        val getreslutInTable = sheetPressure.getCell(2, h).contents.toDouble()
                                         val pullResult = getreslutInTable * Integer.parseInt(circuitTextView.text.toString().replace("A", "")) * amountDeistance / 1000 // result
                                         val PercentPressure  = 100 * pullResult / 400 // result
                                         val resultRefPressure = "${"%.2f V".format(pullResult)} (${"%.2f".format(PercentPressure)}%)"

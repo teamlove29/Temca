@@ -1,13 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:overScrollMode="never"
+    tools:context=".ui.Moter.MoterReportActivity">
+
 <LinearLayout
-xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:app="http://schemas.android.com/apk/res-auto"
-xmlns:tools="http://schemas.android.com/tools"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
 android:orientation="vertical"
 android:background="@color/white"
-tools:context=".ui.Moter.MoterReportActivity">
+>
 
 <RelativeLayout
     android:paddingLeft="20dp"
@@ -212,6 +219,7 @@ tools:context=".ui.Moter.MoterReportActivity">
     </LinearLayout>
 
     <LinearLayout
+        android:layout_marginBottom="50dp"
         android:id="@+id/resultOneInMoterReport"
         android:background="@color/white"
         android:layout_width="match_parent"
@@ -260,7 +268,7 @@ tools:context=".ui.Moter.MoterReportActivity">
             <TextView
                 android:id="@+id/textViewReslutPowerRatingInMoterReport"
                 android:layout_toRightOf="@+id/textViewPowerRatingInMoterReport"
-                android:layout_marginLeft="45dp"
+                android:layout_marginLeft="48dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="-"
@@ -290,7 +298,7 @@ tools:context=".ui.Moter.MoterReportActivity">
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@+id/textViewCableSizeInMoterReport"
-                android:layout_marginLeft="40dp"
+                android:layout_marginLeft="41dp"
                 android:fontFamily="@font/sarabun_regular"
                 android:text="-"
                 android:textColor="@color/btnBlue"
@@ -374,7 +382,7 @@ tools:context=".ui.Moter.MoterReportActivity">
             <TextView
                 android:id="@+id/textViewResultCircuitInMoterReport"
                 android:layout_toRightOf="@+id/textViewCircuitInMoterReport"
-                android:layout_marginLeft="15dp"
+                android:layout_marginLeft="18dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="-"
@@ -467,3 +475,4 @@ tools:context=".ui.Moter.MoterReportActivity">
     </LinearLayout>
 </LinearLayout>
 </LinearLayout>
+</ScrollView>

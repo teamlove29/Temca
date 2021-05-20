@@ -107,6 +107,7 @@ class TransformerActivity : AppCompatActivity() {
 
     intent.putParcelableArrayListExtra("DataFromTransformerActivity",dataOfResultTransformer)
     startActivityForResult(intent,TASK_NAME_REQUEST_CODE)
+    finish()
     }
 
     fun calculatorTransformerOnClick(view: View) {

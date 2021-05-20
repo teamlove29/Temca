@@ -33,7 +33,7 @@ tools:context=".ui.PipeSize.SizeCableActivity">
         android:fontFamily="@font/mitr_regular"
         android:textColor="@color/black"
         android:text="หาขนาดท่อและราง"
-        android:textSize="35dp"/>
+        android:textSize="30dp"/>
 
 </RelativeLayout>
 
