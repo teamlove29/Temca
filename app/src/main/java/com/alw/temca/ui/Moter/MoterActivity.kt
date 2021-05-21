@@ -173,12 +173,7 @@ class MoterActivity : AppCompatActivity() {
 
     fun calculatorMoterOnClick(view: View) {
 
-        btnCalInPipeSize.visibility = View.GONE
-        tableBeforeCalculateInMoter.visibility = View.VISIBLE
-        editTextDistanceInMoter.clearFocus()
-        btnCalInPipeSize.apply {
-            hideKeyboard()
-        }
+
 
 //        if(TextAmountMoterSize.text.isEmpty()) TextAmountMoterSize.setText("10")
         if(editTextDistanceInMoter.text.isEmpty()) editTextDistanceInMoter.setText("20")
@@ -195,6 +190,7 @@ class MoterActivity : AppCompatActivity() {
                 }
             }
         }
+
 
 //        if(editTextAmountMoterSize.length() > 0 ){
 //            if(editTextAmountMoterSize.text.toString() == "0." ) editTextAmountMoterSize.setText("10")
@@ -223,9 +219,16 @@ class MoterActivity : AppCompatActivity() {
 //
 //            }
 //        }
-        wayBackActivity1.visibility = View.GONE
+
         btnCalInPipeSize.visibility = View.GONE
         tableBeforeCalculateInMoter.visibility = View.VISIBLE
+        wayBackActivity1.visibility = View.GONE
+        editTextDistanceInMoter.clearFocus()
+        btnCalInPipeSize.apply {
+            hideKeyboard()
+        }
+
+
 
         var stepInFor:Int = 0
         val maxRowsheet:Int

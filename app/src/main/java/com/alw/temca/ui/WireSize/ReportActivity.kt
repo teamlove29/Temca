@@ -85,7 +85,6 @@ class ReportActivity : AppCompatActivity() {
             }
         }else textViewResultConduitSize.text = DataFromWireSize[0].condutiSize
 
-
         textViewResultPressure.text = DataFromWireSize[0].pressure
         if(DataFromWireSize[0].phase == "1 เฟส"){
             textViewReferenceVoltageInReport.text = "(แรงดันอ้างอิง 230V)"
@@ -117,27 +116,6 @@ class ReportActivity : AppCompatActivity() {
                 textViewReferenceVoltageInReport2.text = "(แรงดันอ้างอิง 400V)"
             }
         }
-
-//        if(resultWire != null){
-//            textViewResultPhaseInReport.text = resultWire.phase
-//            textViewResultInstallationInReport.text = resultWire.installation
-//            textViewResultCableTypeInReport.text = resultWire.cableType
-//            textViewResultBreakerInReportData.text = resultWire.breaker
-//            textViewResultDistanceInReport.text = "${resultWire.distance}M"
-//            textViewResultWireSize.text = Html.fromHtml("${resultWire.cableSize.replace("mm2", "mm")}<sup><small><small>2</small></small></sup>")
-//
-//            if(resultWire.wireGround != "-") textViewResultWireGroundInReport.text = Html.fromHtml("${resultWire.wireGround.replace("mm2", "mm")}<sup><small><small>2</small></small></sup>")
-//            else textViewResultWireGroundInReport.text = "-"
-//
-//            textViewResultConduitSize.text = resultWire.condutiSize
-//            textViewResultPressure.text = resultWire.pressure
-//            if(resultWire.phase == "1 เฟส"){
-//                textViewReferenceVoltageInReport.text = "(แรงดันอ้างอิง 230V)"
-//            }else{
-//                textViewReferenceVoltageInReport.text = "(แรงดันอ้างอิง 400V)"
-//            }
-//            textViewDegree.text = "** ใช้งานที่อุณหภูมิ 36-40 C\u00B0 ละเดินสาย 1 กลุ่มวงจร"
-//        }
 
         Dexter.withActivity(this)
                 .withPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)
@@ -204,7 +182,7 @@ class ReportActivity : AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        Log.i("SS", "onActivityResult: " + requestCode + ", " + resultCode + ", " + (data?.toString()
+        Log.i("SS", "onActivityResult: $requestCode, $resultCode, " + (data?.toString()
                 ?: "empty intent"))
         if (requestCode == MY_REQUEST_CODE) {
             Toast.makeText(applicationContext, "Success send email",
@@ -261,24 +239,6 @@ class ReportActivity : AppCompatActivity() {
             var valueStyle = Font(fontName, valueFontSzie, Font.NORMAL, colorAccent)
             var SubvalueStyle = Font(fontName, SubvalueFontSzie, Font.NORMAL, colorAccent)
 
-
-//            //add Image
-//            val d = resources.getDrawable(R.drawable.logo_pdf_temca)
-//            val bitDw = d as BitmapDrawable
-//            val bmp = bitDw.bitmap
-//            val stream = ByteArrayOutputStream()
-//            bmp.compress(Bitmap.CompressFormat.PNG, 100, stream)
-////            bmp.scale(200, 500)
-//            val image: Image = Image.getInstance(stream.toByteArray())
-//
-//
-//
-//            val chunk = Chunk(image, 0F, -40F, true)
-//            val p = Paragraph(chunk)
-//            p.alignment = Element.ALIGN_RIGHT
-//            document.add(p)
-//            addNewItem(document, "", Element.ALIGN_RIGHT, titleStyleTitle)
-
             addNewItemWithLeftAndRight(document, "รายงานคำนวณขนาดสายไฟฟ้าและท่อไฟฟ้า", "", titleStyle, detailStyleTitle)
             addLineSeperator(document)
             addNewItem(document, "ข้อมูลการใช้งาน", Element.ALIGN_LEFT, headingStyle)
@@ -322,16 +282,6 @@ class ReportActivity : AppCompatActivity() {
 
             addNewItem(document, "* อ้างอิงตามมาตรฐานการติดตั้งทางไฟฟ้า วสท. 2562", Element.ALIGN_LEFT, SubvalueStyle)
             addNewItem(document, "** ใช้งานที่อุณหภูมิ 36-40 C° และเดินสาย 1 กลุ่มวงจร", Element.ALIGN_LEFT, SubvalueStyle)
-
-
-//                // cableSize
-//                addNewItemWithLeftAndRight(document, "ขนาดสายไฟ", data!!.cableSize, titleStyle, headingStyle)
-//                addLineSpace(document)
-//                //condutiSize
-//                addNewItemWithLeftAndRight(document, "ขนาดท่อร้อยสาย(ราง)", data.condutiSize, titleStyle, headingStyle)
-//                addLineSpace(document)
-//                //pressure
-//                addNewItemWithLeftAndRight(document, "แรงดันตก", data.pressure, titleStyle, headingStyle)
 
             //close
             document.close()

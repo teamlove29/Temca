@@ -41,9 +41,28 @@ class SponsorActivity : AppCompatActivity(), InstallationonClickAdapterListener 
         val sponsor17 =  SponsorModel(17, resources.getDrawable(R.drawable.temca_logo_mini))
         val sponsor18 =  SponsorModel(18, resources.getDrawable(R.drawable.temca_logo_mini))
 //        val test =  SponsorModel(null)
-        val listSponsor = arrayListOf<SponsorModel>(sponsor1, sponsor2, sponsor3, sponsor4, sponsor5, sponsor6, sponsor7, sponsor8, sponsor9, sponsor10, sponsor11, sponsor12,sponsor13,sponsor14,sponsor15,sponsor16,sponsor17,sponsor18)
-        val listSponsor2 = ArrayList<SponsorModel>()
+        val listSponsor = arrayListOf<SponsorModel>(
+                sponsor1,
+                sponsor2,
+                sponsor3,
+                sponsor4,
+                sponsor5,
+                sponsor6,
+                sponsor7,
+                sponsor8,
+                sponsor9,
+                sponsor10,
+                sponsor11,
+                sponsor12,
+                sponsor13,
+                sponsor14,
+                sponsor15,
+                sponsor16,
+                sponsor17,
+                sponsor18
+        )
 
+        val listSponsor2 = ArrayList<SponsorModel>()
 
         for (i in 0 until 16){
             val uniqueRand = listSponsor.random()
@@ -60,11 +79,7 @@ class SponsorActivity : AppCompatActivity(), InstallationonClickAdapterListener 
             recyclerViewSponsor.layoutManager = GridLayoutManager(this, 4)
         }
         recyclerViewSponsor.isNestedScrollingEnabled = false
-
-
-
     }
-
 
     override fun onClick(postion: Int) {
         val url = "https://www.temcathai.com/"

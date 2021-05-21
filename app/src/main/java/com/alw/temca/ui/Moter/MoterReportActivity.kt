@@ -72,15 +72,11 @@ class MoterReportActivity : AppCompatActivity() {
         textViewResultCircuitInMoterReport.text = DataFromMoter[0].resultbreaker
         textViewResultPressureInMoterReport.text = DataFromMoter[0].resultpressure
 
-
         Dexter.withActivity(this)
             .withPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)
             .withListener(object : PermissionListener {
                 override fun onPermissionGranted(p0: PermissionGrantedResponse?) {
-                        createPDFFile(
-                            Common.getAppPath(this@MoterReportActivity) + file_name, DataFromMoter
-                        )
-                }
+                        createPDFFile(Common.getAppPath(this@MoterReportActivity) + file_name, DataFromMoter) }
                 override fun onPermissionDenied(p0: PermissionDeniedResponse?) {
                     showSettingsDialog()
                     Toast.makeText(
@@ -176,21 +172,6 @@ class MoterReportActivity : AppCompatActivity() {
             val headingStyle = Font(fontName, headingFontSize, Font.BOLD, BaseColor.BLACK)
             var valueStyle = Font(fontName, valueFontSzie, Font.NORMAL, colorAccent)
             var SubvalueStyle = Font(fontName, SubvalueFontSzie, Font.NORMAL, colorAccent)
-
-//            //add Image
-//            val d = resources.getDrawable(R.drawable.logo_pdf_temca)
-//            val bitDw = d as BitmapDrawable
-//            val bmp = bitDw.bitmap
-//            val stream = ByteArrayOutputStream()
-//            bmp.compress(Bitmap.CompressFormat.PNG, 100, stream)
-////            bmp.scale(200, 500)
-//            val image: Image = Image.getInstance(stream.toByteArray())
-//
-//            val chunk = Chunk(image, 0F, -40F, true)
-//            val p = Paragraph(chunk)
-//            p.alignment = Element.ALIGN_RIGHT
-//            document.add(p)
-//            addNewItem(document, "", Element.ALIGN_RIGHT, titleStyleTitle)
 
             addNewItemWithLeftAndRight(document, "รายงานคำนวณขนาดสายหม้อแปลง", "", titleStyle, detailStyleTitle)
             addLineSeperator(document)

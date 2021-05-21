@@ -261,13 +261,6 @@ class WireSizeActivity : AppCompatActivity() {
         if (circuitTextView.text.isEmpty()){
             circuitTextView.text = "40A"
         }
-        btnCal.visibility = View.GONE
-        tableBeforeCalculate.visibility = View.VISIBLE
-        wayBackActivity1.visibility = View.GONE
-        editTextDistance.clearFocus()
-        btnCal.apply {
-            hideKeyboard()
-        }
 
         if(editTextDistance.length() > 0 ){
             if(editTextDistance.text.toString() == "0" ) editTextDistance.setText("20")
@@ -282,6 +275,15 @@ class WireSizeActivity : AppCompatActivity() {
             }
         }
 
+
+        btnCal.visibility = View.GONE
+        tableBeforeCalculate.visibility = View.VISIBLE
+        wayBackActivity1.visibility = View.GONE
+        editTextDistance.clearFocus()
+        btnCal.apply {
+            hideKeyboard()
+        }
+
         try {
             val circuitCheckGroup:String = installationOfTable(installationTextView.text.toString())
             val circuitCheckCableType:Int = circuitCheckPhaseAndCableType(phaseTextView.text.toString(), typeCableTextView.text.toString())
@@ -291,7 +293,6 @@ class WireSizeActivity : AppCompatActivity() {
 
             // if group 7
             if(installationTextView.text == "กลุ่ม 7"){
-
                 tableBeforeCalculateGroup7.visibility = View.VISIBLE
                 tableBeforeCalculate.visibility = View.GONE
 
@@ -334,17 +335,13 @@ class WireSizeActivity : AppCompatActivity() {
                                                 , getRailSizeInTable
                                                 , "400V"
                                                 , resultRefPressure))
-
                                     }
-
                                 }
-
                             }
                             recycerViewWireSize.adapter = WireSizeAdapter(railSizeList)
                             recycerViewWireSize.layoutManager = LinearLayoutManager(this)
                             break
                         }
-
                     }else{
                         println("Nooooo")
                     }

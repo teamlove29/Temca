@@ -53,14 +53,12 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if(requestCode == 100){
             Toast.makeText(this, "SUCCESS !", Toast.LENGTH_LONG).show()
         }
     }
-
 
     fun sponsorOnClick(view: View) {
         val intent = Intent(this,SponsorActivity::class.java)
