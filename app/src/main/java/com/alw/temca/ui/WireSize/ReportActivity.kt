@@ -40,6 +40,7 @@ import com.karumi.dexter.listener.PermissionDeniedResponse
 import com.karumi.dexter.listener.PermissionGrantedResponse
 import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.single.PermissionListener
+import kotlinx.android.synthetic.main.activity_moter_report.*
 import kotlinx.android.synthetic.main.activity_report.*
 import kotlinx.android.synthetic.main.activity_wire_size.*
 import java.io.ByteArrayOutputStream
@@ -50,6 +51,8 @@ import java.io.FileOutputStream
 class ReportActivity : AppCompatActivity() {
     val file_name:String = "_result_calculate.pdf"
     val MY_REQUEST_CODE = 0
+    private val fractionValues = arrayOf("1/2", "1/4", "3/4")
+    private val fractionValues2 = arrayOf("\u00BD", "\u00BC", "\u00BE")
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP_MR1)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -72,7 +75,17 @@ class ReportActivity : AppCompatActivity() {
             textViewResultWireGroundInReport.text = Html.fromHtml(DataFromWireSize[0].wireGround.replace("mm2", "mm<sup><small><small>2</small></small></sup>"))
         else
             textViewResultWireGroundInReport.text = "-"
-        textViewResultConduitSize.text = DataFromWireSize[0].condutiSize
+
+        if(DataFromWireSize[0].condutiSize.indexOf('/') != -1){
+            for(i in 0..2){
+                if(DataFromWireSize[0].condutiSize.indexOf(fractionValues[i]) != -1){
+                    textViewResultConduitSize.text = DataFromWireSize[0].condutiSize.replace(fractionValues[i],fractionValues2[i])
+                    break
+                }else if(i == 2) textViewResultConduitSize.text = DataFromWireSize[0].condutiSize
+            }
+        }else textViewResultConduitSize.text = DataFromWireSize[0].condutiSize
+
+
         textViewResultPressure.text = DataFromWireSize[0].pressure
         if(DataFromWireSize[0].phase == "1 เฟส"){
             textViewReferenceVoltageInReport.text = "(แรงดันอ้างอิง 230V)"
@@ -88,7 +101,15 @@ class ReportActivity : AppCompatActivity() {
                 textViewResultWireGroundInReport2.text = Html.fromHtml(DataFromWireSize[1].wireGround.replace("mm2", "mm<sup><small><small>2</small></small></sup>"))
             else
                 textViewResultWireGroundInReport2.text = "-"
-            textViewResultConduitSize2.text = DataFromWireSize[1].condutiSize
+
+            if(DataFromWireSize[1].condutiSize.indexOf('/') != -1){
+                for(i in 0..2){
+                    if(DataFromWireSize[1].condutiSize.indexOf(fractionValues[i]) != -1){
+                        textViewResultConduitSize2.text = DataFromWireSize[1].condutiSize.replace(fractionValues[i],fractionValues2[i])
+                        break
+                    }else if(i == 2) textViewResultConduitSize2.text = DataFromWireSize[1].condutiSize
+                }
+            }else textViewResultConduitSize2.text = DataFromWireSize[1].condutiSize
             textViewResultPressure2.text = DataFromWireSize[1].pressure
             if(DataFromWireSize[1].phase == "1 เฟส"){
                 textViewReferenceVoltageInReport2.text = "(แรงดันอ้างอิง 230V)"
@@ -386,27 +407,25 @@ class ReportActivity : AppCompatActivity() {
 
 
    fun addItemAndResult(document: Document, textLeft: String, textRight: String, leftStyle: Font, rightStyle: Font){
-
+       val fractionValues = arrayOf("1/2", "1/4", "3/4")
+       val fractionValues2 = arrayOf("\u00BD", "\u00BC", "\u00BE")
        val glue =  Chunk(VerticalPositionMark())
        val p = Paragraph()
        val s = SpannableString(textRight.trim())
-       if (textRight.indexOf('/') != -1) {
-           val len = textRight.length
-           s.setSpan(SuperscriptSpan(), len - 10, len - 9, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) // ตัวเศษ
-           s.setSpan(TextAppearanceSpan(null, 0, 40, null, null), len - 10, len - 9, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) // ตัวเศษ
-           s.setSpan(TextAppearanceSpan(null, 0, 40, null, null), len - 9, len - 8, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) // ตัว /
-           s.setSpan(SubscriptSpan(), len - 8, len - 7, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) // ตัวส่วน
-           s.setSpan(TextAppearanceSpan(null, 0, 40, null, null), len - 8, len - 7, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) // ตัวส่วน
-       }
-
        p.add(Chunk(textLeft, leftStyle))
        if (textRight.indexOf("mm2") > 1){
            p.add(Chunk(textRight.replace("mm2", "mm²"), rightStyle))
        }else{
-           if(textRight.indexOf('/') != -1) p.add(Chunk("$s", rightStyle))
-           else p.add(Chunk(textRight, rightStyle))
-//           p.add(Chunk(textRight, rightStyle))
-
+           if(textRight.indexOf('/') != -1){
+               for(i in 0..2){
+                   if(textRight.indexOf(fractionValues[i]) != -1){
+                       p.add(Chunk(textRight.replace(fractionValues[i],fractionValues2[i]), rightStyle))
+                       break
+                   }else if(i == 2) p.add(Chunk(textRight, rightStyle))
+               }
+           }else{
+               p.add(Chunk(textRight, rightStyle))
+           }
        }
        document.add(p)
     }

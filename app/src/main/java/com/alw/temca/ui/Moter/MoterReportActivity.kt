@@ -40,7 +40,9 @@ import java.io.File
 import java.io.FileOutputStream
 
 class MoterReportActivity : AppCompatActivity() {
-    val file_name:String = "_result_calculate.pdf"
+    private val file_name:String = "_result_calculate.pdf"
+    private val fractionValues = arrayOf("1/2", "1/4", "3/4")
+    private val fractionValues2 = arrayOf("\u00BD", "\u00BC", "\u00BE")
     val MY_REQUEST_CODE = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,7 +61,14 @@ class MoterReportActivity : AppCompatActivity() {
         textViewReferenceVoltageInMoterReport.text = DataFromMoter[0].resultrefpower
         textViewResultCableSizeInMoterReport.text = Html.fromHtml(DataFromMoter[0].resultsizecable.replace("mm2", "mm<sup><small><small>2</small></small></sup>"))
         textViewResultCableSizeGroudInMoterReport.text = Html.fromHtml(DataFromMoter[0].resultgroudcable.replace("mm2", "mm<sup><small><small>2</small></small></sup>"))
-        textViewResultRailSizeInMoterReport.text = DataFromMoter[0].resultconduit
+        if(DataFromMoter[0].resultconduit.indexOf('/') != -1){
+            for(i in 0..2){
+                if(DataFromMoter[0].resultconduit.indexOf(fractionValues[i]) != -1){
+                    textViewResultRailSizeInMoterReport.text = DataFromMoter[0].resultconduit.replace(fractionValues[i],fractionValues2[i])
+                    break
+                }else if(i == 2) textViewResultRailSizeInMoterReport.text = DataFromMoter[0].resultconduit
+            }
+        }else textViewResultRailSizeInMoterReport.text = DataFromMoter[0].resultconduit
         textViewResultCircuitInMoterReport.text = DataFromMoter[0].resultbreaker
         textViewResultPressureInMoterReport.text = DataFromMoter[0].resultpressure
 
@@ -215,9 +224,6 @@ class MoterReportActivity : AppCompatActivity() {
             addItemAndResult(document, "                แรงดันตก                         ", data[0].resultpressure, titleStyleTitle, valueStyle)
             addLineSpace(document)
 
-//            addItemAndResult(document, "                พิกัดกระแส : ", data[0].resultpowerrate, titleStyleTitle, valueStyle)
-//            addItemAndResult(document, "                     ${data[0].resultrefpower}           ", "", subTitleStyle, valueStyle)
-
 //            addNewItem(document, "* อ้างอิงตามมาตรฐานการติดตั้งทางไฟฟ้า วสท. 2562", Element.ALIGN_LEFT, SubvalueStyle)
 //            addNewItem(document, "** ใช้งานที่อุณหภูมิ 36-40 C° และเดินสาย 1 กลุ่มวงจร", Element.ALIGN_LEFT, SubvalueStyle)
 //            addLineSpace(document)
@@ -281,6 +287,7 @@ class MoterReportActivity : AppCompatActivity() {
     }
 
     fun addItemAndResult(document: Document, textLeft: String, textRight: String, leftStyle: Font, rightStyle: Font){
+
         val glue =  Chunk(VerticalPositionMark())
         val p = Paragraph()
         val s = SpannableString(textRight.trim())
@@ -289,8 +296,16 @@ class MoterReportActivity : AppCompatActivity() {
         if (textRight.indexOf("mm2") > 1){
             p.add(Chunk(textRight.replace("mm2", "mm²"), rightStyle))
         }else{
-            if(textRight.indexOf('/') != -1) p.add(Chunk("$s", rightStyle))
-            else p.add(Chunk(textRight, rightStyle))
+            if(textRight.indexOf('/') != -1){
+                for(i in 0..2){
+                    if(textRight.indexOf(fractionValues[i]) != -1){
+                        p.add(Chunk(textRight.replace(fractionValues[i],fractionValues2[i]), rightStyle))
+                        break
+                    }else if(i == 2) p.add(Chunk(textRight, rightStyle))
+                }
+            }else{
+                p.add(Chunk(textRight, rightStyle))
+            }
         }
         document.add(p)
     }

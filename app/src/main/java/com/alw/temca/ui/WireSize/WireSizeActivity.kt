@@ -253,6 +253,8 @@ class WireSizeActivity : AppCompatActivity() {
 
     @SuppressLint("SetTextI18n")
     fun calculatorOnClick(view: View) {
+        railSizeList.clear()
+
         if (editTextDistance.text.isEmpty()){
             editTextDistance.setText("10")
         }
