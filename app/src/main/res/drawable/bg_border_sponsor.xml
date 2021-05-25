@@ -6,15 +6,15 @@
         <shape android:shape="rectangle">
             <stroke
                 android:width="1dp"
-                android:color="@color/btnBlue" />
-            <corners android:radius="23dp" />
+                android:color="@color/placeHolderBG" />
+            <corners android:radius="1dp" />
         </shape>
     </item>
 
     <item android:id="@android:id/mask">
         <shape android:shape="rectangle">
             <corners android:radius="23dp" />
-            <solid android:color="@color/btnBlue" />
+            <solid android:color="@color/placeHolderBG" />
         </shape>
     </item>
 

@@ -173,24 +173,6 @@ class TransformerReportActivity : AppCompatActivity() {
             var valueStyle = Font(fontName, valueFontSzie, Font.NORMAL, colorAccent)
             var SubvalueStyle = Font(fontName, SubvalueFontSzie, Font.NORMAL, colorAccent)
 
-
-//            //add Image
-//            val d = resources.getDrawable(R.drawable.logo_pdf_temca)
-//            val bitDw = d as BitmapDrawable
-//            val bmp = bitDw.bitmap
-//            val stream = ByteArrayOutputStream()
-//            bmp.compress(Bitmap.CompressFormat.PNG, 100, stream)
-////            bmp.scale(200, 500)
-//            val image: Image = Image.getInstance(stream.toByteArray())
-//
-//
-//
-//            val chunk = Chunk(image, 0F, -40F, true)
-//            val p = Paragraph(chunk)
-//            p.alignment = Element.ALIGN_RIGHT
-//            document.add(p)
-//            addNewItem(document, "", Element.ALIGN_RIGHT, titleStyleTitle)
-
             addNewItemWithLeftAndRight(document, "รายงานคำนวณขนาดสายหม้อแปลง", "", titleStyle, detailStyleTitle)
             addLineSeperator(document)
             addNewItem(document, "ข้อมูลการใช้งาน", Element.ALIGN_LEFT, headingStyle)
@@ -209,10 +191,10 @@ class TransformerReportActivity : AppCompatActivity() {
             addItemAndResult(document, "                พิกัดกระแสไฟ     ", data[0].resultpowerrating, titleStyleTitle, valueStyle)
             addLineSpace(document)
             addItemAndResult(document, "                ขนาดสายไฟ       ", data[0].resultsizecable.replace("mm", "mm2"), titleStyleTitle, valueStyle)
-            addItemAndResult(document, "                     รางขนาด            ", "        ${data[0].resultrailsize}mm", subTitleStyle, valueStyle)
+            addItemAndResult(document, "                รางขนาด            ", " ${data[0].resultrailsize}mm", titleStyleTitle, valueStyle)
             addLineSpace(document)
             addItemAndResult(document, "                ขนาดสายไฟ       ", data[1].resultsizecable.replace("mm", "mm2"), titleStyleTitle, valueStyle)
-            addItemAndResult(document, "                     รางขนาด            ", "        ${data[1].resultrailsize}mm", subTitleStyle, valueStyle)
+            addItemAndResult(document, "                รางขนาด            ", " ${data[1].resultrailsize}mm", titleStyleTitle, valueStyle)
             addLineSpace(document)
 
 //

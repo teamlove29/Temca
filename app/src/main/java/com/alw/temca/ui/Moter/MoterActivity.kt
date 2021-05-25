@@ -330,7 +330,20 @@ class MoterActivity : AppCompatActivity() {
                                 val getreslutInTable = sheetPressure.getCell(phaseIndex, h).contents.toDouble()
                                 val pullResult = getreslutInTable * Integer.parseInt(breakerInTable.toString().replace(" A", "")) * amountDeistance / 1000 // result
                                 val PercentPressure  = 100 * pullResult / voteInMoter // result
-                                textViewPressureResult.text = "${"%.2f V".format(pullResult)} (${"%.2f".format(PercentPressure)}%)"
+
+                                var pullResulttoString = "${"%.2f V".format(pullResult)}"
+                                var percentPressuretoString = "${"%.2f V".format(PercentPressure)}"
+                                if(pullResult >= 1000){
+                                    pullResulttoString = pullResulttoString.replace("${pullResulttoString.slice(0..0)}","${pullResulttoString.slice(0..0)},")
+                                    if(PercentPressure >= 1000){
+                                        percentPressuretoString = percentPressuretoString.replace("${percentPressuretoString.slice(0..0)}","${percentPressuretoString.slice(0..0)},")
+                                    }
+                                    textViewPressureResult.text = "$pullResulttoString $percentPressuretoString"
+                                }else{
+                                    textViewPressureResult.text = "${"%.2f V".format(pullResult)} (${"%.2f".format(PercentPressure)}%) "
+                                }
+
+
                                 break
                             }
                         }

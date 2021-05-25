@@ -39,6 +39,7 @@ class TransformerActivity : AppCompatActivity() {
         setContentView(R.layout.activity_transformer)
         tableBeforeCalculateInTransformer.visibility =  View.GONE
         loadData()
+        
 //        editTextDistanceInTransformer.addTextChangedListener(object : TextWatcher {
 //            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
 //                //ก่อนเปลี่ยนคือ ?
@@ -139,12 +140,12 @@ class TransformerActivity : AppCompatActivity() {
         val transformerCableTypeInTable = when(TextViewCableType.text){
             "NYY" -> {
                 pressureDropIndexTable = 0
-                if(TextViewGroupInstallation.text == "เคเบิลไม่มีฝาปิดแบบระบายอากาศ") 0
+                if(TextViewGroupInstallation.text == "ไม่มีฝาปิดแบบระบายอากาศ") 0
                 else 1
             }
             "XLPE" -> {
                 pressureDropIndexTable = 2
-                if(TextViewGroupInstallation.text == "เคเบิลไม่มีฝาปิดแบบบันได") 2
+                if(TextViewGroupInstallation.text == "ไม่มีฝาปิดแบบบันได") 2
                 else 3
             }
             else -> return
@@ -204,7 +205,9 @@ class TransformerActivity : AppCompatActivity() {
         if (requestCode === TASK_NAME_REQUEST_CODE){
             if(resultCode == RESULT_OK){
                 val dataTransformerSize = data!!.getStringExtra("dataTransformerSize")
-                val dataInstallation = data.getParcelableExtra<InstallationModelInTransformer>("dataInstall")
+//                val dataInstallation = data.getParcelableExtra<InstallationModelInTransformer>("dataInstall")
+                val dataInstallationGroup = data.getStringExtra("dataInstall")
+                val dataInstallationDes = data.getStringExtra("dataInstallDes")
                 val dataTypeCable = data.getStringExtra("dataTypeCable")
                 val dataOfPressureVolts = data.getStringExtra("dataOfPressureVolts")
 
@@ -212,11 +215,10 @@ class TransformerActivity : AppCompatActivity() {
                     TextViewTransformerSize.text = dataTransformerSize
                     saveData("transformerSize", dataTransformerSize)
                 }
-                if (dataInstallation != null) {
-//                    val dataInstallationSlice = dataInstallation
-                    TextViewGroupInstallation.text = dataInstallation.des
-                    saveData("group", dataInstallation.title)
-                    saveData("installation", dataInstallation.des)
+                if (dataInstallationGroup != null && dataInstallationDes != null) {
+                    TextViewGroupInstallation.text = dataInstallationDes
+                    saveData("group", dataInstallationGroup.toString())
+                    saveData("installation", dataInstallationDes.toString())
                 }
                 if (dataTypeCable != null) {
                     TextViewCableType.text = dataTypeCable
@@ -259,7 +261,7 @@ class TransformerActivity : AppCompatActivity() {
         val sharedPref = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
         val dataOfPressureVolt = sharedPref.getString(TASK_LIST_PREF_KEY_PRESSURE,"230/400 V")
         val dataOfSizeTransformer = sharedPref.getString(TASK_LIST_PREF_KEY_SIZE_TRANSFORMER,"500 kVA")
-        val dataOfGroupInstall = sharedPref.getString(TASK_LIST_PREF_KEY_INSTALLATION,"เดินเคเบิลแบบระบายอากาศ")
+        val dataOfGroupInstall = sharedPref.getString(TASK_LIST_PREF_KEY_INSTALLATION,"ไม่มีฝาปิดแบบระบายอากาศ")
         val dataOfCableType = sharedPref.getString(TASK_LIST_PREF_KEY_TYPE_CABLE,"NYY")
 //        val dataOfDistanceInTransformer = sharedPref.getString(TASK_LIST_PREF_KEY_DISTANCE_TRANSFORMER,"20")
 

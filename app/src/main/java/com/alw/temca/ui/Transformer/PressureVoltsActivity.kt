@@ -18,7 +18,7 @@ class PressureVoltsActivity : AppCompatActivity(),InstallationonClickAdapterList
         setContentView(R.layout.activity_pressure_volts)
 
         pressureItemList.add(PressureModel("230/400 V"))
-        pressureItemList.add(PressureModel("230/416 V"))
+        pressureItemList.add(PressureModel("240/416 V"))
 
         recyclerViewPressure.adapter = PressureAdapter(pressureItemList,this)
         recyclerViewPressure.layoutManager = LinearLayoutManager(this)

@@ -22,24 +22,22 @@ class SponsorActivity : AppCompatActivity(), InstallationonClickAdapterListener 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sponsor)
 
-        val sponsor1 =  SponsorModel(1, resources.getDrawable(R.drawable.temca_logo_mini))
-        val sponsor2 =  SponsorModel(2, resources.getDrawable(R.drawable.temca_logo))
-        val sponsor3 =  SponsorModel(3, resources.getDrawable(R.drawable.temca_logo_2))
-        val sponsor4 =  SponsorModel(4, resources.getDrawable(R.drawable.logo_pdf_temca))
-        val sponsor5 =  SponsorModel(5, resources.getDrawable(R.drawable.temca_logo_mini))
-        val sponsor6 =  SponsorModel(6, resources.getDrawable(R.drawable.temca_logo_mini))
-        val sponsor7 =  SponsorModel(7, resources.getDrawable(R.drawable.temca_logo_mini))
-        val sponsor8 =  SponsorModel(8, resources.getDrawable(R.drawable.logo_pdf_temca))
-        val sponsor9 =  SponsorModel(9, resources.getDrawable(R.drawable.temca_logo_mini))
-        val sponsor10 =  SponsorModel(10, resources.getDrawable(R.drawable.logo_pdf_temca))
-        val sponsor11 =  SponsorModel(11, resources.getDrawable(R.drawable.temca_logo_mini))
-        val sponsor12 =  SponsorModel(12, resources.getDrawable(R.drawable.temca_logo_mini))
-        val sponsor13 =  SponsorModel(13, resources.getDrawable(R.drawable.temca_logo_mini))
-        val sponsor14 =  SponsorModel(14, resources.getDrawable(R.drawable.temca_logo_mini))
-        val sponsor15 =  SponsorModel(15, resources.getDrawable(R.drawable.temca_logo_mini))
-        val sponsor16 =  SponsorModel(16, resources.getDrawable(R.drawable.temca_logo_mini))
-        val sponsor17 =  SponsorModel(17, resources.getDrawable(R.drawable.temca_logo_mini))
-        val sponsor18 =  SponsorModel(18, resources.getDrawable(R.drawable.temca_logo_mini))
+        val sponsor1 =  SponsorModel(1, resources.getDrawable(R.drawable.sponser1))
+        val sponsor2 =  SponsorModel(2, resources.getDrawable(R.drawable.sponser2))
+        val sponsor3 =  SponsorModel(3, resources.getDrawable(R.drawable.sponser3))
+        val sponsor4 =  SponsorModel(4, resources.getDrawable(R.drawable.sponser4))
+        val sponsor5 =  SponsorModel(5, resources.getDrawable(R.drawable.sponser5))
+        val sponsor6 =  SponsorModel(6, resources.getDrawable(R.drawable.sponser6))
+        val sponsor7 =  SponsorModel(7, resources.getDrawable(R.drawable.sponser7))
+        val sponsor8 =  SponsorModel(8, resources.getDrawable(R.drawable.sponser8))
+        val sponsor9 =  SponsorModel(9, resources.getDrawable(R.drawable.sponser9))
+        val sponsor10 =  SponsorModel(10, resources.getDrawable(R.drawable.sponser10))
+        val sponsor11 =  SponsorModel(11, resources.getDrawable(R.drawable.sponser11))
+        val sponsor12 =  SponsorModel(12, resources.getDrawable(R.drawable.sponser12))
+        val sponsor13 =  SponsorModel(13, resources.getDrawable(R.drawable.sponser13))
+        val sponsor14 =  SponsorModel(14, resources.getDrawable(R.drawable.sponser14))
+        val sponsor15 =  SponsorModel(15, resources.getDrawable(R.drawable.sponser14))
+        val sponsor16 =  SponsorModel(16, resources.getDrawable(R.drawable.sponser14))
 //        val test =  SponsorModel(null)
         val listSponsor = arrayListOf<SponsorModel>(
                 sponsor1,
@@ -58,8 +56,6 @@ class SponsorActivity : AppCompatActivity(), InstallationonClickAdapterListener 
                 sponsor14,
                 sponsor15,
                 sponsor16,
-                sponsor17,
-                sponsor18
         )
 
         val listSponsor2 = ArrayList<SponsorModel>()

@@ -42,7 +42,7 @@
         android:textSize="30dp"/>
 
 </RelativeLayout>
-        //Phase
+<!--        Phase-->
         <androidx.cardview.widget.CardView
       android:onClick="phaseOnClick"
       android:id="@+id/cardViewPhase"
@@ -91,7 +91,7 @@
       </RelativeLayout>
 
   </androidx.cardview.widget.CardView>
-        // Installation group
+<!--        Installation group-->
         <androidx.cardview.widget.CardView
         android:onClick="installationOnClick"
         android:id="@+id/cardViewInstallation"
@@ -140,7 +140,7 @@
         </RelativeLayout>
 
     </androidx.cardview.widget.CardView>
-        // WireType
+<!--        WireType-->
         <androidx.cardview.widget.CardView
             android:onClick="typeCableOnClick"
             android:id="@+id/cardViewWireType"
@@ -189,7 +189,7 @@
             </RelativeLayout>
 
         </androidx.cardview.widget.CardView>
-        // Circuit Breaker
+<!--        Circuit Breaker-->
         <androidx.cardview.widget.CardView
             android:onClick="CircuitOnClick"
             android:id="@+id/cardViewCircuitBreaker"
@@ -239,7 +239,7 @@
             </RelativeLayout>
 
         </androidx.cardview.widget.CardView>
-        // Distance
+<!--        Distance-->
         <androidx.cardview.widget.CardView
             android:id="@+id/cardViewDistance"
             app:cardCornerRadius="5dp"
@@ -274,7 +274,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
                     android:inputType="number"
-                    android:maxLength="5"
+                    android:maxLength="4"
                     android:hint="2000"
                     android:fontFamily="@font/mitr_regular"
                     android:layout_toRightOf="@+id/textViewDistance"
@@ -283,32 +283,9 @@
                     android:layout_centerVertical="true"
                     />
 
-
-<!--                <EditText-->
-<!--                    android:id="@+id/editTextDistance"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:hint="1234"-->
-<!--                    android:inputType="number"-->
-<!--                    android:textSize="18dp"-->
-<!--                    android:layout_toRightOf="@+id/textViewDistance"-->
-<!--                    android:backgroundTint="@null"-->
-<!--                    android:fontFamily="@font/mitr_regular"-->
-<!--                    android:textColor="@color/black"-->
-<!--                    android:layout_centerVertical="true" />-->
-
-<!--                <TextView-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_marginRight="10dp"-->
-<!--                    android:text="เมตร"-->
-<!--                    android:textSize="18dp"-->
-<!--                    android:fontFamily="@font/mitr_regular"-->
-<!--                    android:layout_centerVertical="true"-->
-<!--                    android:layout_alignParentRight="true"/>-->
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
-
+<!--    MaterialButton คำนวน-->
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnCal"
         android:onClick="calculatorOnClick"
@@ -322,6 +299,7 @@
         android:fontFamily="@font/mitr_regular"
         android:text="@string/calculate"/>
 
+<!--    ย้อนกลับหน้าปกติ-->
     <LinearLayout
         android:id="@+id/wayBackActivity1"
         android:layout_marginBottom="20dp"
@@ -391,6 +369,7 @@
                 android:fontFamily="@font/mitr_regular"
                 android:textColor="@color/white" />
 
+<!--            ขนาดสายไฟ้า-->
             <TextView
                 android:id="@+id/textViewShow3"
                 android:layout_width="wrap_content"
@@ -399,7 +378,7 @@
                 android:textSize="16dp"
                 android:fontFamily="@font/mitr_regular"
                 android:textColor="@color/white" />
-
+<!--ขนาดท่อไฟฟ้า-->
             <TextView
                 android:id="@+id/textViewShow"
                 android:layout_width="wrap_content"
@@ -411,7 +390,7 @@
                 android:fontFamily="@font/mitr_regular"
                 android:textColor="@color/white" />
 
-
+<!--ขนาดสายดินที่เหมาะสม-->
             <TextView
                 android:id="@+id/textViewWireGround"
                 android:layout_width="wrap_content"
@@ -423,7 +402,7 @@
                 android:fontFamily="@font/mitr_regular"
                 android:textColor="@color/white" />
 
-
+<!--ผลลัพท์สายดิน-->
             <TextView
                 android:id="@+id/textViewResultWireGround"
                 android:layout_width="wrap_content"
@@ -435,7 +414,7 @@
                 android:textSize="16dp"
                 android:fontFamily="@font/mitr_regular"
                 android:textColor="@color/white" />
-
+<!--ผลลัพท์ขนาดท่อไฟฟ้า-->
             <TextView
                 android:id="@+id/textViewShow4"
                 android:layout_width="wrap_content"
@@ -449,7 +428,7 @@
                 android:fontFamily="@font/mitr_regular"
                 android:layout_centerVertical="true"
                 android:textColor="@color/white" />
-
+<!--แรงดันตก -->
             <TextView
                 android:id="@+id/textViewShow5"
                 android:layout_width="wrap_content"
@@ -460,7 +439,7 @@
                 android:textSize="16dp"
                 android:fontFamily="@font/mitr_regular"
                 android:textColor="@color/white" />
-
+<!--แรงดันอ้างอิง-->
             <TextView
                 android:id="@+id/textViewReferenceVoltage"
                 android:layout_width="wrap_content"
@@ -470,13 +449,12 @@
                 android:textSize="14dp"
                 android:fontFamily="@font/mitr_regular"
                 android:textColor="@color/white" />
-
-
+<!--ผลลัพแรงดันตก-->
             <TextView
                 android:id="@+id/textViewShow6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
                 android:layout_below="@+id/textViewShow4"
                 android:layout_alignParentRight="true"
                 android:text="-%"
@@ -494,6 +472,7 @@
                 android:layout_below="@+id/textViewShow6"
                 android:orientation="vertical">
 
+<!--                MaterialButtonสร้างรายงาน-->
                 <com.google.android.material.button.MaterialButton
                     android:onClick="ReportOnClick"
                     android:id="@+id/btnCreateReports"
@@ -562,7 +541,7 @@
                     android:paddingRight="30dp"
                     android:layout_below="@+id/textViewShow6"
                     android:orientation="vertical">
-
+<!--                    RecyclerView-->
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/recycerViewWireSize"
                         android:layout_width="match_parent"
@@ -570,7 +549,7 @@
                         tools:listitem="@layout/rail_size_list"
                         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                         tools:itemCount="2"/>
-
+<!--                    MaterialButton รายงาน -->
                     <com.google.android.material.button.MaterialButton
                         android:onClick="ReportOnClick"
                         android:id="@+id/btnCreateReports2"
@@ -615,7 +594,9 @@
                             android:textColor="@color/white"
                             android:text="@string/sponsor"/>
                     </RelativeLayout>
+
                 </LinearLayout>
+
         </androidx.cardview.widget.CardView>
 
 </LinearLayout>

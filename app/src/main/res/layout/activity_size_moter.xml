@@ -44,7 +44,7 @@ tools:context=".ui.Moter.SizeMoterActivity">
     android:fontFamily="@font/mitr_regular"
     android:textColor="@color/black"
     android:textSize="20dp"
-    android:text="ชนิดสายไฟ"/>
+    android:text="ขนาดมอเตอร์"/>
 
 <androidx.recyclerview.widget.RecyclerView
     android:id="@+id/recyclerViewSizeMoter"
