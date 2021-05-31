@@ -6,6 +6,7 @@ import android.content.Intent
 import android.content.res.Configuration
 import android.net.Uri
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import com.alw.temca.Adapter.InstallationonClickAdapterListener
@@ -83,4 +84,6 @@ class SponsorActivity : AppCompatActivity(), InstallationonClickAdapterListener 
         intent.data = Uri.parse(url)
         startActivity(intent)
     }
+
+    fun backOnClick(view: View) {finish()}
 }

@@ -32,14 +32,19 @@
         android:background="@drawable/temca_logo_mini"/>
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
         android:layout_toRightOf="@id/logoImageView"
         android:layout_centerVertical="true"
         android:fontFamily="@font/mitr_regular"
         android:textColor="#0E4194"
+        android:textSize="20sp"
         android:text="หาขนาดสายไฟ"
-        android:textSize="30dp"/>
+        android:maxLines="1"
+        android:autoSizeTextType="uniform"
+        android:autoSizeMinTextSize="20sp"
+        android:autoSizeMaxTextSize="30sp"
+        android:autoSizeStepGranularity="2sp"/>
 
 </RelativeLayout>
 <!--        Phase-->
@@ -62,7 +67,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="เฟส"
-                android:textSize="18dp"
+                android:textSize="16sp"
                 android:fontFamily="@font/mitr_regular"
                 android:textColor="@color/black"
                 android:layout_centerVertical="true"/>
@@ -73,7 +78,7 @@
                   android:layout_height="wrap_content"
                   android:layout_marginRight="10dp"
                   android:hint="1  เฟส"
-                  android:textSize="18dp"
+                  android:textSize="16sp"
                   android:layout_toLeftOf="@+id/iconPhase"
                   android:fontFamily="@font/mitr_regular"
                   android:textColorHint="@color/defaulthint"
@@ -111,7 +116,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="กลุ่มการติดตั้ง"
-                android:textSize="18dp"
+                android:textSize="16sp"
                 android:fontFamily="@font/mitr_regular"
                 android:textColor="@color/black"
                 android:layout_centerVertical="true"/>
@@ -122,7 +127,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="10dp"
                 android:hint="กลุ่ม 1"
-                android:textSize="18dp"
+                android:textSize="16sp"
                 android:layout_toLeftOf="@+id/iconInstallation"
                 android:fontFamily="@font/mitr_regular"
                 android:textColorHint="@color/defaulthint"
@@ -160,7 +165,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="ชนิดสายไฟ"
-                    android:textSize="18dp"
+                    android:textSize="16sp"
                     android:fontFamily="@font/mitr_regular"
                     android:textColor="@color/black"
                     android:layout_centerVertical="true"/>
@@ -171,7 +176,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginRight="10dp"
                     android:hint="CV"
-                    android:textSize="18dp"
+                    android:textSize="16sp"
                     android:layout_toLeftOf="@+id/iconWireType"
                     android:fontFamily="@font/mitr_regular"
                     android:textColorHint="@color/defaulthint"
@@ -209,7 +214,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
 
-                    android:textSize="18dp"
+                    android:textSize="16sp"
                     android:text="Circuit Breaker"
                     android:fontFamily="@font/mitr_regular"
                     android:textColor="@color/black"
@@ -221,7 +226,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginRight="10dp"
                     android:hint="40A"
-                    android:textSize="18dp"
+                    android:textSize="16sp"
                     android:layout_toLeftOf="@+id/iconCircuitBreakere"
                     android:fontFamily="@font/mitr_regular"
                     android:textColorHint="@color/defaulthint"
@@ -262,7 +267,7 @@
                     android:layout_marginRight="10dp"
                     android:layout_marginLeft="5dp"
                     android:text="ระยะทาง(M.)"
-                    android:textSize="18dp"
+                    android:textSize="16sp"
                     android:fontFamily="@font/mitr_regular"
                     android:textColor="@color/black"
                     android:layout_centerVertical="true"/>
@@ -294,7 +299,7 @@
         app:cornerRadius="20dp"
         android:padding="10dp"
         android:layout_margin="10dp"
-        android:textSize="20dp"
+        android:textSize="18sp"
         android:backgroundTint="@color/btnBlue"
         android:fontFamily="@font/mitr_regular"
         android:text="@string/calculate"/>
@@ -365,7 +370,7 @@
                 android:layout_alignParentRight="true"
                 android:paddingTop="3dp"
                 android:text="- มม"
-                android:textSize="16dp"
+                android:textSize="16sp"
                 android:fontFamily="@font/mitr_regular"
                 android:textColor="@color/white" />
 
@@ -375,7 +380,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="ขนาดสายไฟฟ้า"
-                android:textSize="16dp"
+                android:textSize="16sp"
                 android:fontFamily="@font/mitr_regular"
                 android:textColor="@color/white" />
 <!--ขนาดท่อไฟฟ้า-->
@@ -386,7 +391,7 @@
                 android:layout_below="@+id/textViewWireGround"
                 android:layout_marginTop="20dp"
                 android:text="ขนาดท่อไฟฟ้า"
-                android:textSize="16dp"
+                android:textSize="16sp"
                 android:fontFamily="@font/mitr_regular"
                 android:textColor="@color/white" />
 
@@ -398,7 +403,7 @@
                 android:layout_below="@+id/textViewShow3"
                 android:layout_marginTop="20dp"
                 android:text="ขนาดสายดินที่เหมาะสม"
-                android:textSize="16dp"
+                android:textSize="16sp"
                 android:fontFamily="@font/mitr_regular"
                 android:textColor="@color/white" />
 
@@ -411,7 +416,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_marginTop="20dp"
                 android:text="- มม"
-                android:textSize="16dp"
+                android:textSize="16sp"
                 android:fontFamily="@font/mitr_regular"
                 android:textColor="@color/white" />
 <!--ผลลัพท์ขนาดท่อไฟฟ้า-->
@@ -424,7 +429,7 @@
                 android:paddingBottom="10dp"
                 android:layout_alignParentRight="true"
                 android:text="- mm (1/2)"
-                android:textSize="16dp"
+                android:textSize="16sp"
                 android:fontFamily="@font/mitr_regular"
                 android:layout_centerVertical="true"
                 android:textColor="@color/white" />
@@ -436,7 +441,7 @@
                 android:layout_marginTop="20dp"
                 android:layout_below="@+id/textViewShow"
                 android:text="แรงดันตก"
-                android:textSize="16dp"
+                android:textSize="16sp"
                 android:fontFamily="@font/mitr_regular"
                 android:textColor="@color/white" />
 <!--แรงดันอ้างอิง-->
@@ -458,7 +463,7 @@
                 android:layout_below="@+id/textViewShow4"
                 android:layout_alignParentRight="true"
                 android:text="-%"
-                android:textSize="16dp"
+                android:textSize="16sp"
                 android:fontFamily="@font/mitr_regular"
                 android:textColor="@color/white" />
 
@@ -482,7 +487,7 @@
                     android:layout_height="wrap_content"
                     app:cornerRadius="10dp"
                     android:padding="10dp"
-                    android:textSize="20dp"
+                    android:textSize="18sp"
                     android:textColor="#0E4194"
                     android:backgroundTint="@color/white"
                     android:fontFamily="@font/mitr_regular"
@@ -558,7 +563,7 @@
                         android:layout_height="wrap_content"
                         app:cornerRadius="10dp"
                         android:padding="10dp"
-                        android:textSize="20dp"
+                        android:textSize="18sp"
                         android:textColor="#0E4194"
                         android:backgroundTint="@color/white"
                         android:fontFamily="@font/mitr_regular"

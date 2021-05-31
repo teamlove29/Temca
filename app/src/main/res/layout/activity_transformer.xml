@@ -31,17 +31,21 @@ tools:context=".ui.Transformer.TransformerActivity">
             android:background="@drawable/temca_logo_mini"/>
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
             android:layout_toRightOf="@id/logoImageView"
             android:layout_centerVertical="true"
             android:fontFamily="@font/mitr_regular"
             android:textColor="#0E4194"
+            android:textSize="20sp"
             android:text="ขนาดสายหม้อแปลง"
-            android:textSize="30dp"/>
+            android:maxLines="1"
+            android:autoSizeTextType="uniform"
+            android:autoSizeMinTextSize="20sp"
+            android:autoSizeMaxTextSize="100sp"
+            android:autoSizeStepGranularity="2sp"/>
 
     </RelativeLayout>
-
 
     <!--  Pressure-->
     <androidx.cardview.widget.CardView
@@ -55,27 +59,33 @@ tools:context=".ui.Transformer.TransformerActivity">
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <RelativeLayout
+        <LinearLayout
             android:padding="15dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
             <TextView
+                android:layout_weight="1"
+                android:gravity="center_vertical"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="35dp"
                 android:text="ขนาดแรงดัน"
-                android:textSize="18dp"
+                android:maxLines="1"
+                android:textSize="16sp"
                 android:fontFamily="@font/mitr_regular"
                 android:textColor="@color/black" />
 
             <TextView
+                android:layout_weight="1"
+                android:gravity="right|center_vertical"
                 android:id="@+id/TextViewPressure"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="10dp"
-                android:hint="230/400 V"
-                android:textSize="18dp"
-                android:layout_toLeftOf="@+id/iconPressure"
+                android:text="230/400 V"
+                android:maxLines="1"
+                android:textSize="16sp"
                 android:textColorHint="@color/defaulthint"
                 android:textColor="@color/defaulthint"
                 android:fontFamily="@font/mitr_regular" />
@@ -85,14 +95,14 @@ tools:context=".ui.Transformer.TransformerActivity">
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_baseline_keyboard_arrow_right_24"
-                android:layout_alignParentRight="true"/>
+                android:layout_alignParentRight="true"
+                android:layout_gravity="center_vertical"/>
 
-        </RelativeLayout>
+        </LinearLayout>
 
     </androidx.cardview.widget.CardView>
 
 <!--    transformerSize-->
-
 
     // GroupInstallation
     <androidx.cardview.widget.CardView
@@ -106,42 +116,50 @@ tools:context=".ui.Transformer.TransformerActivity">
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <RelativeLayout
+        <LinearLayout
+            android:gravity="center_vertical"
             android:padding="15dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
             <TextView
+                android:layout_weight="1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center_vertical"
                 android:text="กลุ่มการติดตั้ง"
-                android:textSize="18dp"
+                android:textSize="16sp"
+                android:maxLines="1"
                 android:fontFamily="@font/mitr_regular"
                 android:textColor="@color/black"
                 android:layout_centerVertical="true"/>
 
             <TextView
                 android:id="@+id/TextViewGroupInstallation"
-                android:gravity="right"
+                android:layout_weight="1"
+                android:gravity="right|center_vertical"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="35dp"
                 android:layout_marginRight="10dp"
-                android:hint="เดินเคเบิลแบบระบายอากาศ"
-                android:textSize="18dp"
-                android:layout_toLeftOf="@+id/iconGroupInstallation"
+                android:text="เดินเคเบิลแบบระบายอากาศ"
+                android:autoSizeTextType="uniform"
+                android:autoSizeMinTextSize="12sp"
+                android:autoSizeMaxTextSize="16sp"
+                android:autoSizePresetSizes="@array/autosize_text_sizes"
+                android:maxLines="1"
                 android:fontFamily="@font/mitr_regular"
                 android:textColorHint="@color/defaulthint"
-                android:textColor="@color/defaulthint"
-                android:layout_centerVertical="true"/>
+                android:textColor="@color/defaulthint" />
 
             <ImageView
                 android:id="@+id/iconGroupInstallation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_baseline_keyboard_arrow_right_24"
-                android:layout_centerVertical="true"
-                android:layout_alignParentRight="true"/>
+                android:layout_gravity="center_vertical"/>
 
-        </RelativeLayout>
+        </LinearLayout>
 
     </androidx.cardview.widget.CardView>
 
@@ -165,7 +183,7 @@ tools:context=".ui.Transformer.TransformerActivity">
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="ชนิดสายไฟ"
-                android:textSize="18dp"
+                android:textSize="16sp"
                 android:fontFamily="@font/mitr_regular"
                 android:textColor="@color/black"
                 android:layout_centerVertical="true"/>
@@ -176,7 +194,7 @@ tools:context=".ui.Transformer.TransformerActivity">
                 android:layout_height="wrap_content"
                 android:layout_marginRight="10dp"
                 android:hint="NYY"
-                android:textSize="18dp"
+                android:textSize="16sp"
                 android:layout_toLeftOf="@+id/iconCableType"
                 android:fontFamily="@font/mitr_regular"
                 android:textColorHint="@color/defaulthint"
@@ -215,7 +233,7 @@ tools:context=".ui.Transformer.TransformerActivity">
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="ขนาดหม้อแปลง"
-                android:textSize="18dp"
+                android:textSize="16sp"
                 android:fontFamily="@font/mitr_regular"
                 android:textColor="@color/black" />
 
@@ -225,7 +243,7 @@ tools:context=".ui.Transformer.TransformerActivity">
                 android:layout_height="wrap_content"
                 android:layout_marginRight="10dp"
                 android:hint="500 kVA"
-                android:textSize="18dp"
+                android:textSize="16sp"
                 android:layout_toLeftOf="@+id/iconTransformerSize"
                 android:textColorHint="@color/defaulthint"
                 android:textColor="@color/defaulthint"
@@ -299,7 +317,7 @@ tools:context=".ui.Transformer.TransformerActivity">
         android:layout_marginTop="20dp"
         android:layout_marginRight="10dp"
         android:layout_marginLeft="10dp"
-        android:textSize="20dp"
+        android:textSize="18sp"
         android:backgroundTint="@color/btnBlue"
         android:fontFamily="@font/mitr_regular"
         android:text="@string/calculate"/>
@@ -374,18 +392,20 @@ tools:context=".ui.Transformer.TransformerActivity">
                 android:id="@+id/textViewNull"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/mitr_regular"
                 android:layout_alignParentRight="true"
-                android:layout_alignRight="@+id/textViewTitleResult"
+                android:text=" "
                 android:textSize="20dp" />
 
             <TextView
                 android:id="@+id/textViewElectricCurren"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center_vertical"
                 android:layout_marginTop="20dp"
                 android:layout_below="@+id/textViewTitleResult"
                 android:text="พิกัดกระแส (1.25ln)"
-                android:textSize="16dp"
+                android:textSize="16sp"
                 android:fontFamily="@font/mitr_regular"
                 android:textColor="@color/white" />
 
@@ -394,11 +414,12 @@ tools:context=".ui.Transformer.TransformerActivity">
                 android:id="@+id/textViewElectricCurrenResult"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center_vertical"
                 android:layout_marginTop="20dp"
                 android:layout_below="@+id/textViewNull"
                 android:layout_alignParentRight="true"
                 android:text="null A"
-                android:textSize="16dp"
+                android:textSize="16sp"
                 android:fontFamily="@font/mitr_regular"
                 android:textColor="@color/white" />
 
@@ -411,7 +432,7 @@ tools:context=".ui.Transformer.TransformerActivity">
                 android:layout_marginTop="5dp"
                 android:layout_below="@+id/textViewElectricCurren"
                 android:text="ขนาดสายไฟ"
-                android:textSize="16dp"
+                android:textSize="16sp"
                 android:fontFamily="@font/mitr_regular"
                 android:textColor="@color/white" />
 
@@ -444,7 +465,7 @@ tools:context=".ui.Transformer.TransformerActivity">
                     android:layout_marginBottom="20dp"
                     app:cornerRadius="10dp"
                     android:padding="10dp"
-                    android:textSize="20dp"
+                    android:textSize="18sp"
                     android:textColor="#0E4194"
                     android:backgroundTint="@color/white"
                     android:fontFamily="@font/mitr_regular"

@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="2(3x300mm2, 1x150mm2)"
-        android:textSize="16dp"
+        android:textSize="16sp"
         android:fontFamily="@font/mitr_regular"
         android:textColor="@color/white"
         android:layout_centerVertical="true"/>
@@ -25,7 +25,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="รางขนาด"
-            android:textSize="16dp"
+            android:textSize="16sp"
             android:fontFamily="@font/mitr_regular"
             android:textColor="@color/white"
             android:layout_centerVertical="true"/>
@@ -39,7 +39,7 @@
             android:fontFamily="@font/mitr_regular"
             android:text="400x100mm."
             android:textColor="@color/white"
-            android:textSize="16dp" />
+            android:textSize="16sp" />
     </RelativeLayout>
 
 

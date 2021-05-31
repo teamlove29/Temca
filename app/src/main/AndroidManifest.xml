@@ -18,16 +18,20 @@
         android:theme="@style/Theme.Temca"
         android:versionCode="1"
         android:versionName="1.0">
-        <activity android:name=".ui.Moter.MoterReportActivity"></activity>
+        <activity android:name=".ui.Moter.MoterReportActivity"/>
         <activity android:name=".ui.Transformer.TransformerReportActivity" />
         <activity android:name=".ui.Moter.SizeMoterActivity" />
         <activity android:name=".ui.Moter.StartPatternActivity" />
         <activity android:name=".ui.Transformer.PressureVoltsActivity" />
         <activity android:name=".ui.Moter.UnitMoterActivity" />
-        <activity android:name=".ui.Moter.MoterActivity" />
+        <activity
+            android:name=".ui.Moter.MoterActivity"
+            android:windowSoftInputMode="stateHidden|adjustResize"/>
         <activity android:name=".ui.Transformer.InstallationTransformerActivity" />
         <activity android:name=".ui.Transformer.TransformerSizeActivity" />
-        <activity android:name=".ui.Transformer.TransformerActivity" />
+        <activity
+            android:name=".ui.Transformer.TransformerActivity"
+            android:windowSoftInputMode="stateHidden|adjustResize"/>
         <activity android:name=".ui.WireSize.CircuitBreakerActivity" />
         <activity android:name=".ui.PipeSize.PipeSizeReportActivity" />
         <activity android:name=".ui.SponsorActivity" />
@@ -38,8 +42,12 @@
         <activity android:name=".ui.WireSize.CircuitActivity" />
         <activity android:name=".ui.WireSize.TypeCableActivity" />
         <activity android:name=".ui.WireSize.InstallationActivity" />
-        <activity android:name=".ui.PipeSize.PipeSizeActivity" />
-        <activity android:name=".ui.WireSize.WireSizeActivity" />
+        <activity
+            android:name=".ui.PipeSize.PipeSizeActivity"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+        <activity
+            android:name=".ui.WireSize.WireSizeActivity"
+            android:windowSoftInputMode="stateHidden|adjustResize"/>
         <activity android:name=".ui.WireSize.PhaseActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>

@@ -25,14 +25,19 @@
             android:background="@drawable/temca_logo_mini"/>
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
             android:layout_toRightOf="@id/logoImageView"
             android:layout_centerVertical="true"
             android:fontFamily="@font/mitr_regular"
             android:textColor="@color/black"
+            android:textSize="20sp"
             android:text="หาขนาดสายไฟ"
-            android:textSize="30dp"/>
+            android:maxLines="1"
+            android:autoSizeTextType="uniform"
+            android:autoSizeMinTextSize="20sp"
+            android:autoSizeMaxTextSize="30sp"
+            android:autoSizeStepGranularity="2sp"/>
 
     </RelativeLayout>
 
@@ -44,7 +49,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/mitr_regular"
         android:textColor="@color/black"
-        android:textSize="20dp"
+        android:textSize="18sp"
         android:text="Circuit Breaker (ขนาดของเบรกเกอร์)"/>
 
     <androidx.recyclerview.widget.RecyclerView

@@ -25,14 +25,19 @@
             android:background="@drawable/temca_logo_mini"/>
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
             android:layout_toRightOf="@id/logoImageView"
             android:layout_centerVertical="true"
             android:fontFamily="@font/mitr_regular"
             android:textColor="@color/black"
+            android:textSize="20sp"
             android:text="หาขนาดสายไฟ"
-            android:textSize="30dp"/>
+            android:maxLines="1"
+            android:autoSizeTextType="uniform"
+            android:autoSizeMinTextSize="20sp"
+            android:autoSizeMaxTextSize="30sp"
+            android:autoSizeStepGranularity="2sp"/>
 
     </RelativeLayout>
 
@@ -43,7 +48,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/mitr_regular"
                 android:textColor="@color/black"
-                android:textSize="20dp"
+                android:textSize="18sp"
                 android:text="Circuit / กระแสใช้งาน"/>
 
 
@@ -65,7 +70,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Circuit Breaker"
-            android:textSize="18dp"
+            android:textSize="16sp"
             android:fontFamily="@font/mitr_regular"
             android:textColor="@color/black"
             android:layout_centerVertical="true"/>
@@ -76,7 +81,7 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="10dp"
             android:hint="40A"
-            android:textSize="18dp"
+            android:textSize="16sp"
             android:layout_toLeftOf="@+id/iconWireType"
             android:fontFamily="@font/mitr_regular"
             android:textColorHint="@color/defaulthint"
@@ -116,7 +121,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="10dp"
                 android:text="กระแสใช้งาน(A)"
-                android:textSize="18dp"
+                android:textSize="16sp"
                 android:fontFamily="@font/mitr_regular"
                 android:textColor="@color/black"
                 android:layout_centerVertical="true"/>
@@ -129,6 +134,7 @@
                 android:layout_marginBottom="10dp"
                 android:inputType="number"
                 android:text="40"
+                android:textSize="16sp"
                 android:maxLength="4"
                 android:fontFamily="@font/mitr_regular"
                 android:layout_toRightOf="@+id/textViewOperating"
@@ -151,7 +157,7 @@
         android:layout_marginTop="20dp"
         android:layout_marginRight="10dp"
         android:layout_marginLeft="10dp"
-        android:textSize="20dp"
+        android:textSize="18sp"
         android:backgroundTint="@color/btnBlue"
         android:fontFamily="@font/mitr_regular"
         android:text="ตกลง"/>

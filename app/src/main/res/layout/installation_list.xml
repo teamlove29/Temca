@@ -10,14 +10,15 @@
     android:layout_height="wrap_content">
 
     <RelativeLayout
+        android:gravity="center_vertical"
         android:padding="12dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/imageViewGroup"
-            android:layout_width="75dp"
-            android:layout_height="50dp"
+            android:layout_width="70dp"
+            android:layout_height="60dp"
             android:src="@drawable/setting_group2"/>
 
         <TextView
@@ -26,18 +27,21 @@
             android:layout_height="wrap_content"
             android:layout_toRightOf="@+id/imageViewGroup"
             android:hint="กลุ่ม 1"
-            android:textSize="16dp"
+            android:textSize="16sp"
             android:fontFamily="@font/mitr_regular"
             android:textColor="@color/btnBlue" />
 
         <TextView
             android:id="@+id/textViewInstallation"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
             android:layout_toRightOf="@+id/imageViewGroup"
             android:layout_below="@+id/textViewInstallationTitle"
-            android:hint="เดินสายภายในฝ้าเพดานที่เป็นฉนวนความร้อน"
-            android:textSize="16dp"
+            android:text="เดินสายภายในฝ้าเพดานที่เป็นฉนวนความร้อน"
+            android:autoSizeTextType="uniform"
+            android:autoSizeMinTextSize="14sp"
+            android:autoSizeMaxTextSize="15sp"
+            android:autoSizeStepGranularity="2sp"
             android:fontFamily="@font/mitr_regular"
             android:textColor="@color/black" />
 

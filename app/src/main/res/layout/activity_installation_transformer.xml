@@ -26,14 +26,19 @@ tools:context=".ui.Transformer.InstallationTransformerActivity">
 
     <TextView
         android:id="@+id/textViewTitleInstallTransformer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
         android:layout_toRightOf="@id/logoImageView"
+        android:textSize="20sp"
         android:layout_centerVertical="true"
         android:fontFamily="@font/mitr_regular"
         android:textColor="@color/black"
         android:text="หาขนาดสายหม้อแปลง"
-        android:textSize="30dp"/>
+        android:maxLines="1"
+        android:autoSizeTextType="uniform"
+        android:autoSizeMinTextSize="20sp"
+        android:autoSizeMaxTextSize="30sp"
+        android:autoSizeStepGranularity="2sp"/>
 
 </RelativeLayout>
 
@@ -44,7 +49,7 @@ tools:context=".ui.Transformer.InstallationTransformerActivity">
     android:layout_height="wrap_content"
     android:fontFamily="@font/mitr_regular"
     android:textColor="@color/black"
-    android:textSize="20dp"
+    android:textSize="18sp"
     android:text="กลุ่มการติดตั้ง"/>
 
 <androidx.recyclerview.widget.RecyclerView

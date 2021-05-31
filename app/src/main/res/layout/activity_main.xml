@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView android:background="@drawable/background_main"
+<ScrollView
+    android:background="@drawable/background_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fillViewport="true"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:overScrollMode="never"
@@ -16,58 +18,79 @@
         >
 
         <ImageView
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="40dp"
             android:layout_marginBottom="20dp"
             android:id="@+id/logoImageView"
-            android:layout_width="170dp"
-            android:layout_height="150dp"
+            android:layout_width="120dp"
+            android:layout_height="110dp"
             android:layout_gravity="center_horizontal"
             android:background="@drawable/temca_logo"/>
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:fontFamily="@font/mitr_regular"
             android:textColor="#0E4194"
-            android:textSize="34dp"
+            android:maxLines="1"
+            android:autoSizeTextType="uniform"
+            android:textSize="25sp"
+            android:autoSizeMinTextSize="20sp"
+            android:autoSizeMaxTextSize="100sp"
+            android:autoSizeStepGranularity="2sp"
             android:gravity="center_horizontal"
             android:text="Cable and Conduit"/>
 
         <TextView
             android:layout_marginTop="-10dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:fontFamily="@font/mitr_regular"
             android:textColor="#0E4194"
-            android:textSize="34dp"
+            android:maxLines="1"
+            android:textSize="25sp"
+            android:autoSizeTextType="uniform"
+            android:autoSizeMinTextSize="20sp"
+            android:autoSizeMaxTextSize="100sp"
+            android:autoSizeStepGranularity="2sp"
             android:gravity="center_horizontal"
             android:text="Calculator"/>
 
         <RelativeLayout
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            >
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <LinearLayout
+                android:id="@+id/layout1"
+                android:gravity="center_horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
             <Button
-                android:foreground="?android:selectableItemBackground"
                 android:id="@+id/buttonWireSize"
+                android:layout_weight="1"
+                android:foreground="?android:selectableItemBackground"
+                android:gravity="bottom|center_horizontal"
                 android:layout_width="170dp"
                 android:layout_height="100dp"
                 android:layout_margin="5dp"
                 android:paddingBottom="10dp"
                 android:elevation="10dp"
+                android:autoSizeTextType="uniform"
+                android:autoSizeMinTextSize="12sp"
+                android:autoSizeMaxTextSize="15sp"
+                android:autoSizeStepGranularity="2sp"
                 android:backgroundTint="#092B61"
                 android:fontFamily="@font/mitr_regular"
-                android:textSize="15dp"
                 android:text="หาขนาดสายไฟ"
                 android:textColor="@color/white"
-                android:gravity="bottom|center_horizontal"
                 android:onClick="HandleOnClick" />
 
             <Button
                 android:foreground="?android:selectableItemBackground"
+                android:layout_weight="1"
                 android:id="@+id/buttonPipeSize"
                 android:layout_width="170dp"
                 android:layout_height="100dp"
@@ -75,16 +98,28 @@
                 android:padding="10dp"
                 android:elevation="10dp"
                 android:backgroundTint="#092B61"
-                android:layout_toRightOf="@+id/buttonWireSize"
                 android:fontFamily="@font/mitr_regular"
-                android:textSize="15dp"
+                android:autoSizeMinTextSize="12sp"
+                android:autoSizeMaxTextSize="100sp"
+                android:autoSizeStepGranularity="2sp"
                 android:text="หาขนาดท่อ/ราง"
                 android:textColor="@color/white"
                 android:gravity="bottom|center_horizontal"
                 android:onClick="HandleOnClick"/>
 
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout2"
+                android:gravity="center_horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/layout1"
+                android:orientation="horizontal">
+
             <Button
                 android:id="@+id/buttonTransformer"
+                android:layout_weight="1"
                 android:layout_width="170dp"
                 android:layout_height="100dp"
                 android:layout_margin="5dp"
@@ -93,7 +128,11 @@
                 android:backgroundTint="#092B61"
                 android:layout_below="@+id/buttonWireSize"
                 android:fontFamily="@font/mitr_regular"
-                android:textSize="15dp"
+                android:maxLines="1"
+                android:autoSizeTextType="uniform"
+                android:autoSizeMinTextSize="12sp"
+                android:autoSizeMaxTextSize="15sp"
+                android:autoSizeStepGranularity="2sp"
                 android:text="หาขนาดสายหม้อแปลง"
                 android:textColor="@color/white"
                 android:gravity="bottom|center_horizontal"
@@ -101,6 +140,7 @@
 
             <Button
                 android:id="@+id/buttonMoter"
+                android:layout_weight="1"
                 android:layout_width="170dp"
                 android:layout_height="100dp"
                 android:layout_margin="5dp"
@@ -114,14 +154,27 @@
                 android:elevation="10dp"
                 android:backgroundTint="#092B61"
                 android:fontFamily="@font/mitr_regular"
-                android:textSize="15dp"
+                android:autoSizeTextType="uniform"
+                android:autoSizeMinTextSize="12sp"
+                android:autoSizeMaxTextSize="15sp"
+                android:autoSizeStepGranularity="2sp"
                 android:text="หาขนาดสายมอเตอร์"
                 android:textColor="@color/white"
                 android:gravity="bottom|center_horizontal"
                 android:onClick="HandleOnClick"/>
 
+            </LinearLayout>
+
+            <LinearLayout
+                android:gravity="center_horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/layout2"
+                android:orientation="horizontal">
+
             <Button
                 android:id="@+id/button5"
+                android:layout_weight="1"
                 android:layout_width="170dp"
                 android:layout_height="100dp"
                 android:layout_margin="5dp"
@@ -130,7 +183,10 @@
                 android:elevation="10dp"
                 android:backgroundTint="#092B61"
                 android:fontFamily="@font/mitr_regular"
-                android:textSize="15dp"
+                android:autoSizeTextType="uniform"
+                android:autoSizeMinTextSize="12sp"
+                android:autoSizeMaxTextSize="15sp"
+                android:autoSizeStepGranularity="2sp"
                 android:text="มาตาฐานการติดตั้ง"
                 android:textColor="@color/white"
                 android:gravity="bottom|center_horizontal"
@@ -138,6 +194,7 @@
 
             <Button
                 android:id="@+id/button6"
+                android:layout_weight="1"
                 android:layout_width="170dp"
                 android:layout_height="100dp"
                 android:layout_margin="5dp"
@@ -151,58 +208,91 @@
                 android:elevation="10dp"
                 android:backgroundTint="#092B61"
                 android:fontFamily="@font/mitr_regular"
-                android:textSize="15dp"
+                android:autoSizeTextType="uniform"
+                android:autoSizeMinTextSize="12sp"
+                android:autoSizeMaxTextSize="15sp"
+                android:autoSizeStepGranularity="2sp"
                 android:text="วิธีการใช้งาน"
                 android:textColor="@color/white"
                 android:gravity="bottom|center_horizontal"
                 android:onClick="HandleOnClick"/>
 
+            </LinearLayout>
 
         </RelativeLayout>
 
 
-        <RelativeLayout
-            android:layout_marginTop="50dp"
-            android:gravity="bottom|center_horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:layout_marginLeft="50dp"
-                android:id="@+id/textViewTerm"
-                android:drawableStart="@drawable/ic_help_outline_24px"
-                android:drawableTint="@color/white"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/mitr_regular"
-                android:textColor="@color/white"
-                android:text="Term of usage"/>
-
-            <TextView
-                android:onClick="sponsorOnClick"
-                android:layout_marginRight="70dp"
-                android:layout_alignParentRight="true"
-                android:id="@+id/textViewSponser"
-                android:drawableStart="@drawable/ic_engineering_24px"
-                android:drawableTint="@color/white"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/mitr_regular"
-                android:textColor="@color/white"
-                android:text="ผู้สนับสนุน"/>
-
-            <TextView
-                android:padding="20dp"
+            <LinearLayout
                 android:layout_marginTop="30dp"
                 android:gravity="bottom|center_horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/mitr_regular"
-                android:textColor="@color/white"
-                android:text="สมาคมช่างเหมาไฟฟ้าและเครื่องกลไทย"/>
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:gravity="center_horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textViewTerm"
+                    android:layout_marginRight="30dp"
+                    android:drawableLeft="@drawable/ic_help_outline_24px"
+                    android:drawableTint="@color/white"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/mitr_regular"
+                    android:textColor="@color/white"
+                    android:autoSizeTextType="uniform"
+                    android:autoSizeMinTextSize="12sp"
+                    android:autoSizeMaxTextSize="15sp"
+                    android:autoSizeStepGranularity="2sp"
+                    android:text="Term of usage"/>
+
+                    <TextView
+                        android:onClick="sponsorOnClick"
+                        android:id="@+id/textViewSponser"
+                        android:layout_marginLeft="60dp"
+                        android:drawableLeft="@drawable/ic_engineering_24px"
+                        android:drawableTint="@color/white"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/mitr_regular"
+                        android:textColor="@color/white"
+                        android:autoSizeTextType="uniform"
+                        android:autoSizeMinTextSize="12sp"
+                        android:autoSizeMaxTextSize="15sp"
+                        android:autoSizeStepGranularity="2sp"
+                        android:text="ผู้สนับสนุน"/>
 
 
-        </RelativeLayout>
+                </LinearLayout>
+
+                <TextView
+                    android:padding="20dp"
+                    android:gravity="center_horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/mitr_regular"
+                    android:textColor="@color/white"
+                    android:text="สมาคมช่างเหมาไฟฟ้าและเครื่องกลไทย"/>
+
+            </LinearLayout>
+
+<!--        <TextView-->
+<!--            android:padding="20dp"-->
+<!--            android:gravity="bottom|center_horizontal"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:fontFamily="@font/mitr_regular"-->
+<!--            android:textColor="@color/white"-->
+<!--            android:autoSizeTextType="uniform"-->
+<!--            android:autoSizeMinTextSize="12sp"-->
+<!--            android:autoSizeMaxTextSize="15sp"-->
+<!--            android:autoSizeStepGranularity="2sp"-->
+<!--            android:text="สมาคมช่างเหมาไฟฟ้าและเครื่องกลไทย"/>-->
+
 
     </LinearLayout>
 

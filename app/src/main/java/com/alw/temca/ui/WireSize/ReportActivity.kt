@@ -91,7 +91,7 @@ class ReportActivity : AppCompatActivity() {
         }else{
             textViewReferenceVoltageInReport.text = "(แรงดันอ้างอิง 400V)"
         }
-        textViewDegree.text = "** ใช้งานที่อุณหภูมิ 36-40 C\u00B0 ละเดินสาย 1 กลุ่มวงจร"
+        textViewDegree.text = "** ใช้งานที่อุณหภูมิ 36-40 C\u00B0 เดินสาย 1 กลุ่มวงจร"
 
         if(DataFromWireSize.size >= 2){
             resultTwoInReportWireSize.visibility = View.VISIBLE
@@ -281,7 +281,7 @@ class ReportActivity : AppCompatActivity() {
             }
 
             addNewItem(document, "* อ้างอิงตามมาตรฐานการติดตั้งทางไฟฟ้า วสท. 2562", Element.ALIGN_LEFT, SubvalueStyle)
-            addNewItem(document, "** ใช้งานที่อุณหภูมิ 36-40 C° และเดินสาย 1 กลุ่มวงจร", Element.ALIGN_LEFT, SubvalueStyle)
+            addNewItem(document, "** ใช้งานที่อุณหภูมิ 36-40 C° เดินสาย 1 กลุ่มวงจร", Element.ALIGN_LEFT, SubvalueStyle)
 
             //close
             document.close()

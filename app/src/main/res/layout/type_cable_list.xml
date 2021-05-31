@@ -18,7 +18,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="IEC01"
-            android:textSize="16dp"
+            android:textSize="16sp"
             android:fontFamily="@font/mitr_regular"
             android:textColor="@color/black"
             android:layout_centerVertical="true"/>

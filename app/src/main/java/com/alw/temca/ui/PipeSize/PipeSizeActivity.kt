@@ -1,46 +1,25 @@
 package com.alw.temca.ui.PipeSize
 
-import android.Manifest
 import android.content.Context
 import android.content.Intent
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.text.Editable
+import android.text.InputType
 import android.text.TextWatcher
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.alw.temca.Common.Common
-import com.alw.temca.MainActivity
 import com.alw.temca.Model.ReportReslutPipeSizeModel
 import com.alw.temca.R
 import com.alw.temca.ui.SponsorActivity
 import com.alw.temca.ui.WireSize.TypeCableActivity
-import com.itextpdf.text.*
-import com.itextpdf.text.pdf.BaseFont
-import com.itextpdf.text.pdf.PdfWriter
-import com.itextpdf.text.pdf.draw.LineSeparator
-import com.itextpdf.text.pdf.draw.VerticalPositionMark
 import jxl.Workbook
 import kotlinx.android.synthetic.main.activity_pipe_size.*
-import java.io.File
-import java.io.FileOutputStream
-import java.io.IOException
-import com.karumi.dexter.Dexter
-import com.karumi.dexter.PermissionToken
-import com.karumi.dexter.listener.PermissionDeniedResponse
-import com.karumi.dexter.listener.PermissionGrantedResponse
-import com.karumi.dexter.listener.PermissionRequest
-import com.karumi.dexter.listener.single.PermissionListener
-import kotlinx.android.synthetic.main.activity_moter.*
-import kotlinx.android.synthetic.main.activity_pipe_size.btnCalInPipeSize
-import kotlinx.android.synthetic.main.activity_pipe_size.cardViewSizeConduit
 import kotlinx.android.synthetic.main.activity_pipe_size.wayBackActivity1
 import kotlinx.android.synthetic.main.activity_pipe_size.wayBackActivity2
-import kotlinx.android.synthetic.main.activity_wire_size.*
 import kotlinx.android.synthetic.main.activity_wire_size.typeCableTextView
+import java.io.IOException
 
 
 class PipeSizeActivity : AppCompatActivity() {
@@ -68,9 +47,9 @@ class PipeSizeActivity : AppCompatActivity() {
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                if (s!!.isEmpty()){
+                if (s!!.isEmpty()) {
                     editTextAmountCable.hint = "20"
-                }else{
+                } else {
                     editTextAmountCable.hint = ""
                 }
                 wayBackActivity1.visibility = View.VISIBLE
@@ -91,8 +70,8 @@ class PipeSizeActivity : AppCompatActivity() {
 
     private fun calculator() {
     }
-    fun switchButton(){
-        if (switchButtonPipeSize.isChecked == false){
+    private fun switchButton(){
+        if (!switchButtonPipeSize.isChecked){
             titlePipeSize.text = "หาขนาดท่อและราง"
             cardViewSizeConduit.visibility = View.GONE
             textViewShow7InPipe.visibility = View.GONE
@@ -115,7 +94,7 @@ class PipeSizeActivity : AppCompatActivity() {
             textViewShow6InPipe.visibility = View.GONE
         }
 
-        switchButtonPipeSize.setOnCheckedChangeListener { buttonView, isChecked ->
+        switchButtonPipeSize.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked){
                 tableBeforeCalculateInPipe.visibility = View.GONE
                 titlePipeSize.text = "หาจำนวนสายในท่อ"
@@ -161,7 +140,7 @@ class PipeSizeActivity : AppCompatActivity() {
             else if(editTextAmountCable.text.toString().slice(0..0) == "0"){
                 for(i in 0..3){
                     if(editTextAmountCable.text.toString().slice(0..0) != "0") break
-                    else editTextAmountCable.setText(editTextAmountCable.text.toString().slice(1..editTextAmountCable.length()-1))
+                    else editTextAmountCable.setText(editTextAmountCable.text.toString().slice(1..editTextAmountCable.length() - 1))
                 }
             }
         }
@@ -176,26 +155,26 @@ class PipeSizeActivity : AppCompatActivity() {
         btnCalInPipeSize.visibility = View.GONE
 
         val fineSheetInTableCableSize = when(typeCableTextView.text){
-                    "IEC01" -> 0
-                    "IEC10 2C" -> 1
-                    "IEC10 3C" -> 2
-                    "IEC10 4C" -> 3
-                    "NYY 1C" -> 4
-                    "NYY 2C" -> 5
-                    "NYY 3C" -> 6
-                    "NYY 4C" -> 7
-                    "XLPE 1C" -> 8
-                    "XLPE 2C" -> 9
-                    "XLPE 3C" -> 10
-                    "XLPE 4C" -> 11
-                    "VCT 1C" -> 12
-                    "VCT 2C" -> 13
-                    "VCT 3C" -> 14
-                    "VCT 4C" -> 15
+            "IEC01" -> 0
+            "IEC10 2C" -> 1
+            "IEC10 3C" -> 2
+            "IEC10 4C" -> 3
+            "NYY 1C" -> 4
+            "NYY 2C" -> 5
+            "NYY 3C" -> 6
+            "NYY 4C" -> 7
+            "XLPE 1C" -> 8
+            "XLPE 2C" -> 9
+            "XLPE 3C" -> 10
+            "XLPE 4C" -> 11
+            "VCT 1C" -> 12
+            "VCT 2C" -> 13
+            "VCT 3C" -> 14
+            "VCT 4C" -> 15
                     else -> return
         }
 
-        if(switchButtonPipeSize.isChecked == false){
+        if(!switchButtonPipeSize.isChecked){
             try {
                 val typeCable = applicationContext.assets.open("TypeCable_Table.xls")
                 val wb = Workbook.getWorkbook(typeCable)
@@ -317,21 +296,20 @@ class PipeSizeActivity : AppCompatActivity() {
     }
 
     private fun saveData(type: String, value: String){
-        val data = value
         val sharedPref = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE) ?: return
         with(sharedPref.edit()) {
 
             if (type == "sizeCable"){
-                putString(TASK_LIST_PREF_KEY_SIZE_IN_PIPE, data)
+                putString(TASK_LIST_PREF_KEY_SIZE_IN_PIPE, value)
             }
             if (type == "typeCable"){
-                putString(TASK_LIST_PREF_KEY_TYPE_CABLE_IN_PIPE, data)
+                putString(TASK_LIST_PREF_KEY_TYPE_CABLE_IN_PIPE, value)
             }
             if (type == "amount"){
-                putString(TASK_LIST_PREF_KEY_AMOUNT_IN_PIPE, data)
+                putString(TASK_LIST_PREF_KEY_AMOUNT_IN_PIPE, value)
             }
             if (type == "conduit"){
-                putString(TASK_LIST_PREF_KEY_CONDUIT_IN_PIPE, data)
+                putString(TASK_LIST_PREF_KEY_CONDUIT_IN_PIPE, value)
             }
             commit()
         }
@@ -365,23 +343,23 @@ class PipeSizeActivity : AppCompatActivity() {
     }
 
      fun pipeSizeReportOnClick(view: View) {
-        val intent = Intent(this,PipeSizeReportActivity::class.java)
+        val intent = Intent(this, PipeSizeReportActivity::class.java)
         val bundle = Bundle()
 
-        if(switchButtonPipeSize.isChecked == true){
-            bundle.putParcelable("resultMaxCable",ReportReslutPipeSizeModel(
+        if(switchButtonPipeSize.isChecked){
+            bundle.putParcelable("resultMaxCable", ReportReslutPipeSizeModel(
                     typeCableTextView.text.toString(),
-                    cableSizeTextView.text.toString().replace("มม2",""),
+                    cableSizeTextView.text.toString().replace("มม2", ""),
                     "",
                     "",
                     "",
-                    SizeConduitTextView.text.toString(),textViewShow8InPipe.text.toString()))
+                    SizeConduitTextView.text.toString(), textViewShow8InPipe.text.toString()))
             intent.putExtras(bundle)
 
         }else{
-            bundle.putParcelable("resultPipeSize",ReportReslutPipeSizeModel(
+            bundle.putParcelable("resultPipeSize", ReportReslutPipeSizeModel(
                     typeCableTextView.text.toString(),
-                    cableSizeTextView.text.toString().replace("มม2",""),
+                    cableSizeTextView.text.toString().replace("มม2", ""),
                     editTextAmountCable.text.toString(),
                     textViewShow4InPipe.text.toString(),
                     textViewShow6InPipe.text.toString(),
@@ -399,7 +377,7 @@ class PipeSizeActivity : AppCompatActivity() {
     }
 
     fun sponsorOnClick(view: View) {
-        val intent = Intent(this,SponsorActivity::class.java)
+        val intent = Intent(this, SponsorActivity::class.java)
         startActivity(intent)
     }
 
