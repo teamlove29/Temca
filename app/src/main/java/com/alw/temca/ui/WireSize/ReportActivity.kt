@@ -237,7 +237,7 @@ class ReportActivity : AppCompatActivity() {
             val titleStyle = Font(fontName, 18.0f, Font.NORMAL, BaseColor.BLACK)
             val headingStyle = Font(fontName, headingFontSize, Font.BOLD, BaseColor.BLACK)
             var valueStyle = Font(fontName, valueFontSzie, Font.NORMAL, colorAccent)
-            var SubvalueStyle = Font(fontName, SubvalueFontSzie, Font.NORMAL, colorAccent)
+            var subValueStyle = Font(fontName, SubvalueFontSzie, Font.NORMAL, colorAccent)
 
             addNewItemWithLeftAndRight(document, "รายงานคำนวณขนาดสายไฟฟ้าและท่อไฟฟ้า", "", titleStyle, detailStyleTitle)
             addLineSeperator(document)
@@ -280,8 +280,8 @@ class ReportActivity : AppCompatActivity() {
             addLineSpace(document)
             }
 
-            addNewItem(document, "* อ้างอิงตามมาตรฐานการติดตั้งทางไฟฟ้า วสท. 2562", Element.ALIGN_LEFT, SubvalueStyle)
-            addNewItem(document, "** ใช้งานที่อุณหภูมิ 36-40 C° เดินสาย 1 กลุ่มวงจร", Element.ALIGN_LEFT, SubvalueStyle)
+            addNewItem(document, "* อ้างอิงตามมาตรฐานการติดตั้งทางไฟฟ้า วสท. 2562", Element.ALIGN_LEFT, subValueStyle)
+            addNewItem(document, "** ใช้งานที่อุณหภูมิ 36-40 C° เดินสาย 1 กลุ่มวงจร", Element.ALIGN_LEFT, subValueStyle)
 
             //close
             document.close()

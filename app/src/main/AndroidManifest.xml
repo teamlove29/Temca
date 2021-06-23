@@ -16,8 +16,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Temca"
-        android:versionCode="1"
-        android:versionName="1.0">
+        android:versionCode="3"
+        android:versionName="1.2">
         <activity android:name=".ui.Moter.MoterReportActivity"/>
         <activity android:name=".ui.Transformer.TransformerReportActivity" />
         <activity android:name=".ui.Moter.SizeMoterActivity" />
@@ -49,7 +49,9 @@
             android:name=".ui.WireSize.WireSizeActivity"
             android:windowSoftInputMode="stateHidden|adjustResize"/>
         <activity android:name=".ui.WireSize.PhaseActivity" />
-        <activity android:name=".MainActivity">
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

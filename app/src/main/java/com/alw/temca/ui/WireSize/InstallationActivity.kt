@@ -21,13 +21,13 @@ class InstallationActivity : AppCompatActivity(), InstallationonClickAdapterList
 
 //        val dataIntent = intent.getStringExtra("Activity")
 
-        val setResourceImage1 = getResources().getIdentifier("setting_group1", "drawable", this.packageName)
-        val setResourceImage2 = getResources().getIdentifier("setting_group2", "drawable", this.packageName)
-        val setResourceImage3 = getResources().getIdentifier("setting_group3", "drawable", this.packageName)
-        val setResourceImage4 = getResources().getIdentifier("setting_group4", "drawable", this.packageName)
-        val setResourceImage5 = getResources().getIdentifier("setting_group5", "drawable", this.packageName)
-        val setResourceImage6 = getResources().getIdentifier("setting_group6", "drawable", this.packageName)
-        val setResourceImage7 = getResources().getIdentifier("setting_group7", "drawable", this.packageName)
+        val setResourceImage1 = resources.getIdentifier("setting_group1", "drawable", this.packageName)
+        val setResourceImage2 = resources.getIdentifier("setting_group2", "drawable", this.packageName)
+        val setResourceImage3 = resources.getIdentifier("setting_group3", "drawable", this.packageName)
+        val setResourceImage4 = resources.getIdentifier("setting_group4", "drawable", this.packageName)
+        val setResourceImage5 = resources.getIdentifier("setting_group5", "drawable", this.packageName)
+        val setResourceImage6 = resources.getIdentifier("setting_group6", "drawable", this.packageName)
+        val setResourceImage7 = resources.getIdentifier("setting_group7", "drawable", this.packageName)
 
 //        installItem.add(InstallationModel(resources.getDrawable(setResourceImage1),"กลุ่ม 1","เดินสายภายในฝ้าเพดานที่เป็นฉนวนความร้อน"))
         installItem.add(InstallationModel(resources.getDrawable(setResourceImage2),"กลุ่ม 2","เดินเกาะผนัง,เพดาน,ฝังคอนกรีต"))

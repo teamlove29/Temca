@@ -37,9 +37,9 @@ class SponsorActivity : AppCompatActivity(), InstallationonClickAdapterListener 
         val sponsor12 =  SponsorModel(12, resources.getDrawable(R.drawable.sponser12))
         val sponsor13 =  SponsorModel(13, resources.getDrawable(R.drawable.sponser13))
         val sponsor14 =  SponsorModel(14, resources.getDrawable(R.drawable.sponser14))
-        val sponsor15 =  SponsorModel(15, resources.getDrawable(R.drawable.sponser14))
-        val sponsor16 =  SponsorModel(16, resources.getDrawable(R.drawable.sponser14))
-//        val test =  SponsorModel(null)
+        val sponsor15 =  SponsorModel(15, resources.getDrawable(R.drawable.sponser15))
+        val sponsor16 =  SponsorModel(16, resources.getDrawable(R.drawable.sponser16))
+
         val listSponsor = arrayListOf<SponsorModel>(
                 sponsor1,
                 sponsor2,
