@@ -340,7 +340,7 @@ tools:context=".ui.Transformer.TransformerActivity">
                 android:onClick="backOnClick"
                 android:layout_marginLeft="30dp"
                 android:id="@+id/textViewTerms"
-                android:drawableStart="@drawable/ic_exit_to_app_24px"
+                android:drawableStart="@drawable/ic_exit"
                 android:drawableTint="#092B61"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -481,7 +481,7 @@ tools:context=".ui.Transformer.TransformerActivity">
                     <TextView
                         android:onClick="backOnClick"
                         android:id="@+id/textViewTerm"
-                        android:drawableStart="@drawable/ic_exit_to_app_24px"
+                        android:drawableStart="@drawable/ic_exit"
                         android:drawableTint="@color/white"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

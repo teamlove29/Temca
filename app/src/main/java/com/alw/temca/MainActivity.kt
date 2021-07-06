@@ -21,15 +21,15 @@ class MainActivity : AppCompatActivity() {
 
     fun HandleOnClick(view: View) {
         when(view){
-            buttonWireSize ->{
-                val intent = Intent(this,WireSizeActivity::class.java)
-                intent.putExtra("code",true)
-                startActivity(intent)
-            }
-            buttonPipeSize -> {
-                val intent = Intent(this,PipeSizeActivity::class.java)
-                startActivity(intent)
-            }
+//            buttonWireSize ->{
+//                val intent = Intent(this,WireSizeActivity::class.java)
+//                intent.putExtra("code",true)
+//                startActivity(intent)
+//            }
+//            buttonPipeSize -> {
+//                val intent = Intent(this,PipeSizeActivity::class.java)
+//                startActivity(intent)
+//            }
             buttonTransformer -> {
                 val intent = Intent(this,TransformerActivity::class.java)
 //                intent.putExtra("txt",buttonTransformer.text)
@@ -40,16 +40,16 @@ class MainActivity : AppCompatActivity() {
 //                intent.putExtra("txt",buttonMoter.text)
                 startActivity(intent)
             }
-            button5 -> {
-                val intent = Intent(this,SoonActivity::class.java)
-                intent.putExtra("txt",button5.text)
-                startActivity(intent)
-            }
-            button6 -> {
-                val intent = Intent(this,SoonActivity::class.java)
-                intent.putExtra("txt",button6.text)
-                startActivity(intent)
-            }
+//            button5 -> {
+//                val intent = Intent(this,SoonActivity::class.java)
+//                intent.putExtra("txt",button5.text)
+//                startActivity(intent)
+//            }
+//            button6 -> {
+//                val intent = Intent(this,SoonActivity::class.java)
+//                intent.putExtra("txt",button6.text)
+//                startActivity(intent)
+//            }
         }
     }
 
