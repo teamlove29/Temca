@@ -1,0 +1,389 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:fillViewport="true"
+android:overScrollMode="never"
+tools:context=".ui.AmountInPipe.AmountInPipeActivity">
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="#EEEEEE">
+
+    <RelativeLayout
+        android:paddingBottom="40dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingTop="40dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/logoImageView"
+            android:layout_width="70dp"
+            android:layout_height="50dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/temca_logo_mini"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_toRightOf="@id/logoImageView"
+            android:layout_centerVertical="true"
+            android:fontFamily="@font/mitr_regular"
+            android:textColor="#0E4194"
+            android:textSize="20sp"
+            android:text="@string/typeAndAmountInPipe"
+            android:maxLines="1"
+            android:autoSizeTextType="uniform"
+            android:autoSizeMinTextSize="20sp"
+            android:autoSizeMaxTextSize="30sp"
+            android:autoSizeStepGranularity="5sp"/>
+
+    </RelativeLayout>
+
+    <androidx.cardview.widget.CardView
+        android:onClick="onclickChooseTypeCable"
+        android:id="@+id/cardViewWireType"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:selectableItemBackground"
+        app:cardCornerRadius="5dp"
+        android:layout_marginBottom="1dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <RelativeLayout
+            android:padding="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ชนิดสายไฟ"
+                android:textSize="16sp"
+                android:fontFamily="@font/mitr_regular"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/typeCableTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:hint="CV"
+                android:textSize="16sp"
+                android:layout_toLeftOf="@+id/iconWireType"
+                android:textColorHint="@color/defaulthint"
+                android:textColor="@color/defaulthint"
+                android:fontFamily="@font/mitr_regular" />
+
+            <ImageView
+                android:id="@+id/iconWireType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_baseline_keyboard_arrow_right_24"
+                android:layout_alignParentRight="true"/>
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+    // Circuit Breaker
+    <androidx.cardview.widget.CardView
+        android:onClick="onClickChooseSizeCable"
+        android:id="@+id/cardViewSizeCable"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:selectableItemBackground"
+        app:cardCornerRadius="5dp"
+        android:layout_marginBottom="1dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:padding="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ขนาดสาย"
+                android:textSize="16sp"
+                android:fontFamily="@font/mitr_regular"
+                android:textColor="@color/black"
+                android:layout_centerVertical="true"/>
+
+            <TextView
+                android:id="@+id/cableSizeTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:hint="2.5 มม2"
+                android:textSize="16sp"
+                android:layout_toLeftOf="@+id/iconCircuitBreakere"
+                android:fontFamily="@font/mitr_regular"
+                android:textColorHint="@color/defaulthint"
+                android:textColor="@color/defaulthint"
+                android:layout_centerVertical="true"/>
+
+            <ImageView
+                android:id="@+id/iconCircuitBreakere"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_baseline_keyboard_arrow_right_24"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"/>
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+    // Amount
+    <androidx.cardview.widget.CardView
+        android:onClick="setAmountOnClick"
+        android:id="@+id/cardViewAmountCable"
+        app:cardCornerRadius="5dp"
+        android:layout_marginBottom="1dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:padding="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/textViewAmountCable"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="จำนวนเส้น"
+                android:textSize="16sp"
+                android:fontFamily="@font/mitr_regular"
+                android:textColor="@color/black"
+                android:layout_centerVertical="true"/>
+
+            <EditText
+                android:id="@+id/editTextAmountCable"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:inputType="number"
+                android:maxLength="3"
+                android:layout_marginRight="40dp"
+                android:hint="20"
+                android:fontFamily="@font/mitr_regular"
+                android:gravity="right"
+                android:ellipsize="end"
+                android:background="@null"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:textColorHint="@color/defaulthint"
+                android:textColor="@color/defaulthint"
+                />
+
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+    <com.google.android.material.button.MaterialButton
+        android:onClick="calculatorOnClick"
+        android:id="@+id/btnCalInPipeSize"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cornerRadius="10dp"
+        android:padding="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:textSize="18sp"
+        android:backgroundTint="@color/btnBlue"
+        android:fontFamily="@font/mitr_regular"
+        android:text="@string/calculate"/>
+
+    <LinearLayout
+        android:id="@+id/wayBackActivity1"
+        android:layout_marginBottom="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="bottom|center_horizontal"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_marginTop="50dp"
+            android:gravity="bottom|center_horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:onClick="backOnClick"
+                android:layout_marginLeft="30dp"
+                android:id="@+id/textViewTerms"
+                android:drawableStart="@drawable/ic_exit"
+                android:drawableTint="#092B61"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/mitr_regular"
+                android:textColor="#092B61"
+                android:text="@string/back_Button"/>
+
+            <TextView
+                android:onClick="sponsorOnClick"
+                android:layout_marginRight="30dp"
+                android:layout_alignParentRight="true"
+                android:id="@+id/textViewSponsers"
+                android:drawableStart="@drawable/ic_engineering_24px"
+                android:drawableTint="#092B61"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/mitr_regular"
+                android:textColor="#092B61"
+                android:text="@string/sponsor"/>
+        </RelativeLayout>
+
+    </LinearLayout>
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/tableBeforeCalculateInPipe"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@color/btnBlue">
+
+        <RelativeLayout
+            android:paddingTop="30dp"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textViewShowInPipe"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/mitr_regular"
+                android:text="ผลการคำนวณ "
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/textViewShow2InPipe"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignRight="@+id/textViewShowInPipe"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/textViewSizePipe"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_below="@+id/textViewShowInPipe"
+                android:text="ขนาดท่อ(จำนวนสูงสุด)"
+                android:textSize="16sp"
+                android:fontFamily="@font/mitr_regular"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:id="@+id/textViewResultSizePipe"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_below="@+id/textViewShow2InPipe"
+                android:layout_alignParentRight="true"
+                android:text="null นิ้ว (null เส้น)"
+                android:textSize="16sp"
+                android:fontFamily="@font/mitr_regular"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:id="@+id/textViewRailSize"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_below="@+id/textViewSizePipe"
+                android:text="ขนาดราง(จำนวนสูงสุด)"
+                android:textSize="16sp"
+                android:fontFamily="@font/mitr_regular"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:id="@+id/textViewResultRailSize"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_below="@+id/textViewResultSizePipe"
+                android:layout_alignParentRight="true"
+                android:text="null (null เส้น)"
+                android:textSize="16sp"
+                android:fontFamily="@font/mitr_regular"
+                android:textColor="@color/white" />
+
+
+            <LinearLayout
+                android:gravity="bottom"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="bottom|center_horizontal"
+                android:layout_below="@+id/textViewShow5InPipe"
+                android:layout_marginTop="20dp"
+                android:orientation="vertical">
+
+                <com.google.android.material.button.MaterialButton
+                    android:onClick="pipeSizeReportOnClick"
+                    android:id="@+id/btnCreateReports"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
+                    app:cornerRadius="10dp"
+                    android:padding="10dp"
+                    android:textSize="20sp"
+                    android:textColor="#0E4194"
+                    android:backgroundTint="@color/white"
+                    android:fontFamily="@font/mitr_regular"
+                    android:text="@string/create_report"/>
+
+                <RelativeLayout
+                    android:id="@+id/wayBackActivity2"
+                    android:gravity="bottom|center_horizontal"
+                    android:layout_marginBottom="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:onClick="backOnClick"
+                        android:id="@+id/textViewTerm"
+                        android:drawableStart="@drawable/ic_exit"
+                        android:drawableTint="@color/white"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/mitr_regular"
+                        android:textColor="@color/white"
+                        android:text="@string/back_Button"/>
+
+                    <TextView
+                        android:onClick="sponsorOnClick"
+                        android:layout_alignParentRight="true"
+                        android:id="@+id/textViewSponser"
+                        android:drawableStart="@drawable/ic_engineering_24px"
+                        android:drawableTint="@color/white"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/mitr_regular"
+                        android:textColor="@color/white"
+                        android:text="@string/sponsor"/>
+                </RelativeLayout>
+            </LinearLayout>
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+</LinearLayout>
+</ScrollView>

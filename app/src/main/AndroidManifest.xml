@@ -2,8 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.alw.temca">
 
-    <uses-permission android:name="android.permission.INTERNET" />
-<!--    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />-->
+    <uses-permission android:name="android.permission.INTERNET" /> <!-- <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> -->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -18,7 +17,13 @@
         android:theme="@style/Theme.Temca"
         android:versionCode="3"
         android:versionName="1.2">
-        <activity android:name=".ui.Moter.MoterReportActivity"/>
+
+        <activity android:name=".ui.AmountInPipe.SizeCableInPipeActivity"/>
+        <activity android:name=".ui.AmountInPipe.TypeCableInPipeActivity" />
+        <activity android:name=".ui.AmountInPipe.AmountInPipeActivity"
+                  android:windowSoftInputMode="adjustPan"/>
+
+        <activity android:name=".ui.Moter.MoterReportActivity" />
         <activity android:name=".ui.Transformer.TransformerReportActivity" />
         <activity android:name=".ui.Moter.SizeMoterActivity" />
         <activity android:name=".ui.Moter.StartPatternActivity" />
@@ -26,12 +31,12 @@
         <activity android:name=".ui.Moter.UnitMoterActivity" />
         <activity
             android:name=".ui.Moter.MoterActivity"
-            android:windowSoftInputMode="stateHidden|adjustResize"/>
+            android:windowSoftInputMode="stateHidden|adjustResize" />
         <activity android:name=".ui.Transformer.InstallationTransformerActivity" />
         <activity android:name=".ui.Transformer.TransformerSizeActivity" />
         <activity
             android:name=".ui.Transformer.TransformerActivity"
-            android:windowSoftInputMode="stateHidden|adjustResize"/>
+            android:windowSoftInputMode="stateHidden|adjustResize" />
         <activity android:name=".ui.WireSize.CircuitBreakerActivity" />
         <activity android:name=".ui.PipeSize.PipeSizeReportActivity" />
         <activity android:name=".ui.SponsorActivity" />
@@ -47,7 +52,7 @@
             android:windowSoftInputMode="stateHidden|adjustResize" />
         <activity
             android:name=".ui.WireSize.WireSizeActivity"
-            android:windowSoftInputMode="stateHidden|adjustResize"/>
+            android:windowSoftInputMode="stateHidden|adjustResize" />
         <activity android:name=".ui.WireSize.PhaseActivity" />
         <activity
             android:name=".MainActivity"

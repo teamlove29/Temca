@@ -16,7 +16,7 @@
         android:orientation="vertical">
 
         <ImageView
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="30dp"
             android:layout_marginBottom="20dp"
             android:id="@+id/logoImageView"
             android:layout_width="120dp"
@@ -67,82 +67,8 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
-            <Button
-                android:id="@+id/buttonCurrentRating"
-                android:gravity="bottom|center_horizontal"
-                android:layout_width="170dp"
-                android:layout_height="100dp"
-                android:layout_weight="1"
-                android:autoSizeMaxTextSize="12sp"
-                android:autoSizeMinTextSize="10sp"
-                android:autoSizeStepGranularity="2sp"
-                android:autoSizeTextType="uniform"
-                android:backgroundTint="#092B61"
-                android:elevation="10dp"
-                android:fontFamily="@font/mitr_regular"
-                android:onClick="HandleOnClick"
-                android:text="หาพิกัดกระแสไฟฟ้า"
-                android:textColor="@color/white" />
-
-            <Button
-                android:id="@+id/buttonTypeAndAmountConduit"
-                android:gravity="bottom|center_horizontal"
-                android:layout_width="170dp"
-                android:layout_height="100dp"
-                android:layout_weight="1"
-                android:autoSizeMaxTextSize="12sp"
-                android:autoSizeMinTextSize="10sp"
-                android:autoSizeStepGranularity="2sp"
-                android:autoSizeTextType="uniform"
-                android:backgroundTint="#092B61"
-                android:elevation="10dp"
-                android:fontFamily="@font/mitr_regular"
-                android:onClick="HandleOnClick"
-                android:text="หาชนิดและจำนวนสายในท่อ"
-                android:textColor="@color/white" />
-
                 <Button
-                    android:gravity="bottom|center_horizontal"
-                    android:layout_width="170dp"
-                    android:layout_height="100dp"
-                    android:layout_weight="1"
-                    android:autoSizeMaxTextSize="12sp"
-                    android:autoSizeMinTextSize="10sp"
-                    android:autoSizeStepGranularity="2sp"
-                    android:autoSizeTextType="uniform"
-                    android:backgroundTint="#092B61"
-                    android:elevation="10dp"
-                    android:fontFamily="@font/mitr_regular"
-                    android:onClick="HandleOnClick"
-                    android:text="หาชนิดและจำนวนสายในท่อ"
-                    android:textColor="@color/white" />
-
-                <Button
-                    android:id="@+id/buttonMoter"
-                    android:gravity="bottom|center_horizontal"
-                    android:layout_width="170dp"
-                    android:layout_height="100dp"
-                    android:layout_weight="1"
-                    android:autoSizeMaxTextSize="12sp"
-                    android:autoSizeMinTextSize="10sp"
-                    android:autoSizeStepGranularity="2sp"
-                    android:autoSizeTextType="uniform"
-                    android:backgroundTint="#092B61"
-                    android:elevation="10dp"
-                    android:fontFamily="@font/mitr_regular"
-                    android:onClick="HandleOnClick"
-                    android:text="หาขนาดสายมอเตอร์"
-                    android:textColor="@color/white" />
-
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-
-                <Button
+                    android:id="@+id/buttonCurrentRating"
                     android:gravity="bottom|center_horizontal"
                     android:layout_width="170dp"
                     android:layout_height="100dp"
@@ -159,10 +85,13 @@
                     android:textColor="@color/white" />
 
                 <Button
+                    android:id="@+id/buttonTypeAndAmountRails"
                     android:gravity="bottom|center_horizontal"
                     android:layout_width="170dp"
                     android:layout_height="100dp"
                     android:layout_weight="1"
+                    android:paddingRight="30dp"
+                    android:paddingLeft="30dp"
                     android:autoSizeMaxTextSize="12sp"
                     android:autoSizeMinTextSize="10sp"
                     android:autoSizeStepGranularity="2sp"
@@ -171,9 +100,53 @@
                     android:elevation="10dp"
                     android:fontFamily="@font/mitr_regular"
                     android:onClick="HandleOnClick"
-                    android:text="หาชนิดและจำนวนสายในท่อ"
+                    android:text="หาชนิดและจำนวนสายในรางเดินสาย"
                     android:textColor="@color/white" />
+
                 <Button
+                    android:id="@+id/buttonTwoPhase"
+                    android:gravity="bottom|center_horizontal"
+                    android:layout_width="170dp"
+                    android:layout_height="100dp"
+                    android:layout_weight="1"
+                    android:autoSizeMaxTextSize="12sp"
+                    android:autoSizeMinTextSize="10sp"
+                    android:autoSizeStepGranularity="2sp"
+                    android:autoSizeTextType="uniform"
+                    android:backgroundTint="#092B61"
+                    android:elevation="10dp"
+                    android:fontFamily="@font/mitr_regular"
+                    android:onClick="HandleOnClick"
+                    android:text="หาขนาดวงจรไฟฟ้า 3 เฟส"
+                    android:textColor="@color/white" />
+
+                <Button
+                    android:id="@+id/buttonMoter"
+                    android:gravity="bottom|center_horizontal"
+                    android:layout_width="170dp"
+                    android:layout_height="100dp"
+                    android:layout_weight="1"
+                    android:autoSizeMaxTextSize="12sp"
+                    android:autoSizeMinTextSize="10sp"
+                    android:autoSizeStepGranularity="2sp"
+                    android:autoSizeTextType="uniform"
+                    android:backgroundTint="#092B61"
+                    android:elevation="10dp"
+                    android:fontFamily="@font/mitr_regular"
+                    android:onClick="HandleOnClick"
+                    android:text="หาขนาดวงจรมอเตอร์"
+                    android:textColor="@color/white" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/buttonTypeAndAmountConduit"
                     android:gravity="bottom|center_horizontal"
                     android:layout_width="170dp"
                     android:layout_height="100dp"
@@ -188,6 +161,43 @@
                     android:onClick="HandleOnClick"
                     android:text="หาชนิดและจำนวนสายในท่อ"
                     android:textColor="@color/white" />
+
+                <Button
+                    android:id="@+id/buttonOnePhase"
+                    android:gravity="bottom|center_horizontal"
+                    android:layout_width="170dp"
+                    android:layout_height="100dp"
+                    android:layout_weight="1"
+                    android:autoSizeMaxTextSize="12sp"
+                    android:autoSizeMinTextSize="10sp"
+                    android:autoSizeStepGranularity="2sp"
+                    android:autoSizeTextType="uniform"
+                    android:backgroundTint="#092B61"
+                    android:elevation="10dp"
+                    android:fontFamily="@font/mitr_regular"
+                    android:onClick="HandleOnClick"
+                    android:text="หาขนาดวงจรไฟฟ้า 1 เฟส"
+                    android:textColor="@color/white" />
+
+                <Button
+                    android:id="@+id/buttonTypeAndAmountRailCable"
+                    android:layout_width="170dp"
+                    android:layout_height="100dp"
+                    android:layout_weight="1"
+                    android:paddingLeft="30dp"
+                    android:paddingRight="30dp"
+                    android:autoSizeMaxTextSize="12sp"
+                    android:autoSizeMinTextSize="10sp"
+                    android:autoSizeStepGranularity="2sp"
+                    android:autoSizeTextType="uniform"
+                    android:backgroundTint="#092B61"
+                    android:elevation="10dp"
+                    android:fontFamily="@font/mitr_regular"
+                    android:gravity="bottom|center_horizontal"
+                    android:onClick="HandleOnClick"
+                    android:text="หาชนิดและจำนวนสายในรางเคเบิล"
+                    android:textColor="@color/white" />
+
                 <Button
                     android:id="@+id/buttonTransformer"
                     android:gravity="bottom|center_horizontal"
@@ -202,7 +212,7 @@
                     android:elevation="10dp"
                     android:fontFamily="@font/mitr_regular"
                     android:onClick="HandleOnClick"
-                    android:text="หาขนาดสายหม้อแปลง"
+                    android:text="หาขนาดวงจรหม้อแปลง"
                     android:textColor="@color/white" />
 
             </LinearLayout>
@@ -238,9 +248,21 @@
                     android:text="มาตรฐานการติดตั้ง"/>
 
                     <TextView
+                        android:layout_marginRight="30dp"
+                        android:drawableTint="@color/white"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/mitr_regular"
+                        android:textColor="@color/white"
+                        android:autoSizeTextType="uniform"
+                        android:autoSizeMinTextSize="12sp"
+                        android:autoSizeMaxTextSize="15sp"
+                        android:autoSizeStepGranularity="2sp"
+                        android:text="วิธีการใช้งานอยู่"/>
+
+                    <TextView
                         android:onClick="sponsorOnClick"
                         android:id="@+id/textViewSponser"
-                        android:layout_marginLeft="60dp"
                         android:drawableLeft="@drawable/ic_engineering_24px"
                         android:drawableTint="@color/white"
                         android:layout_width="wrap_content"

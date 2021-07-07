@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import com.alw.temca.ui.AmountInPipe.AmountInPipeActivity
 import com.alw.temca.ui.Moter.MoterActivity
 import com.alw.temca.ui.PipeSize.PipeSizeActivity
 import com.alw.temca.ui.SoonActivity
@@ -21,6 +22,10 @@ class MainActivity : AppCompatActivity() {
 
     fun HandleOnClick(view: View) {
         when(view){
+            buttonTypeAndAmountConduit ->{
+                val intent = Intent(this,AmountInPipeActivity::class.java)
+                startActivity(intent)
+            }
 //            buttonWireSize ->{
 //                val intent = Intent(this,WireSizeActivity::class.java)
 //                intent.putExtra("code",true)
