@@ -384,22 +384,20 @@ tools:context=".ui.Moter.MoterActivity">
     </androidx.cardview.widget.CardView>
 
 
-
-
-
-    <com.google.android.material.button.MaterialButton
+    <Button
         android:onClick="calculatorMoterOnClick"
         android:id="@+id/btnCalInPipeSize"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cornerRadius="10dp"
         android:padding="10dp"
         android:layout_marginTop="20dp"
         android:layout_marginRight="10dp"
         android:layout_marginLeft="10dp"
-        android:textSize="18sp"
+        android:textSize="20sp"
+        android:textColor="@color/white"
         android:backgroundTint="@color/btnBlue"
         android:fontFamily="@font/mitr_regular"
+        android:background="@drawable/btn_rounded"
         android:text="@string/calculate"/>
 
     <LinearLayout
@@ -651,7 +649,7 @@ tools:context=".ui.Moter.MoterActivity">
                 android:layout_marginTop="20dp"
                 android:orientation="vertical">
 
-                <com.google.android.material.button.MaterialButton
+                <Button
                     android:onClick="moterReportOnClick"
                     android:id="@+id/btnCreateReports"
                     android:layout_width="match_parent"
@@ -660,9 +658,9 @@ tools:context=".ui.Moter.MoterActivity">
                     android:layout_marginBottom="20dp"
                     app:cornerRadius="10dp"
                     android:padding="10dp"
-                    android:textSize="18sp"
+                    android:textSize="20sp"
                     android:textColor="#0E4194"
-                    android:backgroundTint="@color/white"
+                    android:background="@drawable/btn_rounded_white"
                     android:fontFamily="@font/mitr_regular"
                     android:text="@string/create_report"/>
 

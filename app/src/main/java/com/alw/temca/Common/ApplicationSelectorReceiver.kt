@@ -15,7 +15,7 @@ class ApplicationSelectorReceiver : BroadcastReceiver() {
         for (key in Objects.requireNonNull(intent.extras)!!.keySet()) {
             try {
                 val componentInfo = intent.extras!![key] as ComponentName?
-                val packageManager: PackageManager = context.getPackageManager()
+                val packageManager: PackageManager = context.packageManager
                 assert(componentInfo != null)
                 val appName = packageManager.getApplicationLabel(packageManager.getApplicationInfo(componentInfo!!.packageName, PackageManager.GET_META_DATA)) as String
                 Log.i("Selected_Application", appName)

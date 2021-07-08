@@ -228,7 +228,6 @@ tools:context=".ui.Transformer.TransformerActivity">
             android:padding="15dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -236,7 +235,6 @@ tools:context=".ui.Transformer.TransformerActivity">
                 android:textSize="16sp"
                 android:fontFamily="@font/mitr_regular"
                 android:textColor="@color/black" />
-
             <TextView
                 android:id="@+id/TextViewTransformerSize"
                 android:layout_width="wrap_content"
@@ -248,7 +246,6 @@ tools:context=".ui.Transformer.TransformerActivity">
                 android:textColorHint="@color/defaulthint"
                 android:textColor="@color/defaulthint"
                 android:fontFamily="@font/mitr_regular" />
-
             <ImageView
                 android:id="@+id/iconTransformerSize"
                 android:layout_width="wrap_content"
@@ -257,69 +254,22 @@ tools:context=".ui.Transformer.TransformerActivity">
                 android:layout_alignParentRight="true"/>
 
         </RelativeLayout>
-
     </androidx.cardview.widget.CardView>
 
-    // Distance
-<!--    <androidx.cardview.widget.CardView-->
-<!--        android:onClick="setDistanceOnClick"-->
-<!--        android:id="@+id/cardViewAmountCable"-->
-<!--        app:cardCornerRadius="5dp"-->
-<!--        android:layout_marginBottom="1dp"-->
-<!--        android:clickable="true"-->
-<!--        android:focusable="true"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content">-->
-
-<!--        <RelativeLayout-->
-<!--            android:padding="10dp"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content">-->
-
-<!--            <TextView-->
-<!--                android:id="@+id/textViewDistance"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginLeft="5dp"-->
-<!--                android:text="ระยะทาง(M.)"-->
-<!--                android:textSize="18dp"-->
-<!--                android:fontFamily="@font/mitr_regular"-->
-<!--                android:textColor="@color/black"-->
-<!--                android:layout_centerVertical="true"/>-->
-<!--            -->
-<!--            <EditText-->
-<!--                android:id="@+id/editTextDistanceInTransformer"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_toRightOf="@+id/textViewDistance"-->
-<!--                android:layout_marginBottom="10dp"-->
-<!--                android:inputType="number"-->
-<!--                android:maxLength="4"-->
-<!--                android:layout_marginLeft="10dp"-->
-<!--                android:hint="20"-->
-<!--                android:fontFamily="@font/mitr_regular"-->
-<!--                android:background="@null"-->
-<!--                android:layout_centerVertical="true"-->
-<!--                android:textColorHint="@color/defaulthint"-->
-<!--                android:textColor="@color/defaulthint"-->
-<!--                />-->
-
-<!--        </RelativeLayout>-->
-<!--    </androidx.cardview.widget.CardView>-->
-
-    <com.google.android.material.button.MaterialButton
+    <Button
         android:onClick="calculatorTransformerOnClick"
         android:id="@+id/btnCalInPipeSize"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cornerRadius="10dp"
         android:padding="10dp"
         android:layout_marginTop="20dp"
         android:layout_marginRight="10dp"
         android:layout_marginLeft="10dp"
         android:textSize="18sp"
+        android:textColor="@color/white"
         android:backgroundTint="@color/btnBlue"
         android:fontFamily="@font/mitr_regular"
+        android:background="@drawable/btn_rounded"
         android:text="@string/calculate"/>
 
     <LinearLayout
@@ -456,7 +406,7 @@ tools:context=".ui.Transformer.TransformerActivity">
                 android:layout_marginTop="20dp"
                 android:orientation="vertical">
 
-                <com.google.android.material.button.MaterialButton
+                <Button
                     android:onClick="TransformerReportOnClick"
                     android:id="@+id/btnCreateReports"
                     android:layout_width="match_parent"
@@ -467,7 +417,7 @@ tools:context=".ui.Transformer.TransformerActivity">
                     android:padding="10dp"
                     android:textSize="18sp"
                     android:textColor="#0E4194"
-                    android:backgroundTint="@color/white"
+                    android:background="@drawable/btn_rounded_white"
                     android:fontFamily="@font/mitr_regular"
                     android:text="@string/create_report"/>
 

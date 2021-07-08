@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import com.alw.temca.ui.AmountInPipe.AmountInPipeActivity
+import com.alw.temca.ui.AmountInRails.AmountInRailsActivity
 import com.alw.temca.ui.Moter.MoterActivity
 import com.alw.temca.ui.PipeSize.PipeSizeActivity
 import com.alw.temca.ui.SoonActivity
@@ -26,11 +27,10 @@ class MainActivity : AppCompatActivity() {
                 val intent = Intent(this,AmountInPipeActivity::class.java)
                 startActivity(intent)
             }
-//            buttonWireSize ->{
-//                val intent = Intent(this,WireSizeActivity::class.java)
-//                intent.putExtra("code",true)
-//                startActivity(intent)
-//            }
+            buttonTypeAndAmountRails ->{
+                val intent = Intent(this,AmountInRailsActivity::class.java)
+                startActivity(intent)
+            }
 //            buttonPipeSize -> {
 //                val intent = Intent(this,PipeSizeActivity::class.java)
 //                startActivity(intent)

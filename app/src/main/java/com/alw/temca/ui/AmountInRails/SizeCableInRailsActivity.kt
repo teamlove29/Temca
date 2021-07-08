@@ -1,24 +1,22 @@
-package com.alw.temca.ui.AmountInPipe
+package com.alw.temca.ui.AmountInRails
 
 import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.alw.temca.Adapter.AdapterInPipe.SizeCableAdapter
+import com.alw.temca.Adapter.AdapterInRails.SizeCableAdapter
 import com.alw.temca.Interfaces.onClickInAdapter
 import com.alw.temca.Model.SizeCableModel
 import com.alw.temca.R
-import kotlinx.android.synthetic.main.activity_size_cable_in_rails.*
-
+import kotlinx.android.synthetic.main.activity_size_cable.*
 import java.util.ArrayList
 
-class SizeCableInPipeActivity : AppCompatActivity(),onClickInAdapter {
+class SizeCableInRailsActivity : AppCompatActivity(), onClickInAdapter {
     private val listSizeCable = ArrayList<SizeCableModel>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_size_cable_in_pipe)
-
+        setContentView(R.layout.activity_size_cable_in_rails)
 
         listSizeCable.add(SizeCableModel("1 mm2"))
         listSizeCable.add(SizeCableModel("1.5 mm2"))
@@ -42,7 +40,7 @@ class SizeCableInPipeActivity : AppCompatActivity(),onClickInAdapter {
 
         recyclerViewSizeCable.adapter = SizeCableAdapter(listSizeCable,this)
         recyclerViewSizeCable.layoutManager = LinearLayoutManager(this)
-        
+
     }
 
     override fun onClick(postion: Int) {

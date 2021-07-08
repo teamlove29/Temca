@@ -9,6 +9,7 @@ import android.text.TextWatcher
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
+import com.alw.temca.Model.AmountInPipe.ResultToReportModel
 import com.alw.temca.R
 import com.alw.temca.ui.SponsorActivity
 import jxl.Workbook
@@ -20,8 +21,7 @@ import kotlinx.android.synthetic.main.activity_amount_in_pipe.tableBeforeCalcula
 import kotlinx.android.synthetic.main.activity_amount_in_pipe.typeCableTextView
 import kotlinx.android.synthetic.main.activity_amount_in_pipe.wayBackActivity1
 import kotlinx.android.synthetic.main.activity_amount_in_pipe.wayBackActivity2
-import kotlinx.android.synthetic.main.activity_pipe_size.*
-import kotlinx.android.synthetic.main.activity_wire_size.*
+
 import java.io.IOException
 
 
@@ -32,7 +32,7 @@ class AmountInPipeActivity : AppCompatActivity() {
          const val TASK_LIST_PREF_KEY_TYPE_CABLE_IN_AMOUNT_PIPE = "task_list_type_cable_in_amount_pipe"
          const val TASK_LIST_PREF_KEY_SIZE_IN_AMOUNT_PIPE = "task_list_size_in_amount_pipe"
          const val TASK_LIST_PREF_KEY_AMOUNT_IN_AMOUNT_PIPE = "task_list_amount_in_amount_pipe"
-         const val PREF_NAME = "task_pipe"
+         const val PREF_NAME = "task_amount_in_pipe"
     }
     override fun onStart() {
         super.onStart()
@@ -168,7 +168,7 @@ class AmountInPipeActivity : AppCompatActivity() {
             else -> return
         }
         val sizeCable = arrayListOf("1 mm2", "1.5 mm2", "2.5 mm2", "4 mm2", "6 mm2", "10 mm2", "16 mm2", "25 mm2", "35 mm2", "50 mm2", "70 mm2", "95 mm2", "120 mm2", "150 mm2", "185 mm2", "240 mm2", "300 mm2", "400 mm2", "500 mm2", "630 mm2", "800 mm2")
-        println("dasdada ${cableSizeTextView.text}")
+
         try {
             val typeCable = applicationContext.assets.open("type_cable_pipe.xls")
             val wb = Workbook.getWorkbook(typeCable)
@@ -207,7 +207,28 @@ class AmountInPipeActivity : AppCompatActivity() {
     }
 
     // สร้างรายงาน
-    fun pipeSizeReportOnClick(view: View) {}
+    fun pipeSizeReportOnClick(view: View) {
+        val intent = Intent(this, ReportInPipeActivity::class.java)
+        val bundle = Bundle()
+        /* ResultToReportModel ประกอบไปด้วย
+        1 ชนิดสายไฟ
+        2 ขนาดสายไฟ
+        3 จำนวนเส้นสายไฟ
+        4 ผลลัพขนาดท่อ + สูงสุด
+        5 ผลลัพขนาดราง + สูงสุด
+         */
+        bundle.putParcelable("resultInPipe",
+            ResultToReportModel(
+                "",
+                "",
+                "",
+                "",
+                "")
+        )
+         intent.putExtras(bundle)
+        startActivity(intent)
+        finish()
+    }
 
 
     fun sponsorOnClick(view: View) {

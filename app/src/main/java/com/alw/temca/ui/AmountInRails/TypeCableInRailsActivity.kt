@@ -1,4 +1,4 @@
-package com.alw.temca.ui.AmountInPipe
+package com.alw.temca.ui.AmountInRails
 
 import android.app.Activity
 import android.content.Intent
@@ -9,13 +9,14 @@ import com.alw.temca.Adapter.AdapterInPipe.TypeCableAdapter
 import com.alw.temca.Interfaces.onClickInAdapter
 import com.alw.temca.Model.TypeCableModel
 import com.alw.temca.R
-import kotlinx.android.synthetic.main.activity_type_cable.*
+import kotlinx.android.synthetic.main.activity_type_cable_in_rails.*
 
-class TypeCableInPipeActivity : AppCompatActivity() , onClickInAdapter {
+
+class TypeCableInRailsActivity : AppCompatActivity(), onClickInAdapter {
     private val typeCableItem = ArrayList<TypeCableModel>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_type_cable_in_pipe)
+        setContentView(R.layout.activity_type_cable_in_rails)
 
         typeCableItem.add(TypeCableModel("IEC01"))
         typeCableItem.add(TypeCableModel("NYY 1C"))
@@ -39,7 +40,6 @@ class TypeCableInPipeActivity : AppCompatActivity() , onClickInAdapter {
 
         recyclerViewTypeCable.adapter = TypeCableAdapter(typeCableItem,this)
         recyclerViewTypeCable.layoutManager = LinearLayoutManager(this)
-
     }
 
     override fun onClick(postion: Int) {

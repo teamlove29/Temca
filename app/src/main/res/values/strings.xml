@@ -8,4 +8,5 @@
     <string name="calculate">คำนวณ</string>
     <string name="cable_and_conduit_calculator">Cable and Conduit Calculator</string>
     <string name="typeAndAmountInPipe">หาชนิดและจำนวนสายในท่อ</string>
+    <string name="typeAndAmountInRails">หาชนิดและจำนวนสายในรางเดินสาย</string>
 </resources>

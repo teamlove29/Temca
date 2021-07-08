@@ -38,12 +38,12 @@
                 android:fontFamily="@font/mitr_regular"
                 android:textColor="#0E4194"
                 android:textSize="20sp"
-                android:text="หาขนาดท่อและราง"
+                android:text="หาขนาดท่อ"
                 android:maxLines="1"
                 android:autoSizeTextType="uniform"
                 android:autoSizeMinTextSize="20sp"
                 android:autoSizeMaxTextSize="30sp"
-                android:autoSizeStepGranularity="2sp"/>
+                android:autoSizeStepGranularity="5sp"/>
 
         </RelativeLayout>
 

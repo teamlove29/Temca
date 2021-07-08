@@ -17,12 +17,17 @@
         android:theme="@style/Theme.Temca"
         android:versionCode="3"
         android:versionName="1.2">
-
-        <activity android:name=".ui.AmountInPipe.SizeCableInPipeActivity"/>
+        <activity android:name=".ui.AmountInPipe.ReportInPipeActivity"></activity>
+        <activity android:name=".ui.AmountInRails.ReportInRailsActivity" />
+        <activity android:name=".ui.AmountInRails.SizeConduitInRailsActivity" />
+        <activity android:name=".ui.AmountInRails.TypeCableInRailsActivity" />
+        <activity android:name=".ui.AmountInRails.SizeCableInRailsActivity" />
+        <activity android:name=".ui.AmountInRails.AmountInRailsActivity" />
+        <activity android:name=".ui.AmountInPipe.SizeCableInPipeActivity" />
         <activity android:name=".ui.AmountInPipe.TypeCableInPipeActivity" />
-        <activity android:name=".ui.AmountInPipe.AmountInPipeActivity"
-                  android:windowSoftInputMode="adjustPan"/>
-
+        <activity
+            android:name=".ui.AmountInPipe.AmountInPipeActivity"
+            android:windowSoftInputMode="adjustPan" />
         <activity android:name=".ui.Moter.MoterReportActivity" />
         <activity android:name=".ui.Transformer.TransformerReportActivity" />
         <activity android:name=".ui.Moter.SizeMoterActivity" />

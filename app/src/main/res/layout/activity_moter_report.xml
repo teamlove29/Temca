@@ -457,7 +457,7 @@ android:background="@color/white">
             <!--                android:fontFamily="@font/mitr_regular"-->
             <!--                android:text="พิมพ์"/>-->
 
-            <com.google.android.material.button.MaterialButton
+            <Button
                 android:id="@+id/btnSendEmailInMoterReport"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -467,6 +467,7 @@ android:background="@color/white">
                 android:layout_margin="10dp"
                 android:textSize="14dp"
                 android:backgroundTint="#50596F"
+                android:textColor="@color/white"
                 android:fontFamily="@font/mitr_regular"
                 android:text="@string/share"/>
         </RelativeLayout>

@@ -7,7 +7,7 @@ android:layout_width="match_parent"
 android:layout_height="match_parent"
 android:fillViewport="true"
 android:overScrollMode="never"
-tools:context=".ui.AmountInPipe.AmountInPipeActivity">
+tools:context=".ui.AmountInRails.AmountInRailsActivity">
 
 <LinearLayout
     android:layout_width="match_parent"
@@ -38,13 +38,14 @@ tools:context=".ui.AmountInPipe.AmountInPipeActivity">
             android:fontFamily="@font/mitr_regular"
             android:textColor="#0E4194"
             android:textSize="20sp"
-            android:text="@string/typeAndAmountInPipe"
+            android:text="@string/typeAndAmountInRails"
             android:autoSizeTextType="uniform"
             android:autoSizeMinTextSize="20sp"
             android:autoSizeMaxTextSize="30sp"
             android:autoSizeStepGranularity="5sp"/>
 
     </RelativeLayout>
+
 
     <androidx.cardview.widget.CardView
         android:onClick="onclickChooseTypeCable"
@@ -76,7 +77,7 @@ tools:context=".ui.AmountInPipe.AmountInPipeActivity">
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="10dp"
-                android:hint="CV"
+                android:hint="IEC01"
                 android:textSize="16sp"
                 android:layout_toLeftOf="@+id/iconWireType"
                 android:textColorHint="@color/defaulthint"
@@ -123,7 +124,7 @@ tools:context=".ui.AmountInPipe.AmountInPipeActivity">
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="10dp"
-                android:hint="2.5 มม2"
+                android:hint="2.5 mm2"
                 android:textSize="16sp"
                 android:layout_toLeftOf="@+id/iconCircuitBreakere"
                 android:fontFamily="@font/mitr_regular"
@@ -142,54 +143,57 @@ tools:context=".ui.AmountInPipe.AmountInPipeActivity">
         </RelativeLayout>
 
     </androidx.cardview.widget.CardView>
-    // Amount
+
+    // SizeConduit
     <androidx.cardview.widget.CardView
-        android:onClick="setAmountOnClick"
-        android:id="@+id/cardViewAmountCable"
-        app:cardCornerRadius="5dp"
-        android:layout_marginBottom="1dp"
+        android:onClick="onClickChooseSizeConduit"
+        android:id="@+id/cardViewSizeConduit"
         android:clickable="true"
         android:focusable="true"
+        android:foreground="?android:selectableItemBackground"
+        app:cardCornerRadius="5dp"
+        android:layout_marginBottom="1dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <RelativeLayout
-            android:padding="10dp"
+            android:padding="15dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-
             <TextView
-                android:id="@+id/textViewAmountCable"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:text="จำนวนเส้น"
+                android:text="ขนาดราง"
                 android:textSize="16sp"
                 android:fontFamily="@font/mitr_regular"
                 android:textColor="@color/black"
                 android:layout_centerVertical="true"/>
 
-            <EditText
-                android:id="@+id/editTextAmountCable"
+            <TextView
+                android:id="@+id/SizeConduitTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:inputType="number"
-                android:maxLength="3"
-                android:layout_marginRight="40dp"
-                android:hint="20"
+                android:layout_marginRight="10dp"
+                android:hint="50x75 mm."
+                android:textSize="16sp"
+                android:layout_toLeftOf="@+id/iconSizeConduit"
                 android:fontFamily="@font/mitr_regular"
-                android:gravity="right"
-                android:ellipsize="end"
-                android:background="@null"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
                 android:textColorHint="@color/defaulthint"
                 android:textColor="@color/defaulthint"
-                />
+                android:layout_centerVertical="true"/>
+
+            <ImageView
+                android:id="@+id/iconSizeConduit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_baseline_keyboard_arrow_right_24"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"/>
 
         </RelativeLayout>
+
     </androidx.cardview.widget.CardView>
+
 
     <Button
         android:onClick="calculatorOnClick"
@@ -273,6 +277,7 @@ tools:context=".ui.AmountInPipe.AmountInPipeActivity">
                 android:textColor="@color/white"
                 android:textSize="18sp" />
 
+
             <TextView
                 android:id="@+id/textViewShow2InPipe"
                 android:layout_width="wrap_content"
@@ -282,58 +287,34 @@ tools:context=".ui.AmountInPipe.AmountInPipeActivity">
                 android:textSize="18sp" />
 
             <TextView
-                android:id="@+id/textViewSizePipe"
+                android:id="@+id/textViewMaxCable"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:layout_below="@+id/textViewShowInPipe"
-                android:text="ขนาดท่อ(จำนวนสูงสุด)"
+                android:text="จำนวนสายไฟสูงสุด"
                 android:textSize="16sp"
                 android:fontFamily="@font/mitr_regular"
                 android:textColor="@color/white" />
 
             <TextView
-                android:id="@+id/textViewResultSizePipe"
+                android:id="@+id/textViewResultMaxCable"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:layout_below="@+id/textViewShow2InPipe"
                 android:layout_alignParentRight="true"
-                android:text="null นิ้ว (null เส้น)"
+                android:text="null เส้น"
                 android:textSize="16sp"
                 android:fontFamily="@font/mitr_regular"
                 android:textColor="@color/white" />
-
-            <TextView
-                android:id="@+id/textViewRailSize"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_below="@+id/textViewSizePipe"
-                android:text="ขนาดราง(จำนวนสูงสุด)"
-                android:textSize="16sp"
-                android:fontFamily="@font/mitr_regular"
-                android:textColor="@color/white" />
-
-            <TextView
-                android:id="@+id/textViewResultRailSize"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_below="@+id/textViewResultSizePipe"
-                android:layout_alignParentRight="true"
-                android:text="null (null เส้น)"
-                android:textSize="16sp"
-                android:fontFamily="@font/mitr_regular"
-                android:textColor="@color/white" />
-
 
             <LinearLayout
                 android:gravity="bottom"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="bottom|center_horizontal"
-                android:layout_below="@+id/textViewShow5InPipe"
+                android:layout_below="@+id/textViewShow8InPipe"
                 android:layout_marginTop="20dp"
                 android:orientation="vertical">
 
