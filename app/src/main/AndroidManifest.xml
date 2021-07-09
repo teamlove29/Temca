@@ -5,7 +5,9 @@
     <uses-permission android:name="android.permission.INTERNET" /> <!-- <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> -->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_MEDIA_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -17,7 +19,9 @@
         android:theme="@style/Theme.Temca"
         android:versionCode="3"
         android:versionName="1.2">
-        <activity android:name=".ui.AmountInPipe.ReportInPipeActivity"></activity>
+        <activity android:name=".ui.ElectricalThreePhase.ThreePhaseActivity"></activity>
+        <activity android:name=".ui.ElectricalOnePhase.OnePhaseActivity" />
+        <activity android:name=".ui.AmountInPipe.ReportInPipeActivity" />
         <activity android:name=".ui.AmountInRails.ReportInRailsActivity" />
         <activity android:name=".ui.AmountInRails.SizeConduitInRailsActivity" />
         <activity android:name=".ui.AmountInRails.TypeCableInRailsActivity" />

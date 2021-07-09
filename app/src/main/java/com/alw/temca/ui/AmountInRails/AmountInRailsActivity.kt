@@ -6,10 +6,13 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import com.alw.temca.Model.AmountInRails.ResultRailsToReportModel
+import com.alw.temca.Model.ReportReslutPipeSizeModel
 import com.alw.temca.R
 import com.alw.temca.ui.AmountInPipe.AmountInPipeActivity
 import com.alw.temca.ui.SponsorActivity
 import jxl.Workbook
+import kotlinx.android.synthetic.main.activity_amount_in_pipe.*
 import kotlinx.android.synthetic.main.activity_amount_in_rails.*
 import kotlinx.android.synthetic.main.activity_amount_in_rails.SizeConduitTextView
 import kotlinx.android.synthetic.main.activity_amount_in_rails.btnCalInPipeSize
@@ -18,6 +21,9 @@ import kotlinx.android.synthetic.main.activity_amount_in_rails.tableBeforeCalcul
 import kotlinx.android.synthetic.main.activity_amount_in_rails.typeCableTextView
 import kotlinx.android.synthetic.main.activity_amount_in_rails.wayBackActivity1
 import kotlinx.android.synthetic.main.activity_amount_in_rails.wayBackActivity2
+import kotlinx.android.synthetic.main.activity_pipe_size.*
+import kotlinx.android.synthetic.main.activity_pipe_size.editTextAmountCable
+import kotlinx.android.synthetic.main.activity_wire_size.*
 import java.io.IOException
 
 
@@ -131,8 +137,32 @@ class AmountInRailsActivity : AppCompatActivity() {
 
     }
 
+    fun pipeSizeReportOnClick(view: View) {
+        val intent = Intent(this, ReportInRailsActivity::class.java)
+        val bundle = Bundle()
 
-    fun pipeSizeReportOnClick(view: View) {}
+        /* ResultToReportModel ประกอบไปด้วย
+        1 ชนิดสายไฟ
+        2 ขนาดสายไฟ
+        3 ขนาดราง
+        4 จำนวนสายไฟ
+         */
+        val typeCable = typeCableTextView.text.toString()
+        val sizeCable = cableSizeTextView.text.toString()
+        val sizeRails = SizeConduitTextView.text.toString()
+        val amountCable = textViewResultMaxCable.text.toString()
+
+        bundle.putParcelable("resultInRails",
+                ResultRailsToReportModel(
+                        typeCable,
+                        sizeCable,
+                        sizeRails,
+                        amountCable))
+
+        intent.putExtras(bundle)
+        startActivity(intent)
+        finish()
+    }
 
     // เลือกชนิดสายไฟ
     fun onclickChooseTypeCable(view: View) {
@@ -149,6 +179,7 @@ class AmountInRailsActivity : AppCompatActivity() {
         val intent = Intent(this, SizeConduitInRailsActivity::class.java)
         startActivityForResult(intent, AmountInPipeActivity.TASK_NAME_REQUEST_CODE)
     }
+
     fun sponsorOnClick(view: View) {
         val intent = Intent(this, SponsorActivity::class.java)
         startActivity(intent)

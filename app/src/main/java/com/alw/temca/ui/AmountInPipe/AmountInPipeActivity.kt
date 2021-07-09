@@ -9,7 +9,7 @@ import android.text.TextWatcher
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
-import com.alw.temca.Model.AmountInPipe.ResultToReportModel
+import com.alw.temca.Model.AmountInPipe.ResultPipeToReportModel
 import com.alw.temca.R
 import com.alw.temca.ui.SponsorActivity
 import jxl.Workbook
@@ -217,13 +217,18 @@ class AmountInPipeActivity : AppCompatActivity() {
         4 ผลลัพขนาดท่อ + สูงสุด
         5 ผลลัพขนาดราง + สูงสุด
          */
+        val typeCable = typeCableTextView.text.toString()
+        val sizeCable = cableSizeTextView.text.toString()
+        val amountCable = "${editTextAmountCable.text} เส้น"
+        val maxConduit = textViewResultSizePipe.text.toString()
+        val maxRails = textViewResultRailSize.text.toString()
         bundle.putParcelable("resultInPipe",
-            ResultToReportModel(
-                "",
-                "",
-                "",
-                "",
-                "")
+            ResultPipeToReportModel(
+                    typeCable,
+                    sizeCable,
+                    amountCable,
+                    maxConduit,
+                    maxRails)
         )
          intent.putExtras(bundle)
         startActivity(intent)

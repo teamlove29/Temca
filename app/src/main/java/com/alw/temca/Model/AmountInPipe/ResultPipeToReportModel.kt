@@ -4,7 +4,7 @@ import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class ResultToReportModel(
+data class ResultPipeToReportModel(
     var typeCable:String,
     var sizeCable:String,
     var amountCable:String,

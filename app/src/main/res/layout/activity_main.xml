@@ -196,7 +196,7 @@
                     android:textColor="@color/black" />
 
                 <Button
-                    android:id="@+id/buttonTwoPhase"
+                    android:id="@+id/buttonThreePhase"
                     android:gravity="top"
                     android:layout_width="170dp"
                     android:layout_height="100dp"

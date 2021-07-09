@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.Toast
 import com.alw.temca.ui.AmountInPipe.AmountInPipeActivity
 import com.alw.temca.ui.AmountInRails.AmountInRailsActivity
+import com.alw.temca.ui.ElectricalOnePhase.OnePhaseActivity
 import com.alw.temca.ui.Moter.MoterActivity
 import com.alw.temca.ui.PipeSize.PipeSizeActivity
 import com.alw.temca.ui.SoonActivity
@@ -23,6 +24,11 @@ class MainActivity : AppCompatActivity() {
 
     fun HandleOnClick(view: View) {
         when(view){
+
+            buttonCurrentRating ->{
+                val intent = Intent(this,SoonActivity::class.java)
+                startActivity(intent)
+            }
             buttonTypeAndAmountConduit ->{
                 val intent = Intent(this,AmountInPipeActivity::class.java)
                 startActivity(intent)
@@ -31,8 +37,12 @@ class MainActivity : AppCompatActivity() {
                 val intent = Intent(this,AmountInRailsActivity::class.java)
                 startActivity(intent)
             }
-//            buttonPipeSize -> {
-//                val intent = Intent(this,PipeSizeActivity::class.java)
+            buttonOnePhase -> {
+                val intent = Intent(this,OnePhaseActivity::class.java)
+                startActivity(intent)
+            }
+//            buttonThreePhase -> {
+//                val intent = Intent(this,OnePhaseActivity::class.java)
 //                startActivity(intent)
 //            }
             buttonTransformer -> {
@@ -45,16 +55,6 @@ class MainActivity : AppCompatActivity() {
 //                intent.putExtra("txt",buttonMoter.text)
                 startActivity(intent)
             }
-//            button5 -> {
-//                val intent = Intent(this,SoonActivity::class.java)
-//                intent.putExtra("txt",button5.text)
-//                startActivity(intent)
-//            }
-//            button6 -> {
-//                val intent = Intent(this,SoonActivity::class.java)
-//                intent.putExtra("txt",button6.text)
-//                startActivity(intent)
-//            }
         }
     }
 

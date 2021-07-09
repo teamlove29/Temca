@@ -36,6 +36,7 @@ class WireSizeActivity : AppCompatActivity() {
     private val PREF_NAME = "task_wire"
     private val railSizeList = ArrayList<RailSizeModel>()
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_wire_size)
         tableBeforeCalculate.visibility = View.GONE

@@ -148,18 +148,18 @@ class PipeSizeReportActivity : AppCompatActivity() {
                                 + applicationContext.resources.getString(R.string.app_name)
                                 + file_name)
 
-                val uri = FileProvider.getUriForFile(this, this.getPackageName().toString() + ".fileprovider", fileWithinMyDir)
-                val sendIntent = Intent(Intent.ACTION_SEND)
-                val receiver = Intent(this, ApplicationSelectorReceiver::class.java)
-                val pendingIntent = PendingIntent.getBroadcast(this, 0, receiver, PendingIntent.FLAG_UPDATE_CURRENT)
-                sendIntent.type = "*/*"
-                sendIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
-                sendIntent.putExtra(Intent.EXTRA_SUBJECT, "รายงานผลการคำนวณขนาดท่อและราง")
-                sendIntent.putExtra(Intent.EXTRA_TEXT, "รายงานผลการคำนวณขนาดท่อและรางตามไฟล์ที่แนบ...")
-                sendIntent.putExtra(Intent.EXTRA_STREAM, uri)
-                startActivityForResult(Intent.createChooser(sendIntent, "SHARE", pendingIntent.intentSender), 800)
+//                val uri = FileProvider.getUriForFile(this, this.packageName.toString() + ".fileprovider", fileWithinMyDir)
+//                val sendIntent = Intent(Intent.ACTION_SEND)
+//                val receiver = Intent(this, ApplicationSelectorReceiver::class.java)
+//                val pendingIntent = PendingIntent.getBroadcast(this, 0, receiver, PendingIntent.FLAG_UPDATE_CURRENT)
+//                sendIntent.type = "*/*"
+//                sendIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+//                sendIntent.putExtra(Intent.EXTRA_SUBJECT, "รายงานผลการคำนวณขนาดท่อและราง")
+//                sendIntent.putExtra(Intent.EXTRA_TEXT, "รายงานผลการคำนวณขนาดท่อและรางตามไฟล์ที่แนบ...")
+//                sendIntent.putExtra(Intent.EXTRA_STREAM, uri)
+//                startActivityForResult(Intent.createChooser(sendIntent, "SHARE", pendingIntent.intentSender), 800)
             } catch (e: Exception) {
-                Toast.makeText(this, "Error : $e", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Error FileProvider: $e", Toast.LENGTH_SHORT).show()
 //                println("Error : $e")
             }
         }
