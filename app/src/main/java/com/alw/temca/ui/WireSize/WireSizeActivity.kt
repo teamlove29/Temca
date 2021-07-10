@@ -39,6 +39,7 @@ class WireSizeActivity : AppCompatActivity() {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_wire_size)
+
         tableBeforeCalculate.visibility = View.GONE
         tableBeforeCalculateGroup7.visibility = View.GONE
 
@@ -490,6 +491,7 @@ class WireSizeActivity : AppCompatActivity() {
         editTextDistance.setText(dataOfDistance)
 
     }
+
     fun backOnClick(view: View) {
         finish()
     }

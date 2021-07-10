@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:orientation="vertical"
+android:background="#EEEEEE"
+tools:context=".ui.ElectricalOnePhase.InstallationInOnePhaseActivity">
+
+<RelativeLayout
+    android:paddingBottom="40dp"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp"
+    android:paddingTop="40dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/logoImageView"
+        android:layout_width="70dp"
+        android:layout_height="50dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/temca_logo_mini"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_toRightOf="@id/logoImageView"
+        android:layout_centerVertical="true"
+        android:fontFamily="@font/mitr_regular"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:text="@string/title_one_phase"
+        android:maxLines="1"
+        android:autoSizeTextType="uniform"
+        android:autoSizeMinTextSize="20sp"
+        android:autoSizeMaxTextSize="30sp"
+        android:autoSizeStepGranularity="5sp"/>
+
+</RelativeLayout>
+
+<TextView
+    android:paddingLeft="15dp"
+    android:paddingBottom="5dp"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:fontFamily="@font/mitr_regular"
+    android:textColor="@color/black"
+    android:textSize="18sp"
+    android:text="กลุ่มการติดตั้ง"/>
+
+<androidx.recyclerview.widget.RecyclerView
+    android:id="@+id/recyclerViewInstallation"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" />
+
+
+</LinearLayout>

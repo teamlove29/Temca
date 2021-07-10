@@ -39,12 +39,12 @@
         android:fontFamily="@font/mitr_regular"
         android:textColor="#0E4194"
         android:textSize="20sp"
-        android:text="หาขนาดสายไฟ"
+        android:text="@string/title_one_phase"
         android:maxLines="1"
         android:autoSizeTextType="uniform"
         android:autoSizeMinTextSize="20sp"
         android:autoSizeMaxTextSize="30sp"
-        android:autoSizeStepGranularity="2sp"/>
+        android:autoSizeStepGranularity="5sp"/>
 
 </RelativeLayout>
 <!--        Phase-->
@@ -126,7 +126,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="10dp"
-                android:hint="กลุ่ม 1"
+                android:hint="กลุ่ม 2"
                 android:textSize="16sp"
                 android:layout_toLeftOf="@+id/iconInstallation"
                 android:fontFamily="@font/mitr_regular"
@@ -291,7 +291,7 @@
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
 <!--    MaterialButton คำนวน-->
-    <com.google.android.material.button.MaterialButton
+    <Button
         android:id="@+id/btnCal"
         android:onClick="calculatorOnClick"
         android:layout_width="match_parent"
@@ -300,8 +300,10 @@
         android:padding="10dp"
         android:layout_margin="10dp"
         android:textSize="18sp"
+        android:textColor="@color/white"
         android:backgroundTint="@color/btnBlue"
         android:fontFamily="@font/mitr_regular"
+        android:background="@drawable/btn_rounded"
         android:text="@string/calculate"/>
 
 <!--    ย้อนกลับหน้าปกติ-->
@@ -478,7 +480,7 @@
                 android:orientation="vertical">
 
 <!--                MaterialButtonสร้างรายงาน-->
-                <com.google.android.material.button.MaterialButton
+                <Button
                     android:onClick="ReportOnClick"
                     android:id="@+id/btnCreateReports"
                     android:layout_marginTop="20dp"
@@ -489,7 +491,7 @@
                     android:padding="10dp"
                     android:textSize="18sp"
                     android:textColor="#0E4194"
-                    android:backgroundTint="@color/white"
+                    android:background="@drawable/btn_rounded_white"
                     android:fontFamily="@font/mitr_regular"
                     android:text="@string/create_report"/>
 
@@ -529,7 +531,7 @@
 
     </androidx.cardview.widget.CardView>
 
-        <androidx.cardview.widget.CardView
+    <androidx.cardview.widget.CardView
             android:id="@+id/tableBeforeCalculateGroup7"
             android:backgroundTint="@color/btnBlue"
             android:layout_width="match_parent"
@@ -555,7 +557,7 @@
                         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                         tools:itemCount="2"/>
 <!--                    MaterialButton รายงาน -->
-                    <com.google.android.material.button.MaterialButton
+                    <Button
                         android:onClick="ReportOnClick"
                         android:id="@+id/btnCreateReports2"
                         android:layout_marginBottom="20dp"
@@ -605,4 +607,5 @@
         </androidx.cardview.widget.CardView>
 
 </LinearLayout>
+
 </ScrollView>

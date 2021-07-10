@@ -8,12 +8,11 @@ import android.widget.Toast
 import com.alw.temca.ui.AmountInPipe.AmountInPipeActivity
 import com.alw.temca.ui.AmountInRails.AmountInRailsActivity
 import com.alw.temca.ui.ElectricalOnePhase.OnePhaseActivity
+import com.alw.temca.ui.ElectricalThreePhase.ThreePhaseActivity
 import com.alw.temca.ui.Moter.MoterActivity
-import com.alw.temca.ui.PipeSize.PipeSizeActivity
 import com.alw.temca.ui.SoonActivity
 import com.alw.temca.ui.SponsorActivity
 import com.alw.temca.ui.Transformer.TransformerActivity
-import com.alw.temca.ui.WireSize.WireSizeActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -41,10 +40,10 @@ class MainActivity : AppCompatActivity() {
                 val intent = Intent(this,OnePhaseActivity::class.java)
                 startActivity(intent)
             }
-//            buttonThreePhase -> {
-//                val intent = Intent(this,OnePhaseActivity::class.java)
-//                startActivity(intent)
-//            }
+            buttonThreePhase -> {
+                val intent = Intent(this, ThreePhaseActivity::class.java)
+                startActivity(intent)
+            }
             buttonTransformer -> {
                 val intent = Intent(this,TransformerActivity::class.java)
 //                intent.putExtra("txt",buttonTransformer.text)
