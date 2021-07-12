@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.Toast
 import com.alw.temca.ui.AmountInPipe.AmountInPipeActivity
 import com.alw.temca.ui.AmountInRails.AmountInRailsActivity
+import com.alw.temca.ui.CurrentRating.CurrentRatingActivity
 import com.alw.temca.ui.ElectricalOnePhase.OnePhaseActivity
 import com.alw.temca.ui.ElectricalThreePhase.ThreePhaseActivity
 import com.alw.temca.ui.Moter.MoterActivity
@@ -25,7 +26,8 @@ class MainActivity : AppCompatActivity() {
         when(view){
 
             buttonCurrentRating ->{
-                val intent = Intent(this,SoonActivity::class.java)
+                val intent = Intent(this,CurrentRatingActivity::class.java)
+                intent.putExtra("txt",buttonCurrentRating.text)
                 startActivity(intent)
             }
             buttonTypeAndAmountConduit ->{
@@ -34,6 +36,11 @@ class MainActivity : AppCompatActivity() {
             }
             buttonTypeAndAmountRails ->{
                 val intent = Intent(this,AmountInRailsActivity::class.java)
+                startActivity(intent)
+            }
+            buttonTypeAndAmountRailCable ->{
+                val intent = Intent(this,SoonActivity::class.java)
+                intent.putExtra("txt",buttonTypeAndAmountRailCable.text)
                 startActivity(intent)
             }
             buttonOnePhase -> {

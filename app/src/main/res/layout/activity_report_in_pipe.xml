@@ -221,45 +221,46 @@ tools:context=".ui.AmountInPipe.ReportInPipeActivity">
 
             </RelativeLayout>
 
-            <RelativeLayout
-                android:layout_marginBottom="50dp"
-                android:padding="5dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+<!--            <RelativeLayout-->
+<!--                android:layout_marginBottom="50dp"-->
+<!--                android:padding="5dp"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content">-->
 
-                <TextView
-                    android:id="@+id/textViewRailSizeInReportPipeSize"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="50dp"
-                    android:text="ขนาดราง"
-                    android:textColor="@color/black"
-                    android:fontFamily="@font/sarabun_medium"
-                    android:textSize="12dp"/>
+<!--                <TextView-->
+<!--                    android:id="@+id/textViewRailSizeInReportPipeSize"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginLeft="50dp"-->
+<!--                    android:text="ขนาดราง"-->
+<!--                    android:textColor="@color/black"-->
+<!--                    android:fontFamily="@font/sarabun_medium"-->
+<!--                    android:textSize="12dp"/>-->
 
-                <TextView
-                    android:id="@+id/textViewRailSizeInReportPipeSize2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="50dp"
-                    android:layout_below="@+id/textViewRailSizeInReportPipeSize"
-                    android:text="(จำนวนสูงสุด)"
-                    android:textSize="10dp"
-                    android:textColor="@color/black"
-                    android:fontFamily="@font/sarabun_medium" />
+<!--                <TextView-->
+<!--                    android:id="@+id/textViewRailSizeInReportPipeSize2"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginLeft="50dp"-->
+<!--                    android:layout_below="@+id/textViewRailSizeInReportPipeSize"-->
+<!--                    android:text="(จำนวนสูงสุด)"-->
+<!--                    android:textSize="10dp"-->
+<!--                    android:textColor="@color/black"-->
+<!--                    android:fontFamily="@font/sarabun_medium" />-->
 
-                <TextView
-                    android:id="@+id/textViewResultRailSizeInReportPipeSize"
-                    android:layout_toRightOf="@+id/textViewRailSizeInReportPipeSize"
-                    android:layout_marginLeft="50dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="- (- เส้น)"
-                    android:textColor="@color/btnBlue"
-                    android:fontFamily="@font/sarabun_regular"
-                    android:textSize="12dp"/>
+<!--                <TextView-->
+<!--                    android:id="@+id/textViewResultRailSizeInReportPipeSize"-->
+<!--                    android:layout_toRightOf="@+id/textViewRailSizeInReportPipeSize"-->
+<!--                    android:layout_marginLeft="50dp"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="- (- เส้น)"-->
+<!--                    android:textColor="@color/btnBlue"-->
+<!--                    android:fontFamily="@font/sarabun_regular"-->
+<!--                    android:textSize="12dp"/>-->
 
-            </RelativeLayout>
+<!--            </RelativeLayout>-->
+
         </LinearLayout>
 
         <LinearLayout

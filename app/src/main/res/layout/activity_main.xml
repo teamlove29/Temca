@@ -11,7 +11,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="30dp"
+        android:paddingTop="30dp"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp"
         android:orientation="vertical">
 
         <ImageView
@@ -35,7 +37,7 @@
             android:autoSizeMaxTextSize="100sp"
             android:autoSizeStepGranularity="2sp"
             android:gravity="center_horizontal"
-            android:text="Cable and Conduit"/>
+            android:text="Cable and Raceway"/>
 
         <TextView
             android:layout_marginTop="-10dp"
@@ -69,22 +71,22 @@
 
                 <Button
                     android:id="@+id/buttonCurrentRating"
-                    android:gravity="top"
                     android:layout_width="170dp"
                     android:layout_height="100dp"
                     android:layout_marginBottom="10dp"
-                    android:paddingTop="10dp"
-                    android:paddingLeft="10dp"
-                    android:paddingRight="90dp"
                     android:autoSizeMaxTextSize="15sp"
                     android:autoSizeMinTextSize="10sp"
                     android:autoSizeStepGranularity="2sp"
                     android:autoSizeTextType="uniform"
+                    android:background="@drawable/ic_main_current_rating"
                     android:elevation="10dp"
                     android:fontFamily="@font/mitr_medium"
+                    android:gravity="top"
                     android:onClick="HandleOnClick"
+                    android:paddingLeft="10dp"
+                    android:paddingTop="10dp"
+                    android:paddingRight="90dp"
                     android:text="พิกัดกระแสสายไฟฟ้า"
-                    android:background="@drawable/ic_main_current_rating"
                     android:textColor="@color/black" />
 
                 <Button
@@ -255,7 +257,7 @@
 
                 <TextView
                     android:id="@+id/textViewTerm"
-                    android:layout_marginRight="30dp"
+                    android:layout_marginRight="50dp"
                     android:drawableTint="@color/white"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -267,18 +269,18 @@
                     android:autoSizeStepGranularity="2sp"
                     android:text="มาตรฐานการติดตั้ง"/>
 
-                    <TextView
-                        android:layout_marginRight="30dp"
-                        android:drawableTint="@color/white"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/mitr_regular"
-                        android:textColor="@color/white"
-                        android:autoSizeTextType="uniform"
-                        android:autoSizeMinTextSize="12sp"
-                        android:autoSizeMaxTextSize="15sp"
-                        android:autoSizeStepGranularity="2sp"
-                        android:text="วิธีการใช้งานอยู่"/>
+<!--                    <TextView-->
+<!--                        android:layout_marginRight="30dp"-->
+<!--                        android:drawableTint="@color/white"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:fontFamily="@font/mitr_regular"-->
+<!--                        android:textColor="@color/white"-->
+<!--                        android:autoSizeTextType="uniform"-->
+<!--                        android:autoSizeMinTextSize="12sp"-->
+<!--                        android:autoSizeMaxTextSize="15sp"-->
+<!--                        android:autoSizeStepGranularity="2sp"-->
+<!--                        android:text="วิธีการใช้งานอยู่"/>-->
 
                     <TextView
                         android:onClick="sponsorOnClick"
@@ -299,13 +301,21 @@
                 </LinearLayout>
 
                 <TextView
-                    android:padding="20dp"
+                    android:layout_marginTop="20dp"
                     android:gravity="center_horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/mitr_regular"
                     android:textColor="@color/white"
                     android:text="สมาคมช่างเหมาไฟฟ้าและเครื่องกลไทย"/>
+                <TextView
+                    android:padding="10dp"
+                    android:gravity="center_horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/mitr_regular"
+                    android:textColor="@color/white"
+                    android:text="ผศ.ประสิทธิ์ พิทยพัฒน์"/>
 
             </LinearLayout>
 

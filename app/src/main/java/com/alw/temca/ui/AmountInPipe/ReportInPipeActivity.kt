@@ -90,7 +90,7 @@ class ReportInPipeActivity : AppCompatActivity() {
             textViewMainResultInstallationInReport.text = resultInPipe.sizeCable
             textViewMainResultBreakerInReportData.text = resultInPipe.amountCable
             textViewResultConduitSize.text = resultInPipe.maxConduit
-            textViewResultRailSizeInReportPipeSize.text = resultInPipe.maxRails
+//            textViewResultRailSizeInReportPipeSize.text = resultInPipe.maxRails
         }
 
         btnSendEmailInPipeSize.setOnClickListener {
@@ -189,9 +189,9 @@ class ReportInPipeActivity : AppCompatActivity() {
             addItemAndResult(document, "                ขนาดท่อ                    ", data.maxConduit, titleStyleTitle, valueStyle)
             addItemAndResult(document, "                   (จำนวนสูงสุด)", "", subTitleStyle, valueStyle)
             addLineSpace(document)
-            addItemAndResult(document, "                ขนาดราง                    ", data.maxRails, titleStyleTitle, valueStyle)
-            addItemAndResult(document, "                   (จำนวนสูงสุด)", "", subTitleStyle, valueStyle)
-            addLineSpace(document)
+//            addItemAndResult(document, "                ขนาดราง                    ", data.maxRails, titleStyleTitle, valueStyle)
+//            addItemAndResult(document, "                   (จำนวนสูงสุด)", "", subTitleStyle, valueStyle)
+//            addLineSpace(document)
 
             document.close()
 

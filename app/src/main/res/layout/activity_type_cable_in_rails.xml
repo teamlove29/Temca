@@ -26,11 +26,11 @@ tools:context=".ui.AmountInRails.TypeCableInRailsActivity">
     <TextView
         android:id="@+id/headerTypeCable"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:layout_toRightOf="@id/logoImageView"
         android:layout_centerVertical="true"
         android:fontFamily="@font/mitr_regular"
-        android:textColor="@color/black"
+        android:textColor="@color/btnBlue"
         android:textSize="20sp"
         android:text="@string/typeAndAmountInRails"
         android:maxLines="1"

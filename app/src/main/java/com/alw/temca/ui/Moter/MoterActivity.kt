@@ -176,13 +176,13 @@ class MoterActivity : AppCompatActivity() {
 
 
 //        if(TextAmountMoterSize.text.isEmpty()) TextAmountMoterSize.setText("10")
-        if(editTextDistanceInMoter.text.isEmpty()) editTextDistanceInMoter.setText("20")
+        if(editTextDistanceInMoter.text.isEmpty()) editTextDistanceInMoter.setText("0")
 
         if(editTextDistanceInMoter.length() > 0 ){
-            if(editTextDistanceInMoter.text.toString() == "0" ) editTextDistanceInMoter.setText("20")
-            else if(editTextDistanceInMoter.text.toString() == "00") editTextDistanceInMoter.setText("20")
-            else if(editTextDistanceInMoter.text.toString() == "000") editTextDistanceInMoter.setText("20")
-            else if(editTextDistanceInMoter.text.toString() == "0000") editTextDistanceInMoter.setText("20")
+            if(editTextDistanceInMoter.text.toString() == "0" ) editTextDistanceInMoter.setText("0")
+            else if(editTextDistanceInMoter.text.toString() == "00") editTextDistanceInMoter.setText("0")
+            else if(editTextDistanceInMoter.text.toString() == "000") editTextDistanceInMoter.setText("0")
+            else if(editTextDistanceInMoter.text.toString() == "0000") editTextDistanceInMoter.setText("0")
             else if(editTextDistanceInMoter.text.toString().slice(0..0) == "0"){
                 for(i in 0..3){
                     if(editTextDistanceInMoter.text.toString().slice(0..0) != "0") break

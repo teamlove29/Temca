@@ -9,22 +9,14 @@ import android.text.style.SubscriptSpan
 import android.text.style.SuperscriptSpan
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import com.alw.temca.Function.FindDetailInstallation
+import com.alw.temca.Model.RailSizeModel
+import com.alw.temca.Model.ReportResultWireSize
 import com.alw.temca.R
 import com.alw.temca.ui.SponsorActivity
+
 import jxl.Workbook
-import kotlinx.android.synthetic.main.activity_one_phase.btnCal
-import kotlinx.android.synthetic.main.activity_one_phase.circuitTextView
-import kotlinx.android.synthetic.main.activity_one_phase.editTextDistance
-import kotlinx.android.synthetic.main.activity_one_phase.installationTextView
-import kotlinx.android.synthetic.main.activity_one_phase.phaseTextView
-import kotlinx.android.synthetic.main.activity_one_phase.tableBeforeCalculate
-import kotlinx.android.synthetic.main.activity_one_phase.textViewReferenceVoltage
-import kotlinx.android.synthetic.main.activity_one_phase.textViewResultWireGround
-import kotlinx.android.synthetic.main.activity_one_phase.textViewShow2
-import kotlinx.android.synthetic.main.activity_one_phase.textViewShow4
-import kotlinx.android.synthetic.main.activity_one_phase.textViewShow6
-import kotlinx.android.synthetic.main.activity_one_phase.typeCableTextView
-import kotlinx.android.synthetic.main.activity_one_phase.wayBackActivity1
+import kotlinx.android.synthetic.main.activity_one_phase.*
 import java.io.IOException
 
 
@@ -39,6 +31,7 @@ class OnePhaseActivity : AppCompatActivity() {
         const val TASK_LIST_PREF_KEY_CIRCUIT_ONE_PHASE = "task_list_circuit_one_phase"
         const val TASK_LIST_PREF_KEY_DISTANCE_ONE_PHASE = "task_list_distance_one_phase"
         const val PREF_NAME = "task_one_phase"
+        private val railSizeList = ArrayList<RailSizeModel>()
     }
 
     override fun onStart() {
@@ -126,21 +119,39 @@ class OnePhaseActivity : AppCompatActivity() {
 
         if (editTextDistance.text.isEmpty()){
             editTextDistance.setText("0")
+            textViewShow5.visibility = View.GONE
+            textViewReferenceVoltage.visibility = View.GONE
+            textViewShow6.visibility = View.GONE
+        }else{
+            textViewShow5.visibility = View.VISIBLE
+            textViewReferenceVoltage.visibility = View.VISIBLE
+            textViewShow6.visibility = View.VISIBLE
         }
+
+
         if (circuitTextView.text.isEmpty()){
             circuitTextView.text = "40A"
         }
 
         if(editTextDistance.length() > 0 ){
-            if(editTextDistance.text.toString() == "0" ) editTextDistance.setText("0")
+            if(editTextDistance.text.toString() == "0" ) {
+                editTextDistance.setText("0")
+                textViewShow5.visibility = View.GONE
+                textViewReferenceVoltage.visibility = View.GONE
+                textViewShow6.visibility = View.GONE
+            }
             else if(editTextDistance.text.toString() == "00") editTextDistance.setText("0")
             else if(editTextDistance.text.toString() == "000") editTextDistance.setText("0")
             else if(editTextDistance.text.toString() == "0000") editTextDistance.setText("0")
             else if(editTextDistance.text.toString().slice(0..0) == "0"){
                 for(i in 0..3){
                     if(editTextDistance.text.toString().slice(0..0) != "0") break
-                    else editTextDistance.setText(editTextDistance.text.toString().slice(1..editTextDistance.length()-1))
+                    else editTextDistance.setText(editTextDistance.text.toString().slice(1 until editTextDistance.length()))
                 }
+            }else{
+                textViewShow5.visibility = View.VISIBLE
+                textViewReferenceVoltage.visibility = View.VISIBLE
+                textViewShow6.visibility = View.VISIBLE
             }
         }
 
@@ -233,7 +244,32 @@ class OnePhaseActivity : AppCompatActivity() {
         }catch (e: IOException){ println("Error : $e") }
 
     }
-    fun ReportOnClick(view: View) {}
+    fun ReportOnClick(view: View) {
+
+
+        val dataToReport = ArrayList<ReportResultWireSize>()
+        val intent = Intent(this, ReportInOnePhaseActivity::class.java)
+//        val bundle = Bundle()
+        val textInstallation = FindDetailInstallation(installationTextView.text.toString())
+
+
+            dataToReport.add(
+                ReportResultWireSize(
+                phaseTextView.text.toString(), // phase
+                textInstallation,  // groupinstallation
+                typeCableTextView.text.toString(), // typcable
+                circuitTextView.text.toString(), // CB
+                editTextDistance.text.toString(), // amountDis
+                textViewShow2.text.toString().replace("mm2","mm"), // text2 is cablesize
+                textViewResultWireGround.text.toString(), // wiresizegroud
+                textViewShow4.text.toString(), // text4 is conduitsize
+                textViewShow6.text.toString()) // result presure
+            )
+
+        intent.putParcelableArrayListExtra("DataFromWireSize",dataToReport)
+        startActivityForResult(intent, TASK_NAME_REQUEST_CODE)
+        finish()
+    }
 
     fun CircuitOnClick(view: View) {
 

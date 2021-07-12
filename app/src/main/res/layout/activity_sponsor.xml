@@ -28,7 +28,7 @@ tools:context=".ui.SponsorActivity">
     <TextView
         android:id="@+id/headerTypeCable"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="40dp"
         android:layout_toRightOf="@id/logoImageView"
         android:layout_centerVertical="true"
         android:fontFamily="@font/mitr_regular"
@@ -37,7 +37,7 @@ tools:context=".ui.SponsorActivity">
         android:text="ผู้สนับสนุน"
         android:maxLines="1"
         android:autoSizeTextType="uniform"
-        android:autoSizeMinTextSize="20sp"
+        android:autoSizeMinTextSize="24sp"
         android:autoSizeMaxTextSize="30sp"
         android:autoSizeStepGranularity="2sp"/>
 

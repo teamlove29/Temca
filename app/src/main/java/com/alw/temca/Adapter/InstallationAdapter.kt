@@ -15,11 +15,10 @@ interface InstallationonClickAdapterListener{
     fun onClick(postion: Int)
 }
 
-class InstallationAdapter(private var InstallList: ArrayList<InstallationModel>,
-                          private var onClickInstall: InstallationonClickAdapterListener)
+class InstallationAdapter(private var InstallList: ArrayList<InstallationModel>, private var onClickInstall: InstallationonClickAdapterListener)
     : RecyclerView.Adapter<InstallationAdapter.InstallViewHolder>() {
-    class InstallViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
+    class InstallViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(itemList: InstallationModel, action: InstallationonClickAdapterListener){
             itemView.imageViewGroup.setImageDrawable(itemList.image)
             itemView.textViewInstallationTitle.text = itemList.title

@@ -14,14 +14,6 @@ import com.alw.temca.R
 import com.alw.temca.ui.SponsorActivity
 import jxl.Workbook
 import kotlinx.android.synthetic.main.activity_amount_in_pipe.*
-import kotlinx.android.synthetic.main.activity_amount_in_pipe.btnCalInPipeSize
-import kotlinx.android.synthetic.main.activity_amount_in_pipe.cableSizeTextView
-import kotlinx.android.synthetic.main.activity_amount_in_pipe.editTextAmountCable
-import kotlinx.android.synthetic.main.activity_amount_in_pipe.tableBeforeCalculateInPipe
-import kotlinx.android.synthetic.main.activity_amount_in_pipe.typeCableTextView
-import kotlinx.android.synthetic.main.activity_amount_in_pipe.wayBackActivity1
-import kotlinx.android.synthetic.main.activity_amount_in_pipe.wayBackActivity2
-
 import java.io.IOException
 
 
@@ -43,7 +35,7 @@ class AmountInPipeActivity : AppCompatActivity() {
         val sharedPref = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
         val dataOfTypeCable = sharedPref.getString(TASK_LIST_PREF_KEY_TYPE_CABLE_IN_AMOUNT_PIPE, "IEC01")
         val dataOfSizeCable = sharedPref.getString(TASK_LIST_PREF_KEY_SIZE_IN_AMOUNT_PIPE, "2.5 mm2")
-        val dataOfAmount = sharedPref.getString(TASK_LIST_PREF_KEY_AMOUNT_IN_AMOUNT_PIPE, "20")
+        val dataOfAmount = sharedPref.getString(TASK_LIST_PREF_KEY_AMOUNT_IN_AMOUNT_PIPE, "5")
 
         typeCableTextView.text = dataOfTypeCable
         cableSizeTextView.text = dataOfSizeCable
@@ -105,6 +97,7 @@ class AmountInPipeActivity : AppCompatActivity() {
     // เลือกขนาดสายไฟ
     fun onClickChooseSizeCable(view: View) {
         val intent = Intent(this, SizeCableInPipeActivity::class.java)
+        intent.putExtra("typeCable",typeCableTextView.text)
         startActivityForResult(intent, TASK_NAME_REQUEST_CODE)
     }
 
@@ -119,17 +112,16 @@ class AmountInPipeActivity : AppCompatActivity() {
 
     // คำนวน
     fun calculatorOnClick(view: View) {
-
         // ถ้าจำนวนเส้นเป็นค่าว่าง = 20
         if (editTextAmountCable.text.isEmpty()){
-            editTextAmountCable.setText("20")
+            editTextAmountCable.setText("5")
         }
         // ลบ 0 ถ้าใส่ 0 นำหน้า
         if(editTextAmountCable.length() > 0 ){
-            if(editTextAmountCable.text.toString() == "0" ) editTextAmountCable.setText("20")
-            else if(editTextAmountCable.text.toString() == "00") editTextAmountCable.setText("20")
-            else if(editTextAmountCable.text.toString() == "000") editTextAmountCable.setText("20")
-            else if(editTextAmountCable.text.toString() == "0000") editTextAmountCable.setText("20")
+            if(editTextAmountCable.text.toString() == "0" ) editTextAmountCable.setText("5")
+            else if(editTextAmountCable.text.toString() == "00") editTextAmountCable.setText("5")
+            else if(editTextAmountCable.text.toString() == "000") editTextAmountCable.setText("5")
+            else if(editTextAmountCable.text.toString() == "0000") editTextAmountCable.setText("5")
             else if(editTextAmountCable.text.toString().slice(0..0) == "0"){
                 for(i in 0..3){
                     if(editTextAmountCable.text.toString().slice(0..0) != "0") break
@@ -187,15 +179,15 @@ class AmountInPipeActivity : AppCompatActivity() {
 
 
                         }
-                        for (j in 14..22){ // แนวนอนขนาดท่อ
-                            //  j is col result ขนาดราง
-                            if(editTextAmountCable.text.toString().toInt() <= sheet.getCell(j, index + 1).contents.toInt()){
-                                textViewResultRailSize.text = "${sheet.getCell(j, 0).contents} (${sheet.getCell(j, index + 1).contents} เส้น)"
-                                break
-                            }else textViewResultRailSize.text = "- เส้น"
+//                        for (j in 14..22){ // แนวนอนขนาดท่อ
+//                            //  j is col result ขนาดราง
+//                            if(editTextAmountCable.text.toString().toInt() <= sheet.getCell(j, index + 1).contents.toInt()){
+//                                textViewResultRailSize.text = "${sheet.getCell(j, 0).contents} (${sheet.getCell(j, index + 1).contents} เส้น)"
+//                                break
+//                            }else textViewResultRailSize.text = "- เส้น"
+////
 //
-
-                        }
+//                        }
                     } }
 
             }
@@ -221,7 +213,7 @@ class AmountInPipeActivity : AppCompatActivity() {
         val sizeCable = cableSizeTextView.text.toString()
         val amountCable = "${editTextAmountCable.text} เส้น"
         val maxConduit = textViewResultSizePipe.text.toString()
-        val maxRails = textViewResultRailSize.text.toString()
+        val maxRails = ""
         bundle.putParcelable("resultInPipe",
             ResultPipeToReportModel(
                     typeCable,
@@ -267,6 +259,9 @@ class AmountInPipeActivity : AppCompatActivity() {
                 if (dataTypeCable != null) {
                     typeCableTextView.text = dataTypeCable
                     saveData("typeCable", dataTypeCable)
+
+                    cableSizeTextView.text = "2.5 mm2"
+                    saveData("sizeCable", "2.5 mm2")
                 }
                 if (dataSizeCable != null) {
                     cableSizeTextView.text = dataSizeCable

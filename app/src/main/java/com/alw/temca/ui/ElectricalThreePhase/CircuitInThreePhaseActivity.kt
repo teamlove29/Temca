@@ -1,4 +1,4 @@
-package com.alw.temca.ui.ElectricalOnePhase
+package com.alw.temca.ui.ElectricalThreePhase
 
 import android.content.Context
 import android.content.Intent
@@ -9,14 +9,10 @@ import android.text.TextWatcher
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import com.alw.temca.R
-import kotlinx.android.synthetic.main.activity_circuit.*
-import kotlinx.android.synthetic.main.activity_circuit_in_one_phase.cardViewCircuitBreaker
-import kotlinx.android.synthetic.main.activity_circuit_in_one_phase.editTextOperating
-import kotlinx.android.synthetic.main.activity_circuit_in_one_phase.textViewCircuit
+import kotlinx.android.synthetic.main.activity_circuit_in_three_phase.*
 
 
-class CircuitInOnePhaseActivity : AppCompatActivity() {
-
+class CircuitInThreePhaseActivity : AppCompatActivity() {
     companion object{
         private val TASK_LIST_PREF_KEY_CIRCUIT = "task_list_circuit"
         private val TASK_LIST_PREF_AMOUNT_ROW = "task_list_amount_row"
@@ -24,15 +20,6 @@ class CircuitInOnePhaseActivity : AppCompatActivity() {
         private val listAmp = arrayListOf("16","20","25","32","40","50","63","80","100","125","160","200","250","320","400","500","630","800","1000")
         private var RowAmountAmpMain:Int = 99
     }
-
-//    fun loadData(){
-//        val sharedPref = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
-//        val dataOfCircuit = sharedPref.getString(TASK_LIST_PREF_KEY_CIRCUIT, "40A")
-//        val rowAmountOfCircuit = sharedPref.getString(TASK_LIST_PREF_AMOUNT_ROW, "99")
-//        RowAmountAmpMain = rowAmountOfCircuit!!.toInt()
-//        textViewCircuit.text = dataOfCircuit
-//        editTextOperating.setText(dataOfCircuit!!.replace("A",""))
-//    }
 
     fun saveData(type: String, value: String){
         val data = value
@@ -45,7 +32,7 @@ class CircuitInOnePhaseActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_circuit_in_one_phase)
+        setContentView(R.layout.activity_circuit_in_three_phase)
 
 
         var intent: Intent
@@ -54,7 +41,7 @@ class CircuitInOnePhaseActivity : AppCompatActivity() {
         val RowAmountAmp = intent.getIntExtra("RowAmountAmp",99) //รับค่าจากหน้าหลัก
 
         if (RowAmountAmp != 99){
-                RowAmountAmpMain = RowAmountAmp
+            RowAmountAmpMain = RowAmountAmp
             saveData("RowAmountAmp", RowAmountAmpMain.toString())
         }
         else{
@@ -69,8 +56,8 @@ class CircuitInOnePhaseActivity : AppCompatActivity() {
         }
 
         cardViewCircuitBreaker.setOnClickListener {
-            intent = Intent(this, CircuitBreakerInOnePhaseActivity::class.java)
-            intent.putExtra("RowAmountAmp",RowAmountAmpMain)
+            intent = Intent(this, CircuitBreakerInThreePhaseActivity::class.java)
+            intent.putExtra("RowAmountAmp", RowAmountAmpMain)
             startActivity(intent)
             finish()
         }
@@ -80,16 +67,16 @@ class CircuitInOnePhaseActivity : AppCompatActivity() {
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 if (s!!.isNotEmpty() && RowAmountAmpMain != 99) {
                     val sToInt = Integer.parseInt(s.toString())
-                        for (i in 0..RowAmountAmpMain){
-                            if(sToInt <= listAmp[i].toInt()){
-                                textViewCircuit.text = "${listAmp[i]}A"
-                                editTextOperating.hint = " "
-                                break
-                            }else {
-                                textViewCircuit.text = "${listAmp[RowAmountAmpMain]}A"
-                                editTextOperating.hint = ""
-                            }
+                    for (i in 0..RowAmountAmpMain){
+                        if(sToInt <= listAmp[i].toInt()){
+                            textViewCircuit.text = "${listAmp[i]}A"
+                            editTextOperating.hint = " "
+                            break
+                        }else {
+                            textViewCircuit.text = "${listAmp[RowAmountAmpMain]}A"
+                            editTextOperating.hint = ""
                         }
+                    }
                 } else {
 //                    if(memoryGroup == 7) textViewCircuit.text = "400A"
 //                    else textViewCircuit.text = "40A"
@@ -100,7 +87,7 @@ class CircuitInOnePhaseActivity : AppCompatActivity() {
     }
 
     fun SubmitCircuitOnClick(view: View) {
-        val Intent = Intent(this, OnePhaseActivity::class.java)
+        val Intent = Intent(this, ThreePhaseActivity::class.java)
         Intent.putExtra("dataCircuit",textViewCircuit.text)
         startActivity(Intent)
         finish()

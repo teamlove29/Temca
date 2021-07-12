@@ -7,7 +7,7 @@ android:layout_width="match_parent"
 android:layout_height="match_parent"
 android:orientation="vertical"
 android:background="#EEEEEE"
-tools:context=".ui.AmountInPipe.SizeCableInPipeActivity">
+tools:context=".ui.ElectricalThreePhase.CircuitBreakerInThreePhaseActivity">
 
 <RelativeLayout
     android:paddingBottom="40dp"
@@ -25,22 +25,22 @@ tools:context=".ui.AmountInPipe.SizeCableInPipeActivity">
         android:background="@drawable/temca_logo_mini"/>
 
     <TextView
-        android:id="@+id/headerTypeCable"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_toRightOf="@id/logoImageView"
         android:layout_centerVertical="true"
         android:fontFamily="@font/mitr_regular"
-        android:textColor="@color/btnBlue"
+        android:textColor="@color/black"
         android:textSize="20sp"
-        android:text="@string/typeAndAmountInPipe"
+        android:text="@string/title_three_phase"
         android:maxLines="1"
         android:autoSizeTextType="uniform"
-        android:autoSizeMinTextSize="24sp"
+        android:autoSizeMinTextSize="20sp"
         android:autoSizeMaxTextSize="30sp"
         android:autoSizeStepGranularity="5sp"/>
 
 </RelativeLayout>
+
 
 <TextView
     android:paddingLeft="15dp"
@@ -50,10 +50,10 @@ tools:context=".ui.AmountInPipe.SizeCableInPipeActivity">
     android:fontFamily="@font/mitr_regular"
     android:textColor="@color/black"
     android:textSize="18sp"
-    android:text="ขนาดสายไฟ"/>
+    android:text="Circuit Breaker (ขนาดของเบรกเกอร์)"/>
 
 <androidx.recyclerview.widget.RecyclerView
-    android:id="@+id/recyclerViewSizeCable"
+    android:id="@+id/recyclerViewCircuit"
     android:layout_width="match_parent"
     android:layout_height="wrap_content" />
 

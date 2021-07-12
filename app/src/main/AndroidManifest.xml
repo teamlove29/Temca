@@ -19,34 +19,40 @@
         android:theme="@style/Theme.Temca"
         android:versionCode="3"
         android:versionName="1.2">
-
+        <activity android:name=".ui.CurrentRating.PhaseInCurrntActivity"></activity>
+        <activity android:name=".ui.CurrentRating.PhaseInCurrentActivity" />
+        <activity android:name=".ui.CurrentRating.CurrentRatingActivity" />
+        <activity android:name=".ui.ElectricalThreePhase.ReportInThreePhaseActivity" />
+        <activity android:name=".ui.ElectricalOnePhase.ReportInOnePhaseActivity" />
+        <activity android:name=".ui.ElectricalThreePhase.CircuitBreakerInThreePhaseActivity" />
+        <activity android:name=".ui.ElectricalThreePhase.CircuitInThreePhaseActivity" />
+        <activity android:name=".ui.ElectricalThreePhase.TypeCableInThreePhaseActivity" />
+        <activity android:name=".ui.ElectricalThreePhase.InstallationInThreePhaseActivity" />
         <activity android:name=".ui.ElectricalOnePhase.CircuitBreakerInOnePhaseActivity" />
         <activity android:name=".ui.ElectricalOnePhase.CircuitInOnePhaseActivity" />
         <activity android:name=".ui.ElectricalOnePhase.TypeCableInOnePhaseActivity" />
         <activity android:name=".ui.ElectricalOnePhase.InstallationInOnePhaseActivity" />
         <activity android:name=".ui.ElectricalThreePhase.ThreePhaseActivity" />
         <activity android:name=".ui.ElectricalOnePhase.OnePhaseActivity" />
-
         <activity android:name=".ui.AmountInPipe.ReportInPipeActivity" />
         <activity android:name=".ui.AmountInPipe.SizeCableInPipeActivity" />
         <activity android:name=".ui.AmountInPipe.TypeCableInPipeActivity" />
         <activity
             android:name=".ui.AmountInPipe.AmountInPipeActivity"
             android:windowSoftInputMode="adjustPan" />
-
         <activity android:name=".ui.AmountInRails.ReportInRailsActivity" />
         <activity android:name=".ui.AmountInRails.SizeConduitInRailsActivity" />
         <activity android:name=".ui.AmountInRails.TypeCableInRailsActivity" />
         <activity android:name=".ui.AmountInRails.SizeCableInRailsActivity" />
         <activity android:name=".ui.AmountInRails.AmountInRailsActivity" />
-
         <activity android:name=".ui.Moter.MoterReportActivity" />
         <activity android:name=".ui.Transformer.TransformerReportActivity" />
         <activity android:name=".ui.Moter.SizeMoterActivity" />
         <activity android:name=".ui.Moter.StartPatternActivity" />
         <activity android:name=".ui.Transformer.PressureVoltsActivity" />
         <activity android:name=".ui.Moter.UnitMoterActivity" />
-        <activity android:name=".ui.Moter.MoterActivity"
+        <activity
+            android:name=".ui.Moter.MoterActivity"
             android:windowSoftInputMode="stateHidden|adjustResize" />
         <activity android:name=".ui.Transformer.InstallationTransformerActivity" />
         <activity android:name=".ui.Transformer.TransformerSizeActivity" />
@@ -70,8 +76,6 @@
             android:name=".ui.WireSize.WireSizeActivity"
             android:windowSoftInputMode="stateHidden|adjustResize" />
         <activity android:name=".ui.WireSize.PhaseActivity" />
-
-
         <activity
             android:name=".MainActivity"
             android:screenOrientation="portrait">

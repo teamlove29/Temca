@@ -4,23 +4,23 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
+import android.text.*
+import android.text.style.SubscriptSpan
+import android.text.style.SuperscriptSpan
 import android.view.View
+import android.view.inputmethod.InputMethodManager
+import com.alw.temca.Function.FindDetailInstallation
 import com.alw.temca.Model.RailSizeModel
+import com.alw.temca.Model.ReportResultWireSize
 import com.alw.temca.R
+import com.alw.temca.ui.ElectricalOnePhase.CircuitInOnePhaseActivity
+import com.alw.temca.ui.ElectricalOnePhase.InstallationInOnePhaseActivity
 import com.alw.temca.ui.ElectricalOnePhase.OnePhaseActivity
+import com.alw.temca.ui.ElectricalOnePhase.ReportInOnePhaseActivity
 import com.alw.temca.ui.SponsorActivity
+import jxl.Workbook
 import kotlinx.android.synthetic.main.activity_three_phase.*
-import kotlinx.android.synthetic.main.activity_three_phase.btnCal
-import kotlinx.android.synthetic.main.activity_three_phase.circuitTextView
-import kotlinx.android.synthetic.main.activity_three_phase.editTextDistance
-import kotlinx.android.synthetic.main.activity_three_phase.installationTextView
-import kotlinx.android.synthetic.main.activity_three_phase.phaseTextView
-import kotlinx.android.synthetic.main.activity_three_phase.tableBeforeCalculate
-import kotlinx.android.synthetic.main.activity_three_phase.tableBeforeCalculateGroup7
-import kotlinx.android.synthetic.main.activity_three_phase.typeCableTextView
-import kotlinx.android.synthetic.main.activity_three_phase.wayBackActivity1
+import java.io.IOException
 
 class ThreePhaseActivity : AppCompatActivity() {
 
@@ -122,13 +122,199 @@ class ThreePhaseActivity : AppCompatActivity() {
 
     }
 
-    fun calculatorOnClick(view: View) {}
-    fun ReportOnClick(view: View) {}
+    fun calculatorOnClick(view: View) {
 
-    fun installationOnClick(view: View) {}
-    fun typeCableOnClick(view: View) {}
-    fun CircuitOnClick(view: View) {}
-    fun DestanceOnClick(view: View) {}
+        if (editTextDistance.text.isEmpty()){
+            editTextDistance.setText("0")
+            textViewShow5.visibility = View.GONE
+            textViewReferenceVoltage.visibility = View.GONE
+            textViewShow6.visibility = View.GONE
+        }else{
+            textViewShow5.visibility = View.VISIBLE
+            textViewReferenceVoltage.visibility = View.VISIBLE
+            textViewShow6.visibility = View.VISIBLE
+        }
+
+
+        if (circuitTextView.text.isEmpty()){
+            circuitTextView.text = "40A"
+        }
+
+        if(editTextDistance.length() > 0 ){
+            if(editTextDistance.text.toString() == "0" ) {
+                editTextDistance.setText("0")
+                textViewShow5.visibility = View.GONE
+                textViewReferenceVoltage.visibility = View.GONE
+                textViewShow6.visibility = View.GONE
+            }
+            else if(editTextDistance.text.toString() == "00") editTextDistance.setText("0")
+            else if(editTextDistance.text.toString() == "000") editTextDistance.setText("0")
+            else if(editTextDistance.text.toString() == "0000") editTextDistance.setText("0")
+            else if(editTextDistance.text.toString().slice(0..0) == "0"){
+                for(i in 0..3){
+                    if(editTextDistance.text.toString().slice(0..0) != "0") break
+                    else editTextDistance.setText(editTextDistance.text.toString().slice(1 until editTextDistance.length()))
+                }
+            }else{
+                textViewShow5.visibility = View.VISIBLE
+                textViewReferenceVoltage.visibility = View.VISIBLE
+                textViewShow6.visibility = View.VISIBLE
+            }
+        }
+
+        btnCal.visibility = View.GONE
+        tableBeforeCalculate.visibility = View.VISIBLE
+        wayBackActivity1.visibility = View.GONE
+        editTextDistance.clearFocus()
+        btnCal.apply {
+            hideKeyboard()
+        }
+
+        try {
+            val circuitCheckGroup:String = installationOfTable(installationTextView.text.toString())
+            val circuitCheckCableType:Int = circuitCheckPhaseAndCableType(phaseTextView.text.toString(), typeCableTextView.text.toString())
+            val typeCable = applicationContext.assets.open(circuitCheckGroup)
+            val wb = Workbook.getWorkbook(typeCable)
+            val sheet = wb.getSheet(circuitCheckCableType)
+
+            tableBeforeCalculate.visibility = View.VISIBLE
+            for(i in 2..20){
+                val checkAmp = sheet.getCell(0, i).contents.toInt()
+                val circuitTextViewToInt = Integer.parseInt(circuitTextView.text.toString().replace("A", ""))
+                if(circuitTextViewToInt <= checkAmp){
+
+                    val cableSize = sheet.getCell(1, i).contents
+                    val cableSizeWithOutX = sheet.getCell(6, i).contents
+                    val sizeWireGround = sheet.getCell(2, i).contents
+                    val resultSizeConduitOfmm = sheet.getCell(3, i).contents
+                    val resultSizeConduitOfInch = sheet.getCell(4, i).contents
+                    val temp:String
+                    var pressureDropIndexTable:Int
+                    if(resultSizeConduitOfInch == "-") temp = "${resultSizeConduitOfmm}mm"
+                    else temp = "${resultSizeConduitOfmm} mm ( ${resultSizeConduitOfInch} inch )"
+
+                    val s = SpannableString(temp.trim())
+                    if (temp.indexOf('/') != -1) {
+                        val len = temp.length
+                        s.setSpan(SuperscriptSpan(), len - 10, len - 9, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) // ตัวเศษ
+                        s.setSpan( applicationContext,len - 10, len - 9, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) // ตัวเศษ
+                        s.setSpan(applicationContext, len - 9, len - 8, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) // ตัว /
+                        s.setSpan(SubscriptSpan(), len - 8, len - 7, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) // ตัวส่วน
+                        s.setSpan(applicationContext, len - 8, len-7, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) // ตัวส่วน
+                    }
+
+                    if(cableSize.length > 10) textViewShow2.text = Html.fromHtml("${cableSize.replace("mm","mm<sup><small><small>2</small></small></sup>")}")
+                    else textViewShow2.text = Html.fromHtml("$cableSize mm<sup><small><small>2</small></small></sup>")
+
+                    if(typeCableTextView.text == "NYY-G" || typeCableTextView.text == "VCT-G"){
+                        textViewResultWireGround.text = "-"
+                        pressureDropIndexTable = 1
+                    }else{
+                        textViewResultWireGround.text = Html.fromHtml("$sizeWireGround mm<sup><small><small>2</small></small></sup>")
+                        if(typeCableTextView.text == "XLPE") pressureDropIndexTable = 2
+                        else pressureDropIndexTable = 0
+                    }
+                    textViewShow4.text = s
+
+                    for (h in 2..20) {
+                        val pressureCable = applicationContext.assets.open("pressure_drop.xls") // pressure_drop_file
+                        val wbPressure = Workbook.getWorkbook(pressureCable)
+                        val sheetPressure = wbPressure.getSheet(pressureDropIndexTable)
+                        val fineCableTypeInTable = sheetPressure.getCell(0, h).contents
+                        val amountDeistance = Integer.parseInt(editTextDistance.text.toString())
+
+                        if (cableSizeWithOutX == fineCableTypeInTable) { // แก้ cableSize ตัดคำออก
+                            val getreslutInTable = sheetPressure.getCell(1, h).contents.toDouble()
+                            val pullResult = getreslutInTable * Integer.parseInt(circuitTextView.text.toString().replace("A", "")) * amountDeistance / 1000 // result
+                            val PercentPressure  = 100 * pullResult / 230 // result
+
+
+                            var pullResulttoString = "${"%.2f V".format(pullResult)}"
+                            var percentPressuretoString = "${"%.2f V".format(PercentPressure)}"
+                            if(pullResult >= 1000){
+                                pullResulttoString = pullResulttoString.replace("${pullResulttoString.slice(0..0)}","${pullResulttoString.slice(0..0)},")
+                                if(PercentPressure >= 1000){
+                                    percentPressuretoString = percentPressuretoString.replace("${percentPressuretoString.slice(0..0)}","${percentPressuretoString.slice(0..0)},")
+                                }
+                                textViewShow6.text = "$pullResulttoString $percentPressuretoString"
+                            }else{
+                                textViewShow6.text = "${"%.2f V".format(pullResult)} (${"%.2f".format(PercentPressure)}%) "
+                            }
+                        }
+                    }
+                    break
+                }
+            }
+
+
+
+        }catch (e: IOException){ println("Error : $e") }
+
+
+    }
+    fun ReportOnClick(view: View) {
+        val dataToReport = ArrayList<ReportResultWireSize>()
+        val intent = Intent(this, ReportInThreePhaseActivity::class.java)
+//        val bundle = Bundle()
+        val textInstallation = FindDetailInstallation(installationTextView.text.toString())
+
+        dataToReport.add(
+            ReportResultWireSize(
+                phaseTextView.text.toString(), // phase
+                textInstallation,  // groupinstallation
+                typeCableTextView.text.toString(), // typcable
+                circuitTextView.text.toString(), // CB
+                editTextDistance.text.toString(), // amountDis
+                textViewShow2.text.toString().replace("mm2","mm"), // text2 is cablesize
+                textViewResultWireGround.text.toString(), // wiresizegroud
+                textViewShow4.text.toString(), // text4 is conduitsize
+                textViewShow6.text.toString()) // result presure
+        )
+
+        intent.putParcelableArrayListExtra("DataFromWireSize",dataToReport)
+        startActivityForResult(intent, OnePhaseActivity.TASK_NAME_REQUEST_CODE)
+        finish()
+    }
+
+    fun installationOnClick(view: View) {
+        val intent = Intent(this, InstallationInThreePhaseActivity::class.java)
+        startActivityForResult(intent, TASK_NAME_REQUEST_CODE)
+    }
+    fun typeCableOnClick(view: View) {
+        val intent = Intent(this, TypeCableInThreePhaseActivity::class.java)
+        if(installationTextView.text == "กลุ่ม 5"){
+            intent.putExtra("Group", "Group5")
+        }
+        startActivityForResult(intent, OnePhaseActivity.TASK_NAME_REQUEST_CODE)
+    }
+    fun CircuitOnClick(view: View) {
+
+        val intent = Intent(this, CircuitInThreePhaseActivity::class.java)
+        val circuitCheckGroup:String = installationOfTable(installationTextView.text.toString())
+        val circuitCheckCableType:Int = circuitCheckPhaseAndCableType(phaseTextView.text.toString(), typeCableTextView.text.toString())
+        val typeCable = applicationContext.assets.open(circuitCheckGroup)
+        val wb = Workbook.getWorkbook(typeCable)
+
+        val sheet = wb.getSheet(circuitCheckCableType)
+        for(i in 2..20){
+            val checkAmountAmp = sheet.getCell(0, i).contents.toInt()
+            if(checkAmountAmp == 0){
+                intent.putExtra("RowAmountAmp", i-3)
+                startActivity(intent)
+                finish()
+                break
+            }
+        }
+
+    }
+    fun DestanceOnClick(view: View) {
+        editTextDistance.setText("")
+        editTextDistance.hint = " "
+        editTextDistance.requestFocus()
+        val imm = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.showSoftInput(editTextDistance, InputMethodManager.SHOW_IMPLICIT)
+        wayBackActivity1.visibility = View.VISIBLE
+    }
 
     fun backOnClick(view: View) {
         finish()
@@ -204,37 +390,27 @@ class ThreePhaseActivity : AppCompatActivity() {
 
         }
     }
+    private fun View.hideKeyboard() {
+        val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(windowToken, 0)
+    }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode === TASK_NAME_REQUEST_CODE){
+        if (requestCode === OnePhaseActivity.TASK_NAME_REQUEST_CODE){
             if(resultCode == RESULT_OK){
-                val dataPhase = data!!.getIntExtra("dataPhase", 0)
-                val dataInstallation = data.getStringExtra("dataInstall")
+                val dataInstallation = data!!.getStringExtra("dataInstall")
                 val dataInstallationDes = data.getStringExtra("dataInstallDes").toString()
                 val dataTypeCable = data.getStringExtra("dataTypeCable")
-//                val dataCircuit = data!!.getStringExtra("dataCircuit")
 
-                if (dataPhase != 0){
-                    phaseTextView.text = "$dataPhase เฟส"
-                    saveData("phase", dataPhase.toString())
-                }
                 if (dataInstallation != null) {
                     val dataInstallationSlice = dataInstallation.slice(0..6)
                     if(dataInstallationSlice == "กลุ่ม 5"){
-                        if (typeCableTextView.text != "NYY" && typeCableTextView.text != "XLPE" && typeCableTextView.text != "VCT" && typeCableTextView.text != "NYY-G" && typeCableTextView.text != "VCT-G"){
+                        if (typeCableTextView.text == "IEC01") {
                             typeCableTextView.text = "NYY"
+                            saveData("typeCable", typeCableTextView.text.toString())
                         }
-                        circuitTextView.text = "40A"
-                    }else if(dataInstallationSlice == "กลุ่ม 7"){
-                        if(typeCableTextView.text != "NYY 1C" && typeCableTextView.text != "NYY 4C" && typeCableTextView.text != "XLPE 1C" && typeCableTextView.text != "XLPE 4C"){
-                            typeCableTextView.text = "NYY 1C"
-                        }
-                        if(phaseTextView.text != "3 เฟส"){
-                            phaseTextView.text = "3 เฟส"
-                        }
-                        circuitTextView.text = "400A"
-                    }else circuitTextView.text = "40A"
+                    }
 
                     installationTextView.text = dataInstallationSlice
                     saveData("installation", dataInstallation)
@@ -244,14 +420,16 @@ class ThreePhaseActivity : AppCompatActivity() {
                     typeCableTextView.text = dataTypeCable
                     saveData("typeCable", dataTypeCable)
                 }
+                circuitTextView.text = "40A"
+                saveData("circuit", "40A")
+
             }
             wayBackActivity1.visibility = View.VISIBLE
         }
-//        sponsorImageView.visibility = View.VISIBLE
         tableBeforeCalculate.visibility = View.GONE
-        tableBeforeCalculateGroup7.visibility = View.GONE
         btnCal.visibility = View.VISIBLE
-//        circuitTextView.text = "40A"
+
+
     }
 
 

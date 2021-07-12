@@ -10,4 +10,6 @@
     <string name="typeAndAmountInPipe">หาชนิดและจำนวนสายในท่อ</string>
     <string name="typeAndAmountInRails">หาชนิดและจำนวนสายในรางเดินสาย</string>
     <string name="title_one_phase">ขนาดวงจรไฟฟ้า 1 เฟส</string>
+    <string name="title_three_phase">ขนาดวงจรไฟฟ้า 3 เฟส</string>
+    <string name="title_current_rating">หาพิกัดกระแส</string>
 </resources>

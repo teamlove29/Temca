@@ -9,12 +9,13 @@ import com.alw.temca.Adapter.AdapterInPipe.SizeCableAdapter
 import com.alw.temca.Interfaces.onClickInAdapter
 import com.alw.temca.Model.SizeCableModel
 import com.alw.temca.R
+import jxl.Workbook
 import kotlinx.android.synthetic.main.activity_size_cable_in_rails.*
-
 import java.util.ArrayList
 
 class SizeCableInPipeActivity : AppCompatActivity(),onClickInAdapter {
     private val listSizeCable = ArrayList<SizeCableModel>()
+    private val listSizeCable2 = ArrayList<SizeCableModel>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_size_cable_in_pipe)
@@ -40,14 +41,44 @@ class SizeCableInPipeActivity : AppCompatActivity(),onClickInAdapter {
         listSizeCable.add(SizeCableModel("400 mm2"))
         listSizeCable.add(SizeCableModel("500 mm2"))
 
-        recyclerViewSizeCable.adapter = SizeCableAdapter(listSizeCable,this)
+        val typeCableOfMain = intent.getStringExtra("typeCable").toString()
+
+
+        val amountRowInTable:Int = when(typeCableOfMain){
+            "IEC01" -> 17 // 400
+            "NYY 1C" -> 18 // 500
+            "NYY 2C" -> 16 // 300
+            "NYY 3C" -> 16 // 300
+            "NYY 4C" -> 16 // 300
+            "XLPE 1C" -> 20 // 800
+            "XLPE 2C" -> 17 // 400
+            "XLPE 3C" -> 17 // 400
+            "XLPE 4C" -> 17 // 400
+            "VCT 1C" -> 8 // 35
+            "VCT 2C" -> 8 // 35
+            "VCT 3C" -> 8 // 35
+            "VCT 4C" -> 8 // 35
+            "NYY 2C - G" -> 16 // 300
+            "NYY 3C - G" -> 16 // 300
+            "NYY 4C - G" -> 16 // 300
+            "VCT 2C - G" -> 8 // 35
+            "VCT 3C - G" -> 8 // 35
+            "VCT 4C - G" -> 8 // 35
+            else -> 0
+        }
+
+        for(i in 0..amountRowInTable){
+            listSizeCable2.add(listSizeCable[i])
+        }
+
+        recyclerViewSizeCable.adapter = SizeCableAdapter(listSizeCable2,this)
         recyclerViewSizeCable.layoutManager = LinearLayoutManager(this)
         
     }
 
     override fun onClick(postion: Int) {
         val resultIntent = Intent()
-        resultIntent.putExtra("dataSizeCable",listSizeCable[postion].name)
+        resultIntent.putExtra("dataSizeCable",listSizeCable2[postion].name)
         setResult(Activity.RESULT_OK, resultIntent)
         finish()
 

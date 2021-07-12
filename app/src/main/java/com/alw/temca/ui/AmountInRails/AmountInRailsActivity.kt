@@ -12,18 +12,7 @@ import com.alw.temca.R
 import com.alw.temca.ui.AmountInPipe.AmountInPipeActivity
 import com.alw.temca.ui.SponsorActivity
 import jxl.Workbook
-import kotlinx.android.synthetic.main.activity_amount_in_pipe.*
 import kotlinx.android.synthetic.main.activity_amount_in_rails.*
-import kotlinx.android.synthetic.main.activity_amount_in_rails.SizeConduitTextView
-import kotlinx.android.synthetic.main.activity_amount_in_rails.btnCalInPipeSize
-import kotlinx.android.synthetic.main.activity_amount_in_rails.cableSizeTextView
-import kotlinx.android.synthetic.main.activity_amount_in_rails.tableBeforeCalculateInPipe
-import kotlinx.android.synthetic.main.activity_amount_in_rails.typeCableTextView
-import kotlinx.android.synthetic.main.activity_amount_in_rails.wayBackActivity1
-import kotlinx.android.synthetic.main.activity_amount_in_rails.wayBackActivity2
-import kotlinx.android.synthetic.main.activity_pipe_size.*
-import kotlinx.android.synthetic.main.activity_pipe_size.editTextAmountCable
-import kotlinx.android.synthetic.main.activity_wire_size.*
 import java.io.IOException
 
 
@@ -48,7 +37,7 @@ class AmountInRailsActivity : AppCompatActivity() {
         val dataOfSizeCable =
             sharedPref.getString(TASK_LIST_PREF_KEY_SIZE_IN_AMOUNT_RAILS, "2.5 mm2")
         val dataOfRails =
-            sharedPref.getString(TASK_LIST_PREF_KEY_AMOUNT_IN_AMOUNT_RAILS, "50x75 mm.")
+            sharedPref.getString(TASK_LIST_PREF_KEY_AMOUNT_IN_AMOUNT_RAILS, "mm.")
 
         typeCableTextView.text = dataOfTypeCable
         cableSizeTextView.text = dataOfSizeCable
@@ -77,6 +66,8 @@ class AmountInRailsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_amount_in_rails)
 
+        if(SizeConduitTextView.text == "mm.") btnCalInPipeSize.visibility = View.GONE
+        else btnCalInPipeSize.visibility = View.VISIBLE
     }
 
     fun calculatorOnClick(view: View) {
@@ -172,11 +163,14 @@ class AmountInRailsActivity : AppCompatActivity() {
     // เลือกขนาดสายไฟ
     fun onClickChooseSizeCable(view: View) {
         val intent = Intent(this, SizeCableInRailsActivity::class.java)
+        intent.putExtra("typeCable",typeCableTextView.text)
         startActivityForResult(intent, AmountInPipeActivity.TASK_NAME_REQUEST_CODE)
     }
     // เลือกขนาดราง
     fun onClickChooseSizeConduit(view: View) {
         val intent = Intent(this, SizeConduitInRailsActivity::class.java)
+        intent.putExtra("typeCable",typeCableTextView.text)
+        intent.putExtra("sizeCable",cableSizeTextView.text)
         startActivityForResult(intent, AmountInPipeActivity.TASK_NAME_REQUEST_CODE)
     }
 
@@ -212,21 +206,33 @@ class AmountInRailsActivity : AppCompatActivity() {
                 if (dataTypeCable != null) {
                     typeCableTextView.text = dataTypeCable
                     saveData("typeCable", dataTypeCable)
+
+                    cableSizeTextView.text = "2.5 mm2"
+                    SizeConduitTextView.text = "mm."
+                    saveData("sizeCable", "2.5 mm2")
+                    saveData("sizeConduit", "mm.")
                 }
                 if (dataSizeCable != null) {
                     cableSizeTextView.text = dataSizeCable
+                    SizeConduitTextView.text = "mm."
                     saveData("sizeCable", dataSizeCable)
+                    saveData("sizeConduit", "mm.")
                 }
                 if (dataSizeConduit != null) {
                     SizeConduitTextView.text = dataSizeCable
                     saveData("sizeConduit", dataSizeConduit)
                 }
+
             }
         }
         wayBackActivity1.visibility = View.VISIBLE
         wayBackActivity2.visibility = View.GONE
         btnCalInPipeSize.visibility = View.VISIBLE
         tableBeforeCalculateInPipe.visibility = View.GONE
+
+        if(SizeConduitTextView.text == "mm.") btnCalInPipeSize.visibility = View.GONE
+        else btnCalInPipeSize.visibility = View.VISIBLE
+
     }
 
 }
