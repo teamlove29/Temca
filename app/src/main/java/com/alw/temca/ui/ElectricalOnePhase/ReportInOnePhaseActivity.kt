@@ -36,6 +36,20 @@ import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.single.PermissionListener
 
 import kotlinx.android.synthetic.main.activity_report_in_one_phase.*
+import kotlinx.android.synthetic.main.activity_report_in_one_phase.blockPressureDrop
+import kotlinx.android.synthetic.main.activity_report_in_one_phase.btnSendEmailInWireSize
+import kotlinx.android.synthetic.main.activity_report_in_one_phase.textViewDegree
+import kotlinx.android.synthetic.main.activity_report_in_one_phase.textViewReferenceVoltageInReport
+import kotlinx.android.synthetic.main.activity_report_in_one_phase.textViewResultBreakerInReportData
+import kotlinx.android.synthetic.main.activity_report_in_one_phase.textViewResultCableTypeInReport
+import kotlinx.android.synthetic.main.activity_report_in_one_phase.textViewResultConduitSize
+import kotlinx.android.synthetic.main.activity_report_in_one_phase.textViewResultDistanceInReport
+import kotlinx.android.synthetic.main.activity_report_in_one_phase.textViewResultInstallationInReport
+import kotlinx.android.synthetic.main.activity_report_in_one_phase.textViewResultPhaseInReport
+import kotlinx.android.synthetic.main.activity_report_in_one_phase.textViewResultPressure
+import kotlinx.android.synthetic.main.activity_report_in_one_phase.textViewResultWireGroundInReport
+import kotlinx.android.synthetic.main.activity_report_in_one_phase.textViewResultWireSize
+import kotlinx.android.synthetic.main.activity_report_in_three_phase.*
 
 import java.io.ByteArrayOutputStream
 
@@ -78,6 +92,11 @@ class ReportInOnePhaseActivity : AppCompatActivity() {
             }
         }else textViewResultConduitSize.text = DataFromWireSize[0].condutiSize
 
+        if(DataFromWireSize[0].pressure == "0.00 V (0.00%)"){
+            blockPressureDrop.visibility = View.GONE
+        }else{
+            blockPressureDrop.visibility = View.VISIBLE
+        }
         textViewResultPressure.text = DataFromWireSize[0].pressure
         if(DataFromWireSize[0].phase == "1 เฟส"){
             textViewReferenceVoltageInReport.text = "(แรงดันอ้างอิง 230V)"
@@ -232,8 +251,11 @@ class ReportInOnePhaseActivity : AppCompatActivity() {
             addLineSpace(document)
             addItemAndResult(document, "                ขนาดท่อไฟฟ้า                         ", data[0].condutiSize, titleStyleTitle, valueStyle)
             addLineSpace(document)
-            addItemAndResult(document, "                แรงดันตก                                 ", data[0].pressure, titleStyleTitle, valueStyle)
-            addItemAndResult(document, "                     ${textViewReferenceVoltageInReport.text}", "", subTitleStyle, valueStyle)
+
+            if(data[0].pressure != "0.00 V (0.00%)"){
+                addItemAndResult(document, "                แรงดันตก                                 ", data[0].pressure, titleStyleTitle, valueStyle)
+                addItemAndResult(document, "                     ${textViewReferenceVoltageInReport.text}", "", subTitleStyle, valueStyle)
+            }
             addLineSpace(document)
             addLineSpace(document)
 

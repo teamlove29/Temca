@@ -205,7 +205,7 @@ tools:context=".ui.ElectricalThreePhase.ReportInThreePhaseActivity">
                     android:id="@+id/textViewDistanceInReport"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="50dp"
+                    android:layout_marginLeft="45dp"
                     android:text="ระยะสายไฟฟ้า : "
                     android:textColor="@color/black"
                     android:fontFamily="@font/sarabun_medium"
@@ -331,6 +331,7 @@ tools:context=".ui.ElectricalThreePhase.ReportInThreePhaseActivity">
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/blockPressureDrop"
                 android:padding="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">

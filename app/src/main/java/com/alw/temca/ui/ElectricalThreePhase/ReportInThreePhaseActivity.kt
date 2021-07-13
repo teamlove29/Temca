@@ -16,6 +16,7 @@ import android.provider.Settings
 import android.text.Html
 import android.text.SpannableString
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.core.content.FileProvider
 import com.alw.temca.Common.ApplicationSelectorReceiver
@@ -77,6 +78,11 @@ class ReportInThreePhaseActivity : AppCompatActivity() {
             }
         }else textViewResultConduitSize.text = DataFromWireSize[0].condutiSize
 
+        if(DataFromWireSize[0].pressure == "0.00 V (0.00%)"){
+            blockPressureDrop.visibility = View.GONE
+        }else{
+            blockPressureDrop.visibility = View.VISIBLE
+        }
         textViewResultPressure.text = DataFromWireSize[0].pressure
         if(DataFromWireSize[0].phase == "1 เฟส"){
             textViewReferenceVoltageInReport.text = "(แรงดันอ้างอิง 230V)"
@@ -232,8 +238,11 @@ class ReportInThreePhaseActivity : AppCompatActivity() {
             addLineSpace(document)
             addItemAndResult(document, "                ขนาดท่อไฟฟ้า                         ", data[0].condutiSize, titleStyleTitle, valueStyle)
             addLineSpace(document)
-            addItemAndResult(document, "                แรงดันตก                                 ", data[0].pressure, titleStyleTitle, valueStyle)
-            addItemAndResult(document, "                     ${textViewReferenceVoltageInReport.text}", "", subTitleStyle, valueStyle)
+
+            if(data[0].pressure != "0.00 V (0.00%)"){
+                addItemAndResult(document, "                แรงดันตก                                 ", data[0].pressure, titleStyleTitle, valueStyle)
+                addItemAndResult(document, "                     ${textViewReferenceVoltageInReport.text}", "", subTitleStyle, valueStyle)
+            }
             addLineSpace(document)
             addLineSpace(document)
 

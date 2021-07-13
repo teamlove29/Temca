@@ -238,7 +238,7 @@ class ThreePhaseActivity : AppCompatActivity() {
                                 }
                                 textViewShow6.text = "$pullResulttoString $percentPressuretoString"
                             }else{
-                                textViewShow6.text = "${"%.2f V".format(pullResult)} (${"%.2f".format(PercentPressure)}%) "
+                                textViewShow6.text = "${"%.2f V".format(pullResult)} (${"%.2f".format(PercentPressure)}%)"
                             }
                         }
                     }
