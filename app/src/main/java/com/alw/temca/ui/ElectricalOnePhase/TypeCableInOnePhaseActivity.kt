@@ -20,14 +20,25 @@ class TypeCableInOnePhaseActivity : AppCompatActivity() ,onClickInAdapter{
 
         val checkGroup = intent.getStringExtra("Group")
 
-        if(checkGroup != "Group5"){
-            typeCableItem.add(TypeCableModel("IEC01"))
+        if(checkGroup == "Group2"){ // has 7
+            typeCableItem.add(TypeCableModel("IEC01")) // 2
+            typeCableItem.add(TypeCableModel("NYY 1C")) // 2, 5
+            typeCableItem.add(TypeCableModel("XLPE 1C")) // 2, 5
+            typeCableItem.add(TypeCableModel("XLPE 2C")) // 2, 5
+            typeCableItem.add(TypeCableModel("VCT 1C")) // 2, 5
+            typeCableItem.add(TypeCableModel("NYY 2C - G")) // 2
+            typeCableItem.add(TypeCableModel("VCT 2C - G")) // 2
+
         }
-        typeCableItem.add(TypeCableModel("NYY"))
-        typeCableItem.add(TypeCableModel("XLPE"))
-        typeCableItem.add(TypeCableModel("VCT"))
-        typeCableItem.add(TypeCableModel("NYY-G"))
-        typeCableItem.add(TypeCableModel("VCT-G"))
+        else if (checkGroup == "Group5"){ // has 6
+            typeCableItem.add(TypeCableModel("NYY 1C")) // 2, 5
+            typeCableItem.add(TypeCableModel("XLPE 1C")) // 2, 5
+            typeCableItem.add(TypeCableModel("XLPE 2C")) // 2, 5
+            typeCableItem.add(TypeCableModel("VCT 1C")) // 2, 5
+            typeCableItem.add(TypeCableModel("NYY - G")) // 5
+            typeCableItem.add(TypeCableModel("VCT - G")) // 5
+        }
+
 
         recyclerViewTypeCable.adapter = TypeCableOnePhase(typeCableItem,this)
         recyclerViewTypeCable.layoutManager = LinearLayoutManager(this)

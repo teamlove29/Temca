@@ -32,12 +32,12 @@ tools:context=".ui.Transformer.TransformerActivity">
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             android:layout_toRightOf="@id/logoImageView"
             android:layout_centerVertical="true"
             android:fontFamily="@font/mitr_regular"
             android:textColor="#0E4194"
-            android:textSize="20sp"
+            android:textSize="25sp"
             android:text="ขนาดสายหม้อแปลง"
             android:maxLines="1"
             android:autoSizeTextType="uniform"

@@ -199,9 +199,12 @@ class OnePhaseActivity : AppCompatActivity() {
                         if(cableSize.length > 10) textViewShow2.text = Html.fromHtml("${cableSize.replace("mm","mm<sup><small><small>2</small></small></sup>")}")
                         else textViewShow2.text = Html.fromHtml("$cableSize mm<sup><small><small>2</small></small></sup>")
 
-                        if(typeCableTextView.text == "NYY-G" || typeCableTextView.text == "VCT-G"){
-                            textViewResultWireGround.text = "-"
-                            pressureDropIndexTable = 1
+                        if(typeCableTextView.text == "NYY - G"
+                                || typeCableTextView.text == "VCT - G"
+                                || typeCableTextView.text == "NYY 2C - G"
+                                || typeCableTextView.text == "VCT 2C - G") {
+                                textViewResultWireGround.text = "-"
+                                pressureDropIndexTable = 1
                         }else{
                             textViewResultWireGround.text = Html.fromHtml("$sizeWireGround mm<sup><small><small>2</small></small></sup>")
                             if(typeCableTextView.text == "XLPE") pressureDropIndexTable = 2
@@ -330,7 +333,9 @@ class OnePhaseActivity : AppCompatActivity() {
     }
      fun typeCableOnClick(view: View) {
         val intent = Intent(this, TypeCableInOnePhaseActivity::class.java)
-        if(installationTextView.text == "กลุ่ม 5"){
+        if(installationTextView.text == "กลุ่ม 2"){
+            intent.putExtra("Group", "Group2")
+        }else if(installationTextView.text == "กลุ่ม 5"){
             intent.putExtra("Group", "Group5")
         }
         startActivityForResult(intent, TASK_NAME_REQUEST_CODE)
@@ -347,11 +352,14 @@ class OnePhaseActivity : AppCompatActivity() {
         textViewReferenceVoltage.text = "(แรงดันอ้างอิง 230V)"
         return  when(cableType){
                 "IEC01" -> 0
-                "NYY" -> 1
-                "VCT" -> 2
-                "XLPE" -> 3
-                "NYY-G" -> 4
-                "VCT-G" -> 5
+                "NYY 1C" -> 1
+                "VCT 1C" -> 2
+                "XLPE 1C" -> 3
+                "XLPE 2C" -> 4
+                "NYY - G" -> 5
+                "VCT - G" -> 6
+                "NYY 2C - G" -> 7
+                "VCT 2C - G" -> 8
                 else -> 0
             }
 
@@ -368,10 +376,11 @@ class OnePhaseActivity : AppCompatActivity() {
                 if (dataInstallation != null) {
                     val dataInstallationSlice = dataInstallation.slice(0..6)
                     if(dataInstallationSlice == "กลุ่ม 5"){
-                        if (typeCableTextView.text == "IEC01") {
-                            typeCableTextView.text = "NYY"
+                            typeCableTextView.text = "NYY 1C"
                             saveData("typeCable", typeCableTextView.text.toString())
-                        }
+                    }else{
+                        typeCableTextView.text = "IEC01"
+                        saveData("typeCable", typeCableTextView.text.toString())
                     }
 
                     installationTextView.text = dataInstallationSlice

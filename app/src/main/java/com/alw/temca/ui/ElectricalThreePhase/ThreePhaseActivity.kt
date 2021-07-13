@@ -13,13 +13,24 @@ import com.alw.temca.Function.FindDetailInstallation
 import com.alw.temca.Model.RailSizeModel
 import com.alw.temca.Model.ReportResultWireSize
 import com.alw.temca.R
-import com.alw.temca.ui.ElectricalOnePhase.CircuitInOnePhaseActivity
-import com.alw.temca.ui.ElectricalOnePhase.InstallationInOnePhaseActivity
-import com.alw.temca.ui.ElectricalOnePhase.OnePhaseActivity
-import com.alw.temca.ui.ElectricalOnePhase.ReportInOnePhaseActivity
 import com.alw.temca.ui.SponsorActivity
 import jxl.Workbook
+import kotlinx.android.synthetic.main.activity_one_phase.*
 import kotlinx.android.synthetic.main.activity_three_phase.*
+import kotlinx.android.synthetic.main.activity_three_phase.btnCal
+import kotlinx.android.synthetic.main.activity_three_phase.circuitTextView
+import kotlinx.android.synthetic.main.activity_three_phase.editTextDistance
+import kotlinx.android.synthetic.main.activity_three_phase.installationTextView
+import kotlinx.android.synthetic.main.activity_three_phase.phaseTextView
+import kotlinx.android.synthetic.main.activity_three_phase.tableBeforeCalculate
+import kotlinx.android.synthetic.main.activity_three_phase.textViewReferenceVoltage
+import kotlinx.android.synthetic.main.activity_three_phase.textViewResultWireGround
+import kotlinx.android.synthetic.main.activity_three_phase.textViewShow2
+import kotlinx.android.synthetic.main.activity_three_phase.textViewShow4
+import kotlinx.android.synthetic.main.activity_three_phase.textViewShow5
+import kotlinx.android.synthetic.main.activity_three_phase.textViewShow6
+import kotlinx.android.synthetic.main.activity_three_phase.typeCableTextView
+import kotlinx.android.synthetic.main.activity_three_phase.wayBackActivity1
 import java.io.IOException
 
 class ThreePhaseActivity : AppCompatActivity() {
@@ -206,7 +217,10 @@ class ThreePhaseActivity : AppCompatActivity() {
                     if(cableSize.length > 10) textViewShow2.text = Html.fromHtml("${cableSize.replace("mm","mm<sup><small><small>2</small></small></sup>")}")
                     else textViewShow2.text = Html.fromHtml("$cableSize mm<sup><small><small>2</small></small></sup>")
 
-                    if(typeCableTextView.text == "NYY-G" || typeCableTextView.text == "VCT-G"){
+                    if(typeCableTextView.text == "NYY-G"
+                        || typeCableTextView.text == "VCT - G"
+                        || typeCableTextView.text == "NYY 2C - G"
+                        || typeCableTextView.text == "VCT 2C - G") {
                         textViewResultWireGround.text = "-"
                         pressureDropIndexTable = 1
                     }else{
@@ -272,7 +286,7 @@ class ThreePhaseActivity : AppCompatActivity() {
         )
 
         intent.putParcelableArrayListExtra("DataFromWireSize",dataToReport)
-        startActivityForResult(intent, OnePhaseActivity.TASK_NAME_REQUEST_CODE)
+        startActivityForResult(intent, TASK_NAME_REQUEST_CODE)
         finish()
     }
 
@@ -282,10 +296,12 @@ class ThreePhaseActivity : AppCompatActivity() {
     }
     fun typeCableOnClick(view: View) {
         val intent = Intent(this, TypeCableInThreePhaseActivity::class.java)
-        if(installationTextView.text == "กลุ่ม 5"){
+        if(installationTextView.text == "กลุ่ม 2"){
+            intent.putExtra("Group", "Group2")
+        }else if(installationTextView.text == "กลุ่ม 5"){
             intent.putExtra("Group", "Group5")
         }
-        startActivityForResult(intent, OnePhaseActivity.TASK_NAME_REQUEST_CODE)
+        startActivityForResult(intent, TASK_NAME_REQUEST_CODE)
     }
     fun CircuitOnClick(view: View) {
 
@@ -317,6 +333,8 @@ class ThreePhaseActivity : AppCompatActivity() {
     }
 
     fun backOnClick(view: View) {
+        val sharedPref = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE).edit().clear()
+        sharedPref.apply()
         finish()
     }
     fun sponsorOnClick(view: View) {
@@ -325,9 +343,7 @@ class ThreePhaseActivity : AppCompatActivity() {
     }
     override fun onBackPressed() {
         super.onBackPressed()
-        val sharedPref =
-            getSharedPreferences(OnePhaseActivity.PREF_NAME, Context.MODE_PRIVATE).edit()
-                .clear()
+        val sharedPref = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE).edit().clear()
         sharedPref.apply()
         finish()
     }
@@ -335,60 +351,24 @@ class ThreePhaseActivity : AppCompatActivity() {
         return when(installation){
             "กลุ่ม 2" -> "WireGroup_Group2.xls"
             "กลุ่ม 5" -> "WireGroup_Group5.xls"
-            "กลุ่ม 7" -> "WireGroup_Group7.xls"
             else -> ""
         }
     }
     private fun circuitCheckPhaseAndCableType(phase: String, cableType: String):Int{
-        val sharedPref = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
-        val dataOfInstallationDes = sharedPref.getString(TASK_LIST_PREF_KEY_INSTALLATION_IN_THREE_PHASE_DES, null)
-
-        return if(phase == "1 เฟส"){
-            textViewReferenceVoltage.text = "(แรงดันอ้างอิง 230V)"
-            when(cableType){
-                "IEC01" -> 0
-                "NYY" -> 1
-                "VCT" -> 2
-                "XLPE" -> 3
-                "NYY-G" -> 4
-                "VCT-G" -> 5
-                else -> 0
-            }
-        }else{ // 3 เฟส
-            if(installationTextView.text == "กลุ่ม 7"){
-                textViewReferenceVoltage.text = "(แรงดันอ้างอิง 400V)"
-
-                if(dataOfInstallationDes == "วางบนรางเคเบิ้ล ไม่มีฝาปิดแบบระบายอากาศ"){
-                    when(cableType){
-                        "NYY 1C" -> 0
-                        "NYY 4C" -> 2
-                        "XLPE 1C" -> 4
-                        "XLPE 4C" -> 6
-                        else -> 0
-                    }
-                }else{
-                    when(cableType){
-                        "NYY 1C" -> 1
-                        "NYY 4C" -> 3
-                        "XLPE 1C" -> 5
-                        "XLPE 4C" -> 7
-                        else -> 0
-                    }
-                }
-            }else{
-                textViewReferenceVoltage.text = "(แรงดันอ้างอิง 400V)"
-                when(cableType){
-                    "IEC01" -> 6
-                    "NYY" -> 7
-                    "VCT" -> 8
-                    "XLPE" -> 9
-                    "NYY-G" -> 10
-                    "VCT-G" -> 11
+        textViewReferenceVoltage.text = "(แรงดันอ้างอิง 400V)"
+        return when(cableType){  // 3 เฟส
+                    "IEC01" -> 9
+                    "NYY 1C" -> 10
+                    "VCT 1C" -> 11
+                    "XLPE 1C" -> 12
+                    "XLPE 2C" -> 13
+                    "NYY - G" -> 14
+                    "VCT - G" -> 15
                     else -> 0
                 }
-            }
 
-        }
+
+
     }
     private fun View.hideKeyboard() {
         val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
@@ -397,7 +377,7 @@ class ThreePhaseActivity : AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode === OnePhaseActivity.TASK_NAME_REQUEST_CODE){
+        if (requestCode === TASK_NAME_REQUEST_CODE){
             if(resultCode == RESULT_OK){
                 val dataInstallation = data!!.getStringExtra("dataInstall")
                 val dataInstallationDes = data.getStringExtra("dataInstallDes").toString()
@@ -406,10 +386,11 @@ class ThreePhaseActivity : AppCompatActivity() {
                 if (dataInstallation != null) {
                     val dataInstallationSlice = dataInstallation.slice(0..6)
                     if(dataInstallationSlice == "กลุ่ม 5"){
-                        if (typeCableTextView.text == "IEC01") {
-                            typeCableTextView.text = "NYY"
-                            saveData("typeCable", typeCableTextView.text.toString())
-                        }
+                        typeCableTextView.text = "NYY 1C"
+                        saveData("typeCable", typeCableTextView.text.toString())
+                    }else{
+                        typeCableTextView.text = "IEC01"
+                        saveData("typeCable", typeCableTextView.text.toString())
                     }
 
                     installationTextView.text = dataInstallationSlice
