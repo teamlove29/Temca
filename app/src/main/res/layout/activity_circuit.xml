@@ -26,12 +26,12 @@
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             android:layout_toRightOf="@id/logoImageView"
             android:layout_centerVertical="true"
             android:fontFamily="@font/mitr_regular"
-            android:textColor="@color/black"
-            android:textSize="20sp"
+            android:textColor="@color/btnBlue"
+            android:textSize="25sp"
             android:text="หาขนาดสายไฟ"
             android:maxLines="1"
             android:autoSizeTextType="uniform"
@@ -147,7 +147,7 @@
     </androidx.cardview.widget.CardView>
 
 
-    <com.google.android.material.button.MaterialButton
+    <Button
         android:onClick="SubmitCircuitOnClick"
         android:id="@+id/btnCalInPipeSize"
         android:layout_width="match_parent"
@@ -160,6 +160,7 @@
         android:textSize="18sp"
         android:backgroundTint="@color/btnBlue"
         android:fontFamily="@font/mitr_regular"
+        android:textColor="@color/white"
         android:text="ตกลง"/>
 
 

@@ -13,24 +13,10 @@ import com.alw.temca.Function.FindDetailInstallation
 import com.alw.temca.Model.RailSizeModel
 import com.alw.temca.Model.ReportResultWireSize
 import com.alw.temca.R
+import com.alw.temca.ui.SoonActivity
 import com.alw.temca.ui.SponsorActivity
 import jxl.Workbook
-import kotlinx.android.synthetic.main.activity_one_phase.*
 import kotlinx.android.synthetic.main.activity_three_phase.*
-import kotlinx.android.synthetic.main.activity_three_phase.btnCal
-import kotlinx.android.synthetic.main.activity_three_phase.circuitTextView
-import kotlinx.android.synthetic.main.activity_three_phase.editTextDistance
-import kotlinx.android.synthetic.main.activity_three_phase.installationTextView
-import kotlinx.android.synthetic.main.activity_three_phase.phaseTextView
-import kotlinx.android.synthetic.main.activity_three_phase.tableBeforeCalculate
-import kotlinx.android.synthetic.main.activity_three_phase.textViewReferenceVoltage
-import kotlinx.android.synthetic.main.activity_three_phase.textViewResultWireGround
-import kotlinx.android.synthetic.main.activity_three_phase.textViewShow2
-import kotlinx.android.synthetic.main.activity_three_phase.textViewShow4
-import kotlinx.android.synthetic.main.activity_three_phase.textViewShow5
-import kotlinx.android.synthetic.main.activity_three_phase.textViewShow6
-import kotlinx.android.synthetic.main.activity_three_phase.typeCableTextView
-import kotlinx.android.synthetic.main.activity_three_phase.wayBackActivity1
 import java.io.IOException
 
 class ThreePhaseActivity : AppCompatActivity() {
@@ -202,16 +188,16 @@ class ThreePhaseActivity : AppCompatActivity() {
                     val temp:String
                     var pressureDropIndexTable:Int
                     if(resultSizeConduitOfInch == "-") temp = "${resultSizeConduitOfmm}mm"
-                    else temp = "${resultSizeConduitOfmm} mm ( ${resultSizeConduitOfInch} inch )"
+                    else temp = "$resultSizeConduitOfmm mm ( $resultSizeConduitOfInch\" )"
 
                     val s = SpannableString(temp.trim())
                     if (temp.indexOf('/') != -1) {
                         val len = temp.length
-                        s.setSpan(SuperscriptSpan(), len - 10, len - 9, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) // ตัวเศษ
-                        s.setSpan( applicationContext,len - 10, len - 9, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) // ตัวเศษ
-                        s.setSpan(applicationContext, len - 9, len - 8, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) // ตัว /
-                        s.setSpan(SubscriptSpan(), len - 8, len - 7, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) // ตัวส่วน
-                        s.setSpan(applicationContext, len - 8, len-7, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) // ตัวส่วน
+                        s.setSpan(SuperscriptSpan(), len - 6, len - 5, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) // ตัวเศษ
+                        s.setSpan(applicationContext,len - 6, len - 5, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) // ตัวเศษ
+                        s.setSpan(applicationContext, len - 5, len - 4, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) // ตัว /
+                        s.setSpan(SubscriptSpan(), len - 4, len - 3, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) // ตัวส่วน
+                        s.setSpan(applicationContext, len - 4, len - 3, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) // ตัวส่วน
                     }
 
                     if(cableSize.length > 10) textViewShow2.text = Html.fromHtml("${cableSize.replace("mm","mm<sup><small><small>2</small></small></sup>")}")
@@ -266,6 +252,7 @@ class ThreePhaseActivity : AppCompatActivity() {
 
 
     }
+
     fun ReportOnClick(view: View) {
         val dataToReport = ArrayList<ReportResultWireSize>()
         val intent = Intent(this, ReportInThreePhaseActivity::class.java)
@@ -303,6 +290,7 @@ class ThreePhaseActivity : AppCompatActivity() {
         }
         startActivityForResult(intent, TASK_NAME_REQUEST_CODE)
     }
+
     fun CircuitOnClick(view: View) {
 
         val intent = Intent(this, CircuitInThreePhaseActivity::class.java)
@@ -314,15 +302,19 @@ class ThreePhaseActivity : AppCompatActivity() {
         val sheet = wb.getSheet(circuitCheckCableType)
         for(i in 2..20){
             val checkAmountAmp = sheet.getCell(0, i).contents.toInt()
-            if(checkAmountAmp == 0){
-                intent.putExtra("RowAmountAmp", i-3)
+            if(checkAmountAmp == 0 || checkAmountAmp == 1000){
+                val rowAmount = when(checkAmountAmp){
+                    1000 -> i - 2
+                    else -> i - 3
+                }
+                intent.putExtra("RowAmountAmp", rowAmount)
                 startActivity(intent)
                 finish()
                 break
             }
         }
-
     }
+
     fun DestanceOnClick(view: View) {
         editTextDistance.setText("")
         editTextDistance.hint = " "
@@ -366,9 +358,6 @@ class ThreePhaseActivity : AppCompatActivity() {
                     "VCT - G" -> 15
                     else -> 0
                 }
-
-
-
     }
     private fun View.hideKeyboard() {
         val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
@@ -412,7 +401,5 @@ class ThreePhaseActivity : AppCompatActivity() {
 
 
     }
-
-
 
 }

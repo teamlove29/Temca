@@ -184,16 +184,16 @@ class OnePhaseActivity : AppCompatActivity() {
                         val temp:String
                         var pressureDropIndexTable:Int
                         if(resultSizeConduitOfInch == "-") temp = "${resultSizeConduitOfmm}mm"
-                        else temp = "${resultSizeConduitOfmm} mm ( ${resultSizeConduitOfInch} inch )"
+                        else temp = "$resultSizeConduitOfmm mm ( $resultSizeConduitOfInch\" )"
 
                         val s = SpannableString(temp.trim())
                         if (temp.indexOf('/') != -1) {
                             val len = temp.length
-                            s.setSpan(SuperscriptSpan(), len - 10, len - 9, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) // ตัวเศษ
-                            s.setSpan( applicationContext,len - 10, len - 9, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) // ตัวเศษ
-                            s.setSpan(applicationContext, len - 9, len - 8, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) // ตัว /
-                            s.setSpan(SubscriptSpan(), len - 8, len - 7, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) // ตัวส่วน
-                            s.setSpan(applicationContext, len - 8, len-7, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) // ตัวส่วน
+                            s.setSpan(SuperscriptSpan(), len - 6, len - 5, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) // ตัวเศษ
+                            s.setSpan(applicationContext,len - 6, len - 5, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) // ตัวเศษ
+                            s.setSpan(applicationContext, len - 5, len - 4, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) // ตัว /
+                            s.setSpan(SubscriptSpan(), len - 4, len - 3, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) // ตัวส่วน
+                            s.setSpan(applicationContext, len - 4, len - 3, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) // ตัวส่วน
                         }
 
                         if(cableSize.length > 10) textViewShow2.text = Html.fromHtml("${cableSize.replace("mm","mm<sup><small><small>2</small></small></sup>")}")
@@ -285,8 +285,12 @@ class OnePhaseActivity : AppCompatActivity() {
         val sheet = wb.getSheet(circuitCheckCableType)
         for(i in 2..20){
             val checkAmountAmp = sheet.getCell(0, i).contents.toInt()
-            if(checkAmountAmp == 0){
-                intent.putExtra("RowAmountAmp", i-3)
+            if(checkAmountAmp == 0 || checkAmountAmp == 1000){
+                val rowAmount = when(checkAmountAmp){
+                    1000 -> i - 2
+                    else -> i - 3
+                }
+                intent.putExtra("RowAmountAmp", rowAmount)
                 startActivity(intent)
                 finish()
                 break
