@@ -280,7 +280,7 @@
 <!--                        android:autoSizeMinTextSize="12sp"-->
 <!--                        android:autoSizeMaxTextSize="15sp"-->
 <!--                        android:autoSizeStepGranularity="2sp"-->
-<!--                        android:text="วิธีการใช้งานอยู่"/>-->
+<!--                        android:text="วิธีการใช้งาน"/>-->
 
                     <TextView
                         android:onClick="sponsorOnClick"

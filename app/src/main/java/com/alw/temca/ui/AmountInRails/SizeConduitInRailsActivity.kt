@@ -97,7 +97,413 @@ class SizeConduitInRailsActivity : AppCompatActivity(),onClickInAdapter {
                 else -> 99
             }
         }
+        else if(typeCableOfMain == "NYY 1C"){
+            // เริ่มจาก col ไหน
+            startCol = when(sizeCableOfMain){
+                "1 mm2" -> 0
+                "1.5 mm2" -> 0
+                "2.5 mm2" -> 0
+                "4 mm2" -> 1
+                "6 mm2" -> 2
+                "10 mm2" -> 3
+                "16 mm2" -> 3
+                "25 mm2" -> 4
+                "35 mm2" -> 5
+                "50 mm2" -> 5
+                "70 mm2" -> 6
+                "95 mm2" -> 7
+                "120 mm2" -> 8
+                "150 mm2" -> 8
+                "185 mm2" -> 8
+                else -> 99
+            }
+            endCol = when(sizeCableOfMain){
+                "1 mm2" -> 3
+                "1.5 mm2" -> 3
+                "2.5 mm2" -> 3
+                "4 mm2" -> 3
+                "6 mm2" -> 4
+                "10 mm2" -> 5
+                "16 mm2" -> 6
+                "25 mm2" -> 7
+                "35 mm2" -> 8
+                "50 mm2" -> 8
+                "70 mm2" -> 8
+                "95 mm2" -> 8
+                "120 mm2" -> 8
+                "150 mm2" -> 8
+                "185 mm2" -> 8
+                else -> 99
+            }
+        }
+        else if(typeCableOfMain == "NYY 2C") {
+            // เริ่มจาก col ไหน
+            startCol = when (sizeCableOfMain) {
+                "1 mm2" -> 0
+                "1.5 mm2" -> 0
+                "2.5 mm2" -> 0
+                "4 mm2" -> 0
+                "6 mm2" -> 0
+                "10 mm2" -> 0
+                "16 mm2" -> 0
+                "25 mm2" -> 0
+                "35 mm2" -> 0
+                else -> 99
+            }
+            endCol = when (sizeCableOfMain) {
+                "1 mm2" -> 4
+                "1.5 mm2" -> 4
+                "2.5 mm2" -> 5
+                "4 mm2" -> 5
+                "6 mm2" -> 6
+                "10 mm2" -> 7
+                "16 mm2" -> 8
+                "25 mm2" -> 8
+                "35 mm2" -> 8
+                else -> 99
+            }
+        }
+        else if(typeCableOfMain == "NYY 3C") {
+            // เริ่มจาก col ไหน
+            startCol = when (sizeCableOfMain) {
+                "1 mm2" -> 0
+                "1.5 mm2" -> 0
+                "2.5 mm2" -> 0
+                "4 mm2" -> 0
+                "6 mm2" -> 0
+                "10 mm2" -> 0
+                "16 mm2" -> 0
+                "25 mm2" -> 0
+                "35 mm2" -> 0
+                else -> 99
+            }
+            endCol = when (sizeCableOfMain) {
+                "1 mm2" -> 4
+                "1.5 mm2" -> 4
+                "2.5 mm2" -> 5
+                "4 mm2" -> 6
+                "6 mm2" -> 7
+                "10 mm2" -> 8
+                "16 mm2" -> 8
+                "25 mm2" -> 8
+                "35 mm2" -> 8
+                else -> 99
+            }
+        }
+        else if(typeCableOfMain == "NYY 4C") {
+            // เริ่มจาก col ไหน
+            startCol = when (sizeCableOfMain) {
+                "1 mm2" -> 0
+                "1.5 mm2" -> 0
+                "2.5 mm2" -> 0
+                "4 mm2" -> 0
+                "6 mm2" -> 0
+                "10 mm2" -> 0
+                "16 mm2" -> 0
+                "25 mm2" -> 2
+                "35 mm2" -> 2
+                else -> 99
+            }
+            endCol = when (sizeCableOfMain) {
+                "1 mm2" -> 5
+                "1.5 mm2" -> 5
+                "2.5 mm2" -> 6
+                "4 mm2" -> 6
+                "6 mm2" -> 7
+                "10 mm2" -> 8
+                "16 mm2" -> 8
+                "25 mm2" -> 8
+                "35 mm2" -> 8
+                else -> 99
+            }
 
+        }
+        else if(typeCableOfMain == "XLPE 1C") {
+            // เริ่มจาก col ไหน
+            startCol = when (sizeCableOfMain) {
+                "1.5 mm2" -> 0
+                "2.5 mm2" -> 0
+                "4 mm2" -> 0
+                "6 mm2" -> 1
+                "10 mm2" -> 1
+                "16 mm2" -> 2
+                "25 mm2" -> 2
+                "35 mm2" -> 3
+                "50 mm2" -> 4
+                "70 mm2" -> 5
+                "95 mm2" -> 5
+                "120 mm2" -> 6
+                "150 mm2" -> 7
+                "185 mm2" -> 8
+                "240 mm2" -> 8
+                "300 mm2" -> 8
+                else -> 99
+            }
+            endCol = when (sizeCableOfMain) {
+                "1.5 mm2" -> 1
+                "2.5 mm2" -> 1
+                "4 mm2" -> 2
+                "6 mm2" -> 2
+                "10 mm2" -> 3
+                "16 mm2" -> 4
+                "25 mm2" -> 4
+                "35 mm2" -> 5
+                "50 mm2" -> 6
+                "70 mm2" -> 7
+                "95 mm2" -> 8
+                "120 mm2" -> 8
+                "150 mm2" -> 8
+                "185 mm2" -> 8
+                "240 mm2" -> 8
+                "300 mm2" -> 8
+                else -> 99
+            }
+
+        }
+        else if(typeCableOfMain == "XLPE 2C") {
+            // เริ่มจาก col ไหน
+            startCol = when (sizeCableOfMain) {
+                "1.5 mm2" -> 0
+                "2.5 mm2" -> 0
+                "4 mm2" -> 0
+                "6 mm2" -> 1
+                "10 mm2" -> 0
+                "16 mm2" ->0
+                "25 mm2" -> 0
+                "35 mm2" -> 0
+                "50 mm2" -> 0
+                "70 mm2" -> 0
+                "95 mm2" -> 1
+                "120 mm2" -> 2
+                "150 mm2" -> 2
+                "185 mm2" -> 3
+                "240 mm2" -> 4
+                "300 mm2" -> 4
+                "400 mm2" -> 5
+                else -> 99
+            }
+            endCol = when (sizeCableOfMain) {
+                "1.5 mm2" -> 2
+                "2.5 mm2" -> 3
+                "4 mm2" -> 3
+                "6 mm2" -> 4
+                "10 mm2" -> 4
+                "16 mm2" -> 5
+                "25 mm2" -> 6
+                "35 mm2" -> 8
+                "50 mm2" -> 8
+                "70 mm2" -> 8
+                "95 mm2" -> 8
+                "120 mm2" -> 8
+                "150 mm2" -> 8
+                "185 mm2" -> 8
+                "240 mm2" -> 8
+                "300 mm2" -> 8
+                "400 mm2" -> 8
+                else -> 99
+            }
+
+        }
+        else if(typeCableOfMain == "XLPE 3C") {
+            // เริ่มจาก col ไหน
+            startCol = when (sizeCableOfMain) {
+                "1.5 mm2" -> 0
+                "2.5 mm2" -> 0
+                "4 mm2" -> 0
+                "6 mm2" -> 1
+                "10 mm2" -> 0
+                "16 mm2" ->0
+                "25 mm2" -> 0
+                "35 mm2" -> 0
+                "50 mm2" -> 0
+                "70 mm2" -> 1
+                "95 mm2" -> 1
+                "120 mm2" -> 2
+                "150 mm2" -> 3
+                "185 mm2" -> 3
+                "240 mm2" -> 4
+                "300 mm2" -> 4
+                "400 mm2" -> 5
+                else -> 99
+            }
+            endCol = when (sizeCableOfMain) {
+                "1.5 mm2" -> 2
+                "2.5 mm2" -> 3
+                "4 mm2" -> 3
+                "6 mm2" -> 4
+                "10 mm2" -> 4
+                "16 mm2" -> 5
+                "25 mm2" -> 6
+                "35 mm2" -> 8
+                "50 mm2" -> 8
+                "70 mm2" -> 8
+                "95 mm2" -> 8
+                "120 mm2" -> 8
+                "150 mm2" -> 8
+                "185 mm2" -> 8
+                "240 mm2" -> 8
+                "300 mm2" -> 8
+                "400 mm2" -> 8
+                else -> 99
+            }
+
+        }
+        else if(typeCableOfMain == "XLPE 4C") {
+            // เริ่มจาก col ไหน
+            startCol = when (sizeCableOfMain) {
+                "1.5 mm2" -> 0
+                "2.5 mm2" -> 0
+                "4 mm2" -> 0
+                "6 mm2" -> 1
+                "10 mm2" -> 0
+                "16 mm2" ->0
+                "25 mm2" -> 0
+                "35 mm2" -> 0
+                "50 mm2" -> 0
+                "70 mm2" -> 1
+                "95 mm2" -> 1
+                "120 mm2" -> 2
+                "150 mm2" -> 3
+                "185 mm2" -> 3
+                "240 mm2" -> 4
+                "300 mm2" -> 4
+                "400 mm2" -> 5
+                else -> 99
+            }
+            endCol = when (sizeCableOfMain) {
+                "1.5 mm2" -> 2
+                "2.5 mm2" -> 3
+                "4 mm2" -> 3
+                "6 mm2" -> 4
+                "10 mm2" -> 4
+                "16 mm2" -> 5
+                "25 mm2" -> 6
+                "35 mm2" -> 8
+                "50 mm2" -> 8
+                "70 mm2" -> 8
+                "95 mm2" -> 8
+                "120 mm2" -> 8
+                "150 mm2" -> 8
+                "185 mm2" -> 8
+                "240 mm2" -> 8
+                "300 mm2" -> 8
+                "400 mm2" -> 8
+                else -> 99
+            }
+
+        }
+        else if(typeCableOfMain == "VCT 1C") {
+            // เริ่มจาก col ไหน
+            startCol = when (sizeCableOfMain) {
+                "1 mm2" -> 0
+                "1.5 mm2" -> 0
+                "2.5 mm2" -> 0
+                "4 mm2" -> 0
+                "6 mm2" -> 0
+                "10 mm2" -> 0
+                "16 mm2" ->0
+                "25 mm2" -> 0
+                "35 mm2" -> 0
+                else -> 99
+            }
+            endCol = when (sizeCableOfMain) {
+                "1 mm2" -> 2
+                "1.5 mm2" -> 3
+                "2.5 mm2" -> 3
+                "4 mm2" -> 4
+                "6 mm2" -> 5
+                "10 mm2" -> 6
+                "16 mm2" -> 7
+                "25 mm2" -> 8
+                "35 mm2" -> 8
+                else -> 99
+            }
+
+        }
+        else if(typeCableOfMain == "VCT 2C") {
+            // เริ่มจาก col ไหน
+            startCol = when (sizeCableOfMain) {
+                "1 mm2" -> 0
+                "1.5 mm2" -> 0
+                "2.5 mm2" -> 0
+                "4 mm2" -> 0
+                "6 mm2" -> 0
+                "10 mm2" -> 0
+                "16 mm2" ->0
+                "25 mm2" -> 1
+                "35 mm2" -> 2
+                else -> 99
+            }
+            endCol = when (sizeCableOfMain) {
+                "1 mm2" -> 4
+                "1.5 mm2" -> 5
+                "2.5 mm2" -> 6
+                "4 mm2" -> 7
+                "6 mm2" -> 7
+                "10 mm2" -> 8
+                "16 mm2" -> 8
+                "25 mm2" -> 8
+                "35 mm2" -> 8
+                else -> 99
+            }
+
+        }
+        else if(typeCableOfMain == "VCT 3C") {
+            // เริ่มจาก col ไหน
+            startCol = when (sizeCableOfMain) {
+                "1 mm2" -> 0
+                "1.5 mm2" -> 0
+                "2.5 mm2" -> 0
+                "4 mm2" -> 0
+                "6 mm2" -> 0
+                "10 mm2" -> 0
+                "16 mm2" ->1
+                "25 mm2" -> 1
+                "35 mm2" -> 2
+                else -> 99
+            }
+            endCol = when (sizeCableOfMain) {
+                "1 mm2" -> 5
+                "1.5 mm2" -> 6
+                "2.5 mm2" -> 7
+                "4 mm2" -> 8
+                "6 mm2" -> 8
+                "10 mm2" -> 8
+                "16 mm2" -> 8
+                "25 mm2" -> 8
+                "35 mm2" -> 8
+                else -> 99
+            }
+
+        }
+        else if(typeCableOfMain == "VCT 4C") {
+            // เริ่มจาก col ไหน
+            startCol = when (sizeCableOfMain) {
+                "1 mm2" -> 0
+                "1.5 mm2" -> 0
+                "2.5 mm2" -> 0
+                "4 mm2" -> 0
+                "6 mm2" -> 0
+                "10 mm2" -> 0
+                "16 mm2" ->1
+                "25 mm2" -> 1
+                "35 mm2" -> 2
+                else -> 99
+            }
+            endCol = when (sizeCableOfMain) {
+                "1 mm2" -> 5
+                "1.5 mm2" -> 6
+                "2.5 mm2" -> 7
+                "4 mm2" -> 8
+                "6 mm2" -> 8
+                "10 mm2" -> 8
+                "16 mm2" -> 8
+                "25 mm2" -> 8
+                "35 mm2" -> 8
+                else -> 99
+            }
+
+        }
 
         if (startCol == 99 || endCol == 99){
             Toast.makeText(this,"Warning : ไม่มีค่าสำหรับชนิดสายนี้",Toast.LENGTH_SHORT).show()

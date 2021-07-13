@@ -2,6 +2,7 @@ package com.alw.temca.ui.AmountInRails
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -66,8 +67,14 @@ class AmountInRailsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_amount_in_rails)
 
-        if(SizeConduitTextView.text == "mm.") btnCalInPipeSize.visibility = View.GONE
-        else btnCalInPipeSize.visibility = View.VISIBLE
+        if(SizeConduitTextView.text == "mm.") {
+            btnCalInPipeSize.isClickable = false
+            btnCalInPipeSize.backgroundTintList = this.resources.getColorStateList(R.color.placeHolderBG)
+        }
+        else {
+            btnCalInPipeSize.isClickable = true
+            btnCalInPipeSize.backgroundTintList = this.resources.getColorStateList(R.color.btnBlue)
+        }
     }
 
     fun calculatorOnClick(view: View) {
@@ -219,10 +226,9 @@ class AmountInRailsActivity : AppCompatActivity() {
                     saveData("sizeConduit", "mm.")
                 }
                 if (dataSizeConduit != null) {
-                    SizeConduitTextView.text = dataSizeCable
+                    SizeConduitTextView.text = dataSizeConduit
                     saveData("sizeConduit", dataSizeConduit)
                 }
-
             }
         }
         wayBackActivity1.visibility = View.VISIBLE
@@ -230,8 +236,16 @@ class AmountInRailsActivity : AppCompatActivity() {
         btnCalInPipeSize.visibility = View.VISIBLE
         tableBeforeCalculateInPipe.visibility = View.GONE
 
-        if(SizeConduitTextView.text == "mm.") btnCalInPipeSize.visibility = View.GONE
-        else btnCalInPipeSize.visibility = View.VISIBLE
+        if(SizeConduitTextView.text == "mm.") {
+            btnCalInPipeSize.isClickable = false
+            btnCalInPipeSize.backgroundTintList = this.resources.getColorStateList(R.color.placeHolderBG)
+        }
+        else {
+            btnCalInPipeSize.isClickable = true
+            btnCalInPipeSize.backgroundTintList = this.resources.getColorStateList(R.color.btnBlue)
+        }
+
+
 
     }
 
