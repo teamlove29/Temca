@@ -7,7 +7,7 @@ android:layout_width="match_parent"
 android:layout_height="match_parent"
 android:orientation="vertical"
 android:background="#EEEEEE"
-tools:context=".ui.CurrentRating.PhaseInCurrentActivity">
+tools:context=".ui.CurrentRating.SizeCableInCurrentActivity">
 
 <RelativeLayout
     android:paddingBottom="40dp"
@@ -25,7 +25,7 @@ tools:context=".ui.CurrentRating.PhaseInCurrentActivity">
         android:background="@drawable/temca_logo_mini"/>
 
     <TextView
-        android:id="@+id/textViewTitlePhase"
+        android:id="@+id/headerTypeCable"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/logoImageView"
@@ -36,14 +36,24 @@ tools:context=".ui.CurrentRating.PhaseInCurrentActivity">
         android:text="@string/title_current_rating"
         android:maxLines="1"
         android:autoSizeTextType="uniform"
-        android:autoSizeMinTextSize="20sp"
+        android:autoSizeMinTextSize="24sp"
         android:autoSizeMaxTextSize="30sp"
-        android:autoSizeStepGranularity="2sp"/>
+        android:autoSizeStepGranularity="5sp"/>
 
 </RelativeLayout>
 
+<TextView
+    android:paddingLeft="15dp"
+    android:paddingBottom="5dp"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:fontFamily="@font/mitr_regular"
+    android:textColor="@color/black"
+    android:textSize="18sp"
+    android:text="ขนาดสายไฟ"/>
+
 <androidx.recyclerview.widget.RecyclerView
-    android:id="@+id/recyclerViewPhase"
+    android:id="@+id/recyclerViewSizeCable"
     android:layout_width="match_parent"
     android:layout_height="wrap_content" />
 

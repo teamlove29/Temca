@@ -7,13 +7,13 @@ import android.os.Bundle
 import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.alw.temca.Adapter.PhaseAdapter
-import com.alw.temca.Adapter.onClickAdapterListener
+import com.alw.temca.Interfaces.IOnClickAdapterListener
 import com.alw.temca.Model.PhaseModel
 import com.alw.temca.Model.TypeCableModel
 import com.alw.temca.R
 import kotlinx.android.synthetic.main.activity_phase.*
 
-class PhaseActivity : AppCompatActivity(), onClickAdapterListener {
+class PhaseActivity : AppCompatActivity(), IOnClickAdapterListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_phase)

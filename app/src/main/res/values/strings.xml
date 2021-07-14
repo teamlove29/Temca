@@ -11,5 +11,5 @@
     <string name="typeAndAmountInRails">หาชนิดและจำนวนสายในรางเดินสาย</string>
     <string name="title_one_phase">ขนาดวงจรไฟฟ้า 1 เฟส</string>
     <string name="title_three_phase">ขนาดวงจรไฟฟ้า 3 เฟส</string>
-    <string name="title_current_rating">หาพิกัดกระแส</string>
+    <string name="title_current_rating">หาพิกัดกระแสสายไฟฟ้า</string>
 </resources>

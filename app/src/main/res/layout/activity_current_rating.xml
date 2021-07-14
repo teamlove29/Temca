@@ -37,7 +37,7 @@ tools:context=".ui.CurrentRating.CurrentRatingActivity">
             android:layout_centerVertical="true"
             android:fontFamily="@font/mitr_regular"
             android:textColor="#0E4194"
-            android:textSize="20sp"
+            android:textSize="25sp"
             android:text="@string/title_current_rating"
             android:autoSizeTextType="uniform"
             android:autoSizeMinTextSize="20sp"
@@ -323,7 +323,6 @@ tools:context=".ui.CurrentRating.CurrentRatingActivity">
                 android:textColor="@color/white"
                 android:textSize="18sp" />
 
-
             <TextView
                 android:id="@+id/textViewShow2InPipe"
                 android:layout_width="wrap_content"
@@ -333,18 +332,18 @@ tools:context=".ui.CurrentRating.CurrentRatingActivity">
                 android:textSize="18sp" />
 
             <TextView
-                android:id="@+id/textViewMaxCable"
+                android:id="@+id/textViewMaxCurrent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:layout_below="@+id/textViewShowInPipe"
-                android:text="พิกัดกะแสสูงสุด"
+                android:text="พิกัดกระแสสูงสุด"
                 android:textSize="16sp"
                 android:fontFamily="@font/mitr_regular"
                 android:textColor="@color/white" />
 
             <TextView
-                android:id="@+id/textViewResultMaxCable"
+                android:id="@+id/textViewResultMaxCurren"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"

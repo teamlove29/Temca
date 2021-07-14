@@ -1,4 +1,4 @@
-package com.alw.temca.Adapter
+package com.alw.temca.Adapter.AdapterCurrentRating
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,14 +7,15 @@ import androidx.recyclerview.widget.RecyclerView
 import com.alw.temca.Interfaces.IOnClickAdapterListener
 import com.alw.temca.Model.PhaseModel
 import com.alw.temca.R
+import com.alw.temca.ui.CurrentRating.PhaseInCurrentActivity
 import kotlinx.android.synthetic.main.phase_list.view.*
 
-
-
-class PhaseAdapter(var PhaseList : ArrayList<PhaseModel>,var onClickPhase: IOnClickAdapterListener): RecyclerView.Adapter<PhaseAdapter.PhaseViewHolder>() {
+class PhaseCurrentAdapter(
+    var PhaseList: ArrayList<PhaseModel>, var onClickPhase: IOnClickAdapterListener): RecyclerView.Adapter<PhaseCurrentAdapter.PhaseViewHolder>() {
     class PhaseViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         fun bind(itemList: PhaseModel, action: IOnClickAdapterListener){
+
             itemView.textViewPhaseList.text = "${itemList.phase} ${itemList.unit}"
 
             itemView.setOnClickListener {
