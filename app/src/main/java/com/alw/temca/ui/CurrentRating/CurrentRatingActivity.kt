@@ -12,9 +12,6 @@ import com.alw.temca.ui.ElectricalOnePhase.OnePhaseActivity
 import com.alw.temca.ui.SponsorActivity
 import jxl.Workbook
 import kotlinx.android.synthetic.main.activity_current_rating.*
-import kotlinx.android.synthetic.main.activity_current_rating.typeCableTextView
-import kotlinx.android.synthetic.main.activity_current_rating.wayBackActivity1
-import kotlinx.android.synthetic.main.activity_current_rating.wayBackActivity2
 import java.io.IOException
 
 
@@ -150,7 +147,7 @@ class CurrentRatingActivity : AppCompatActivity() {
                 sizeCable.forEachIndexed { index, sizeCable  -> // หาขนาดสาย mm2
                     if (cableSizeTextView.text == sizeCable){
                         val dataOfTale = sheet.getCell(colInTable, index).contents
-                                textViewResultMaxCurren.text = "${dataOfTale}A"
+                        textViewResultMaxCurrent.text = "${dataOfTale}A"
 
                     }
             }
@@ -166,18 +163,15 @@ class CurrentRatingActivity : AppCompatActivity() {
         val dataToReport = ArrayList<ReportResultCurrent>()
         val intent = Intent(this, ReportInCurrentActivity::class.java)
 
-//        dataToReport.add(
-//            ReportResultWireSize(
-//                phaseTextView.text.toString(), // phase
-//                textInstallation,  // groupinstallation
-//                typeCableTextView.text.toString(), // typcable
-//                circuitTextView.text.toString(), // CB
-//                editTextDistance.text.toString(), // amountDis
-//                textViewShow2.text.toString().replace("mm2","mm"), // text2 is cablesize
-//                textViewResultWireGround.text.toString(), // wiresizegroud
-//                textViewShow4.text.toString(), // text4 is conduitsize
-//                textViewShow6.text.toString()) // result presure
-//        )
+        dataToReport.add(
+                ReportResultCurrent(
+                        PhaseTextView.text.toString(), // phase
+                        InstallationTextView.text.toString(),  // groupinstallation
+                        typeCableTextView.text.toString(), // cableType
+                        cableSizeTextView.text.toString(), // cablesize
+                        textViewResultMaxCurrent.text.toString() // result
+                )// result
+        )
 
         intent.putParcelableArrayListExtra("DataFromCurrentRating",dataToReport)
         startActivityForResult(intent, OnePhaseActivity.TASK_NAME_REQUEST_CODE)

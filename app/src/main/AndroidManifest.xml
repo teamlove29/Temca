@@ -19,7 +19,12 @@
         android:theme="@style/Theme.Temca"
         android:versionCode="3"
         android:versionName="1.2">
-        <activity android:name=".ui.CurrentRating.ReportInCurrentActivity"></activity>
+        <activity android:name=".ui.AmountInRailCable.CircuitBreakerInRailsCableActivity"></activity>
+        <activity android:name=".ui.AmountInRailCable.CircuitInRailsCableActivity" />
+        <activity android:name=".ui.AmountInRailCable.TypeCableInRailsCableActivity" />
+        <activity android:name=".ui.AmountInRailCable.InstallationInRailsCableActivity" />
+        <activity android:name=".ui.AmountInRailCable.AmountInRailCableActivity" />
+        <activity android:name=".ui.CurrentRating.ReportInCurrentActivity" />
         <activity android:name=".ui.CurrentRating.SizeCableInCurrentActivity" />
         <activity android:name=".ui.CurrentRating.TypeCableInCurrentActivity" />
         <activity android:name=".ui.CurrentRating.InstallationInCurrentActivity" />

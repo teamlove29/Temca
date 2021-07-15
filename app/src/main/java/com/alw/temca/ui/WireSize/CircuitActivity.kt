@@ -152,6 +152,5 @@ class CircuitActivity : AppCompatActivity() {
         editTextOperating.requestFocus()
         val imm = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
         imm.showSoftInput(editTextOperating, InputMethodManager.SHOW_IMPLICIT)
-
     }
 }

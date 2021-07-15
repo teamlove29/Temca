@@ -503,8 +503,6 @@ class WireSizeActivity : AppCompatActivity() {
 
     private fun installationOfTable(installation: String):String{
         return when(installation){
-            "กลุ่ม 2" -> "WireGroup_Group2.xls"
-            "กลุ่ม 5" -> "WireGroup_Group5.xls"
             "กลุ่ม 7" -> "WireGroup_Group7.xls"
             else -> ""
         }

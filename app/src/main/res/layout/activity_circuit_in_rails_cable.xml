@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:orientation="vertical"
+android:background="#EEEEEE"
+tools:context=".ui.AmountInRailCable.CircuitInRailsCableActivity">
+
+<RelativeLayout
+    android:paddingBottom="40dp"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp"
+    android:paddingTop="40dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/logoImageView"
+        android:layout_width="70dp"
+        android:layout_height="50dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/temca_logo_mini"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/logoImageView"
+        android:layout_centerVertical="true"
+        android:fontFamily="@font/mitr_regular"
+        android:textColor="@color/btnBlue"
+        android:textSize="25sp"
+        android:text="@string/title_rails_cable"
+        android:maxLines="1"
+        android:autoSizeTextType="uniform"
+        android:autoSizeMinTextSize="20sp"
+        android:autoSizeMaxTextSize="30sp"
+        android:autoSizeStepGranularity="2sp"/>
+
+</RelativeLayout>
+
+<TextView
+    android:paddingLeft="15dp"
+    android:paddingBottom="5dp"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:fontFamily="@font/mitr_regular"
+    android:textColor="@color/black"
+    android:textSize="18sp"
+    android:text="Circuit / กระแสใช้งาน"/>
+
+
+<androidx.cardview.widget.CardView
+    android:id="@+id/cardViewCircuitBreaker"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?android:selectableItemBackground"
+    app:cardCornerRadius="5dp"
+    android:layout_marginBottom="1dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:padding="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Circuit Breaker"
+            android:textSize="16sp"
+            android:fontFamily="@font/mitr_regular"
+            android:textColor="@color/black"
+            android:layout_centerVertical="true"/>
+
+        <TextView
+            android:id="@+id/textViewCircuit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:hint="400A"
+            android:textSize="16sp"
+            android:layout_toLeftOf="@+id/iconWireType"
+            android:fontFamily="@font/mitr_regular"
+            android:textColorHint="@color/defaulthint"
+            android:textColor="@color/defaulthint"
+            android:layout_centerVertical="true"/>
+
+        <ImageView
+            android:id="@+id/iconWireType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_baseline_keyboard_arrow_right_24"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"/>
+
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>
+
+
+<androidx.cardview.widget.CardView
+    android:onClick="AmpOnClick"
+    app:cardCornerRadius="5dp"
+    android:layout_marginBottom="1dp"
+    android:clickable="true"
+    android:focusable="true"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:padding="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/textViewOperating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:text="กระแสใช้งาน(A)"
+            android:textSize="16sp"
+            android:fontFamily="@font/mitr_regular"
+            android:textColor="@color/black"
+            android:layout_centerVertical="true"/>
+
+
+        <EditText
+            android:id="@+id/editTextOperating"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:inputType="number"
+            android:text="400"
+            android:textSize="16sp"
+            android:maxLength="4"
+            android:fontFamily="@font/mitr_regular"
+            android:layout_toRightOf="@+id/textViewOperating"
+            android:background="@null"
+            android:textColorHint="@color/defaulthint"
+            android:textColor="@color/defaulthint"
+            android:layout_centerVertical="true"
+            />
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>
+
+
+<Button
+    android:onClick="SubmitCircuitOnClick"
+    android:id="@+id/btnCalInPipeSize"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cornerRadius="10dp"
+    android:padding="10dp"
+    android:layout_marginTop="20dp"
+    android:layout_marginRight="10dp"
+    android:layout_marginLeft="10dp"
+    android:textSize="18sp"
+    android:backgroundTint="@color/btnBlue"
+    android:fontFamily="@font/mitr_regular"
+    android:textColor="@color/white"
+    android:background="@drawable/btn_rounded"
+    android:text="ตกลง"/>
+
+
+
+
+</LinearLayout>

@@ -19,6 +19,19 @@ class WireSizeAdapter(var listCircuit : ArrayList<RailSizeModel>) : RecyclerView
             itemView.textViewResultRailSize.text = "${itemList.railSize} mm"
             itemView.textViewReferenceVoltage.text = "(แรงดันอ้างอิง ${itemList.refPressure})"
             itemView.textResultPreessureInList.text = itemList.resultPressure
+
+            println("dasdads ${itemList.resultPressure}")
+
+            if(itemList.resultPressure == "0.00 V (0.00%)"){
+                itemView.textViewPreessureInList.visibility = View.GONE
+                itemView.textViewReferenceVoltage.visibility = View.GONE
+                itemView.textResultPreessureInList.visibility = View.GONE
+            }else{
+                itemView.textViewPreessureInList.visibility = View.VISIBLE
+                itemView.textViewReferenceVoltage.visibility = View.VISIBLE
+                itemView.textResultPreessureInList.visibility = View.VISIBLE
+            }
+
         }
     }
 

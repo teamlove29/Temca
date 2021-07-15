@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import com.alw.temca.ui.AmountInPipe.AmountInPipeActivity
+import com.alw.temca.ui.AmountInRailCable.AmountInRailCableActivity
 import com.alw.temca.ui.AmountInRails.AmountInRailsActivity
 import com.alw.temca.ui.CurrentRating.CurrentRatingActivity
 import com.alw.temca.ui.ElectricalOnePhase.OnePhaseActivity
@@ -39,7 +40,7 @@ class MainActivity : AppCompatActivity() {
                 startActivity(intent)
             }
             buttonTypeAndAmountRailCable ->{
-                val intent = Intent(this,SoonActivity::class.java)
+                val intent = Intent(this,AmountInRailCableActivity::class.java)
                 intent.putExtra("txt",buttonTypeAndAmountRailCable.text)
                 startActivity(intent)
             }
