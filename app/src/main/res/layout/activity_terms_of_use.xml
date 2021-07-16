@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView
+    android:background="@drawable/background_main"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+
+    android:overScrollMode="never"
+    tools:context=".MainActivity">
+<LinearLayout
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:orientation="vertical"
+android:background="#EEEEEE"
+tools:context=".TermsOfUseActivity">
+
+<RelativeLayout
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp"
+    android:layout_marginTop="40dp"
+    android:layout_marginBottom="15dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:layout_centerVertical="true"
+        android:id="@+id/logoImageView"
+        android:layout_width="70dp"
+        android:layout_height="50dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/temca_logo_mini"/>
+
+    <TextView
+        android:id="@+id/headerTypeCable"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/logoImageView"
+        android:layout_centerVertical="true"
+        android:fontFamily="@font/mitr_regular"
+        android:textColor="#0E4194"
+        android:textSize="25sp"
+        android:text="เงื่อนไขการใช้งาน"
+        android:maxLines="1"
+        android:autoSizeTextType="uniform"
+        android:autoSizeMinTextSize="24sp"
+        android:autoSizeMaxTextSize="30sp"
+        android:autoSizeStepGranularity="2sp"/>
+
+</RelativeLayout>
+
+<!--    RecyclerView-->
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:layout_marginTop="20dp"
+    android:layout_marginLeft="20dp"
+    android:layout_marginRight="20dp"
+    android:padding="15dp"
+    android:background="@color/white">
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="เงื่อนไข/ข้อตกลงในการใช้งานโปรแกรมหาขนาดสายไฟฟ้า"
+        android:textColor="@color/black"
+        android:textSize="14sp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="โปรดศึกษาและทำความเข้าใจเงื่อนไข/ข้อตกลงในการใช้งานโปรแกรมหาขนาดสายไฟฟ้าให้ละเอียด  เนื่องจากเงื่อนไข/ข้อตกลงตามเอกสารฉบับนี้ได้กำหนดข้อมูลที่สำคัญเกี่ยวกับสิทธิและหน้าที่ โดยเนื้อหาทั้งหมดจะประกอบด้วยข้อกำหนดและข้อยกเว้น ตลอดจนหน้าที่ต่าง ๆ ตามที่กฎหมายและข้อบังคับต่าง ๆ มีผลบังคับใช้"
+        android:textColor="@color/black"
+        android:textSize="12sp"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="1. คำนิยามและคำจำกัดความ"
+        android:textColor="@color/black"
+        android:textSize="12sp"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="“ ผู้ใช้งาน “  หมายความถึง ลูกค้าหรือบุคคล หรือนิติบุคคล ที่ใช้งานโปรแกรมหาขนาดสายไฟฟ้า"
+        android:textColor="@color/black"
+        android:textSize="12sp"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="“ โปรแกรมค้นหาขนาดสายไฟฟ้า “  หมายถึงโปรแกรมค้นหาขนาดสายไฟฟ้าที่ TEMCA เป็นผู้จัดทำขึ้นเท่านั้น"
+        android:textColor="@color/black"
+        android:textSize="12sp"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="“TEMCA” หมายถึงสมาคมช่างเหมาไฟฟ้าและเครื่องกลไทย ที่อยู่ อาคาร L.P.N Tower ถนนนางลิ้นจี่ แขวงช่องนนทรี เขตยานาวา กรุงเทพมหานคร"
+        android:textColor="@color/black"
+        android:textSize="12sp"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="“มาตรฐานการติดตั้งทางไฟฟ้า” หมายถึง มาตรฐานการติดตั้งทางไฟฟ้า ฉบับล่าสุด โดยวิศวกรรมสถานแห่งประเทศไทย ในพระบรมราชูปถัมภ์ (วสท.)"
+        android:textColor="@color/black"
+        android:textSize="12sp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="2. การใช้งานโปรแกรม"
+        android:textColor="@color/black"
+        android:textSize="12sp"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="2.1 รายละเอียดภายในโปรแกรมค้นหาขนาดสายไฟฟ้าจัดทำขึ้นตามมาตรฐานการติดตั้งทางไฟฟ้า เพื่อลดขั้นตอนในการทำงานของผู้ใช้งาน"
+        android:textColor="@color/black"
+        android:textSize="12sp"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="2.2 เนื้อหาภายในโปรแกรมค้นหาขนาดสายไฟฟ้าไม่ได้ครอบคลุมเนื้อหาทั้งหมดในมาตรฐานการติดตั้งทางไฟฟ้า ผู้ใช้งานควรตรวจสอบกับมาตรฐานการติดตั้งทางไฟฟ้าอีกครั้ง เพื่อความเที่ยงตรงและถูกต้อง"
+        android:textColor="@color/black"
+        android:textSize="12sp"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="2.3 TEMCA ไม่ใช่ผู้รับรองผลการคำนวนภายในโปรแกรมค้นหาขนาดสายไฟฟ้า ผู้ใช้งานควรให้วิศวกรรับรองผลการคำนวนก่อนการนำไปใช้งานจริงอีกครั้ง"
+        android:textColor="@color/black"
+        android:textSize="12sp"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="2.4 เนื้อหาภายในโปรแกรมค้นหาขนาดสายไฟฟ้าอาจมีการเปลี่ยนแปลงได้ในอนาคตขึ้นอยู่กับความเหมาะสมและมาตรฐานการติดตั้งทางไฟฟ้าที่อาจมีการปรับปรุงได้"
+        android:textColor="@color/black"
+        android:textSize="12sp"/>
+
+</LinearLayout>
+
+<LinearLayout
+    android:id="@+id/wayBackActivity1"
+    android:gravity="bottom"
+    android:layout_marginLeft="20dp"
+    android:layout_marginRight="20dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:layout_gravity="bottom|center_horizontal"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/textViewTerms"
+        android:onClick="backOnClick"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+        android:background="#EEEEEE"
+        android:drawableStart="@drawable/ic_exit"
+        android:drawableTint="#092B61"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/mitr_regular"
+        android:textColor="#092B61"
+        android:text="@string/back_Button"/>
+
+</LinearLayout>
+<!--    ย้อนกลับหน้าปกติ-->
+
+</LinearLayout>
+</ScrollView>

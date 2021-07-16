@@ -5,12 +5,12 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.*
-import android.text.style.SubscriptSpan
-import android.text.style.SuperscriptSpan
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.alw.temca.Adapter.WireSizeAdapter
+import com.alw.temca.Function.FindDetailInstallation
+import com.alw.temca.Model.AmountInRailsCable.ReportResultCurrentRatting
 import com.alw.temca.Model.RailSizeModel
 import com.alw.temca.R
 import com.alw.temca.ui.SponsorActivity
@@ -104,9 +104,7 @@ class AmountInRailCableActivity : AppCompatActivity() {
                 //หลังจากพิมพ์ผลลัพคือ ?
                 saveData("distance", s.toString())
             }
-
         })
-
     }
 
 
@@ -220,7 +218,37 @@ class AmountInRailCableActivity : AppCompatActivity() {
         }catch (e: IOException){ println("Error : $e") }
 
     }
-    fun ReportOnClick(view: View) {}
+    fun ReportOnClick(view: View) {
+        val dataToReport = ArrayList<ReportResultCurrentRatting>()
+        val intent = Intent(this, ReportInCurrentRattingActivity::class.java)
+//        val bundle = Bundle()
+        val textInstallation = FindDetailInstallation(installationTextView.text.toString())
+        dataToReport.add(ReportResultCurrentRatting(
+                phaseTextView.text.toString(), // phase
+                textInstallation,  // groupinstallation
+                typeCableTextView.text.toString(), // typcable
+                circuitTextView.text.toString(), // CB
+                editTextDistance.text.toString(), // amountDis
+                railSizeList[0].wireSize, // text2 is cablesize
+                "${railSizeList[0].groundSize}mm2", // wiresizegroud
+                "${railSizeList[0].railSize}mm", // text4 is conduitsize
+                railSizeList[0].resultPressure) // result presure
+        )
+        dataToReport.add(ReportResultCurrentRatting(
+                phaseTextView.text.toString(), // phase
+                textInstallation,  // groupinstallation
+                typeCableTextView.text.toString(), // typcable
+                circuitTextView.text.toString(), // CB
+                editTextDistance.text.toString(), // amountDis
+                railSizeList[1].wireSize, // text2 is cablesize
+                "${railSizeList[1].groundSize}mm2", // wiresizegroud
+                "${railSizeList[1].railSize}mm", // text4 is conduitsize
+                railSizeList[1].resultPressure) // result presure
+        )
+        intent.putParcelableArrayListExtra("dataResult",dataToReport)
+        startActivityForResult(intent, TASK_NAME_REQUEST_CODE)
+        finish()
+    }
 
 
     fun installationOnClick(view: View) {
@@ -230,7 +258,6 @@ class AmountInRailCableActivity : AppCompatActivity() {
     fun typeCableOnClick(view: View) {
         val intent = Intent(this, TypeCableInRailsCableActivity::class.java)
             intent.putExtra("Activity", "Group7")
-
         startActivityForResult(intent, TASK_NAME_REQUEST_CODE)
     }
     fun CircuitOnClick(view: View) {

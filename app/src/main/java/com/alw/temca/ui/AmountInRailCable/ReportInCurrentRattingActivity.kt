@@ -1,4 +1,4 @@
-package com.alw.temca.ui.CurrentRating
+package com.alw.temca.ui.AmountInRailCable
 
 import android.Manifest
 import android.app.AlertDialog
@@ -13,16 +13,16 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Environment
 import android.provider.Settings
+import android.text.Html
 import android.text.SpannableString
-import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.core.content.FileProvider
 import com.alw.temca.Common.ApplicationSelectorReceiver
 import com.alw.temca.Common.Common
-import com.alw.temca.Model.CurrentRating.ReportResultCurrent
+import com.alw.temca.Model.AmountInRailsCable.ReportResultCurrentRatting
 import com.alw.temca.Model.ReportResultWireSize
 import com.alw.temca.R
-import com.alw.temca.ui.ElectricalOnePhase.ReportInOnePhaseActivity
 import com.itextpdf.text.*
 import com.itextpdf.text.pdf.BaseFont
 import com.itextpdf.text.pdf.PdfWriter
@@ -34,12 +34,12 @@ import com.karumi.dexter.listener.PermissionDeniedResponse
 import com.karumi.dexter.listener.PermissionGrantedResponse
 import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.single.PermissionListener
-import kotlinx.android.synthetic.main.activity_report_in_current.*
+import kotlinx.android.synthetic.main.activity_report_in_current_ratting.*
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileOutputStream
 
-class ReportInCurrentActivity : AppCompatActivity() {
+class ReportInCurrentRattingActivity : AppCompatActivity() {
     companion object{
         val file_name:String = "_result_calculate.pdf"
         val MY_REQUEST_CODE = 0
@@ -48,51 +48,103 @@ class ReportInCurrentActivity : AppCompatActivity() {
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_report_in_current)
+        setContentView(R.layout.activity_report_in_current_ratting)
 
-        val dataFromCurrentRating = intent.getParcelableArrayListExtra<ReportResultCurrent>("DataFromCurrentRating")!!
+        val DataFromWireSize = intent.getParcelableArrayListExtra<ReportResultCurrentRatting>("dataResult")!!
 
-        textViewReslutMainPhaseInReportCurrent.text = dataFromCurrentRating[0].phase
-        textViewResultInstallationInReport.text = dataFromCurrentRating[0].installation
-        textViewReslutMainCableTypeInPipeReport.text = dataFromCurrentRating[0].cableType
-        textViewMainResultInstallationInReport.text = dataFromCurrentRating[0].cableSize
-        textViewResultConduitSize.text = dataFromCurrentRating[0].resultCurrentMax
+        textViewResultPhaseInReport.text = DataFromWireSize[0].phase
+        textViewResultInstallationInReport.text =  DataFromWireSize[0].installation
+        textViewResultCableTypeInReport.text =  DataFromWireSize[0].cableType
+        textViewResultBreakerInReportData.text =  DataFromWireSize[0].breaker
+        textViewResultDistanceInReport.text = "${DataFromWireSize[0].distance}M"
+
+        resultTwoInReportWireSize.visibility = View.GONE
+        textViewResultWireSize.text = Html.fromHtml(DataFromWireSize[0].cableSize.replace("mm", "mm<sup><small><small>2</small></small></sup>"))
+
+        if(DataFromWireSize[0].wireGround != "-")
+            textViewResultWireGroundInReport.text = Html.fromHtml(DataFromWireSize[0].wireGround.replace("mm2", "mm<sup><small><small>2</small></small></sup>"))
+        else
+            textViewResultWireGroundInReport.text = "-"
+
+        if(DataFromWireSize[0].condutiSize.indexOf('/') != -1){
+            for(i in 0..2){
+                if(DataFromWireSize[0].condutiSize.indexOf(fractionValues[i]) != -1){
+                    textViewResultConduitSize.text = DataFromWireSize[0].condutiSize.replace(fractionValues[i],fractionValues2[i])
+                    break
+                }else if(i == 2) textViewResultConduitSize.text = DataFromWireSize[0].condutiSize
+            }
+        }else textViewResultConduitSize.text = DataFromWireSize[0].condutiSize
+
+        textViewResultPressure.text = DataFromWireSize[0].pressure
+        textViewReferenceVoltageInReport.text = "(แรงดันอ้างอิง 400V)"
+
+        textViewDegree.text = "** ใช้งานที่อุณหภูมิ 36-40 C\u00B0 เดินสาย 1 กลุ่มวงจร"
+
+        if(DataFromWireSize.size >= 2){
+            resultTwoInReportWireSize.visibility = View.VISIBLE
+            textViewResultWireSize2.text = Html.fromHtml(DataFromWireSize[1].cableSize.replace("mm", "mm<sup><small><small>2</small></small></sup>"))
+            if(DataFromWireSize[1].wireGround != "-")
+                textViewResultWireGroundInReport2.text = Html.fromHtml(DataFromWireSize[1].wireGround.replace("mm2", "mm<sup><small><small>2</small></small></sup>"))
+            else
+                textViewResultWireGroundInReport2.text = "-"
+
+            if(DataFromWireSize[1].condutiSize.indexOf('/') != -1){
+                for(i in 0..2){
+                    if(DataFromWireSize[1].condutiSize.indexOf(fractionValues[i]) != -1){
+                        textViewResultConduitSize2.text = DataFromWireSize[1].condutiSize.replace(fractionValues[i],fractionValues2[i])
+                        break
+                    }else if(i == 2) textViewResultConduitSize2.text = DataFromWireSize[1].condutiSize
+                }
+            }else textViewResultConduitSize2.text = DataFromWireSize[1].condutiSize
+            textViewResultPressure2.text = DataFromWireSize[1].pressure
+             textViewReferenceVoltageInReport2.text = "(แรงดันอ้างอิง 400V)"
+
+            if(DataFromWireSize[0].pressure == "0.00 V (0.00%)"){
+                pressure.visibility = View.GONE
+                pressure2.visibility = View.GONE
+            }else{
+                pressure.visibility = View.VISIBLE
+                pressure2.visibility = View.VISIBLE
+            }
+
+        }
+
 
         Dexter.withActivity(this)
-                .withPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                .withListener(object : PermissionListener {
-                    override fun onPermissionGranted(p0: PermissionGrantedResponse?) {
-                        if (dataFromCurrentRating.size > 0 ) {
-                            createPDFFile(
-                                    Common.getAppPath(this@ReportInCurrentActivity) + ReportInOnePhaseActivity.file_name, dataFromCurrentRating
-                            )
-                        }
+            .withPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+            .withListener(object : PermissionListener {
+                override fun onPermissionGranted(p0: PermissionGrantedResponse?) {
+                    if (DataFromWireSize.size > 0 ) {
+                        createPDFFile(
+                            Common.getAppPath(this@ReportInCurrentRattingActivity) + file_name, DataFromWireSize
+                        )
                     }
-                    override fun onPermissionDenied(p0: PermissionDeniedResponse?) {
-                        showSettingsDialog()
-                        Toast.makeText(
-                                this@ReportInCurrentActivity,
-                                "Denied Permission",
-                                Toast.LENGTH_LONG
-                        ).show()
-                    }
-                    override fun onPermissionRationaleShouldBeShown(
-                            p0: PermissionRequest?,
-                            p1: PermissionToken?
-                    ) {
-                        p1!!.continuePermissionRequest()
-                    }
-                })
-                .check()
+                }
+                override fun onPermissionDenied(p0: PermissionDeniedResponse?) {
+                    showSettingsDialog()
+                    Toast.makeText(
+                        this@ReportInCurrentRattingActivity,
+                        "Denied Permission",
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+                override fun onPermissionRationaleShouldBeShown(
+                    p0: PermissionRequest?,
+                    p1: PermissionToken?
+                ) {
+                    p1!!.continuePermissionRequest()
+                }
+            })
+            .check()
 
 
-        btnSendEmailInPipeSize.setOnClickListener {
+        btnSendEmailInWireSize.setOnClickListener {
             try {
                 val fileWithinMyDir = File(
-                        Environment.getExternalStorageDirectory().toString()
-                                + File.separator
-                                + applicationContext.resources.getString(R.string.app_name)
-                                + ReportInOnePhaseActivity.file_name)
+                    Environment.getExternalStorageDirectory().toString()
+                            + File.separator
+                            + applicationContext.resources.getString(R.string.app_name)
+                            + file_name)
 
                 val uri = FileProvider.getUriForFile(this, this.getPackageName().toString() + ".fileprovider", fileWithinMyDir)
                 val sendIntent = Intent(Intent.ACTION_SEND)
@@ -118,23 +170,10 @@ class ReportInCurrentActivity : AppCompatActivity() {
 //                println("Error : $e")
             }
         }
+
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        Log.i("SS", "onActivityResult: $requestCode, $resultCode, " + (data?.toString()
-                ?: "empty intent"))
-        if (requestCode == ReportInOnePhaseActivity.MY_REQUEST_CODE) {
-            Toast.makeText(applicationContext, "Success send email",
-                    Toast.LENGTH_SHORT).show()
-        }else{
-            Toast.makeText(applicationContext, "failed to send email",
-                    Toast.LENGTH_SHORT).show()
-        }
-        finish() // to end your activity when toast is shown
-    }
-
-    fun createPDFFile(path: String, data: ArrayList<ReportResultCurrent>) {
+    fun createPDFFile(path: String, data: ArrayList<ReportResultCurrentRatting>) {
         if(File(path).exists()) File(path).delete()
         try {
             val document = Document(PageSize.A4, 40.0f, 40.0f, 30.0f, 40.0f)
@@ -160,14 +199,14 @@ class ReportInCurrentActivity : AppCompatActivity() {
 
             // Custom font
             val fontName = BaseFont.createFont(
-                    "assets/sarabun_regular.ttf",
-                    BaseFont.IDENTITY_H,
-                    BaseFont.NOT_EMBEDDED, true
+                "assets/sarabun_regular.ttf",
+                BaseFont.IDENTITY_H,
+                BaseFont.NOT_EMBEDDED, true
             )
             val fontNameBoldStyle = BaseFont.createFont(
-                    "assets/sarabun_medium.ttf",
-                    BaseFont.IDENTITY_H,
-                    BaseFont.NOT_EMBEDDED, true
+                "assets/sarabun_medium.ttf",
+                BaseFont.IDENTITY_H,
+                BaseFont.NOT_EMBEDDED, true
             )
 
             // Add Title to document
@@ -179,25 +218,49 @@ class ReportInCurrentActivity : AppCompatActivity() {
             var valueStyle = Font(fontName, valueFontSzie, Font.NORMAL, colorAccent)
             var subValueStyle = Font(fontName, SubvalueFontSzie, Font.NORMAL, colorAccent)
 
-            addNewItemWithLeftAndRight(document, "รายงานการคำนวนพิกัดกระแสสายไฟฟ้า", "", titleStyle, detailStyleTitle)
+            addNewItemWithLeftAndRight(document, "รายงานคำนวนชนิดและจำนวนสายในรางเคเบิล", "", titleStyle, detailStyleTitle)
             addLineSeperator(document)
             addNewItem(document, "ข้อมูลการใช้งาน", Element.ALIGN_LEFT, headingStyle)
             addLineSpace(document)
-            addItemAndResult(document, "                เฟส : ", data[0].phase, titleStyleTitle, valueStyle)
+            addItemAndResult(document, "                ระบบไฟฟ้า : ", data[0].phase, titleStyleTitle, valueStyle)
             addLineSpace(document)
             addItemAndResult(document, "                กลุ่มการติดตั้ง : ", data[0].installation, titleStyleTitle, valueStyle)
             addLineSpace(document)
             addItemAndResult(document, "                ชนิดสายไฟฟ้า : ", data[0].cableType, titleStyleTitle, valueStyle)
             addLineSpace(document)
-            addItemAndResult(document, "                ขนาดสายไฟฟ้า : ", data[0].cableSize, titleStyleTitle, valueStyle)
+            addItemAndResult(document, "                Circuit Breaker : ", data[0].breaker, titleStyleTitle, valueStyle)
+            addLineSpace(document)
+            addItemAndResult(document, "                ระยะสายไฟฟ้า : ", "${data[0].distance}M", titleStyleTitle, valueStyle)
             addLineSpace(document)
 
             addNewItem(document, "ผลการคำนวน", Element.ALIGN_LEFT, headingStyle)
             addLineSpace(document)
-            addItemAndResult(document, "                พิกัดกระแสไฟฟ้าสูงสุด     ", data[0].resultCurrentMax.replace("mm", "mm2"), titleStyleTitle, valueStyle)
+            addItemAndResult(document, "                ขนาดสายไฟฟ้าที่เหมาะสม     ", data[0].cableSize.replace("mm", "mm2"), titleStyleTitle, valueStyle)
+            addLineSpace(document)
+            addItemAndResult(document, "                ขนาดสายดินที่เหมาะสม          ", data[0].wireGround, titleStyleTitle, valueStyle)
+            addLineSpace(document)
+            addItemAndResult(document, "                ขนาดท่อไฟฟ้า                         ", data[0].condutiSize, titleStyleTitle, valueStyle)
+            addLineSpace(document)
+            addItemAndResult(document, "                แรงดันตก                                 ", data[0].pressure, titleStyleTitle, valueStyle)
+            addItemAndResult(document, "                     ${textViewReferenceVoltageInReport.text}", "", subTitleStyle, valueStyle)
+            addLineSpace(document)
+            addLineSpace(document)
 
-            addLineSpace(document)
-            addLineSpace(document)
+            if(data.size >=2 ){
+                addItemAndResult(document, "                ขนาดสายไฟฟ้าที่เหมาะสม     ", data[1].cableSize.replace("mm", "mm2"), titleStyleTitle, valueStyle)
+                addLineSpace(document)
+                addItemAndResult(document, "                ขนาดสายดินที่เหมาะสม          ", data[1].wireGround, titleStyleTitle, valueStyle)
+                addLineSpace(document)
+                addItemAndResult(document, "                ขนาดท่อไฟฟ้า                         ", data[1].condutiSize, titleStyleTitle, valueStyle)
+                addLineSpace(document)
+                addItemAndResult(document, "                แรงดันตก                                 ", data[1].pressure, titleStyleTitle, valueStyle)
+                addItemAndResult(document, "                     ${textViewReferenceVoltageInReport.text}", "", subTitleStyle, valueStyle)
+                addLineSpace(document)
+                addLineSpace(document)
+            }
+
+            addNewItem(document, "* อ้างอิงตามมาตรฐานการติดตั้งทางไฟฟ้า วสท. 2562", Element.ALIGN_LEFT, subValueStyle)
+            addNewItem(document, "** ใช้งานที่อุณหภูมิ 36-40 C° เดินสาย 1 กลุ่มวงจร", Element.ALIGN_LEFT, subValueStyle)
 
             //close
             document.close()
@@ -209,11 +272,11 @@ class ReportInCurrentActivity : AppCompatActivity() {
 
     @Throws(DocumentException::class)
     fun addNewItemWithLeftAndRight(
-            document: Document,
-            textLeft: String,
-            textRight: String,
-            leftStyle: Font,
-            rightStyle: Font
+        document: Document,
+        textLeft: String,
+        textRight: String,
+        leftStyle: Font,
+        rightStyle: Font
     ) {
         //add Image
         val d = resources.getDrawable(R.drawable.logo_pdf_temca)
@@ -221,12 +284,25 @@ class ReportInCurrentActivity : AppCompatActivity() {
         val bmp = bitDw.bitmap
         val stream = ByteArrayOutputStream()
         bmp.compress(Bitmap.CompressFormat.PNG, 100, stream)
+//        bmp.scale(200, 100)
         val image: Image = Image.getInstance(stream.toByteArray())
-        var chunkTextRight = if (textLeft == "รายงานการคำนวนพิกัดกระแสสายไฟฟ้า"){
+
+//        document.add(image)
+
+        var chunkTextRight = if (textLeft == "รายงานคำนวนชนิดและจำนวนสายในรางเคเบิล"){
             Chunk(image, 0F, -20F, true)
+//            Chunk(textRight, rightStyle)
         }else{
             Chunk(textRight, rightStyle)
         }
+
+//        val chunkTextRight = if (textRight.indexOf("mm2") > 1){
+//            Chunk("${textRight.replace("2", "")}\u00B2", rightStyle)
+//        }else{
+//            Chunk(textRight, rightStyle)
+//        }
+
+//        val chunkTextRight =  Chunk(textRight, rightStyle)
         val chunkTextLeft = Chunk(textLeft, leftStyle)
         val p = Paragraph(chunkTextLeft)
         p.add(Chunk(VerticalPositionMark()))
@@ -299,5 +375,6 @@ class ReportInCurrentActivity : AppCompatActivity() {
         intent.data = uri
         startActivityForResult(intent, 101)
     }
+
 
 }

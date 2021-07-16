@@ -257,7 +257,7 @@
 
                 <TextView
                     android:id="@+id/textViewTerm"
-                    android:layout_marginRight="50dp"
+                    android:layout_marginRight="15dp"
                     android:drawableTint="@color/white"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -269,18 +269,19 @@
                     android:autoSizeStepGranularity="2sp"
                     android:text="มาตรฐานการติดตั้ง"/>
 
-<!--                    <TextView-->
-<!--                        android:layout_marginRight="30dp"-->
-<!--                        android:drawableTint="@color/white"-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:fontFamily="@font/mitr_regular"-->
-<!--                        android:textColor="@color/white"-->
-<!--                        android:autoSizeTextType="uniform"-->
-<!--                        android:autoSizeMinTextSize="12sp"-->
-<!--                        android:autoSizeMaxTextSize="15sp"-->
-<!--                        android:autoSizeStepGranularity="2sp"-->
-<!--                        android:text="วิธีการใช้งาน"/>-->
+                    <TextView
+                        android:onClick="termsOfUseOnClick"
+                        android:layout_marginRight="15dp"
+                        android:drawableTint="@color/white"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/mitr_regular"
+                        android:textColor="@color/white"
+                        android:autoSizeTextType="uniform"
+                        android:autoSizeMinTextSize="12sp"
+                        android:autoSizeMaxTextSize="15sp"
+                        android:autoSizeStepGranularity="2sp"
+                        android:text="เงื่อนไขการใช้งาน"/>
 
                     <TextView
                         android:onClick="sponsorOnClick"

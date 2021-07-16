@@ -76,4 +76,11 @@ class MainActivity : AppCompatActivity() {
         val intent = Intent(this,SponsorActivity::class.java)
         startActivity(intent)
     }
+
+    fun termsOfUseOnClick(view: View) {
+        val intent = Intent(this,TermsOfUseActivity::class.java)
+        startActivity(intent)
+    }
+
+    fun backOnClick(view: View) {}
 }
