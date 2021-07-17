@@ -241,8 +241,10 @@ class ReportInCurrentRattingActivity : AppCompatActivity() {
             addLineSpace(document)
             addItemAndResult(document, "                ขนาดท่อไฟฟ้า                         ", data[0].condutiSize, titleStyleTitle, valueStyle)
             addLineSpace(document)
-            addItemAndResult(document, "                แรงดันตก                                 ", data[0].pressure, titleStyleTitle, valueStyle)
-            addItemAndResult(document, "                     ${textViewReferenceVoltageInReport.text}", "", subTitleStyle, valueStyle)
+            if(data[0].pressure != "0.00 V (0.00%)"){
+                addItemAndResult(document, "                แรงดันตก                                 ", data[0].pressure, titleStyleTitle, valueStyle)
+                addItemAndResult(document, "                     ${textViewReferenceVoltageInReport.text}", "", subTitleStyle, valueStyle)
+            }
             addLineSpace(document)
             addLineSpace(document)
 
@@ -253,8 +255,10 @@ class ReportInCurrentRattingActivity : AppCompatActivity() {
                 addLineSpace(document)
                 addItemAndResult(document, "                ขนาดท่อไฟฟ้า                         ", data[1].condutiSize, titleStyleTitle, valueStyle)
                 addLineSpace(document)
-                addItemAndResult(document, "                แรงดันตก                                 ", data[1].pressure, titleStyleTitle, valueStyle)
-                addItemAndResult(document, "                     ${textViewReferenceVoltageInReport.text}", "", subTitleStyle, valueStyle)
+                if(data[1].pressure != "0.00 V (0.00%)"){
+                    addItemAndResult(document, "                แรงดันตก                                 ", data[1].pressure, titleStyleTitle, valueStyle)
+                    addItemAndResult(document, "                     ${textViewReferenceVoltageInReport.text}", "", subTitleStyle, valueStyle)
+                }
                 addLineSpace(document)
                 addLineSpace(document)
             }
@@ -264,6 +268,9 @@ class ReportInCurrentRattingActivity : AppCompatActivity() {
 
             //close
             document.close()
+
+
+
 
         }catch (e: Exception){
             println("Error Create: $e")
