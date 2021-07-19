@@ -173,7 +173,18 @@ class MoterActivity : AppCompatActivity() {
 
     fun calculatorMoterOnClick(view: View) {
 
+//        if(editTextDistanceInMoter. == 0){
+//
+//        }
 
+        println(editTextDistanceInMoter.text)
+        if(editTextDistanceInMoter.text.toString() == "0"){
+            textViewPressure.visibility = View.GONE
+            textViewPressureResult.visibility = View.GONE
+        }else{
+            textViewPressure.visibility = View.VISIBLE
+            textViewPressureResult.visibility = View.VISIBLE
+        }
 
 //        if(TextAmountMoterSize.text.isEmpty()) TextAmountMoterSize.setText("10")
         if(editTextDistanceInMoter.text.isEmpty()) editTextDistanceInMoter.setText("0")
@@ -340,7 +351,7 @@ class MoterActivity : AppCompatActivity() {
                                     }
                                     textViewPressureResult.text = "$pullResulttoString $percentPressuretoString"
                                 }else{
-                                    textViewPressureResult.text = "${"%.2f V".format(pullResult)} (${"%.2f".format(PercentPressure)}%) "
+                                    textViewPressureResult.text = "${"%.2f V".format(pullResult)} (${"%.2f".format(PercentPressure)}%)"
                                 }
 
 
@@ -386,10 +397,25 @@ class MoterActivity : AppCompatActivity() {
                 }
 
                 if (dataUnitMoter != null){
-                    if(textUnit.text != dataUnitMoter){
-                        TextAmountMoterSize.text = "10"
-                        saveData("dataSizeMoter", "10")
+
+                    if(phaseTextView.text == "1 เฟส"){
+                        if(dataUnitMoter == "A"){
+                            TextAmountMoterSize.text = "3.9"
+                            saveData("dataSizeMoter", "3.9")
+                        }else{
+                            TextAmountMoterSize.text = "4"
+                            saveData("dataSizeMoter", "4")
+                        }
+                    }else{
+                        if(dataUnitMoter == "HP"){
+                            TextAmountMoterSize.text = "5"
+                            saveData("dataSizeMoter", "5")
+                        }else{
+                            TextAmountMoterSize.text = "1.5"
+                            saveData("dataSizeMoter", "1.5")
+                        }
                     }
+
                     textUnit.text = dataUnitMoter
                     saveData("unitMoter", dataUnitMoter)
                 }
@@ -398,8 +424,24 @@ class MoterActivity : AppCompatActivity() {
                     phaseTextView.text = "$dataPhase เฟส"
                     saveData("phase", "$dataPhase เฟส")
 
-                    TextAmountMoterSize.text = "10"
-                    saveData("dataSizeMoter", "10")
+                    if(phaseTextView.text == "1 เฟส"){
+                        if(dataUnitMoter == "A"){
+                            TextAmountMoterSize.text = "3.9"
+                            saveData("dataSizeMoter", "3.9")
+                        }else{
+                            TextAmountMoterSize.text = "4"
+                            saveData("dataSizeMoter", "4")
+                        }
+                    }else{
+                        if(dataUnitMoter == "HP"){
+                            TextAmountMoterSize.text = "5"
+                            saveData("dataSizeMoter", "5")
+                        }else{
+                            TextAmountMoterSize.text = "1.5"
+                            saveData("dataSizeMoter", "1.5")
+                        }
+                    }
+
                 }
 
 //                if (dataInstallation != null) {
@@ -413,16 +455,11 @@ class MoterActivity : AppCompatActivity() {
                     TextViewStartPantern.text = dataStartPantern
                     saveData("dataStartPantern", dataStartPantern)
 
-                    TextAmountMoterSize.text = "10"
-                    saveData("dataSizeMoter", "10")
                 }
 
                 if (dataTypeCable != null){
                     TextViewCableTypeInMoter.text = dataTypeCable
                     saveData("dataTypeCable", dataTypeCable)
-
-                    TextAmountMoterSize.text = "10"
-                    saveData("dataSizeMoter", "10")
                 }
 
             }
@@ -476,7 +513,7 @@ class MoterActivity : AppCompatActivity() {
     }
     fun loadData(){
         val sharedPref = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
-        val dataSizeOfMoter = sharedPref.getString(TASK_LIST_PREF_KEY_SIZE_MOTER,"10")
+        val dataSizeOfMoter = sharedPref.getString(TASK_LIST_PREF_KEY_SIZE_MOTER,"4")
         val dataOfUnitMoter = sharedPref.getString(TASK_LIST_PREF_KEY_SIZE_UNIT,"HP")
         val dataOfPhase = sharedPref.getString(TASK_LIST_PREF_KEY_PHASE_IN_MOTER,"1 เฟส")
 //        val dataOfInstall = sharedPref.getString(TASK_LIST_PREF_KEY_INSTALLATION_IN_MOTER,"เดินเคเบิลแบบระบายอากาศ")

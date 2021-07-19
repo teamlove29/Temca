@@ -12,8 +12,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:paddingTop="30dp"
-        android:paddingLeft="30dp"
-        android:paddingRight="30dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
         android:orientation="vertical">
 
         <ImageView
@@ -81,23 +81,23 @@
                     android:background="@drawable/ic_main_current_rating"
                     android:elevation="10dp"
                     android:fontFamily="@font/mitr_medium"
-                    android:gravity="top"
+                    android:gravity="bottom"
                     android:onClick="HandleOnClick"
                     android:paddingLeft="10dp"
-                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
                     android:paddingRight="90dp"
                     android:text="พิกัดกระแสสายไฟฟ้า"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/white" />
 
                 <Button
                     android:id="@+id/buttonTypeAndAmountRails"
-                    android:gravity="top"
+                    android:gravity="bottom"
                     android:layout_width="170dp"
                     android:layout_height="100dp"
                     android:layout_marginBottom="10dp"
-                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
                     android:paddingLeft="10dp"
-                    android:paddingRight="40dp"
+                    android:paddingRight="80dp"
                     android:autoSizeMaxTextSize="15sp"
                     android:autoSizeMinTextSize="10sp"
                     android:autoSizeStepGranularity="2sp"
@@ -107,15 +107,15 @@
                     android:onClick="HandleOnClick"
                     android:text="ชนิดและจำนวนสายในรางเดินสาย"
                     android:background="@drawable/ic_main_rails"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/white" />
 
                 <Button
                     android:id="@+id/buttonOnePhase"
-                    android:gravity="top"
+                    android:gravity="bottom"
                     android:layout_width="170dp"
                     android:layout_height="100dp"
                     android:layout_marginBottom="10dp"
-                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
                     android:paddingLeft="10dp"
                     android:paddingRight="80dp"
                     android:autoSizeMaxTextSize="15sp"
@@ -127,15 +127,15 @@
                     android:onClick="HandleOnClick"
                     android:text="ขนาดวงจรไฟฟ้า 1 เฟส"
                     android:background="@drawable/ic_main_one_phase"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/white" />
 
                 <Button
                     android:id="@+id/buttonMoter"
-                    android:gravity="top"
+                    android:gravity="bottom"
                     android:layout_width="170dp"
                     android:layout_height="100dp"
                     android:layout_marginBottom="10dp"
-                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
                     android:paddingLeft="10dp"
                     android:paddingRight="80dp"
                     android:autoSizeMaxTextSize="15sp"
@@ -147,7 +147,7 @@
                     android:onClick="HandleOnClick"
                     android:text="ขนาดวงจรมอเตอร์"
                     android:background="@drawable/ic_main_motor"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/white" />
 
             </LinearLayout>
 
@@ -159,11 +159,11 @@
 
                 <Button
                     android:id="@+id/buttonTypeAndAmountConduit"
-                    android:gravity="top"
+                    android:gravity="bottom"
                     android:layout_width="170dp"
                     android:layout_height="100dp"
                     android:layout_marginBottom="10dp"
-                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
                     android:paddingLeft="10dp"
                     android:paddingRight="70dp"
                     android:autoSizeMaxTextSize="15sp"
@@ -175,35 +175,35 @@
                     android:onClick="HandleOnClick"
                     android:text="ชนิดและจำนวนสายในท่อ"
                     android:background="@drawable/ic_main_pipe"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/white" />
 
                 <Button
                     android:id="@+id/buttonTypeAndAmountRailCable"
-                    android:gravity="top"
                     android:layout_width="170dp"
                     android:layout_height="100dp"
                     android:layout_marginBottom="10dp"
-                    android:paddingTop="10dp"
-                    android:paddingLeft="10dp"
-                    android:paddingRight="40dp"
                     android:autoSizeMaxTextSize="15sp"
                     android:autoSizeMinTextSize="10sp"
                     android:autoSizeStepGranularity="2sp"
                     android:autoSizeTextType="uniform"
+                    android:background="@drawable/ic_main_rails_cable"
                     android:elevation="10dp"
                     android:fontFamily="@font/mitr_medium"
+                    android:gravity="bottom"
                     android:onClick="HandleOnClick"
+                    android:paddingLeft="10dp"
+                    android:paddingBottom="10dp"
+                    android:paddingRight="80dp"
                     android:text="ชนิดและจำนวนสายในรางเคเบิล"
-                    android:background="@drawable/ic_main_rails_cable"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/white" />
 
                 <Button
                     android:id="@+id/buttonThreePhase"
-                    android:gravity="top"
+                    android:gravity="bottom"
                     android:layout_width="170dp"
                     android:layout_height="100dp"
                     android:layout_marginBottom="10dp"
-                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
                     android:paddingLeft="10dp"
                     android:paddingRight="80dp"
                     android:autoSizeMaxTextSize="15sp"
@@ -215,15 +215,15 @@
                     android:onClick="HandleOnClick"
                     android:text="ขนาดวงจรไฟฟ้า 3 เฟส"
                     android:background="@drawable/ic_main_three_phase"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/white" />
 
                 <Button
                     android:id="@+id/buttonTransformer"
-                    android:gravity="top"
+                    android:gravity="bottom"
                     android:layout_width="170dp"
                     android:layout_height="100dp"
                     android:layout_marginBottom="10dp"
-                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
                     android:paddingLeft="10dp"
                     android:paddingRight="80dp"
                     android:autoSizeMaxTextSize="15sp"
@@ -235,7 +235,7 @@
                     android:onClick="HandleOnClick"
                     android:text="ขนาดวงจรหม้อแปลง"
                     android:background="@drawable/ic_main_transformer"
-                    android:textColor="@color/black"  />
+                    android:textColor="@color/white"  />
 
             </LinearLayout>
 
@@ -257,31 +257,31 @@
 
                 <TextView
                     android:id="@+id/textViewTerm"
-                    android:layout_marginRight="15dp"
                     android:drawableTint="@color/white"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/ic_mata"
                     android:fontFamily="@font/mitr_regular"
                     android:textColor="@color/white"
                     android:autoSizeTextType="uniform"
-                    android:autoSizeMinTextSize="12sp"
-                    android:autoSizeMaxTextSize="15sp"
-                    android:autoSizeStepGranularity="2sp"
-                    android:text="มาตรฐานการติดตั้ง"/>
+                    android:autoSizeMinTextSize="11sp"
+                    android:autoSizeMaxTextSize="12sp"
+                    android:autoSizeStepGranularity="1sp"
+                    android:text=" มาตราฐานการติดตั้ง"/>
 
                     <TextView
                         android:onClick="termsOfUseOnClick"
-                        android:layout_marginRight="15dp"
                         android:drawableTint="@color/white"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:drawableLeft="@drawable/ic_condition"
                         android:fontFamily="@font/mitr_regular"
                         android:textColor="@color/white"
                         android:autoSizeTextType="uniform"
-                        android:autoSizeMinTextSize="12sp"
-                        android:autoSizeMaxTextSize="15sp"
-                        android:autoSizeStepGranularity="2sp"
-                        android:text="เงื่อนไขการใช้งาน"/>
+                        android:autoSizeMinTextSize="11sp"
+                        android:autoSizeMaxTextSize="12sp"
+                        android:autoSizeStepGranularity="1sp"
+                        android:text=" เงื่อนไขการใช้งาน"/>
 
                     <TextView
                         android:onClick="sponsorOnClick"
@@ -293,10 +293,10 @@
                         android:fontFamily="@font/mitr_regular"
                         android:textColor="@color/white"
                         android:autoSizeTextType="uniform"
-                        android:autoSizeMinTextSize="12sp"
-                        android:autoSizeMaxTextSize="15sp"
-                        android:autoSizeStepGranularity="2sp"
-                        android:text="ผู้สนับสนุน"/>
+                        android:autoSizeMinTextSize="11sp"
+                        android:autoSizeMaxTextSize="12sp"
+                        android:autoSizeStepGranularity="1sp"
+                        android:text=" ผู้สนับสนุน"/>
 
 
                 </LinearLayout>

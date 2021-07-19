@@ -69,7 +69,8 @@ tools:context=".TermsOfUseActivity">
         android:layout_height="wrap_content"
         android:text="เงื่อนไข/ข้อตกลงในการใช้งานโปรแกรมหาขนาดสายไฟฟ้า"
         android:textColor="@color/black"
-        android:textSize="14sp"/>
+        android:textStyle="bold"
+        android:textSize="12sp"/>
 
     <TextView
         android:layout_width="match_parent"
@@ -84,6 +85,7 @@ tools:context=".TermsOfUseActivity">
         android:layout_marginTop="20dp"
         android:text="1. คำนิยามและคำจำกัดความ"
         android:textColor="@color/black"
+        android:textStyle="bold"
         android:textSize="12sp"/>
     <TextView
         android:layout_width="match_parent"
@@ -120,6 +122,7 @@ tools:context=".TermsOfUseActivity">
         android:layout_marginTop="20dp"
         android:text="2. การใช้งานโปรแกรม"
         android:textColor="@color/black"
+        android:textStyle="bold"
         android:textSize="12sp"/>
     <TextView
         android:layout_width="match_parent"
@@ -149,6 +152,74 @@ tools:context=".TermsOfUseActivity">
         android:text="2.4 เนื้อหาภายในโปรแกรมค้นหาขนาดสายไฟฟ้าอาจมีการเปลี่ยนแปลงได้ในอนาคตขึ้นอยู่กับความเหมาะสมและมาตรฐานการติดตั้งทางไฟฟ้าที่อาจมีการปรับปรุงได้"
         android:textColor="@color/black"
         android:textSize="12sp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="3. เงื่อนไขอื่น ๆ ทั่วไป"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textSize="12sp"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="TEMCA ขอสงวนสิทธิ์ในการแก้ไข เปลี่ยนแปลง เพิ่มเติมหน้าเว็บไซด์ แอปพลิเคชั่น และบริการ รวมถึงการแก้ไขเปลี่ยนแปลง เพิ่มเติม เงื่อนไข/ข้อตกลงในโปรแกรมหาขนาดสายไฟฟ้า ณ เวลาใด ๆ โดยไม่จำเป็นต้องแจ้งให้ผู้ใช้งานทราบล่วงหน้า โดยการแก้ไข เปลี่ยนแปลง เพิ่มเติม ดังกล่าวจะดำเนินการตามดุลยพินิจเฉพาะของทาง TEMCA เพียงผู้เดียวเท่านั้น"
+        android:textColor="@color/black"
+        android:textSize="12sp"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="หากมีการแก้ไข เปลี่ยนแปลง เพิ่มเติม เงื่อนไข/ข้อตกลงในการใช้งานฉบับนี้  TEMCA จะทำการแจ้งให้ผู้ใช้งานทราบผ่านช่องทางต่าง ๆ ก่อนที่ข้อกำหนดแก้ไข เปลี่ยนแปลงจะมีผลบังคับใช้   โดยทุกครั้งที่มีการแก้ไข เปลี่ยนแปลง เพิ่มเติม ใดๆ ของเงื่อนไข/ข้อตกลงในการใช้งาน ทาง TEMCA จะแสดงวันที่ล่าสุดที่มีการแก้ไขให้ทราบทุกครั้ง"
+        android:textColor="@color/black"
+        android:textSize="12sp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="คณะผู้จัดทำ"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textSize="12sp"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="1. ผศ.ประสิทธิ์ พิทยพัฒน์"
+        android:textColor="@color/black"
+        android:textSize="12sp"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="2. คุณธีรภพ พงษ์พิทยาภา"
+        android:textColor="@color/black"
+        android:textSize="12sp"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="3. คุณวิริทธิ์พล สิริโภคารักษ์"
+        android:textColor="@color/black"
+        android:textSize="12sp"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="4. คุณพิทยา มีผล์"
+        android:textColor="@color/black"
+        android:textSize="12sp"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="5. คุณณัฐวุฒิ เดชระพีพงษ์"
+        android:textColor="@color/black"
+        android:textSize="12sp"/>
+
 
 </LinearLayout>
 

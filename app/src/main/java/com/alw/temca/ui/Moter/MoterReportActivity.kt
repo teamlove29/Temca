@@ -15,6 +15,7 @@ import android.os.Environment
 import android.provider.Settings
 import android.text.Html
 import android.text.SpannableString
+import android.view.View
 import android.widget.Toast
 import androidx.core.content.FileProvider
 import com.alw.temca.Common.ApplicationSelectorReceiver
@@ -49,6 +50,13 @@ class MoterReportActivity : AppCompatActivity() {
         setContentView(R.layout.activity_moter_report)
 
         val DataFromMoter = intent.getParcelableArrayListExtra<DataToMoterReportModel>("DataFromMoter")!!
+
+
+        if(DataFromMoter[0].resultpressure == "0.00 V (0.00%)"){
+            drop.visibility = View.GONE
+        }else{
+            drop.visibility = View.VISIBLE
+        }
 
         // Data
         textViewReslutSizeMoterInMoterReport.text = "${DataFromMoter[0].sizemoter} ${DataFromMoter[0].unit}"
@@ -202,8 +210,12 @@ class MoterReportActivity : AppCompatActivity() {
             addLineSpace(document)
             addItemAndResult(document, "                ขนาดเบรกเกอร์(AT)       ", data[0].resultbreaker, titleStyleTitle, valueStyle)
             addLineSpace(document)
-            addItemAndResult(document, "                แรงดันตก                         ", data[0].resultpressure, titleStyleTitle, valueStyle)
-            addLineSpace(document)
+
+
+            if(data[0].resultpressure != "0.00 V (0.00%)"){
+                addItemAndResult(document, "                แรงดันตก                         ", data[0].resultpressure, titleStyleTitle, valueStyle)
+                addLineSpace(document)
+            }
 
 //            addNewItem(document, "* อ้างอิงตามมาตรฐานการติดตั้งทางไฟฟ้า วสท. 2562", Element.ALIGN_LEFT, SubvalueStyle)
 //            addNewItem(document, "** ใช้งานที่อุณหภูมิ 36-40 C° และเดินสาย 1 กลุ่มวงจร", Element.ALIGN_LEFT, SubvalueStyle)

@@ -159,7 +159,6 @@ class CurrentRatingActivity : AppCompatActivity() {
 }
     fun reportOnClickInCurrentRating(view: View) {
 
-        // TODO wait edit "ReportResultCurrent" below here
         val dataToReport = ArrayList<ReportResultCurrent>()
         val intent = Intent(this, ReportInCurrentActivity::class.java)
 
