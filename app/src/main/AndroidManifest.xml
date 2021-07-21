@@ -2,7 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.alw.temca">
 
-    <uses-permission android:name="android.permission.INTERNET" /> <!-- <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> -->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
@@ -30,7 +31,6 @@
         <activity android:name=".ui.CurrentRating.SizeCableInCurrentActivity" />
         <activity android:name=".ui.CurrentRating.TypeCableInCurrentActivity" />
         <activity android:name=".ui.CurrentRating.InstallationInCurrentActivity" />
-        <activity android:name=".ui.CurrentRating.PhaseInCurrntActivity" />
         <activity android:name=".ui.CurrentRating.PhaseInCurrentActivity" />
         <activity android:name=".ui.CurrentRating.CurrentRatingActivity" />
         <activity android:name=".ui.ElectricalThreePhase.ReportInThreePhaseActivity" />

@@ -416,6 +416,7 @@ class MoterActivity : AppCompatActivity() {
                         }
                     }
 
+                    println("1 ${dataUnitMoter}")
                     textUnit.text = dataUnitMoter
                     saveData("unitMoter", dataUnitMoter)
                 }
@@ -425,7 +426,7 @@ class MoterActivity : AppCompatActivity() {
                     saveData("phase", "$dataPhase เฟส")
 
                     if(phaseTextView.text == "1 เฟส"){
-                        if(dataUnitMoter == "A"){
+                        if(textUnit.text == "A"){
                             TextAmountMoterSize.text = "3.9"
                             saveData("dataSizeMoter", "3.9")
                         }else{
@@ -433,7 +434,7 @@ class MoterActivity : AppCompatActivity() {
                             saveData("dataSizeMoter", "4")
                         }
                     }else{
-                        if(dataUnitMoter == "HP"){
+                        if(textUnit.text == "HP"){
                             TextAmountMoterSize.text = "5"
                             saveData("dataSizeMoter", "5")
                         }else{
@@ -443,13 +444,6 @@ class MoterActivity : AppCompatActivity() {
                     }
 
                 }
-
-//                if (dataInstallation != null) {
-////                    val dataInstallationSlice = dataInstallation
-//                    TextViewGroupInstallations.text = dataInstallation.des
-//                    saveData("group", dataInstallation.title)
-//                    saveData("installation", dataInstallation.des)
-//                }
 
                 if (dataStartPantern != null){
                     TextViewStartPantern.text = dataStartPantern
