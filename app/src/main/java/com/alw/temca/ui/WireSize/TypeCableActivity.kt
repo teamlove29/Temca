@@ -42,7 +42,7 @@ class TypeCableActivity : AppCompatActivity() , InstallationonClickAdapterListen
 
         else if(checkActivity.equals("Moter")){
 
-            headerTypeCable.text = "ขนาดสายมอเตอร์"
+            headerTypeCable.text = "ขนาดวงจรมอเตอร์"
             if(TypeActivityMoter != "DELTA"){
                 typeCableItem.add(TypeCableModel("IEC 01"))
                 typeCableItem.add(TypeCableModel("NYY 1C"))

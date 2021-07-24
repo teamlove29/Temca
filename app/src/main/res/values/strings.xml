@@ -13,4 +13,5 @@
     <string name="title_three_phase">ขนาดวงจรไฟฟ้า 3 เฟส</string>
     <string name="title_current_rating">หาพิกัดกระแสสายไฟฟ้า</string>
     <string name="title_rails_cable">ชนิดและจำนวนสายในรางเคเบิล</string>
+    <string name="title_motor">ขนาดวงจรมอเตอร์</string>
 </resources>

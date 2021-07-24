@@ -308,15 +308,15 @@ class MoterActivity : AppCompatActivity() {
 //                        textViewConduitSizeResult.text = conduitInTable
                         textViewBreakerResult.text = breakerInTable
 
-                        val temp:String = conduitInTable.replace(")"," inch )")
+                        val temp:String = conduitInTable.replace(")","\" )")
                         val s = SpannableString(temp.trim())
                         if (temp.indexOf('/') != -1) {
                             val len = temp.length
-                            s.setSpan(SuperscriptSpan(), len -10, len -9, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) // ตัวเศษ
-                            s.setSpan( applicationContext,len -10, len -9, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) // ตัวเศษ
-                            s.setSpan(applicationContext, len - 9, len - 8, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) // ตัว /
-                            s.setSpan(SubscriptSpan(), len - 8, len - 7, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) // ตัวส่วน
-//                            s.setSpan(applicationContext, len - 7, len-6, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) // ตัวส่วน
+                            s.setSpan(SuperscriptSpan(), len - 6, len - 5, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) // ตัวเศษ
+                            s.setSpan(applicationContext,len - 6, len - 5, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) // ตัวเศษ
+                            s.setSpan(applicationContext, len - 5, len - 4, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) // ตัว /
+                            s.setSpan(SubscriptSpan(), len - 4, len - 3, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) // ตัวส่วน
+                            s.setSpan(applicationContext, len - 4, len - 3, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) // ตัวส่วน
                         }
 
 
