@@ -68,7 +68,7 @@ class OnePhaseActivity : AppCompatActivity() {
         val dataOfDistance = sharedPref.getString(TASK_LIST_PREF_KEY_DISTANCE_ONE_PHASE, "10")
 
         val dataOfTypeCable = if(dataOfInstallation!!.slice(0..6) == "กลุ่ม 5" ){
-            sharedPref.getString(TASK_LIST_PREF_KEY_TYPE_CABLE_ONE_PHASE, "NYY")
+            sharedPref.getString(TASK_LIST_PREF_KEY_TYPE_CABLE_ONE_PHASE, "NYY 1/C")
         }else{
             sharedPref.getString(TASK_LIST_PREF_KEY_TYPE_CABLE_ONE_PHASE, "IEC01")
         }
@@ -201,9 +201,10 @@ class OnePhaseActivity : AppCompatActivity() {
 
                         if(typeCableTextView.text == "NYY - G"
                                 || typeCableTextView.text == "VCT - G"
-                                || typeCableTextView.text == "NYY 2C - G"
-                                || typeCableTextView.text == "VCT 2C - G") {
-                                textViewResultWireGround.text = "-"
+                                || typeCableTextView.text == "VCT 2/C - G"
+                                || typeCableTextView.text == "NYY 2/C - G"
+                                || typeCableTextView.text == "XLPE 2/C, G") {
+                                textViewResultWireGround.text = "- G"
                                 pressureDropIndexTable = 1
                         }else{
                             textViewResultWireGround.text = Html.fromHtml("$sizeWireGround mm<sup><small><small>2</small></small></sup>")
@@ -356,14 +357,14 @@ class OnePhaseActivity : AppCompatActivity() {
         textViewReferenceVoltage.text = "(แรงดันอ้างอิง 230V)"
         return  when(cableType){
                 "IEC01" -> 0
-                "NYY 1C" -> 1
-                "VCT 1C" -> 2
-                "XLPE 1C" -> 3
-                "XLPE 2C" -> 4
+                "NYY 1/C" -> 1
+                "VCT 1/C" -> 2
+                "XLPE 1/C" -> 3
+                "XLPE 2/C, G" -> 4
                 "NYY - G" -> 5
                 "VCT - G" -> 6
-                "NYY 2C - G" -> 7
-                "VCT 2C - G" -> 8
+                "NYY 2/C - G" -> 7
+                "VCT 2/C - G" -> 8
                 else -> 0
             }
 

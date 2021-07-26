@@ -318,7 +318,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/mitr_regular"
                     android:textColor="@color/white"
-                    android:text="ผศ.ประสิทธิ์ พิทยพัฒน์"/>
+                    android:text="ผศ. ประสิทธิ์ พิทยพัฒน์"/>
 
             </LinearLayout>
 

@@ -34,7 +34,7 @@ android:fillViewport="true"
             android:layout_marginTop="40dp"
             android:fontFamily="@font/mitr_regular"
             android:textColor="@color/black"
-            android:text="รายงานคำนวนชนิดและจำนวนสายในรางเคเบิล"
+            android:text="รายงานคำนวนชนิดและจำนวนสายในรางเคเบิล(Cable Tray)"
             android:textSize="14dp"/>
 
         <ImageView

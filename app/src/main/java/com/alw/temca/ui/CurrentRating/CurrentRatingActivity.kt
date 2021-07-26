@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import com.alw.temca.Model.CurrentRating.ReportResultCurrent
+import com.alw.temca.Model.TypeCableModel
 import com.alw.temca.R
 import com.alw.temca.ui.ElectricalOnePhase.OnePhaseActivity
 import com.alw.temca.ui.SponsorActivity
@@ -58,9 +59,10 @@ class CurrentRatingActivity : AppCompatActivity() {
         val sharedPref = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
         val dataOfPhase = sharedPref.getString(TASK_LIST_PREF_KEY_PHASE_IN_CURRENT_RATING, "1 เฟส")
         val dataOfInstallation = sharedPref.getString(TASK_LIST_PREF_KEY_INSTALLATION_CURRENT_RATING, "กลุ่ม 2")
-        val dataOfTypeCable = if(dataOfInstallation!!.slice(0..6) == "กลุ่ม 5" ){
-            sharedPref.getString(TASK_LIST_PREF_KEY_TYPE_CABLE_CURRENT_RATING, "NYY") }
-            else{ sharedPref.getString(TASK_LIST_PREF_KEY_TYPE_CABLE_CURRENT_RATING, "IEC01") }
+//        val dataOfTypeCable = if(dataOfInstallation!!.slice(0..6) == "กลุ่ม 5" ){
+//            sharedPref.getString(TASK_LIST_PREF_KEY_TYPE_CABLE_CURRENT_RATING, "NYY") }
+//            else{ sharedPref.getString(TASK_LIST_PREF_KEY_TYPE_CABLE_CURRENT_RATING, "IEC01") }
+        val dataOfTypeCable = sharedPref.getString(TASK_LIST_PREF_KEY_TYPE_CABLE_CURRENT_RATING, "PVC แกนเดี่ยว")
         val dataOfSizeCable = sharedPref.getString(TASK_LIST_PREF_KEY_SIZE_CABLE_CURRENT_RATING, "2.5 mm2")
 
         PhaseTextView.text = dataOfPhase
@@ -101,52 +103,56 @@ class CurrentRatingActivity : AppCompatActivity() {
         var colInTable:Int = 0
         if(InstallationTextView.text == "กลุ่ม 2"){
             colInTable = when(typeCableTextView.text){
-                "IEC01" -> 1
-                "IEC10 2C" -> 2
-                "IEC10 3C" -> 2
-                "IEC10 4C" -> 2
-                "NYY 1C" -> 1
-                "NYY 2C" -> 2
-                "NYY 3C" -> 2
-                "NYY 4C" -> 2
-                "XLPE 1C" -> 3
-                "XLPE 2C" -> 4
-                "XLPE 3C" -> 4
-                "XLPE 4C" -> 4
-                "VCT 1C" -> 1
-                "VCT 2C" -> 2
-                "VCT 3C" -> 2
-                "VCT 4C" -> 2
+                "PVC แกนเดี่ยว" -> 1
+                "PVC หลายแกน" -> 2
+                "XLPE แกนเดี่ยว" -> 3
+                "XLPE หลายแกน" -> 4
+//                "IEC01" -> 1
+//                "IEC10 2C" -> 2
+//                "IEC10 3C" -> 2
+//                "IEC10 4C" -> 2
+//                "NYY 1C" -> 1
+//                "NYY 2C" -> 2
+//                "NYY 3C" -> 2
+//                "NYY 4C" -> 2
+//                "XLPE 1C" -> 3
+//                "XLPE 2C" -> 4
+//                "XLPE 3C" -> 4
+//                "XLPE 4C" -> 4
+//                "VCT 1C" -> 1
+//                "VCT 2C" -> 2
+//                "VCT 3C" -> 2
+//                "VCT 4C" -> 2
                 else -> return
             }
         }else if(InstallationTextView.text == "กลุ่ม 5"){
             colInTable = when(typeCableTextView.text){
-                "NYY 1C" -> 1
-                "NYY 2C" -> 1
-                "NYY 3C" -> 1
-                "NYY 4C" -> 1
-                "XLPE 1C" -> 2
-                "XLPE 2C" -> 2
-                "XLPE 3C" -> 2
-                "XLPE 4C" -> 2
+                "PVC แกนเดี่ยว" -> 1
+                "PVC หลายแกน" -> 1
+                "XLPE แกนเดี่ยว" -> 2
+                "XLPE หลายแกน" -> 2
+//                "NYY 1C" -> 1
+//                "NYY 2C" -> 1
+//                "NYY 3C" -> 1
+//                "NYY 4C" -> 1
+//                "XLPE 1C" -> 2
+//                "XLPE 2C" -> 2
+//                "XLPE 3C" -> 2
+//                "XLPE 4C" -> 2
                 else -> return
             }
         }
-
-
-
-
-
-
 
         try {
             val XLS = applicationContext.assets.open(getXLS)
             val wb = Workbook.getWorkbook(XLS)
             val sheet = wb.getSheet(findSheetInTableCableSize)            // index
-            val sizeCable = arrayListOf("1 mm2", "1.5 mm2", "2.5 mm2", "4 mm2", "6 mm2", "10 mm2", "16 mm2", "25 mm2", "35 mm2", "50 mm2", "70 mm2", "95 mm2", "120 mm2", "150 mm2", "185 mm2", "240 mm2", "300 mm2")
+            val sizeCable = arrayListOf("1 mm2", "1.5 mm2", "2.5 mm2", "4 mm2", "6 mm2",
+                    "10 mm2", "16 mm2", "25 mm2", "35 mm2", "50 mm2", "70 mm2", "95 mm2",
+                    "120 mm2", "150 mm2", "185 mm2", "240 mm2", "300 mm2", "400 mm2", "500 mm2")
                 sizeCable.forEachIndexed { index, sizeCable  -> // หาขนาดสาย mm2
                     if (cableSizeTextView.text == sizeCable){
-                        val dataOfTale = sheet.getCell(colInTable, index).contents
+                        val dataOfTale = sheet.getCell(colInTable, index+1).contents
                         textViewResultMaxCurrent.text = "${dataOfTale}A"
 
                     }
@@ -175,8 +181,6 @@ class CurrentRatingActivity : AppCompatActivity() {
         intent.putParcelableArrayListExtra("DataFromCurrentRating",dataToReport)
         startActivityForResult(intent, OnePhaseActivity.TASK_NAME_REQUEST_CODE)
         finish()
-
-
     }
 
     fun onclickChoosePhase(view: View) {
@@ -195,6 +199,9 @@ class CurrentRatingActivity : AppCompatActivity() {
     }
     fun onClickChooseSizeCable(view: View) {
         val intent = Intent(this, SizeCableInCurrentActivity::class.java)
+        intent.putExtra("Phase",PhaseTextView.text)
+        intent.putExtra("TypeCable",typeCableTextView.text)
+        intent.putExtra("Group",InstallationTextView.text)
         startActivityForResult(intent, TASK_NAME_REQUEST_CODE)
     }
     fun sponsorOnClick(view: View) {
@@ -225,33 +232,39 @@ class CurrentRatingActivity : AppCompatActivity() {
                 val dataSizeCable = data!!.getStringExtra("dataSizeCable")
 
                 if(dataPhase != null && dataPhase != 0){
-                    if(InstallationTextView.text == "กลุ่ม 5"){
-                        typeCableTextView.text = "NYY 1C"
-                        saveData("typeCable", typeCableTextView.text.toString())
-                    }else{
-                        typeCableTextView.text = "IEC01"
-                        saveData("typeCable", typeCableTextView.text.toString())
-                    }
+//                    if(InstallationTextView.text == "กลุ่ม 5"){
+//                        typeCableTextView.text = "NYY 1C"
+//                        saveData("typeCable", typeCableTextView.text.toString())
+//                    }else{
+//                        typeCableTextView.text = "IEC01"
+//                        saveData("typeCable", typeCableTextView.text.toString())
+//                    }
                     PhaseTextView.text = "$dataPhase เฟส"
                     saveData("phase", "$dataPhase เฟส")
                 }
                 if (dataInstallation != null) {
                     val dataInstallationSlice = dataInstallation!!.slice(0..6)
-                    if(dataInstallationSlice == "กลุ่ม 5"){
-                        typeCableTextView.text = "NYY 1C"
-                        saveData("typeCable", typeCableTextView.text.toString())
-                    }else{
-                        typeCableTextView.text = "IEC01"
-                        saveData("typeCable", typeCableTextView.text.toString())
-                    }
+//                    if(dataInstallationSlice == "กลุ่ม 5"){
+//                        typeCableTextView.text = "NYY 1C"
+//                        saveData("typeCable", typeCableTextView.text.toString())
+//                    }else{
+//                        typeCableTextView.text = "IEC01"
+//                        saveData("typeCable", typeCableTextView.text.toString())
+//                    }
 
                     InstallationTextView.text = dataInstallationSlice
                     saveData("installation", dataInstallation)
                     saveData("installationDes", dataInstallationDes)
+                    cableSizeTextView.text = "1.5 mm2"
+                    saveData("sizeCable", "1.5 mm2")
                 }
                 if (dataTypeCable != null) {
                     typeCableTextView.text = dataTypeCable
                     saveData("typeCable", dataTypeCable)
+                    cableSizeTextView.text = "1.5 mm2"
+                    saveData("sizeCable", "1.5 mm2")
+
+
                 }
                 if (dataSizeCable != null) {
                     cableSizeTextView.text = dataSizeCable

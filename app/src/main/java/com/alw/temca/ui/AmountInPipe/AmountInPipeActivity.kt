@@ -25,6 +25,8 @@ class AmountInPipeActivity : AppCompatActivity() {
          const val TASK_LIST_PREF_KEY_SIZE_IN_AMOUNT_PIPE = "task_list_size_in_amount_pipe"
          const val TASK_LIST_PREF_KEY_AMOUNT_IN_AMOUNT_PIPE = "task_list_amount_in_amount_pipe"
          const val PREF_NAME = "task_amount_in_pipe"
+        var amountCable_result = "0"
+        var amountCable_result๘_full = "0"
     }
     override fun onStart() {
         super.onStart()
@@ -86,6 +88,9 @@ class AmountInPipeActivity : AppCompatActivity() {
             //หลังจากพิมพ์ผลลัพคือ ?
             saveData("amount", s.toString())
         } })
+
+
+
     }
 
     // เลือกชนิดสายไฟ
@@ -139,24 +144,24 @@ class AmountInPipeActivity : AppCompatActivity() {
 
         val findSheetInTableCableSize = when(typeCableTextView.text){
             "IEC01" -> 0
-            "NYY 1C" -> 1
-            "NYY 2C" -> 2
-            "NYY 3C" -> 3
-            "NYY 4C" -> 4
-            "XLPE 1C" -> 5
-            "XLPE 2C" -> 6
-            "XLPE 3C" -> 7
-            "XLPE 4C" -> 8
-            "VCT 1C" -> 9
-            "VCT 2C" -> 10
-            "VCT 3C" -> 11
-            "VCT 4C" -> 12
-            "NYY 2C - G" -> 13
-            "NYY 3C - G" -> 14
-            "NYY 4C - G" -> 15
-            "VCT 2C - G" -> 16
-            "VCT 3C - G" -> 17
-            "VCT 4C - G" -> 18
+            "NYY 1/C" -> 1
+            "NYY 2/C" -> 2
+            "NYY 3/C" -> 3
+            "NYY 4/C" -> 4
+            "XLPE 1/C" -> 5
+            "XLPE 2/C" -> 6
+            "XLPE 3/C" -> 7
+            "XLPE 4/C" -> 8
+            "VCT 1/C" -> 9
+            "VCT 2/C" -> 10
+            "VCT 3/C" -> 11
+            "VCT 4/C" -> 12
+            "NYY 2/C - G" -> 13
+            "NYY 3/C - G" -> 14
+            "NYY 4/C - G" -> 15
+            "VCT 2/C - G" -> 16
+            "VCT 3/C - G" -> 17
+            "VCT 4/C - G" -> 18
             else -> return
         }
         val sizeCable = arrayListOf("1 mm2", "1.5 mm2", "2.5 mm2", "4 mm2", "6 mm2", "10 mm2", "16 mm2", "25 mm2", "35 mm2", "50 mm2", "70 mm2", "95 mm2", "120 mm2", "150 mm2", "185 mm2", "240 mm2", "300 mm2", "400 mm2", "500 mm2", "630 mm2", "800 mm2")
@@ -174,8 +179,20 @@ class AmountInPipeActivity : AppCompatActivity() {
                             //  i is col result ขนาดท่อ
                             if (editTextAmountCable.text.toString().toInt() <= sheet.getCell(i, index + 1).contents.toInt()){
                                 textViewResultSizePipe.text = "${sheet.getCell(i, 0).contents} (${sheet.getCell(i, index + 1).contents} เส้น)"
+                                textViewSizePipe2.visibility = View.GONE
+                                textViewResultSizePipe2.visibility = View.GONE
+                                amountCable_result = sheet.getCell(i, index + 1).contents.toString()
                                 break
-                            }else textViewResultSizePipe.text = "- เส้น"
+                            }else {
+                                if(sheet.getCell(i, index + 1).contents != "0"){
+                                    textViewResultSizePipe.text = "- เส้น"
+                                    amountCable_result = sheet.getCell(i, index + 1).contents.toString()
+                                    amountCable_result๘_full = "${sheet.getCell(i, 0).contents} (${sheet.getCell(i, index + 1).contents} เส้น)"
+                                    textViewResultSizePipe2.text = "${sheet.getCell(i, 0).contents} (${sheet.getCell(i, index + 1).contents} เส้น)"
+                                    textViewSizePipe2.visibility = View.VISIBLE
+                                    textViewResultSizePipe2.visibility = View.VISIBLE
+                                }
+                            }
 
 
                         }
@@ -209,11 +226,23 @@ class AmountInPipeActivity : AppCompatActivity() {
         4 ผลลัพขนาดท่อ + สูงสุด
         5 ผลลัพขนาดราง + สูงสุด
          */
+        var amountCable:String = if(textViewResultSizePipe2.visibility != View.GONE){
+            "$amountCable_result เส้น"
+
+        }else{
+            "${editTextAmountCable.text} เส้น"
+        }
+
         val typeCable = typeCableTextView.text.toString()
         val sizeCable = cableSizeTextView.text.toString()
-        val amountCable = "${editTextAmountCable.text} เส้น"
-        val maxConduit = textViewResultSizePipe.text.toString()
+//        val maxConduit = textViewResultSizePipe.text.toString()
+        val maxConduit = if(textViewResultSizePipe.text.toString() != "- เส้น"){
+            textViewResultSizePipe.text.toString()
+        }else{
+            amountCable_result๘_full
+        }
         val maxRails = ""
+
         bundle.putParcelable("resultInPipe",
             ResultPipeToReportModel(
                     typeCable,

@@ -121,6 +121,10 @@ class MoterActivity : AppCompatActivity() {
     fun sizeCableTypeOnClick(view: View) {
         val intent = Intent(this, TypeCableActivity::class.java)
         intent.putExtra("Activity","Moter")
+        if(phaseTextView.text == "3 เฟส"){
+            intent.putExtra("Phase","3")
+        }
+
         if(TextViewStartPantern.text == "STAR DELTA")  intent.putExtra("Type","DELTA")
 
 
@@ -303,8 +307,14 @@ class MoterActivity : AppCompatActivity() {
                     if(TextViewCableTypeInMoter.text == checkCableType){
                         textViewElectricCurrenResult.text = powerRatingIntable
                         textViewSizeCableResult.text = Html.fromHtml("${cableTypeIntable.replace("mm2","mm<sup><small><small>2</small></small></sup>")}")
-                        if(TextViewCableTypeInMoter.text != "NYY 2C-G") textViewGroundSizeResult.text = Html.fromHtml("${calbeGroundIntable.replace("mm2","mm<sup><small><small>2</small></small></sup>")}")
-                        else textViewGroundSizeResult.text = Html.fromHtml("- mm<sup><small><small>2</small></small></sup>")
+
+                        if(TextViewCableTypeInMoter.text != "NYY 2C-G"
+                           && TextViewCableTypeInMoter.text != "NYY 3C-G"){
+                            textViewGroundSizeResult.text = Html.fromHtml("${calbeGroundIntable.replace("mm2","mm<sup><small><small>2</small></small></sup>")}")
+                        }
+                        else {
+                            textViewGroundSizeResult.text = "- G"
+                        }
 //                        textViewConduitSizeResult.text = conduitInTable
                         textViewBreakerResult.text = breakerInTable
 
@@ -353,8 +363,6 @@ class MoterActivity : AppCompatActivity() {
                                 }else{
                                     textViewPressureResult.text = "${"%.2f V".format(pullResult)} (${"%.2f".format(PercentPressure)}%)"
                                 }
-
-
                                 break
                             }
                         }
@@ -366,7 +374,7 @@ class MoterActivity : AppCompatActivity() {
                 textViewCableSize.text = "แรงดัน(-V)"
                 textViewElectricCurrenResult.text = "-"
                 textViewSizeCableResult.text = "-"
-                textViewGroundSizeResult.text = "-"
+                textViewGroundSizeResult.text = "- G"
                 textViewConduitSizeResult.text = "-"
                 textViewBreakerResult.text = "-"
                 textViewPressureResult.text = "-"
@@ -402,7 +410,11 @@ class MoterActivity : AppCompatActivity() {
                         if(dataUnitMoter == "A"){
                             TextAmountMoterSize.text = "3.9"
                             saveData("dataSizeMoter", "3.9")
-                        }else{
+                        }else if(textUnit.text == "kW"){
+                            TextAmountMoterSize.text = "0.37"
+                            saveData("dataSizeMoter", "0.37")
+                        }
+                        else{
                             TextAmountMoterSize.text = "4"
                             saveData("dataSizeMoter", "4")
                         }
@@ -410,7 +422,11 @@ class MoterActivity : AppCompatActivity() {
                         if(dataUnitMoter == "HP"){
                             TextAmountMoterSize.text = "5"
                             saveData("dataSizeMoter", "5")
-                        }else{
+                        }else if(textUnit.text == "kW"){
+                            TextAmountMoterSize.text = "0.37"
+                            saveData("dataSizeMoter", "0.37")
+                        }
+                        else{
                             TextAmountMoterSize.text = "1.5"
                             saveData("dataSizeMoter", "1.5")
                         }
@@ -425,11 +441,18 @@ class MoterActivity : AppCompatActivity() {
                     phaseTextView.text = "$dataPhase เฟส"
                     saveData("phase", "$dataPhase เฟส")
 
+                    TextViewCableTypeInMoter.text = "NYY 1C"
+                    saveData("dataTypeCable", "NYY 1C")
+
                     if(phaseTextView.text == "1 เฟส"){
                         if(textUnit.text == "A"){
                             TextAmountMoterSize.text = "3.9"
                             saveData("dataSizeMoter", "3.9")
-                        }else{
+                        }else if(textUnit.text == "kW"){
+                            TextAmountMoterSize.text = "0.37"
+                            saveData("dataSizeMoter", "0.37")
+                        }
+                        else{
                             TextAmountMoterSize.text = "4"
                             saveData("dataSizeMoter", "4")
                         }
@@ -437,7 +460,11 @@ class MoterActivity : AppCompatActivity() {
                         if(textUnit.text == "HP"){
                             TextAmountMoterSize.text = "5"
                             saveData("dataSizeMoter", "5")
-                        }else{
+                        }else if(textUnit.text == "kW"){
+                            TextAmountMoterSize.text = "0.37"
+                            saveData("dataSizeMoter", "0.37")
+                        }
+                        else{
                             TextAmountMoterSize.text = "1.5"
                             saveData("dataSizeMoter", "1.5")
                         }
@@ -448,6 +475,9 @@ class MoterActivity : AppCompatActivity() {
                 if (dataStartPantern != null){
                     TextViewStartPantern.text = dataStartPantern
                     saveData("dataStartPantern", dataStartPantern)
+
+                    TextViewCableTypeInMoter.text = "NYY 1C"
+                    saveData("dataTypeCable", "NYY 1C")
 
                 }
 
@@ -505,10 +535,11 @@ class MoterActivity : AppCompatActivity() {
             }
         }
     }
+
     fun loadData(){
         val sharedPref = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
-        val dataSizeOfMoter = sharedPref.getString(TASK_LIST_PREF_KEY_SIZE_MOTER,"4")
-        val dataOfUnitMoter = sharedPref.getString(TASK_LIST_PREF_KEY_SIZE_UNIT,"HP")
+        val dataSizeOfMoter = sharedPref.getString(TASK_LIST_PREF_KEY_SIZE_MOTER,"0.37")
+        val dataOfUnitMoter = sharedPref.getString(TASK_LIST_PREF_KEY_SIZE_UNIT,"kW")
         val dataOfPhase = sharedPref.getString(TASK_LIST_PREF_KEY_PHASE_IN_MOTER,"1 เฟส")
 //        val dataOfInstall = sharedPref.getString(TASK_LIST_PREF_KEY_INSTALLATION_IN_MOTER,"เดินเคเบิลแบบระบายอากาศ")
         val dataOfStartPantern = sharedPref.getString(TASK_LIST_PREF_KEY_STARTPANTERN_IN_MOTER,"DOL")

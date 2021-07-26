@@ -19,6 +19,7 @@ class TypeCableActivity : AppCompatActivity() , InstallationonClickAdapterListen
 
         val checkActivity = intent.getStringExtra("Activity")
         val TypeActivityMoter = intent.getStringExtra("Type")
+        val phase = intent.getStringExtra("Phase")
 
         if (checkActivity.equals("PipeSize")){
             headerTypeCable.text = "หาขนาดท่อและราง"
@@ -44,10 +45,19 @@ class TypeCableActivity : AppCompatActivity() , InstallationonClickAdapterListen
 
             headerTypeCable.text = "ขนาดวงจรมอเตอร์"
             if(TypeActivityMoter != "DELTA"){
+                if(phase == "3"){
                 typeCableItem.add(TypeCableModel("IEC 01"))
                 typeCableItem.add(TypeCableModel("NYY 1C"))
-                typeCableItem.add(TypeCableModel("NYY 2C-G"))
+                typeCableItem.add(TypeCableModel("NYY 3C-G"))
                 typeCableItem.add(TypeCableModel("XLPE 1C"))
+                }else{
+                    typeCableItem.add(TypeCableModel("IEC 01"))
+                    typeCableItem.add(TypeCableModel("NYY 1C"))
+                    typeCableItem.add(TypeCableModel("NYY 2C-G"))
+                    typeCableItem.add(TypeCableModel("XLPE 1C"))
+                }
+
+
             }else{
                 typeCableItem.add(TypeCableModel("IEC 01"))
                 typeCableItem.add(TypeCableModel("NYY 1C"))

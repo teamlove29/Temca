@@ -46,24 +46,24 @@ class SizeCableInPipeActivity : AppCompatActivity(),onClickInAdapter {
 
         val amountRowInTable:Int = when(typeCableOfMain){
             "IEC01" -> 17 // 400
-            "NYY 1C" -> 18 // 500
-            "NYY 2C" -> 16 // 300
-            "NYY 3C" -> 16 // 300
-            "NYY 4C" -> 16 // 300
-            "XLPE 1C" -> 20 // 800
-            "XLPE 2C" -> 17 // 400
-            "XLPE 3C" -> 17 // 400
-            "XLPE 4C" -> 17 // 400
-            "VCT 1C" -> 8 // 35
-            "VCT 2C" -> 8 // 35
-            "VCT 3C" -> 8 // 35
-            "VCT 4C" -> 8 // 35
-            "NYY 2C - G" -> 16 // 300
-            "NYY 3C - G" -> 16 // 300
-            "NYY 4C - G" -> 16 // 300
-            "VCT 2C - G" -> 8 // 35
-            "VCT 3C - G" -> 8 // 35
-            "VCT 4C - G" -> 8 // 35
+            "NYY 1/C" -> 18 // 500
+            "NYY 2/C" -> 16 // 300
+            "NYY 3/C" -> 16 // 300
+            "NYY 4/C" -> 16 // 300
+            "XLPE 1/C" -> 20 // 800
+            "XLPE 2/C" -> 17 // 400
+            "XLPE 3/C" -> 17 // 400
+            "XLPE 4/C" -> 17 // 400
+            "VCT 1/C" -> 8 // 35
+            "VCT 2/C" -> 8 // 35
+            "VCT 3/C" -> 8 // 35
+            "VCT 4/C" -> 8 // 35
+            "NYY 2/C - G" -> 16 // 300
+            "NYY 3/C - G" -> 16 // 300
+            "NYY 4/C - G" -> 16 // 300
+            "VCT 2/C - G" -> 8 // 35
+            "VCT 3/C - G" -> 8 // 35
+            "VCT 4/C - G" -> 8 // 35
             else -> 0
         }
 

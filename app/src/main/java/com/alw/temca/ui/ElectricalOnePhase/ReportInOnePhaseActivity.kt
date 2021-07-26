@@ -81,7 +81,7 @@ class ReportInOnePhaseActivity : AppCompatActivity() {
         if(DataFromWireSize[0].wireGround != "-")
             textViewResultWireGroundInReport.text = Html.fromHtml(DataFromWireSize[0].wireGround.replace("mm2", "mm<sup><small><small>2</small></small></sup>"))
         else
-            textViewResultWireGroundInReport.text = "-"
+            textViewResultWireGroundInReport.text = "- G"
 
         if(DataFromWireSize[0].condutiSize.indexOf('/') != -1){
             for(i in 0..2){

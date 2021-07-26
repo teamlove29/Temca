@@ -18,10 +18,10 @@ class TypeCableInRailsCableActivity : AppCompatActivity(),onClickInAdapter {
         setContentView(R.layout.activity_type_cable_in_rails_cable)
 
 
-        typeCableItem.add(TypeCableModel("NYY 1C"))
-        typeCableItem.add(TypeCableModel("NYY 4C"))
-        typeCableItem.add(TypeCableModel("XLPE 1C"))
-        typeCableItem.add(TypeCableModel("XLPE 4C"))
+        typeCableItem.add(TypeCableModel("NYY 1/C"))
+        typeCableItem.add(TypeCableModel("NYY 4/C"))
+        typeCableItem.add(TypeCableModel("XLPE 1/C"))
+        typeCableItem.add(TypeCableModel("XLPE 4/C"))
 
         recyclerViewTypeCable.adapter = TypeCableInRailsCableAdapter(typeCableItem,this)
         recyclerViewTypeCable.layoutManager = LinearLayoutManager(this)

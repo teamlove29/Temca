@@ -108,6 +108,7 @@ class AmountInRailsActivity : AppCompatActivity() {
             else -> return
         }
 
+
         try {
             val typeCable = applicationContext.assets.open("type_cable_pipe.xls")
             val wb = Workbook.getWorkbook(typeCable)
@@ -120,6 +121,7 @@ class AmountInRailsActivity : AppCompatActivity() {
                             if(SizeConduitTextView.text == conduit ){
                                 // ขนาด สายไฟสุงสุด
                                 textViewResultMaxCable.text = "${sheet.getCell(indexConduit + 14, indexSize + 1).contents} เส้น"
+
                                 if (sheet.getCell(indexConduit + 14, indexSize + 1).contents.toString() == "0"){
                                     textViewResultMaxCable.text = "- เส้น"
                                 }

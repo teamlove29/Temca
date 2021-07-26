@@ -20,10 +20,11 @@ class InstallationInRailsCableActivity : AppCompatActivity(),onClickInAdapter {
         setContentView(R.layout.activity_installation_in_rails_cable)
 
 
-        val setResourceImage7 = resources.getIdentifier("setting_group7", "drawable", this.packageName)
+        val setResourceImage7_air = resources.getIdentifier("ic_group7_air", "drawable", this.packageName)
+        val setResourceImage7_stairs = resources.getIdentifier("ic_group7_stairs", "drawable", this.packageName)
 
-        installItem.add(InstallationModel(resources.getDrawable(setResourceImage7),"กลุ่ม 7","วางบนรางเคเบิ้ล ไม่มีฝาปิดแบบระบายอากาศ"))
-        installItem.add(InstallationModel(resources.getDrawable(setResourceImage7),"กลุ่ม 7","วางแบนรางเคเบิ้ล ไม่มีผาปิดแบบบันได"))
+        installItem.add(InstallationModel(resources.getDrawable(setResourceImage7_air),"กลุ่ม 7","วางบนรางเคเบิ้ล ไม่มีฝาปิดแบบระบายอากาศ"))
+        installItem.add(InstallationModel(resources.getDrawable(setResourceImage7_stairs),"กลุ่ม 7","วางแบนรางเคเบิ้ล ไม่มีผาปิดแบบบันได"))
 
         recyclerViewInstallation.adapter = InstallationInRailsCableAdapter(installItem,this)
         recyclerViewInstallation.layoutManager = LinearLayoutManager(this)

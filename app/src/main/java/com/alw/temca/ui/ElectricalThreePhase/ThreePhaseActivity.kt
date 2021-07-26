@@ -67,7 +67,7 @@ class ThreePhaseActivity : AppCompatActivity() {
         val dataOfDistance = sharedPref.getString(TASK_LIST_PREF_KEY_DISTANCE_IN_THREE_PHASE, "10")
 
         val dataOfTypeCable = if(dataOfInstallation!!.slice(0..6) == "กลุ่ม 5" ){
-            sharedPref.getString(TASK_LIST_PREF_KEY_TYPE_CABLE_IN_THREE_PHASE, "NYY")
+            sharedPref.getString(TASK_LIST_PREF_KEY_TYPE_CABLE_IN_THREE_PHASE, "NYY 1/C")
         }else{
             sharedPref.getString(TASK_LIST_PREF_KEY_TYPE_CABLE_IN_THREE_PHASE, "IEC01")
         }
@@ -203,11 +203,12 @@ class ThreePhaseActivity : AppCompatActivity() {
                     if(cableSize.length > 10) textViewShow2.text = Html.fromHtml("${cableSize.replace("mm","mm<sup><small><small>2</small></small></sup>")}")
                     else textViewShow2.text = Html.fromHtml("$cableSize mm<sup><small><small>2</small></small></sup>")
 
-                    if(typeCableTextView.text == "NYY-G"
-                        || typeCableTextView.text == "VCT - G"
-                        || typeCableTextView.text == "NYY 2C - G"
-                        || typeCableTextView.text == "VCT 2C - G") {
-                        textViewResultWireGround.text = "-"
+                    if(typeCableTextView.text == "NYY 4/C - G"
+                        || typeCableTextView.text == "VCT 4/C - G"
+                        || typeCableTextView.text == "NYY 2/C - G"
+                        || typeCableTextView.text == "VCT 2/C - G"
+                        || typeCableTextView.text == "XLPE 4/C, G") {
+                        textViewResultWireGround.text = "- G"
                         pressureDropIndexTable = 1
                     }else{
                         textViewResultWireGround.text = Html.fromHtml("$sizeWireGround mm<sup><small><small>2</small></small></sup>")
@@ -350,12 +351,12 @@ class ThreePhaseActivity : AppCompatActivity() {
         textViewReferenceVoltage.text = "(แรงดันอ้างอิง 400V)"
         return when(cableType){  // 3 เฟส
                     "IEC01" -> 9
-                    "NYY 1C" -> 10
-                    "VCT 1C" -> 11
-                    "XLPE 1C" -> 12
-                    "XLPE 2C" -> 13
-                    "NYY - G" -> 14
-                    "VCT - G" -> 15
+                    "NYY 1/C" -> 10
+                    "VCT 1/C" -> 11
+                    "XLPE 1/C" -> 12
+                    "XLPE 4/C, G" -> 13
+                    "NYY 4/C - G" -> 14
+                    "VCT 4/C - G" -> 15
                     else -> 0
                 }
     }
@@ -375,7 +376,7 @@ class ThreePhaseActivity : AppCompatActivity() {
                 if (dataInstallation != null) {
                     val dataInstallationSlice = dataInstallation.slice(0..6)
                     if(dataInstallationSlice == "กลุ่ม 5"){
-                        typeCableTextView.text = "NYY 1C"
+                        typeCableTextView.text = "NYY 1/C"
                         saveData("typeCable", typeCableTextView.text.toString())
                     }else{
                         typeCableTextView.text = "IEC01"

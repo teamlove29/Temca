@@ -23,21 +23,21 @@ class TypeCableInThreePhaseActivity : AppCompatActivity(), onClickInAdapter {
 
         if(checkGroup == "Group2"){ // has 7
             typeCableItem.add(TypeCableModel("IEC01")) // 2
-            typeCableItem.add(TypeCableModel("NYY 1C")) // 2, 5
-            typeCableItem.add(TypeCableModel("XLPE 1C")) // 2, 5
-            typeCableItem.add(TypeCableModel("XLPE 2C")) // 2, 5
-            typeCableItem.add(TypeCableModel("VCT 1C")) // 2, 5
-            typeCableItem.add(TypeCableModel("NYY 2C - G")) // 2
-            typeCableItem.add(TypeCableModel("VCT 2C - G")) // 2
+            typeCableItem.add(TypeCableModel("NYY 1/C")) // 2, 5
+            typeCableItem.add(TypeCableModel("XLPE 1/C")) // 2, 5
+            typeCableItem.add(TypeCableModel("XLPE 4/C, G")) // 2, 5
+            typeCableItem.add(TypeCableModel("VCT 1/C")) // 2, 5
+            typeCableItem.add(TypeCableModel("NYY 4/C - G")) // 5
+            typeCableItem.add(TypeCableModel("VCT 4/C - G")) // 5
 
         }
         else if (checkGroup == "Group5"){ // has 6
-            typeCableItem.add(TypeCableModel("NYY 1C")) // 2, 5
-            typeCableItem.add(TypeCableModel("XLPE 1C")) // 2, 5
-            typeCableItem.add(TypeCableModel("XLPE 2C")) // 2, 5
-            typeCableItem.add(TypeCableModel("VCT 1C")) // 2, 5
-            typeCableItem.add(TypeCableModel("NYY - G")) // 5
-            typeCableItem.add(TypeCableModel("VCT - G")) // 5
+            typeCableItem.add(TypeCableModel("NYY 1/C")) // 2, 5
+            typeCableItem.add(TypeCableModel("XLPE 1/C")) // 2, 5
+            typeCableItem.add(TypeCableModel("XLPE 4/C, G")) // 2, 5
+            typeCableItem.add(TypeCableModel("VCT 1/C")) // 2, 5
+            typeCableItem.add(TypeCableModel("NYY 4/C - G")) // 5
+            typeCableItem.add(TypeCableModel("VCT 4/C - G")) // 5
         }
 
 

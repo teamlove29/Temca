@@ -314,18 +314,18 @@ class AmountInRailCableActivity : AppCompatActivity() {
 
         return if(dataOfInstallationDes == "วางบนรางเคเบิ้ล ไม่มีฝาปิดแบบระบายอากาศ"){
                     when(cableType){
-                        "NYY 1C" -> 0
-                        "NYY 4C" -> 2
-                        "XLPE 1C" -> 4
-                        "XLPE 4C" -> 6
+                        "NYY 1/C" -> 0
+                        "NYY 4/C" -> 2
+                        "XLPE 1/C" -> 4
+                        "XLPE 4/C" -> 6
                         else -> 0
                     }
                 }else{
                     when(cableType){
-                        "NYY 1C" -> 1
-                        "NYY 4C" -> 3
-                        "XLPE 1C" -> 5
-                        "XLPE 4C" -> 7
+                        "NYY 1/C" -> 1
+                        "NYY 4/C" -> 3
+                        "XLPE 1/C" -> 5
+                        "XLPE 4/C" -> 7
                         else -> 0
                     }
                 }
