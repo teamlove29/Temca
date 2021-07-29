@@ -8,4 +8,7 @@ data class ResultRailsToReportModel(
     var typeCable:String,
     var sizeCable:String,
     var sizeRails:String,
-    var amountCable:String): Parcelable
+    var amountCable:String,
+    var rails:String,
+    var amount:String,
+    var status:Boolean): Parcelable

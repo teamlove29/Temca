@@ -277,9 +277,9 @@ class MoterActivity : AppCompatActivity() {
 
         val pressureDropIndexTable:Int =  when(TextViewCableTypeInMoter.text){
             "IEC 01" -> 0
-            "NYY 1C" -> 0
-            "NYY 2C-G" -> 1
-            "XLPE 1C" -> 2
+            "NYY 1/C" -> 0
+            "NYY 2/C-G" -> 1
+            "XLPE 1/C" -> 2
             else -> 0
         }
 
@@ -308,9 +308,9 @@ class MoterActivity : AppCompatActivity() {
                         textViewElectricCurrenResult.text = powerRatingIntable
                         textViewSizeCableResult.text = Html.fromHtml("${cableTypeIntable.replace("mm2","mm<sup><small><small>2</small></small></sup>")}")
 
-                        if(TextViewCableTypeInMoter.text != "NYY 2C-G"
-                           && TextViewCableTypeInMoter.text != "NYY 3C-G"){
-                            textViewGroundSizeResult.text = Html.fromHtml("${calbeGroundIntable.replace("mm2","mm<sup><small><small>2</small></small></sup>")}")
+                        if(TextViewCableTypeInMoter.text != "NYY 2/C-G"
+                           && TextViewCableTypeInMoter.text != "NYY 3/C-G"){
+                            textViewGroundSizeResult.text = Html.fromHtml("${calbeGroundIntable.replace("mm2"," G")}")
                         }
                         else {
                             textViewGroundSizeResult.text = "- G"
@@ -500,9 +500,9 @@ class MoterActivity : AppCompatActivity() {
             else {
                 if(TextViewStartPantern.text == "STAR DELTA") {
                     println("dasdasd ${TextViewCableTypeInMoter.text}")
-                    if(TextViewCableTypeInMoter.text == "NYY 2C-G"){
-                        TextViewCableTypeInMoter.text = "NYY 1C"
-                        saveData("dataTypeCable", "NYY 1C")
+                    if(TextViewCableTypeInMoter.text == "NYY 2/C-G"){
+                        TextViewCableTypeInMoter.text = "NYY 1/C"
+                        saveData("dataTypeCable", "NYY 1/C")
                     }
                 }
                 iconImageViewToPage.visibility = View.VISIBLE
@@ -543,7 +543,7 @@ class MoterActivity : AppCompatActivity() {
         val dataOfPhase = sharedPref.getString(TASK_LIST_PREF_KEY_PHASE_IN_MOTER,"1 เฟส")
 //        val dataOfInstall = sharedPref.getString(TASK_LIST_PREF_KEY_INSTALLATION_IN_MOTER,"เดินเคเบิลแบบระบายอากาศ")
         val dataOfStartPantern = sharedPref.getString(TASK_LIST_PREF_KEY_STARTPANTERN_IN_MOTER,"DOL")
-        val dataOfCableSize = sharedPref.getString(TASK_LIST_PREF_KEY_TYPE_CABLE_IN_MOTER,"NYY 1C")
+        val dataOfCableSize = sharedPref.getString(TASK_LIST_PREF_KEY_TYPE_CABLE_IN_MOTER,"NYY 1/C")
         val dataOfDistanceInTransformer = sharedPref.getString(TASK_LIST_PREF_KEY_DISTANCE_IN_MOTER,"20")
 
         TextAmountMoterSize.text = dataSizeOfMoter

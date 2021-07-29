@@ -44,18 +44,18 @@ class SizeCableInRailsActivity : AppCompatActivity(), onClickInAdapter {
 
         val amountRowInTable:Int = when(typeCableOfMain){
             "IEC01" -> 16 // 300
-            "NYY 1C" -> 14 // 185
-            "NYY 2C" -> 8 // 35
-            "NYY 3C" -> 8 // 35
-            "NYY 4C" -> 8 // 35
-            "XLPE 1C" -> 16 // 300
-            "XLPE 2C" -> 17 // 400
-            "XLPE 3C" -> 17 // 400
-            "XLPE 4C" -> 16 // 300
-            "VCT 1C" -> 8 // 35
-            "VCT 2C" -> 8 // 35
-            "VCT 3C" -> 8 // 35
-            "VCT 4C" -> 8 // 35
+            "NYY 1/C" -> 14 // 185
+            "NYY 2/C" -> 8 // 35
+            "NYY 3/C" -> 8 // 35
+            "NYY 4/C" -> 8 // 35
+            "XLPE 1/C" -> 16 // 300
+            "XLPE 2/C" -> 17 // 400
+            "XLPE 3/C" -> 17 // 400
+            "XLPE 4/C" -> 16 // 300
+            "VCT 1/C" -> 8 // 35
+            "VCT 2/C" -> 8 // 35
+            "VCT 3/C" -> 8 // 35
+            "VCT 4/C" -> 8 // 35
             else -> 99
         }
 

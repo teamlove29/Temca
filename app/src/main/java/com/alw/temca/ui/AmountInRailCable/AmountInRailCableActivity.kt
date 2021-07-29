@@ -230,8 +230,8 @@ class AmountInRailCableActivity : AppCompatActivity() {
                 circuitTextView.text.toString(), // CB
                 editTextDistance.text.toString(), // amountDis
                 railSizeList[0].wireSize, // text2 is cablesize
-                "${railSizeList[0].groundSize}mm2", // wiresizegroud
-                "${railSizeList[0].railSize}mm", // text4 is conduitsize
+                "${railSizeList[0].groundSize} G", // wiresizegroud
+                "${railSizeList[0].railSize} mm", // text4 is conduitsize
                 railSizeList[0].resultPressure) // result presure
         )
         dataToReport.add(ReportResultCurrentRatting(
@@ -241,8 +241,8 @@ class AmountInRailCableActivity : AppCompatActivity() {
                 circuitTextView.text.toString(), // CB
                 editTextDistance.text.toString(), // amountDis
                 railSizeList[1].wireSize, // text2 is cablesize
-                "${railSizeList[1].groundSize}mm2", // wiresizegroud
-                "${railSizeList[1].railSize}mm", // text4 is conduitsize
+                "${railSizeList[1].groundSize} G", // wiresizegroud
+                "${railSizeList[1].railSize} mm", // text4 is conduitsize
                 railSizeList[1].resultPressure) // result presure
         )
         intent.putParcelableArrayListExtra("dataResult",dataToReport)

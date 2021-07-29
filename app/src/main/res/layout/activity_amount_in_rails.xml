@@ -37,7 +37,7 @@ tools:context=".ui.AmountInRails.AmountInRailsActivity">
             android:layout_centerVertical="true"
             android:fontFamily="@font/mitr_regular"
             android:textColor="@color/btnBlue"
-            android:textSize="25sp"
+            android:textSize="20sp"
             android:text="@string/typeAndAmountInRails"
             android:autoSizeTextType="uniform"
             android:autoSizeMinTextSize="20sp"
@@ -45,6 +45,36 @@ tools:context=".ui.AmountInRails.AmountInRailsActivity">
             android:autoSizeStepGranularity="5sp"/>
 
     </RelativeLayout>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardViewSwitchButton"
+        app:cardCornerRadius="5dp"
+        android:layout_marginBottom="1dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:padding="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/titlePipeSize"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/mitr_regular"
+                android:text="หาขนาดสายไฟสูงสุด"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <Switch
+                android:id="@+id/switchButtonPipeSize"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:focusedByDefault="false" />
+            <!--            android:theme="@style/SCBSwitch"-->
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
 
 
     <androidx.cardview.widget.CardView
@@ -57,7 +87,6 @@ tools:context=".ui.AmountInRails.AmountInRailsActivity">
         android:layout_marginBottom="1dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-
 
         <RelativeLayout
             android:padding="15dp"
@@ -194,6 +223,53 @@ tools:context=".ui.AmountInRails.AmountInRailsActivity">
 
     </androidx.cardview.widget.CardView>
 
+    <androidx.cardview.widget.CardView
+        android:onClick="setAmountOnClick"
+        android:id="@+id/cardViewAmountCable"
+        app:cardCornerRadius="5dp"
+        android:layout_marginBottom="1dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:padding="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/textViewAmountCable"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="จำนวนเส้น"
+                android:textSize="16sp"
+                android:fontFamily="@font/mitr_regular"
+                android:textColor="@color/black"
+                android:layout_centerVertical="true"/>
+
+            <EditText
+                android:id="@+id/editTextAmountCable"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:inputType="number"
+                android:maxLength="3"
+                android:layout_marginRight="40dp"
+                android:hint="20"
+                android:fontFamily="@font/mitr_regular"
+                android:gravity="right"
+                android:ellipsize="end"
+                android:background="@null"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:textColorHint="@color/defaulthint"
+                android:textColor="@color/defaulthint"
+                />
+
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
 
     <Button
         android:onClick="calculatorOnClick"
@@ -308,6 +384,54 @@ tools:context=".ui.AmountInRails.AmountInRailsActivity">
                 android:textSize="16sp"
                 android:fontFamily="@font/mitr_regular"
                 android:textColor="@color/white" />
+
+
+            <TextView
+                android:id="@+id/textViewRailsSize"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_below="@+id/textViewMaxCable"
+                android:text="ขนาดราง(จำนวนสูงสุด)"
+                android:textSize="16sp"
+                android:fontFamily="@font/mitr_regular"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:id="@+id/textViewRailsSizeResult"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_below="@+id/textViewResultMaxCable"
+                android:layout_alignParentRight="true"
+                android:text="null (null เส้น)"
+                android:textSize="16sp"
+                android:fontFamily="@font/mitr_regular"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:id="@+id/textViewRailsSize2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_below="@+id/textViewRailsSize"
+                android:text="เกินจำนวนตามมาตราฐาน"
+                android:textSize="16sp"
+                android:fontFamily="@font/mitr_regular"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:id="@+id/textViewRailsSizeResult2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_below="@+id/textViewRailsSizeResult"
+                android:layout_alignParentRight="true"
+                android:text="null (null เส้น)"
+                android:textSize="16sp"
+                android:fontFamily="@font/mitr_regular"
+                android:textColor="@color/white" />
+
 
             <LinearLayout
                 android:gravity="bottom"

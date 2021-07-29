@@ -97,7 +97,7 @@ class SizeConduitInRailsActivity : AppCompatActivity(),onClickInAdapter {
                 else -> 99
             }
         }
-        else if(typeCableOfMain == "NYY 1C"){
+        else if(typeCableOfMain == "NYY 1/C"){
             // เริ่มจาก col ไหน
             startCol = when(sizeCableOfMain){
                 "1 mm2" -> 0
@@ -136,7 +136,7 @@ class SizeConduitInRailsActivity : AppCompatActivity(),onClickInAdapter {
                 else -> 99
             }
         }
-        else if(typeCableOfMain == "NYY 2C") {
+        else if(typeCableOfMain == "NYY 2/C") {
             // เริ่มจาก col ไหน
             startCol = when (sizeCableOfMain) {
                 "1 mm2" -> 0
@@ -163,7 +163,7 @@ class SizeConduitInRailsActivity : AppCompatActivity(),onClickInAdapter {
                 else -> 99
             }
         }
-        else if(typeCableOfMain == "NYY 3C") {
+        else if(typeCableOfMain == "NYY 3/C") {
             // เริ่มจาก col ไหน
             startCol = when (sizeCableOfMain) {
                 "1 mm2" -> 0
@@ -190,7 +190,7 @@ class SizeConduitInRailsActivity : AppCompatActivity(),onClickInAdapter {
                 else -> 99
             }
         }
-        else if(typeCableOfMain == "NYY 4C") {
+        else if(typeCableOfMain == "NYY 4/C") {
             // เริ่มจาก col ไหน
             startCol = when (sizeCableOfMain) {
                 "1 mm2" -> 0
@@ -218,7 +218,7 @@ class SizeConduitInRailsActivity : AppCompatActivity(),onClickInAdapter {
             }
 
         }
-        else if(typeCableOfMain == "XLPE 1C") {
+        else if(typeCableOfMain == "XLPE 1/C") {
             // เริ่มจาก col ไหน
             startCol = when (sizeCableOfMain) {
                 "1.5 mm2" -> 0
@@ -260,7 +260,7 @@ class SizeConduitInRailsActivity : AppCompatActivity(),onClickInAdapter {
             }
 
         }
-        else if(typeCableOfMain == "XLPE 2C") {
+        else if(typeCableOfMain == "XLPE 2/C") {
             // เริ่มจาก col ไหน
             startCol = when (sizeCableOfMain) {
                 "1.5 mm2" -> 0
@@ -304,7 +304,7 @@ class SizeConduitInRailsActivity : AppCompatActivity(),onClickInAdapter {
             }
 
         }
-        else if(typeCableOfMain == "XLPE 3C") {
+        else if(typeCableOfMain == "XLPE 3/C") {
             // เริ่มจาก col ไหน
             startCol = when (sizeCableOfMain) {
                 "1.5 mm2" -> 0
@@ -348,7 +348,7 @@ class SizeConduitInRailsActivity : AppCompatActivity(),onClickInAdapter {
             }
 
         }
-        else if(typeCableOfMain == "XLPE 4C") {
+        else if(typeCableOfMain == "XLPE 4/C") {
             // เริ่มจาก col ไหน
             startCol = when (sizeCableOfMain) {
                 "1.5 mm2" -> 0
@@ -392,7 +392,7 @@ class SizeConduitInRailsActivity : AppCompatActivity(),onClickInAdapter {
             }
 
         }
-        else if(typeCableOfMain == "VCT 1C") {
+        else if(typeCableOfMain == "VCT 1/C") {
             // เริ่มจาก col ไหน
             startCol = when (sizeCableOfMain) {
                 "1 mm2" -> 0
@@ -420,7 +420,7 @@ class SizeConduitInRailsActivity : AppCompatActivity(),onClickInAdapter {
             }
 
         }
-        else if(typeCableOfMain == "VCT 2C") {
+        else if(typeCableOfMain == "VCT 2/C") {
             // เริ่มจาก col ไหน
             startCol = when (sizeCableOfMain) {
                 "1 mm2" -> 0
@@ -448,7 +448,7 @@ class SizeConduitInRailsActivity : AppCompatActivity(),onClickInAdapter {
             }
 
         }
-        else if(typeCableOfMain == "VCT 3C") {
+        else if(typeCableOfMain == "VCT 3/C") {
             // เริ่มจาก col ไหน
             startCol = when (sizeCableOfMain) {
                 "1 mm2" -> 0
@@ -476,7 +476,7 @@ class SizeConduitInRailsActivity : AppCompatActivity(),onClickInAdapter {
             }
 
         }
-        else if(typeCableOfMain == "VCT 4C") {
+        else if(typeCableOfMain == "VCT 4/C") {
             // เริ่มจาก col ไหน
             startCol = when (sizeCableOfMain) {
                 "1 mm2" -> 0

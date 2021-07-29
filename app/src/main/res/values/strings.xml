@@ -8,10 +8,10 @@
     <string name="calculate">คำนวณ</string>
     <string name="cable_and_conduit_calculator">Cable and Conduit Calculator</string>
     <string name="typeAndAmountInPipe">หาชนิดและจำนวนสายในท่อ</string>
-    <string name="typeAndAmountInRails">หาชนิดและจำนวนสายในรางเดินสาย</string>
+    <string name="typeAndAmountInRails">หาชนิดและจำนวนสายในรางเดินสาย(Wireway)</string>
     <string name="title_one_phase">ขนาดวงจรไฟฟ้า 1 เฟส</string>
     <string name="title_three_phase">ขนาดวงจรไฟฟ้า 3 เฟส</string>
     <string name="title_current_rating">หาพิกัดกระแสสายไฟฟ้า</string>
-    <string name="title_rails_cable">ชนิดและจำนวนสายในรางเคเบิล(Cable Tray)</string>
+    <string name="title_rails_cable">ชนิดและจำนวนสายในรางเคเบิ้ล(Cable Tray)</string>
     <string name="title_motor">ขนาดวงจรมอเตอร์</string>
 </resources>

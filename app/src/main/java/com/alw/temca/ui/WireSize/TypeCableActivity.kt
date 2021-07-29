@@ -47,21 +47,21 @@ class TypeCableActivity : AppCompatActivity() , InstallationonClickAdapterListen
             if(TypeActivityMoter != "DELTA"){
                 if(phase == "3"){
                 typeCableItem.add(TypeCableModel("IEC 01"))
-                typeCableItem.add(TypeCableModel("NYY 1C"))
-                typeCableItem.add(TypeCableModel("NYY 3C-G"))
-                typeCableItem.add(TypeCableModel("XLPE 1C"))
+                typeCableItem.add(TypeCableModel("NYY 1/C"))
+                typeCableItem.add(TypeCableModel("NYY 3/C-G"))
+                typeCableItem.add(TypeCableModel("XLPE 1/C"))
                 }else{
                     typeCableItem.add(TypeCableModel("IEC 01"))
-                    typeCableItem.add(TypeCableModel("NYY 1C"))
-                    typeCableItem.add(TypeCableModel("NYY 2C-G"))
-                    typeCableItem.add(TypeCableModel("XLPE 1C"))
+                    typeCableItem.add(TypeCableModel("NYY 1/C"))
+                    typeCableItem.add(TypeCableModel("NYY 2/C-G"))
+                    typeCableItem.add(TypeCableModel("XLPE 1/C"))
                 }
 
 
             }else{
                 typeCableItem.add(TypeCableModel("IEC 01"))
-                typeCableItem.add(TypeCableModel("NYY 1C"))
-                typeCableItem.add(TypeCableModel("XLPE 1C"))
+                typeCableItem.add(TypeCableModel("NYY 1/C"))
+                typeCableItem.add(TypeCableModel("XLPE 1/C"))
             }
 
 

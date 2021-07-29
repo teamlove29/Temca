@@ -55,7 +55,8 @@
         <activity android:name=".ui.AmountInRails.SizeConduitInRailsActivity" />
         <activity android:name=".ui.AmountInRails.TypeCableInRailsActivity" />
         <activity android:name=".ui.AmountInRails.SizeCableInRailsActivity" />
-        <activity android:name=".ui.AmountInRails.AmountInRailsActivity" />
+        <activity android:name=".ui.AmountInRails.AmountInRailsActivity"
+            android:windowSoftInputMode="adjustPan"/>
         <activity android:name=".ui.Moter.MoterReportActivity" />
         <activity android:name=".ui.Transformer.TransformerReportActivity" />
         <activity android:name=".ui.Moter.SizeMoterActivity" />

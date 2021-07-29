@@ -37,10 +37,12 @@ class InstallationTransformerActivity : AppCompatActivity(), InstallationonClick
         val setResourceImage4 = resources.getIdentifier("setting_group4", "drawable", this.packageName)
         val setResourceImage5 = resources.getIdentifier("setting_group5", "drawable", this.packageName)
         val setResourceImage6 = resources.getIdentifier("setting_group6", "drawable", this.packageName)
-        val setResourceImage7 = resources.getIdentifier("setting_group7", "drawable", this.packageName)
 
-        installItem.add(InstallationModel(resources.getDrawable(setResourceImage7),"กลุ่ม 7","วางบนรางเคเบิ้ล ไม่มีฝาปิดแบบระบายอากาศ"))
-        installItem.add(InstallationModel(resources.getDrawable(setResourceImage7),"กลุ่ม 7","วางบนรางเคเบิ้ล ไม่มีฝาปิดแบบบันได"))
+        val setResourceImage7_air = resources.getIdentifier("ic_group7_air", "drawable", this.packageName)
+        val setResourceImage7_stairs = resources.getIdentifier("ic_group7_stairs", "drawable", this.packageName)
+
+        installItem.add(InstallationModel(resources.getDrawable(setResourceImage7_air),"กลุ่ม 7","วางบนรางเคเบิ้ล ไม่มีฝาปิดแบบระบายอากาศ"))
+        installItem.add(InstallationModel(resources.getDrawable(setResourceImage7_stairs),"กลุ่ม 7","วางบนรางเคเบิ้ล ไม่มีฝาปิดแบบบันได"))
 
         recyclerViewInstallationTransformer.adapter = InstallationAdapter(installItem, this)
         recyclerViewInstallationTransformer.layoutManager = LinearLayoutManager(this)

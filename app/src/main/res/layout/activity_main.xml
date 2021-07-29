@@ -194,7 +194,7 @@
                     android:paddingLeft="10dp"
                     android:paddingBottom="10dp"
                     android:paddingRight="80dp"
-                    android:text="ชนิดและจำนวนสายในรางเคเบิล"
+                    android:text="ชนิดและจำนวนสายในรางเคเบิ้ล"
                     android:textColor="@color/white" />
 
                 <Button

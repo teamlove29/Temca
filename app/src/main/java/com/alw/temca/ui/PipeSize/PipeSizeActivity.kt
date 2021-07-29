@@ -185,6 +185,7 @@ class PipeSizeActivity : AppCompatActivity() {
                         if (cableSizeTextView.text == size){
                             for (i in 1..12){ // แนวนอนขนาดสาย
                                 //  i is col result ขนาดท่อ
+
                                 if (editTextAmountCable.text.toString().toInt() <= sheet.getCell(i, index + 1).contents.toInt()){
                                     textViewShow4InPipe.text = "${sheet.getCell(i, 0).contents} (${sheet.getCell(i, index + 1).contents} เส้น)"
                                     break

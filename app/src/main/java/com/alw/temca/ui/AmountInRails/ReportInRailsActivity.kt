@@ -1,11 +1,18 @@
 package com.alw.temca.ui.AmountInRails
 
 import android.Manifest
+import android.app.PendingIntent
+import android.content.Intent
+import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Environment
+import android.view.View
 import android.widget.Toast
+import androidx.core.content.FileProvider
+import com.alw.temca.Common.ApplicationSelectorReceiver
 import com.alw.temca.Common.Common
 import com.alw.temca.Model.AmountInRails.ResultRailsToReportModel
 import com.alw.temca.R
@@ -64,11 +71,66 @@ class ReportInRailsActivity : AppCompatActivity() {
                 .check()
 
         if (resultInRails != null) {
-            textViewReslutMainCableTypeInPipeReport.text = resultInRails.typeCable
-            textViewMainResultInstallationInReport.text = resultInRails.sizeCable
-            textViewMainResultCableTypeInReport.text = resultInRails.sizeRails
-            textViewReslutAmountCableInPipeReport.text = resultInRails.amountCable
+            if(!resultInRails.status){
+                textViewReslutMainCableTypeInPipeReport.text = resultInRails.typeCable
+                textViewMainResultInstallationInReport.text = resultInRails.sizeCable
+                textViewMainResultCableTypeInReport.text = resultInRails.sizeRails
+                textViewReslutAmountCableInPipeReport.text = resultInRails.amountCable
+
+                amountCableInReport.visibility = View.VISIBLE
+                railsInReport.visibility = View.VISIBLE
+                railsInReport2.visibility = View.GONE
+                amountInReport.visibility = View.GONE
+            }else{
+
+                textViewReslutMainCableTypeInPipeReport.text = resultInRails.typeCable
+                textViewMainResultInstallationInReport.text = resultInRails.sizeCable
+                textViewMainResultBreakerInReportData.text = resultInRails.amount
+                textViewReslutAmountCableInPipeReport2.text = resultInRails.rails
+
+
+                amountCableInReport.visibility = View.GONE
+                railsInReport.visibility = View.GONE
+                railsInReport2.visibility = View.VISIBLE
+                amountInReport.visibility = View.VISIBLE
+            }
+
         }
+
+
+        btnSendEmailInPipeSize.setOnClickListener {
+            try {
+                val fileWithinMyDir = File(
+                        Environment.getExternalStorageDirectory().toString()
+                                + File.separator
+                                + applicationContext.resources.getString(R.string.app_name)
+                                + file_name)
+
+                val uri = FileProvider.getUriForFile(this, this.packageName.toString() + ".fileprovider", fileWithinMyDir)
+                val sendIntent = Intent(Intent.ACTION_SEND)
+                val receiver = Intent(this, ApplicationSelectorReceiver::class.java)
+                val pendingIntent = PendingIntent.getBroadcast(this, 0, receiver, PendingIntent.FLAG_UPDATE_CURRENT)
+                sendIntent.type = "*/*"
+                sendIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                sendIntent.putExtra(Intent.EXTRA_SUBJECT, "รายงานผลการคำนวณหาขนาดสาย")
+                sendIntent.putExtra(Intent.EXTRA_TEXT, "รายงานผลการคำนวณขนาดสายตามไฟล์ที่แนบ...")
+                sendIntent.putExtra(Intent.EXTRA_STREAM, uri)
+//                startActivityForResult(Intent.createChooser(sendIntent, "SHARE", pendingIntent.intentSender), MY_REQUEST_CODE)
+                val chooser = Intent.createChooser(sendIntent, "Share File")
+                val resInfoList = this.packageManager.queryIntentActivities(chooser, PackageManager.MATCH_DEFAULT_ONLY)
+
+                for (resolveInfo in resInfoList) {
+                    val packageName = resolveInfo.activityInfo.packageName
+                    grantUriPermission(packageName, uri, Intent.FLAG_GRANT_WRITE_URI_PERMISSION or Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                }
+                startActivity(chooser)
+
+            } catch (e: Exception) {
+                Toast.makeText(this, "Error : $e", Toast.LENGTH_SHORT).show()
+//                println("Error : $e")
+            }
+        }
+
 
 
     }
@@ -119,7 +181,7 @@ class ReportInRailsActivity : AppCompatActivity() {
             var valueStyle = Font(fontName, valueFontSize, Font.NORMAL, colorAccent)
 
 
-            addNewItemWithLeftAndRight(document, "รายงานการคำนวนชนิดและจำนวนสายในรางเดินสาย", "", titleStyle, detailStyleTitle)
+            addNewItemWithLeftAndRight(document, "รายงานการคำนวนชนิดและจำนวนสายในรางเดินสาย(Wireway)", "", titleStyle, detailStyleTitle)
             addLineSeperator(document)
 
             addNewItem(document, "ข้อมูลการใช้งาน", Element.ALIGN_LEFT, headingStyle)
@@ -129,14 +191,28 @@ class ReportInRailsActivity : AppCompatActivity() {
             addLineSpace(document)
             addItemAndResult(document, "                ขนาดสาย :   ", data.sizeCable, titleStyleTitle, valueStyle)
             addLineSpace(document)
-            addItemAndResult(document, "                ขนาดราง :   ", data.sizeRails, titleStyleTitle, valueStyle)
-            addLineSpace(document)
+            if(!data.status){
+                addItemAndResult(document, "                ขนาดราง :   ", data.sizeRails, titleStyleTitle, valueStyle)
+                addLineSpace(document)
+            }else{
+                addItemAndResult(document, "                จำนวนสาย :   ", data.amount, titleStyleTitle, valueStyle)
+                addLineSpace(document)
+            }
+
 
             addNewItem(document, "ผลการคำนวน", Element.ALIGN_LEFT, headingStyle)
             addLineSpace(document)
 
-            addItemAndResult(document, "                จำนวนสายไฟ                    ", data.amountCable, titleStyleTitle, valueStyle)
-            addLineSpace(document)
+            if(!data.status){
+                addItemAndResult(document, "                จำนวนสายไฟ                    ", data.amountCable, titleStyleTitle, valueStyle)
+                addLineSpace(document)
+            }else{
+                addItemAndResult(document, "                ขนาดราง                    ", data.rails, titleStyleTitle, valueStyle)
+                addLineSpace(document)
+            }
+
+
+
 
             //close
             document.close()
