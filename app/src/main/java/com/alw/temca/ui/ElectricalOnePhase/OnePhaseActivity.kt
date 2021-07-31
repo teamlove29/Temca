@@ -227,11 +227,13 @@ class OnePhaseActivity : AppCompatActivity() {
 
 
                                 var pullResulttoString = "${"%.2f V".format(pullResult)}"
-                                var percentPressuretoString = "${"%.2f V".format(PercentPressure)}"
+                                var percentPressuretoString = "${"%.2f".format(PercentPressure)}"
                                 if(pullResult >= 1000){
-                                    pullResulttoString = pullResulttoString.replace("${pullResulttoString.slice(0..0)}","${pullResulttoString.slice(0..0)},")
+                                    pullResulttoString = "${pullResulttoString.slice(0..0)},${pullResulttoString.slice(1 until pullResulttoString.length)}"
                                     if(PercentPressure >= 1000){
-                                        percentPressuretoString = percentPressuretoString.replace("${percentPressuretoString.slice(0..0)}","${percentPressuretoString.slice(0..0)},")
+                                        percentPressuretoString = "(${percentPressuretoString.slice(0..0)},${percentPressuretoString.slice(1 until percentPressuretoString.length)}%)"
+                                    }else{
+                                        percentPressuretoString = "(${percentPressuretoString}%)"
                                     }
                                     textViewShow6.text = "$pullResulttoString $percentPressuretoString"
                                 }else{

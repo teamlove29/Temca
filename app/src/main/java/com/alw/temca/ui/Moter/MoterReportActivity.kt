@@ -181,7 +181,7 @@ class MoterReportActivity : AppCompatActivity() {
             var valueStyle = Font(fontName, valueFontSzie, Font.NORMAL, colorAccent)
             var SubvalueStyle = Font(fontName, SubvalueFontSzie, Font.NORMAL, colorAccent)
 
-            addNewItemWithLeftAndRight(document, "รายงานคำนวณขนาดสายหม้อแปลง", "", titleStyle, detailStyleTitle)
+            addNewItemWithLeftAndRight(document, "รายงานการคำนวนขนาดวงจรมอเตอร์", "", titleStyle, detailStyleTitle)
             addLineSeperator(document)
             addNewItem(document, "ข้อมูลการใช้งาน", Element.ALIGN_LEFT, headingStyle)
             addLineSpace(document)
@@ -204,7 +204,7 @@ class MoterReportActivity : AppCompatActivity() {
             addLineSpace(document)
             addItemAndResult(document, "                ขนาดสายไฟฟ้า               ", data[0].resultsizecable, titleStyleTitle, valueStyle)
             addLineSpace(document)
-            addItemAndResult(document, "                ขนาดสายดิน                   ", data[0].resultsizecable, titleStyleTitle, valueStyle)
+            addItemAndResult(document, "                ขนาดสายดิน                   ", data[0].resultgroudcable, titleStyleTitle, valueStyle)
             addLineSpace(document)
             addItemAndResult(document, "                ขนาดท่อร้อยสาย            ", data[0].resultconduit, titleStyleTitle, valueStyle)
             addLineSpace(document)
@@ -244,7 +244,7 @@ class MoterReportActivity : AppCompatActivity() {
         val stream = ByteArrayOutputStream()
         bmp.compress(Bitmap.CompressFormat.PNG, 100, stream)
         val image: Image = Image.getInstance(stream.toByteArray())
-        val chunkTextRight = if (textLeft == "รายงานคำนวณขนาดสายหม้อแปลง"){
+        val chunkTextRight = if (textLeft == "รายงานการคำนวนขนาดวงจรมอเตอร์"){
             Chunk(image, 0F, -20F, true)
         }else{
             Chunk(textRight, rightStyle)

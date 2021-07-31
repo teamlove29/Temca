@@ -30,7 +30,7 @@ android:background="@color/white">
         android:layout_marginTop="40dp"
         android:fontFamily="@font/mitr_regular"
         android:textColor="@color/black"
-        android:text="รายงานคำนวนขนาดมอเตอร์"
+        android:text="รายงานคำนวนขนาดวงจรมอเตอร์"
         android:layout_marginLeft="10dp"
         android:textSize="14dp"/>
 

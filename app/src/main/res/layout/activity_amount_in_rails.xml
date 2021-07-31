@@ -62,7 +62,7 @@ tools:context=".ui.AmountInRails.AmountInRailsActivity">
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/mitr_regular"
-                android:text="หาขนาดสายไฟสูงสุด"
+                android:text="หาจำนวนสายไฟสูงสุด"
                 android:textColor="@color/black"
                 android:textSize="16sp" />
 

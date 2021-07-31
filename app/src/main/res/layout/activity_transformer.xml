@@ -38,7 +38,7 @@ tools:context=".ui.Transformer.TransformerActivity">
             android:fontFamily="@font/mitr_regular"
             android:textColor="#0E4194"
             android:textSize="25sp"
-            android:text="ขนาดสายหม้อแปลง"
+            android:text="@string/title_transformer"
             android:maxLines="1"
             android:autoSizeTextType="uniform"
             android:autoSizeMinTextSize="20sp"
@@ -135,6 +135,10 @@ tools:context=".ui.Transformer.TransformerActivity">
                 android:textColor="@color/black"
                 android:layout_centerVertical="true"/>
 
+<!--            android:autoSizeTextType="uniform"-->
+<!--            android:autoSizeMinTextSize="12sp"-->
+<!--            android:autoSizeMaxTextSize="16sp"-->
+
             <TextView
                 android:id="@+id/TextViewGroupInstallation"
                 android:layout_weight="1"
@@ -142,10 +146,7 @@ tools:context=".ui.Transformer.TransformerActivity">
                 android:layout_width="wrap_content"
                 android:layout_height="35dp"
                 android:layout_marginRight="10dp"
-                android:text="เดินเคเบิลแบบระบายอากาศ"
-                android:autoSizeTextType="uniform"
-                android:autoSizeMinTextSize="12sp"
-                android:autoSizeMaxTextSize="16sp"
+                android:text="-"
                 android:autoSizePresetSizes="@array/autosize_text_sizes"
                 android:maxLines="1"
                 android:fontFamily="@font/mitr_regular"

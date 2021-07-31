@@ -14,6 +14,7 @@ import com.alw.temca.Model.DataToTransformerReportModel
 import com.alw.temca.Model.InstallationModelInTransformer
 import com.alw.temca.Model.TransformerSizeModalResult
 import com.alw.temca.R
+import com.alw.temca.ui.ElectricalOnePhase.OnePhaseActivity
 import com.alw.temca.ui.SponsorActivity
 import com.alw.temca.ui.WireSize.TypeCableActivity
 import jxl.Workbook
@@ -261,7 +262,7 @@ class TransformerActivity : AppCompatActivity() {
         val sharedPref = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
         val dataOfPressureVolt = sharedPref.getString(TASK_LIST_PREF_KEY_PRESSURE,"230/400 V")
         val dataOfSizeTransformer = sharedPref.getString(TASK_LIST_PREF_KEY_SIZE_TRANSFORMER,"500 kVA")
-        val dataOfGroupInstall = sharedPref.getString(TASK_LIST_PREF_KEY_INSTALLATION,"ไม่มีฝาปิดแบบระบายอากาศ")
+        val dataOfGroupInstall = sharedPref.getString(TASK_LIST_PREF_KEY_INSTALLATION,"รางเคเบิ้ลแบบระบายอากาศ")
         val dataOfCableType = sharedPref.getString(TASK_LIST_PREF_KEY_TYPE_CABLE,"NYY")
 //        val dataOfDistanceInTransformer = sharedPref.getString(TASK_LIST_PREF_KEY_DISTANCE_TRANSFORMER,"20")
 

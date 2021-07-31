@@ -15,6 +15,7 @@ import com.alw.temca.Model.DataToMoterReportModel
 import com.alw.temca.Model.DataToSizeMoterModel
 import com.alw.temca.Model.InstallationModelInTransformer
 import com.alw.temca.R
+import com.alw.temca.ui.ElectricalOnePhase.OnePhaseActivity
 import com.alw.temca.ui.SponsorActivity
 import com.alw.temca.ui.Transformer.InstallationTransformerActivity
 import com.alw.temca.ui.WireSize.PhaseActivity
@@ -181,7 +182,7 @@ class MoterActivity : AppCompatActivity() {
 //
 //        }
 
-        println(editTextDistanceInMoter.text)
+
         if(editTextDistanceInMoter.text.toString() == "0"){
             textViewPressure.visibility = View.GONE
             textViewPressureResult.visibility = View.GONE
@@ -353,11 +354,13 @@ class MoterActivity : AppCompatActivity() {
                                 val PercentPressure  = 100 * pullResult / voteInMoter // result
 
                                 var pullResulttoString = "${"%.2f V".format(pullResult)}"
-                                var percentPressuretoString = "${"%.2f V".format(PercentPressure)}"
+                                var percentPressuretoString = "${"%.2f".format(PercentPressure)}"
                                 if(pullResult >= 1000){
-                                    pullResulttoString = pullResulttoString.replace("${pullResulttoString.slice(0..0)}","${pullResulttoString.slice(0..0)},")
+                                    pullResulttoString = "${pullResulttoString.slice(0..0)},${pullResulttoString.slice(1 until pullResulttoString.length)}"
                                     if(PercentPressure >= 1000){
-                                        percentPressuretoString = percentPressuretoString.replace("${percentPressuretoString.slice(0..0)}","${percentPressuretoString.slice(0..0)},")
+                                        percentPressuretoString = "(${percentPressuretoString.slice(0..0)},${percentPressuretoString.slice(1 until percentPressuretoString.length)}%)"
+                                    }else{
+                                        percentPressuretoString = "(${percentPressuretoString}%)"
                                     }
                                     textViewPressureResult.text = "$pullResulttoString $percentPressuretoString"
                                 }else{
@@ -432,7 +435,6 @@ class MoterActivity : AppCompatActivity() {
                         }
                     }
 
-                    println("1 ${dataUnitMoter}")
                     textUnit.text = dataUnitMoter
                     saveData("unitMoter", dataUnitMoter)
                 }
@@ -441,8 +443,8 @@ class MoterActivity : AppCompatActivity() {
                     phaseTextView.text = "$dataPhase เฟส"
                     saveData("phase", "$dataPhase เฟส")
 
-                    TextViewCableTypeInMoter.text = "NYY 1C"
-                    saveData("dataTypeCable", "NYY 1C")
+                    TextViewCableTypeInMoter.text = "NYY 1/C"
+                    saveData("dataTypeCable", "NYY 1/C")
 
                     if(phaseTextView.text == "1 เฟส"){
                         if(textUnit.text == "A"){
@@ -476,8 +478,8 @@ class MoterActivity : AppCompatActivity() {
                     TextViewStartPantern.text = dataStartPantern
                     saveData("dataStartPantern", dataStartPantern)
 
-                    TextViewCableTypeInMoter.text = "NYY 1C"
-                    saveData("dataTypeCable", "NYY 1C")
+                    TextViewCableTypeInMoter.text = "NYY 1/C"
+                    saveData("dataTypeCable", "NYY 1/C")
 
                 }
 
@@ -499,7 +501,6 @@ class MoterActivity : AppCompatActivity() {
             }
             else {
                 if(TextViewStartPantern.text == "STAR DELTA") {
-                    println("dasdasd ${TextViewCableTypeInMoter.text}")
                     if(TextViewCableTypeInMoter.text == "NYY 2/C-G"){
                         TextViewCableTypeInMoter.text = "NYY 1/C"
                         saveData("dataTypeCable", "NYY 1/C")
@@ -555,10 +556,23 @@ class MoterActivity : AppCompatActivity() {
         editTextDistanceInMoter.setText(dataOfDistanceInTransformer)
     }
 
-    fun backOnClick(view: View) {finish()}
+    fun backOnClick(view: View) {
+        val sharedPref =
+                getSharedPreferences(OnePhaseActivity.PREF_NAME, Context.MODE_PRIVATE).edit()
+                        .clear()
+        sharedPref.apply()
+        finish()}
     fun sponsorOnClick(view: View) {
         val intent = Intent(this, SponsorActivity::class.java)
         startActivity(intent)
+    }
+    override fun onBackPressed() {
+        super.onBackPressed()
+        val sharedPref =
+                getSharedPreferences(OnePhaseActivity.PREF_NAME, Context.MODE_PRIVATE).edit()
+                        .clear()
+        sharedPref.apply()
+        finish()
     }
     fun View.hideKeyboard() {
         val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager

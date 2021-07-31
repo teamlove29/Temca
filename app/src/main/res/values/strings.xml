@@ -14,4 +14,5 @@
     <string name="title_current_rating">หาพิกัดกระแสสายไฟฟ้า</string>
     <string name="title_rails_cable">ชนิดและจำนวนสายในรางเคเบิ้ล(Cable Tray)</string>
     <string name="title_motor">ขนาดวงจรมอเตอร์</string>
+    <string name="title_transformer">ขนาดวงจรหม้อแปลง</string>
 </resources>

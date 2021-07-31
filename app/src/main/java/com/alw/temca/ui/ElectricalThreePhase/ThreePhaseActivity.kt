@@ -13,6 +13,7 @@ import com.alw.temca.Function.FindDetailInstallation
 import com.alw.temca.Model.RailSizeModel
 import com.alw.temca.Model.ReportResultWireSize
 import com.alw.temca.R
+import com.alw.temca.ui.ElectricalOnePhase.OnePhaseActivity
 import com.alw.temca.ui.SoonActivity
 import com.alw.temca.ui.SponsorActivity
 import jxl.Workbook
@@ -231,11 +232,13 @@ class ThreePhaseActivity : AppCompatActivity() {
 
 
                             var pullResulttoString = "${"%.2f V".format(pullResult)}"
-                            var percentPressuretoString = "${"%.2f V".format(PercentPressure)}"
+                            var percentPressuretoString = "${"%.2f".format(PercentPressure)}"
                             if(pullResult >= 1000){
-                                pullResulttoString = pullResulttoString.replace("${pullResulttoString.slice(0..0)}","${pullResulttoString.slice(0..0)},")
+                                pullResulttoString = "${pullResulttoString.slice(0..0)},${pullResulttoString.slice(1 until pullResulttoString.length)}"
                                 if(PercentPressure >= 1000){
-                                    percentPressuretoString = percentPressuretoString.replace("${percentPressuretoString.slice(0..0)}","${percentPressuretoString.slice(0..0)},")
+                                    percentPressuretoString = "(${percentPressuretoString.slice(0..0)},${percentPressuretoString.slice(1 until percentPressuretoString.length)}%)"
+                                }else{
+                                    percentPressuretoString = "(${percentPressuretoString}%)"
                                 }
                                 textViewShow6.text = "$pullResulttoString $percentPressuretoString"
                             }else{

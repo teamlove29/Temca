@@ -23,7 +23,7 @@ class InstallationTransformerActivity : AppCompatActivity(), InstallationonClick
         val comeForm = intent.getStringExtra("Activity")
 
         if(comeForm == "Moter"){
-            textViewTitleInstallTransformer.text = "ขนาดสายหม้อแปลง"
+            textViewTitleInstallTransformer.text = "ขนาดวงจรหม้อแปลง"
         }else{
 
         }
@@ -51,8 +51,13 @@ class InstallationTransformerActivity : AppCompatActivity(), InstallationonClick
 
     override fun onClick(postion: Int) {
         val resultIntent = Intent()
+        val installDes:String = if(installItem[postion].des == "วางบนรางเคเบิ้ล ไม่มีฝาปิดแบบระบายอากาศ"){
+            "รางเคเบิ้ลแบบระบายอากาศ"
+        }else{
+            "รางเคเบิ้ลแบบบันได"
+        }
         resultIntent.putExtra("dataInstall",installItem[postion].title)
-        resultIntent.putExtra("dataInstallDes",installItem[postion].des.replace("วางบนรางเคเบิ้ล",""))
+        resultIntent.putExtra("dataInstallDes",installDes)
         setResult(Activity.RESULT_OK, resultIntent)
         finish()
     }

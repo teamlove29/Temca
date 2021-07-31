@@ -12,6 +12,7 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import com.alw.temca.Model.AmountInRails.ResultRailsToReportModel
 import com.alw.temca.R
+import com.alw.temca.ui.ElectricalOnePhase.OnePhaseActivity
 import com.alw.temca.ui.SponsorActivity
 import jxl.Workbook
 import kotlinx.android.synthetic.main.activity_amount_in_rails.*
@@ -116,7 +117,7 @@ class AmountInRailsActivity : AppCompatActivity() {
             cardViewAmountCable.visibility = View.VISIBLE
 
         }else{
-            titlePipeSize.text = "หาขนาดสายไฟสูงสุด"
+            titlePipeSize.text = "หาจำนวนสายไฟสูงสุด"
             cardViewSizeConduit.visibility = View.VISIBLE
             cardViewAmountCable.visibility = View.GONE
         }

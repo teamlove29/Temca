@@ -23,7 +23,7 @@ class PhaseActivity : AppCompatActivity(), IOnClickAdapterListener {
         val phaseItem = ArrayList<PhaseModel>()
 
         if(comeForm == "Moter"){
-            textViewTitlePhase.text = "ขนาดสายมอเตอร์"
+            textViewTitlePhase.text = "ขนาดวงจรมอเตอร์"
             phaseItem.add(PhaseModel(1,"เฟส 2w (230 V)"))
             phaseItem.add(PhaseModel(3,"เฟส 3w (400 V)"))
         }else{

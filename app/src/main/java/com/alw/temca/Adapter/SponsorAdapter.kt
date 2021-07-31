@@ -13,7 +13,7 @@ class SponsorAdapter(var listSponsor: ArrayList<SponsorModel>, var onClickTypeCa
     class sponsorViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(itemList: SponsorModel, action: InstallationonClickAdapterListener){
 
-            if(itemList.index >= 21){
+            if(itemList.index >= 24){
                  itemView.textViewSponser.text = "Sponsor ${itemList.index}"
             }else{
                 itemView.logoSponsor.setImageDrawable(itemList.image)

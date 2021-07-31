@@ -13,6 +13,7 @@ import com.alw.temca.Function.FindDetailInstallation
 import com.alw.temca.Model.AmountInRailsCable.ReportResultCurrentRatting
 import com.alw.temca.Model.RailSizeModel
 import com.alw.temca.R
+import com.alw.temca.ui.ElectricalOnePhase.OnePhaseActivity
 import com.alw.temca.ui.SponsorActivity
 import jxl.Workbook
 import kotlinx.android.synthetic.main.activity_amount_in_rail_cable.*
@@ -28,6 +29,7 @@ class AmountInRailCableActivity : AppCompatActivity() {
         private val TASK_LIST_PREF_KEY_DISTANCE_IN_RAILS_CABLE = "task_list_distance_in_rails_cable"
         private val PREF_NAME = "task_rails_cable"
         private val railSizeList = ArrayList<RailSizeModel>()
+        lateinit var groupInstall:String
     }
 
     override fun onStart() {
@@ -61,11 +63,14 @@ class AmountInRailCableActivity : AppCompatActivity() {
     private fun loadData(){
         val sharedPref = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
         val dataOfInstallation = sharedPref.getString(TASK_LIST_PREF_KEY_INSTALLATION_IN_RAILS_CABLE, "กลุ่ม 7")
-        val dataOfTypeCable = sharedPref.getString(TASK_LIST_PREF_KEY_TYPE_CABLE_IN_RAILS_CABLE, "NYY 1C")
+        val dataOfGroupInstall = sharedPref.getString(TASK_LIST_PREF_KEY_INSTALLATION_IN_RAILS_CABLE_DES,"รางเคเบิ้ลแบบระบายอากาศ")
+        val dataOfTypeCable = sharedPref.getString(TASK_LIST_PREF_KEY_TYPE_CABLE_IN_RAILS_CABLE, "NYY 1/C")
         val dataOfCircuit = sharedPref.getString(TASK_LIST_PREF_KEY_CIRCUIT_IN_RAILS_CABLE, "400A")
         val dataOfDistance = sharedPref.getString(TASK_LIST_PREF_KEY_DISTANCE_IN_RAILS_CABLE, "10")
 
-        installationTextView.text = dataOfInstallation!!.slice(0..6)
+//        installationTextView.text = dataOfInstallation!!.slice(0..6)
+        groupInstall = dataOfInstallation.toString()
+        installationTextView.text = dataOfGroupInstall
         typeCableTextView.text = dataOfTypeCable
         circuitTextView.text = dataOfCircuit
         editTextDistance.setText(dataOfDistance)
@@ -140,14 +145,14 @@ class AmountInRailCableActivity : AppCompatActivity() {
         }
 
         try {
-            val circuitCheckGroup:String = installationOfTable(installationTextView.text.toString())
+            val circuitCheckGroup:String = installationOfTable(groupInstall)
             val circuitCheckCableType:Int = circuitCheckPhaseAndCableType(phaseTextView.text.toString(), typeCableTextView.text.toString())
             val typeCable = applicationContext.assets.open(circuitCheckGroup)
             val wb = Workbook.getWorkbook(typeCable)
             val sheet = wb.getSheet(circuitCheckCableType)
 
             // if group 7
-            if(installationTextView.text == "กลุ่ม 7"){
+            if(groupInstall == "กลุ่ม 7"){
                 tableBeforeCalculateGroup7.visibility = View.VISIBLE
 
                 for(i in 2..17){
@@ -163,10 +168,10 @@ class AmountInRailCableActivity : AppCompatActivity() {
                                 var pressureDropIndexTable:Int
 
                                 pressureDropIndexTable =  when(typeCableTextView.text){
-                                    "NYY 1C" -> 0
-                                    "NYY 4C" -> 1
-                                    "XLPE 1C" -> 2
-                                    "XLPE 4C" -> 3
+                                    "NYY 1/C" -> 0
+                                    "NYY 4/C" -> 1
+                                    "XLPE 1/C" -> 2
+                                    "XLPE 4/C" -> 3
                                     else -> 0
                                 }
 
@@ -184,12 +189,14 @@ class AmountInRailCableActivity : AppCompatActivity() {
                                         var resultRefPressure:String
 
                                         var pullResulttoString = "${"%.2f V".format(pullResult)}"
-                                        var percentPressuretoString = "${"%.2f V".format(PercentPressure)}"
+                                        var percentPressuretoString = "${"%.2f".format(PercentPressure)}"
 
                                         if(pullResult >= 1000){
-                                            pullResulttoString = pullResulttoString.replace("${pullResulttoString.slice(0..0)}","${pullResulttoString.slice(0..0)},")
+                                            pullResulttoString = "${pullResulttoString.slice(0..0)},${pullResulttoString.slice(1 until pullResulttoString.length)}"
                                             if(PercentPressure >= 1000){
-                                                percentPressuretoString = percentPressuretoString.replace("${percentPressuretoString.slice(0..0)}","${percentPressuretoString.slice(0..0)},")
+                                                percentPressuretoString = "(${percentPressuretoString.slice(0..0)},${percentPressuretoString.slice(1 until percentPressuretoString.length)}%)"
+                                            }else{
+                                                percentPressuretoString = "(${percentPressuretoString}%)"
                                             }
                                             resultRefPressure = "$pullResulttoString $percentPressuretoString"
                                         }else{
@@ -341,11 +348,10 @@ class AmountInRailCableActivity : AppCompatActivity() {
                 val dataTypeCable = data.getStringExtra("dataTypeCable")
                 val dataCircuit = data.getStringExtra("dataCircuit")
 
-
                 if (dataInstallation != null) {
                     val dataInstallationSlice = dataInstallation.slice(0..6)
-                    installationTextView.text = dataInstallationSlice
-                    saveData("installation", dataInstallation)
+                    installationTextView.text = dataInstallationDes
+                    saveData("installation", dataInstallationSlice)
                     saveData("installationDes", dataInstallationDes)
                 }
                 if (dataTypeCable != null) {
