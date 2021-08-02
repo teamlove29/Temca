@@ -40,7 +40,7 @@ android:background="@color/white">
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:layout_width="100dp"
-        android:layout_height="50dp"
+        android:layout_height="70dp"
         android:layout_marginRight="10dp"
         android:background="@drawable/logo_pdf_temca"/>
 
@@ -238,14 +238,26 @@ android:background="@color/white">
 
         <RelativeLayout
             android:padding="5dp"
+            android:layout_marginBottom="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/textViewPipeSizeInPipeReport1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:text="ผลการคำนวนที่ 1"
+                android:textColor="@color/black"
+                android:fontFamily="@font/sarabun_medium"
+                android:textSize="12dp"/>
 
             <TextView
                 android:id="@+id/textViewPipeSizeInPipeReport"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="50dp"
+                android:layout_below="@+id/textViewPipeSizeInPipeReport1"
                 android:text="ขนาดสายไฟ"
                 android:textColor="@color/black"
                 android:fontFamily="@font/sarabun_medium"
@@ -256,6 +268,7 @@ android:background="@color/white">
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@+id/textViewPipeSizeInPipeReport"
+                android:layout_below="@+id/textViewPipeSizeInPipeReport1"
                 android:layout_marginLeft="80dp"
                 android:fontFamily="@font/sarabun_regular"
                 android:text="-"
@@ -294,9 +307,20 @@ android:background="@color/white">
             android:layout_height="wrap_content">
 
             <TextView
+                android:id="@+id/textViewRailSizeInTransformerReport1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:text="ผลการคำนวนที่ 2"
+                android:textColor="@color/black"
+                android:fontFamily="@font/sarabun_medium"
+                android:textSize="12dp"/>
+
+            <TextView
                 android:id="@+id/textViewRailSizeInTransformerReport"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_below="@+id/textViewRailSizeInTransformerReport1"
                 android:layout_marginLeft="50dp"
                 android:text="ขนาดสายไฟ"
                 android:textColor="@color/black"
@@ -306,6 +330,7 @@ android:background="@color/white">
             <TextView
                 android:id="@+id/textViewResultRailSizeInTransformerReport"
                 android:layout_toRightOf="@+id/textViewRailSizeInTransformerReport"
+                android:layout_below="@+id/textViewRailSizeInTransformerReport1"
                 android:layout_marginLeft="80dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

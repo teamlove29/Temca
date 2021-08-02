@@ -61,10 +61,10 @@ class TransformerReportActivity : AppCompatActivity() {
             textViewReslutAmountCableInPipeReport.text = DataFromTransformerActivity[0].resultpowerrating
 
             textViewResultConduitSize.text = Html.fromHtml(DataFromTransformerActivity[0].resultsizecable.replace("mm", "mm<sup><small><small>2</small></small></sup>"))
-            textViewResultConduitSize2.text = "${DataFromTransformerActivity[0].resultrailsize}mm"
+            textViewResultConduitSize2.text = "${DataFromTransformerActivity[0].resultrailsize}mm."
 
             textViewResultRailSizeInTransformerReport.text = Html.fromHtml(DataFromTransformerActivity[1].resultsizecable.replace("mm", "mm<sup><small><small>2</small></small></sup>"))
-            textViewResultRailSizeInTransformerReport2.text = "${DataFromTransformerActivity[1].resultrailsize}mm"
+            textViewResultRailSizeInTransformerReport2.text = "${DataFromTransformerActivity[1].resultrailsize}mm."
 
         Dexter.withActivity(this)
             .withPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)
@@ -188,13 +188,22 @@ class TransformerReportActivity : AppCompatActivity() {
 
             addNewItem(document, "ผลการคำนวน", Element.ALIGN_LEFT, headingStyle)
             addLineSpace(document)
-            addItemAndResult(document, "                พิกัดกระแสไฟ     ", data[0].resultpowerrating, titleStyleTitle, valueStyle)
+            addItemAndResult(document, "                พิกัดกระแสไฟ       ",         data[0].resultpowerrating, titleStyleTitle, valueStyle)
             addLineSpace(document)
-            addItemAndResult(document, "                ขนาดสายไฟ       ", data[0].resultsizecable.replace("mm", "mm2"), titleStyleTitle, valueStyle)
-            addItemAndResult(document, "                รางขนาด            ", " ${data[0].resultrailsize}mm", titleStyleTitle, valueStyle)
+            addItemAndResult(document, "                ผลการคำนวนที่ 1","", titleStyleTitle, valueStyle)
+            document.add( Chunk.NEWLINE )
+            addItemAndResult(document, "                ขนาดสายไฟ           ",         data[0].resultsizecable.replace("mm", "mm2"), titleStyleTitle, valueStyle)
+            document.add( Chunk.NEWLINE )
+            addItemAndResult(document, "                รางขนาด            ", "     ${data[0].resultrailsize}mm", titleStyleTitle, valueStyle)
+
             addLineSpace(document)
-            addItemAndResult(document, "                ขนาดสายไฟ       ", data[1].resultsizecable.replace("mm", "mm2"), titleStyleTitle, valueStyle)
-            addItemAndResult(document, "                รางขนาด            ", " ${data[1].resultrailsize}mm", titleStyleTitle, valueStyle)
+            document.add( Chunk.NEWLINE )
+
+            addItemAndResult(document, "                ผลการคำนวนที่ 2","", titleStyleTitle, valueStyle)
+            document.add( Chunk.NEWLINE )
+            addItemAndResult(document, "                ขนาดสายไฟ           ",         data[1].resultsizecable.replace("mm", "mm2"), titleStyleTitle, valueStyle)
+            document.add( Chunk.NEWLINE )
+            addItemAndResult(document, "                รางขนาด            ", "     ${data[1].resultrailsize}mm", titleStyleTitle, valueStyle)
             addLineSpace(document)
 
 //

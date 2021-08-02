@@ -26,7 +26,8 @@
         <activity android:name=".ui.AmountInRailCable.CircuitInRailsCableActivity" />
         <activity android:name=".ui.AmountInRailCable.TypeCableInRailsCableActivity" />
         <activity android:name=".ui.AmountInRailCable.InstallationInRailsCableActivity" />
-        <activity android:name=".ui.AmountInRailCable.AmountInRailCableActivity" />
+        <activity android:name=".ui.AmountInRailCable.AmountInRailCableActivity"
+            android:windowSoftInputMode="adjustPan"/>
         <activity android:name=".ui.CurrentRating.ReportInCurrentActivity" />
         <activity android:name=".ui.CurrentRating.SizeCableInCurrentActivity" />
         <activity android:name=".ui.CurrentRating.TypeCableInCurrentActivity" />
@@ -43,8 +44,10 @@
         <activity android:name=".ui.ElectricalOnePhase.CircuitInOnePhaseActivity" />
         <activity android:name=".ui.ElectricalOnePhase.TypeCableInOnePhaseActivity" />
         <activity android:name=".ui.ElectricalOnePhase.InstallationInOnePhaseActivity" />
-        <activity android:name=".ui.ElectricalThreePhase.ThreePhaseActivity" />
-        <activity android:name=".ui.ElectricalOnePhase.OnePhaseActivity" />
+        <activity android:name=".ui.ElectricalThreePhase.ThreePhaseActivity"
+            android:windowSoftInputMode="adjustPan"/>
+        <activity android:name=".ui.ElectricalOnePhase.OnePhaseActivity"
+            android:windowSoftInputMode="adjustPan"/>
         <activity android:name=".ui.AmountInPipe.ReportInPipeActivity" />
         <activity android:name=".ui.AmountInPipe.SizeCableInPipeActivity" />
         <activity android:name=".ui.AmountInPipe.TypeCableInPipeActivity" />
@@ -65,7 +68,7 @@
         <activity android:name=".ui.Moter.UnitMoterActivity" />
         <activity
             android:name=".ui.Moter.MoterActivity"
-            android:windowSoftInputMode="stateHidden|adjustResize" />
+            android:windowSoftInputMode="adjustPan" />
         <activity android:name=".ui.Transformer.InstallationTransformerActivity" />
         <activity android:name=".ui.Transformer.TransformerSizeActivity" />
         <activity
