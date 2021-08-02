@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Html
 import android.view.View
 import android.widget.Toast
 import com.alw.temca.Model.CurrentRating.ReportResultCurrent
@@ -68,7 +69,8 @@ class CurrentRatingActivity : AppCompatActivity() {
         PhaseTextView.text = dataOfPhase
         InstallationTextView.text = dataOfInstallation
         typeCableTextView.text = dataOfTypeCable
-        cableSizeTextView.text =  dataOfSizeCable
+        cableSizeTextView.text =  Html.fromHtml(dataOfSizeCable!!.replace("mm2","mm<sup><small>2</small></sup>"))
+
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -85,8 +87,6 @@ class CurrentRatingActivity : AppCompatActivity() {
         wayBackActivity1.visibility = View.GONE
         wayBackActivity2.visibility = View.VISIBLE
         btnCalInPipeSize.visibility = View.GONE
-
-
 
         val getXLS =  when(InstallationTextView.text){
             "กลุ่ม 2" -> "currentRating_group2.xls"
@@ -150,8 +150,10 @@ class CurrentRatingActivity : AppCompatActivity() {
             val sizeCable = arrayListOf("1 mm2", "1.5 mm2", "2.5 mm2", "4 mm2", "6 mm2",
                     "10 mm2", "16 mm2", "25 mm2", "35 mm2", "50 mm2", "70 mm2", "95 mm2",
                     "120 mm2", "150 mm2", "185 mm2", "240 mm2", "300 mm2", "400 mm2", "500 mm2")
+
                 sizeCable.forEachIndexed { index, sizeCable  -> // หาขนาดสาย mm2
-                    if (cableSizeTextView.text == sizeCable){
+                    println(cableSizeTextView.text == sizeCable)
+                    if (cableSizeTextView.text.toString().replace("mm2","mm2") == sizeCable){
                         val dataOfTale = sheet.getCell(colInTable, index+1).contents
                         textViewResultMaxCurrent.text = "${dataOfTale}A"
 
@@ -261,13 +263,11 @@ class CurrentRatingActivity : AppCompatActivity() {
                 if (dataTypeCable != null) {
                     typeCableTextView.text = dataTypeCable
                     saveData("typeCable", dataTypeCable)
-                    cableSizeTextView.text = "1.5 mm2"
+                    cableSizeTextView.text = Html.fromHtml("1.5mm<sup><small>2</small></sup>")
                     saveData("sizeCable", "1.5 mm2")
-
-
                 }
                 if (dataSizeCable != null) {
-                    cableSizeTextView.text = dataSizeCable
+                    cableSizeTextView.text = Html.fromHtml(dataSizeCable.replace("mm2","mm<sup><small>2</small></sup>"))
                     saveData("sizeCable", dataSizeCable)
                 }
 

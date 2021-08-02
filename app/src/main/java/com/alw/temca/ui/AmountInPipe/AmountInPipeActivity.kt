@@ -5,6 +5,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
+import android.text.Html
 import android.text.TextWatcher
 import android.view.View
 import android.view.inputmethod.InputMethodManager
@@ -41,7 +42,7 @@ class AmountInPipeActivity : AppCompatActivity() {
         val dataOfAmount = sharedPref.getString(TASK_LIST_PREF_KEY_AMOUNT_IN_AMOUNT_PIPE, "5")
 
         typeCableTextView.text = dataOfTypeCable
-        cableSizeTextView.text = dataOfSizeCable
+        cableSizeTextView.text = Html.fromHtml(dataOfSizeCable!!.replace("mm2","mm<sup><small>2</small></sup>"))
         editTextAmountCable.setText(dataOfAmount)
 
     }
@@ -175,7 +176,7 @@ class AmountInPipeActivity : AppCompatActivity() {
 
             if (typeCableTextView.text == typeCabletitle){
                 sizeCable.forEachIndexed { index, sizeCable  -> // หาขนาดสาย mm2
-                    if (cableSizeTextView.text == sizeCable){
+                    if (cableSizeTextView.text.toString().replace("mm2","mm2") == sizeCable){
                         for (i in 1..12){ // แนวนอนขนาดสาย
                             //  i is col result ขนาดท่อ
                             if (editTextAmountCable.text.toString().toInt() <= sheet.getCell(i, index + 1).contents.toInt()){
@@ -290,11 +291,12 @@ class AmountInPipeActivity : AppCompatActivity() {
                     typeCableTextView.text = dataTypeCable
                     saveData("typeCable", dataTypeCable)
 
-                    cableSizeTextView.text = "2.5 mm2"
+
+                    cableSizeTextView.text =  Html.fromHtml("2.5mm<sup><small>2</small></sup>")
                     saveData("sizeCable", "2.5 mm2")
                 }
                 if (dataSizeCable != null) {
-                    cableSizeTextView.text = dataSizeCable
+                    cableSizeTextView.text = Html.fromHtml(dataSizeCable!!.replace("mm2","mm<sup><small>2</small></sup>"))
                     saveData("sizeCable", dataSizeCable)
                 }
             }

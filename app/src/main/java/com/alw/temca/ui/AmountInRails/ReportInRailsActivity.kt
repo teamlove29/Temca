@@ -9,6 +9,7 @@ import android.graphics.drawable.BitmapDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Environment
+import android.text.Html
 import android.view.View
 import android.widget.Toast
 import androidx.core.content.FileProvider
@@ -73,7 +74,7 @@ class ReportInRailsActivity : AppCompatActivity() {
         if (resultInRails != null) {
             if(!resultInRails.status){
                 textViewReslutMainCableTypeInPipeReport.text = resultInRails.typeCable
-                textViewMainResultInstallationInReport.text = resultInRails.sizeCable
+                textViewMainResultInstallationInReport.text = Html.fromHtml(resultInRails.sizeCable.replace("mm2","mm<sup><small>2</small></sup>"))
                 textViewMainResultCableTypeInReport.text = resultInRails.sizeRails
                 textViewReslutAmountCableInPipeReport.text = resultInRails.amountCable
 
@@ -82,9 +83,8 @@ class ReportInRailsActivity : AppCompatActivity() {
                 railsInReport2.visibility = View.GONE
                 amountInReport.visibility = View.GONE
             }else{
-
                 textViewReslutMainCableTypeInPipeReport.text = resultInRails.typeCable
-                textViewMainResultInstallationInReport.text = resultInRails.sizeCable
+                textViewMainResultInstallationInReport.text =  Html.fromHtml(resultInRails.sizeCable.replace("mm2","mm<sup><small>2</small></sup>"))
                 textViewMainResultBreakerInReportData.text = resultInRails.amount
                 textViewReslutAmountCableInPipeReport2.text = resultInRails.rails
 

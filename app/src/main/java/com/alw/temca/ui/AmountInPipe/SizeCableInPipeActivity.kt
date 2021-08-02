@@ -20,8 +20,12 @@ class SizeCableInPipeActivity : AppCompatActivity(),onClickInAdapter {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_size_cable_in_pipe)
 
+        val typeCableOfMain = intent.getStringExtra("typeCable").toString()
 
-        listSizeCable.add(SizeCableModel("1 mm2"))
+        println("dsaasdd ${typeCableOfMain}")
+        if(typeCableOfMain != "IEC01" && typeCableOfMain != "XLPE 1/C" && typeCableOfMain != "XLPE 2/C" && typeCableOfMain != "XLPE 3/C" && typeCableOfMain != "XLPE 4/C" ){
+            listSizeCable.add(SizeCableModel("1 mm2"))
+        }
         listSizeCable.add(SizeCableModel("1.5 mm2"))
         listSizeCable.add(SizeCableModel("2.5 mm2"))
         listSizeCable.add(SizeCableModel("4 mm2"))
@@ -41,7 +45,7 @@ class SizeCableInPipeActivity : AppCompatActivity(),onClickInAdapter {
         listSizeCable.add(SizeCableModel("400 mm2"))
         listSizeCable.add(SizeCableModel("500 mm2"))
 
-        val typeCableOfMain = intent.getStringExtra("typeCable").toString()
+
 
 
         val amountRowInTable:Int = when(typeCableOfMain){

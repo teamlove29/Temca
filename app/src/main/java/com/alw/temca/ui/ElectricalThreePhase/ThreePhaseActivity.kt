@@ -212,7 +212,7 @@ class ThreePhaseActivity : AppCompatActivity() {
                         textViewResultWireGround.text = "- G"
                         pressureDropIndexTable = 1
                     }else{
-                        textViewResultWireGround.text = Html.fromHtml("$sizeWireGround G")
+                        textViewResultWireGround.text = Html.fromHtml("$sizeWireGround mm<sup><small><small>2</small></small></sup>")
                         if(typeCableTextView.text == "XLPE") pressureDropIndexTable = 2
                         else pressureDropIndexTable = 0
                     }

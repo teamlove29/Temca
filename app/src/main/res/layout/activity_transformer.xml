@@ -376,24 +376,24 @@ tools:context=".ui.Transformer.TransformerActivity">
 
 
 
-            <TextView
-                android:id="@+id/textViewCableSize"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:layout_below="@+id/textViewElectricCurren"
-                android:text="ขนาดสายไฟ"
-                android:textSize="16sp"
-                android:fontFamily="@font/mitr_regular"
-                android:textColor="@color/white" />
+<!--            <TextView-->
+<!--                android:id="@+id/textViewCableSize"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="5dp"-->
+<!--                android:layout_below="@+id/textViewElectricCurren"-->
+<!--                android:text="ขนาดสายไฟ"-->
+<!--                android:textSize="16sp"-->
+<!--                android:fontFamily="@font/mitr_regular"-->
+<!--                android:textColor="@color/white" />-->
 
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerViewResultTransformer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:layout_below="@+id/textViewCableSize"
+                android:layout_marginTop="15dp"
+                android:layout_below="@+id/textViewElectricCurren"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 tools:itemCount="3"
                 tools:listitem="@layout/result_transformer_list" />

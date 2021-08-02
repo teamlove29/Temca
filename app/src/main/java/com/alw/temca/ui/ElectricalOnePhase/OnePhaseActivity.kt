@@ -207,7 +207,7 @@ class OnePhaseActivity : AppCompatActivity() {
                                 textViewResultWireGround.text = "- G"
                                 pressureDropIndexTable = 1
                         }else{
-                            textViewResultWireGround.text = Html.fromHtml("$sizeWireGround G")
+                            textViewResultWireGround.text = Html.fromHtml("$sizeWireGround mm<sup><small><small>2</small></small></sup>")
                             if(typeCableTextView.text == "XLPE") pressureDropIndexTable = 2
                             else pressureDropIndexTable = 0
                         }
@@ -383,7 +383,7 @@ class OnePhaseActivity : AppCompatActivity() {
                 if (dataInstallation != null) {
                     val dataInstallationSlice = dataInstallation.slice(0..6)
                     if(dataInstallationSlice == "กลุ่ม 5"){
-                            typeCableTextView.text = "NYY 1C"
+                            typeCableTextView.text = "NYY 1/C"
                             saveData("typeCable", typeCableTextView.text.toString())
                     }else{
                         typeCableTextView.text = "IEC01"

@@ -268,7 +268,7 @@
                     android:autoSizeMinTextSize="11sp"
                     android:autoSizeMaxTextSize="12sp"
                     android:autoSizeStepGranularity="1sp"
-                    android:text=" มาตราฐานการติดตั้ง"/>
+                    android:text=" มาตรฐานการติดตั้ง"/>
 
                     <TextView
                         android:onClick="termsOfUseOnClick"

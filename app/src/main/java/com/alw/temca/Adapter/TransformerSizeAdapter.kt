@@ -44,9 +44,10 @@ class TransformerSizeAdapter(var ItemList : ArrayList<TransformerSizeModal>,
 
 class TransformerSizeAdapterResult(var ItemList : ArrayList<TransformerSizeModalResult> ): RecyclerView.Adapter<TransformerSizeAdapterResult.TransformerSizeViewHolder>() {
     class TransformerSizeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bind(itemList: TransformerSizeModalResult){
+        fun bind(itemList: TransformerSizeModalResult,index:Int){
             itemView.TextViewTransformerSizeResult1.text = Html.fromHtml("${itemList.cableSize.replace("mm", "mm<sup><small><small>2</small></small></sup>")}")
             itemView.TextViewTransformerSizeResult3.text = "${itemList.conduitSize}mm."
+            itemView.textViewOfResult.text = "ผลการคำนวนที่ ${index+1}"
 //            itemView.TextViewTransformerSizeResult5.text = "-V(%)"
 //            itemView.TextViewTransformerSizeResult5.text = itemList.pressureDrop
 //            itemView.TextViewTransformerSizeResult6.text = "(แรงดันอ้างอิง ${itemList.referenceVoltage}V)"
@@ -60,7 +61,7 @@ class TransformerSizeAdapterResult(var ItemList : ArrayList<TransformerSizeModal
 
     override fun onBindViewHolder(holder: TransformerSizeViewHolder, position: Int) {
         val currency = ItemList[position]
-        holder.bind(currency)
+        holder.bind(currency,position)
     }
 
     override fun getItemCount(): Int {

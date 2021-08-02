@@ -9,6 +9,7 @@ import android.graphics.drawable.BitmapDrawable
 import android.os.Build
 import android.os.Bundle
 import android.os.Environment
+import android.text.Html
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
@@ -87,7 +88,7 @@ class ReportInPipeActivity : AppCompatActivity() {
 
         if(resultInPipe != null){
             textViewReslutMainCableTypeInPipeReport.text = resultInPipe.typeCable
-            textViewMainResultInstallationInReport.text = resultInPipe.sizeCable
+            textViewMainResultInstallationInReport.text = Html.fromHtml( resultInPipe.sizeCable.replace("mm2","mm<sup><small>2</small></sup>"))
             textViewMainResultBreakerInReportData.text = resultInPipe.amountCable
             textViewResultConduitSize.text = resultInPipe.maxConduit
 //            textViewResultRailSizeInReportPipeSize.text = resultInPipe.maxRails

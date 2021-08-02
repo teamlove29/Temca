@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Environment
 import android.provider.Settings
+import android.text.Html
 import android.text.SpannableString
 import android.util.Log
 import android.widget.Toast
@@ -55,7 +56,7 @@ class ReportInCurrentActivity : AppCompatActivity() {
         textViewReslutMainPhaseInReportCurrent.text = dataFromCurrentRating[0].phase
         textViewResultInstallationInReport.text = dataFromCurrentRating[0].installation
         textViewReslutMainCableTypeInPipeReport.text = dataFromCurrentRating[0].cableType
-        textViewMainResultInstallationInReport.text = dataFromCurrentRating[0].cableSize
+        textViewMainResultInstallationInReport.text = Html.fromHtml(dataFromCurrentRating[0].cableSize.replace("mm2","mm<sup><small>2</small></sup>"))
         textViewResultConduitSize.text = dataFromCurrentRating[0].resultCurrentMax
 
         Dexter.withActivity(this)

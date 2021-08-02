@@ -6,6 +6,7 @@ import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
+import android.text.Html
 import android.text.TextWatcher
 import android.view.View
 import android.view.inputmethod.InputMethodManager
@@ -36,15 +37,12 @@ class AmountInRailsActivity : AppCompatActivity() {
 
     private fun loadData() {
         val sharedPref = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
-        val dataOfTypeCable =
-            sharedPref.getString(TASK_LIST_PREF_KEY_TYPE_CABLE_IN_AMOUNT_RAILS, "IEC01")
-        val dataOfSizeCable =
-            sharedPref.getString(TASK_LIST_PREF_KEY_SIZE_IN_AMOUNT_RAILS, "2.5 mm2")
-        val dataOfRails =
-            sharedPref.getString(TASK_LIST_PREF_KEY_AMOUNT_IN_AMOUNT_RAILS, "mm.")
+        val dataOfTypeCable = sharedPref.getString(TASK_LIST_PREF_KEY_TYPE_CABLE_IN_AMOUNT_RAILS, "IEC01")
+        val dataOfSizeCable = sharedPref.getString(TASK_LIST_PREF_KEY_SIZE_IN_AMOUNT_RAILS, "2.5 mm2")
+        val dataOfRails = sharedPref.getString(TASK_LIST_PREF_KEY_AMOUNT_IN_AMOUNT_RAILS, "mm.")
 
         typeCableTextView.text = dataOfTypeCable
-        cableSizeTextView.text = dataOfSizeCable
+        cableSizeTextView.text = Html.fromHtml(dataOfSizeCable!!.replace("mm2","mm<sup><small>2</small></sup>"))
         SizeConduitTextView.text = dataOfRails
     }
 
@@ -222,7 +220,7 @@ class AmountInRailsActivity : AppCompatActivity() {
             val typeCabletitle = sheet.getCell(0, 0).contents
             if (typeCableTextView.text == typeCabletitle){
                 sizeCable.forEachIndexed { indexSize, size  -> // หาขนาดสาย mm2
-                    if (cableSizeTextView.text == size){
+                    if (cableSizeTextView.text.toString().replace("mm2","mm2") == size){
                         sizeConduit.forEachIndexed{ indexConduit, conduit ->
                             if(SizeConduitTextView.text == conduit ){
                                     // ขนาด สายไฟสุงสุด 14
@@ -345,7 +343,7 @@ class AmountInRailsActivity : AppCompatActivity() {
     fun onClickChooseSizeConduit(view: View) {
         val intent = Intent(this, SizeConduitInRailsActivity::class.java)
         intent.putExtra("typeCable",typeCableTextView.text)
-        intent.putExtra("sizeCable",cableSizeTextView.text)
+        intent.putExtra("sizeCable",cableSizeTextView.text.toString().replace("mm2","mm2"))
         startActivityForResult(intent, TASK_NAME_REQUEST_CODE)
     }
 
@@ -387,13 +385,14 @@ class AmountInRailsActivity : AppCompatActivity() {
                     typeCableTextView.text = dataTypeCable
                     saveData("typeCable", dataTypeCable)
 
-                    cableSizeTextView.text = "2.5 mm2"
+                    cableSizeTextView.text =  Html.fromHtml("2.5mm<sup><small>2</small></sup>")
                     SizeConduitTextView.text = "mm."
                     saveData("sizeCable", "2.5 mm2")
                     saveData("sizeConduit", "mm.")
                 }
                 if (dataSizeCable != null) {
-                    cableSizeTextView.text = dataSizeCable
+
+                    cableSizeTextView.text = Html.fromHtml(dataSizeCable.replace("mm2","mm<sup><small>2</small></sup>"))
                     SizeConduitTextView.text = "mm."
                     saveData("sizeCable", dataSizeCable)
                     saveData("sizeConduit", "mm.")

@@ -1,5 +1,6 @@
 package com.alw.temca.Adapter.AdapterInRails
 
+import android.text.Html
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,7 +16,7 @@ class SizeCableAdapter(var listSizeCable : ArrayList<SizeCableModel>, var onClic
     class SizeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         fun bind(itemList: SizeCableModel, action: onClickInAdapter){
-            itemView.textViewTypeCableList.text = itemList.name
+            itemView.textViewTypeCableList.text = Html.fromHtml(itemList.name.replace("mm2","mm<sup><small>2</small></sup>"))
             itemView.setOnClickListener {
                 action.onClick(adapterPosition)
             }

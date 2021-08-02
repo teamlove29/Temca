@@ -311,7 +311,7 @@ class MoterActivity : AppCompatActivity() {
 
                         if(TextViewCableTypeInMoter.text != "NYY 2/C-G"
                            && TextViewCableTypeInMoter.text != "NYY 3/C-G"){
-                            textViewGroundSizeResult.text = Html.fromHtml("${calbeGroundIntable.replace("mm2"," G")}")
+                            textViewGroundSizeResult.text = Html.fromHtml("${calbeGroundIntable.replace("mm2","mm<sup><small><small>2</small></small></sup>")}")
                         }
                         else {
                             textViewGroundSizeResult.text = "- G"
@@ -408,7 +408,6 @@ class MoterActivity : AppCompatActivity() {
                 }
 
                 if (dataUnitMoter != null){
-
                     if(phaseTextView.text == "1 เฟส"){
                         if(dataUnitMoter == "A"){
                             TextAmountMoterSize.text = "3.9"
@@ -426,8 +425,13 @@ class MoterActivity : AppCompatActivity() {
                             TextAmountMoterSize.text = "5"
                             saveData("dataSizeMoter", "5")
                         }else if(textUnit.text == "kW"){
-                            TextAmountMoterSize.text = "0.37"
-                            saveData("dataSizeMoter", "0.37")
+                            if(TextViewStartPantern.text == "STAR DELTA"){
+                                TextAmountMoterSize.text = "7.5"
+                                saveData("dataSizeMoter", "7.5")
+                            }else{
+                                TextAmountMoterSize.text = "0.37"
+                                saveData("dataSizeMoter", "0.37")
+                            }
                         }
                         else{
                             TextAmountMoterSize.text = "1.5"
@@ -447,7 +451,7 @@ class MoterActivity : AppCompatActivity() {
                     saveData("dataTypeCable", "NYY 1/C")
 
                     if(phaseTextView.text == "1 เฟส"){
-                        if(textUnit.text == "A"){
+                        if(dataUnitMoter == "A"){
                             TextAmountMoterSize.text = "3.9"
                             saveData("dataSizeMoter", "3.9")
                         }else if(textUnit.text == "kW"){
@@ -459,12 +463,17 @@ class MoterActivity : AppCompatActivity() {
                             saveData("dataSizeMoter", "4")
                         }
                     }else{
-                        if(textUnit.text == "HP"){
+                        if(dataUnitMoter == "HP"){
                             TextAmountMoterSize.text = "5"
                             saveData("dataSizeMoter", "5")
                         }else if(textUnit.text == "kW"){
-                            TextAmountMoterSize.text = "0.37"
-                            saveData("dataSizeMoter", "0.37")
+                            if(TextViewStartPantern.text == "STAR DELTA"){
+                                TextAmountMoterSize.text = "7.5"
+                                saveData("dataSizeMoter", "7.5")
+                            }else{
+                                TextAmountMoterSize.text = "0.37"
+                                saveData("dataSizeMoter", "0.37")
+                            }
                         }
                         else{
                             TextAmountMoterSize.text = "1.5"
@@ -480,6 +489,37 @@ class MoterActivity : AppCompatActivity() {
 
                     TextViewCableTypeInMoter.text = "NYY 1/C"
                     saveData("dataTypeCable", "NYY 1/C")
+
+                    if(phaseTextView.text == "1 เฟส"){
+                        if(dataUnitMoter == "A"){
+                            TextAmountMoterSize.text = "3.9"
+                            saveData("dataSizeMoter", "3.9")
+                        }else if(textUnit.text == "kW"){
+                            TextAmountMoterSize.text = "0.37"
+                            saveData("dataSizeMoter", "0.37")
+                        }
+                        else{
+                            TextAmountMoterSize.text = "4"
+                            saveData("dataSizeMoter", "4")
+                        }
+                    }else{
+                        if(dataUnitMoter == "HP"){
+                            TextAmountMoterSize.text = "5"
+                            saveData("dataSizeMoter", "5")
+                        }else if(textUnit.text == "kW"){
+                            if(TextViewStartPantern.text == "STAR DELTA"){
+                                TextAmountMoterSize.text = "7.5"
+                                saveData("dataSizeMoter", "7.5")
+                            }else{
+                                TextAmountMoterSize.text = "0.37"
+                                saveData("dataSizeMoter", "0.37")
+                            }
+                        }
+                        else{
+                            TextAmountMoterSize.text = "1.5"
+                            saveData("dataSizeMoter", "1.5")
+                        }
+                    }
 
                 }
 
