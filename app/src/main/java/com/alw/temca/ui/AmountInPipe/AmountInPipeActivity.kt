@@ -180,7 +180,7 @@ class AmountInPipeActivity : AppCompatActivity() {
                         for (i in 1..12){ // แนวนอนขนาดสาย
                             //  i is col result ขนาดท่อ
                             if (editTextAmountCable.text.toString().toInt() <= sheet.getCell(i, index + 1).contents.toInt()){
-                                textViewResultSizePipe.text = "${sheet.getCell(i, 0).contents} (${sheet.getCell(i, index + 1).contents} เส้น)"
+                                textViewResultSizePipe.text = "${sheet.getCell(i, 0).contents} ( ${sheet.getCell(i, index + 1).contents} เส้น )"
                                 textViewSizePipe2.visibility = View.GONE
                                 textViewResultSizePipe2.visibility = View.GONE
                                 amountCable_result = sheet.getCell(i, index + 1).contents.toString()
@@ -189,8 +189,8 @@ class AmountInPipeActivity : AppCompatActivity() {
                                 if(sheet.getCell(i, index + 1).contents != "0"){
                                     textViewResultSizePipe.text = "- เส้น"
                                     amountCable_result = sheet.getCell(i, index + 1).contents.toString()
-                                    amountCable_result๘_full = "${sheet.getCell(i, 0).contents} (${sheet.getCell(i, index + 1).contents} เส้น)"
-                                    textViewResultSizePipe2.text = "${sheet.getCell(i, 0).contents} (${sheet.getCell(i, index + 1).contents} เส้น)"
+                                    amountCable_result๘_full = "${sheet.getCell(i, 0).contents} ( ${sheet.getCell(i, index + 1).contents} เส้น )"
+                                    textViewResultSizePipe2.text = "${sheet.getCell(i, 0).contents} ( ${sheet.getCell(i, index + 1).contents} เส้น )"
                                     textViewSizePipe2.visibility = View.VISIBLE
                                     textViewResultSizePipe2.visibility = View.VISIBLE
                                 }

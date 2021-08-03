@@ -184,7 +184,7 @@ class OnePhaseActivity : AppCompatActivity() {
                         val temp:String
                         var pressureDropIndexTable:Int
                         if(resultSizeConduitOfInch == "-") temp = "${resultSizeConduitOfmm}mm"
-                        else temp = "$resultSizeConduitOfmm mm ( $resultSizeConduitOfInch\" )"
+                        else temp = "$resultSizeConduitOfmm mm. ( $resultSizeConduitOfInch\" )"
 
                         val s = SpannableString(temp.trim())
                         if (temp.indexOf('/') != -1) {
@@ -204,7 +204,7 @@ class OnePhaseActivity : AppCompatActivity() {
                                 || typeCableTextView.text == "VCT 2/C - G"
                                 || typeCableTextView.text == "NYY 2/C - G"
                                 || typeCableTextView.text == "XLPE 2/C, G") {
-                                textViewResultWireGround.text = "- G"
+                                textViewResultWireGround.text = Html.fromHtml("- mm<sup><small><small>2</small></small></sup>")
                                 pressureDropIndexTable = 1
                         }else{
                             textViewResultWireGround.text = Html.fromHtml("$sizeWireGround mm<sup><small><small>2</small></small></sup>")
@@ -231,13 +231,13 @@ class OnePhaseActivity : AppCompatActivity() {
                                 if(pullResult >= 1000){
                                     pullResulttoString = "${pullResulttoString.slice(0..0)},${pullResulttoString.slice(1 until pullResulttoString.length)}"
                                     if(PercentPressure >= 1000){
-                                        percentPressuretoString = "(${percentPressuretoString.slice(0..0)},${percentPressuretoString.slice(1 until percentPressuretoString.length)}%)"
+                                        percentPressuretoString = "( ${percentPressuretoString.slice(0..0)},${percentPressuretoString.slice(1 until percentPressuretoString.length)}% )"
                                     }else{
-                                        percentPressuretoString = "(${percentPressuretoString}%)"
+                                        percentPressuretoString = "( ${percentPressuretoString}% )"
                                     }
                                     textViewShow6.text = "$pullResulttoString $percentPressuretoString"
                                 }else{
-                                    textViewShow6.text = "${"%.2f V".format(pullResult)} (${"%.2f".format(PercentPressure)}%)"
+                                    textViewShow6.text = "${"%.2f V".format(pullResult)} ( ${"%.2f".format(PercentPressure)}% )"
                                 }
                             }
                         }

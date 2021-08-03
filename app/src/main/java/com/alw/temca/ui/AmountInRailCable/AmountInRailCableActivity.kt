@@ -194,13 +194,13 @@ class AmountInRailCableActivity : AppCompatActivity() {
                                         if(pullResult >= 1000){
                                             pullResulttoString = "${pullResulttoString.slice(0..0)},${pullResulttoString.slice(1 until pullResulttoString.length)}"
                                             if(PercentPressure >= 1000){
-                                                percentPressuretoString = "(${percentPressuretoString.slice(0..0)},${percentPressuretoString.slice(1 until percentPressuretoString.length)}%)"
+                                                percentPressuretoString = "( ${percentPressuretoString.slice(0..0)},${percentPressuretoString.slice(1 until percentPressuretoString.length)}% )"
                                             }else{
-                                                percentPressuretoString = "(${percentPressuretoString}%)"
+                                                percentPressuretoString = "( ${percentPressuretoString}% )"
                                             }
                                             resultRefPressure = "$pullResulttoString $percentPressuretoString"
                                         }else{
-                                            resultRefPressure = "${"%.2f V".format(pullResult)} (${"%.2f".format(PercentPressure)}%)"
+                                            resultRefPressure = "${"%.2f V".format(pullResult)} ( ${"%.2f".format(PercentPressure)}% )"
                                         }
 
                                         railSizeList.add(RailSizeModel(
@@ -232,24 +232,24 @@ class AmountInRailCableActivity : AppCompatActivity() {
         val textInstallation = FindDetailInstallation(installationTextView.text.toString())
         dataToReport.add(ReportResultCurrentRatting(
                 phaseTextView.text.toString(), // phase
-                textInstallation,  // groupinstallation
+                "กลุ่ม 7",  // groupinstallation
                 typeCableTextView.text.toString(), // typcable
                 circuitTextView.text.toString(), // CB
                 editTextDistance.text.toString(), // amountDis
                 railSizeList[0].wireSize, // text2 is cablesize
                 "${railSizeList[0].groundSize} mm2", // wiresizegroud
-                "${railSizeList[0].railSize} mm", // text4 is conduitsize
+                "${railSizeList[0].railSize} mm.", // text4 is conduitsize
                 railSizeList[0].resultPressure) // result presure
         )
         dataToReport.add(ReportResultCurrentRatting(
                 phaseTextView.text.toString(), // phase
-                textInstallation,  // groupinstallation
+                "กลุ่ม 7",  // groupinstallation
                 typeCableTextView.text.toString(), // typcable
                 circuitTextView.text.toString(), // CB
                 editTextDistance.text.toString(), // amountDis
                 railSizeList[1].wireSize, // text2 is cablesize
                 "${railSizeList[1].groundSize} mm2", // wiresizegroud
-                "${railSizeList[1].railSize} mm", // text4 is conduitsize
+                "${railSizeList[1].railSize} mm.", // text4 is conduitsize
                 railSizeList[1].resultPressure) // result presure
         )
         intent.putParcelableArrayListExtra("dataResult",dataToReport)

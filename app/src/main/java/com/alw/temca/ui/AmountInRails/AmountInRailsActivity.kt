@@ -70,6 +70,8 @@ class AmountInRailsActivity : AppCompatActivity() {
 
         switchButton()
 
+        tableBeforeCalculateInPipe.visibility = View.GONE
+
         if(SizeConduitTextView.text == "mm.") {
             btnCalInPipeSize.isClickable = false
             btnCalInPipeSize.backgroundTintList = this.resources.getColorStateList(R.color.placeHolderBG)
@@ -161,6 +163,8 @@ class AmountInRailsActivity : AppCompatActivity() {
             textViewResultMaxCable.visibility = View.VISIBLE
             textViewRailsSize.visibility = View.GONE
             textViewRailsSizeResult.visibility = View.GONE
+            textViewRailsSizeResult22.visibility = View.GONE
+            textViewRailsSizeResult1.visibility = View.GONE
         }
 
 
@@ -236,17 +240,23 @@ class AmountInRailsActivity : AppCompatActivity() {
                                     for (i in 14..22){
                                         if(editTextAmountCable.text.toString().toInt() <= sheet.getCell(i, indexSize + 1).contents.toInt()
                                             && sheet.getCell(i, indexSize + 1).contents.toInt() != 0) {
-                                            textViewRailsSizeResult.text = "${sheet.getCell(i, 0).contents} (${sheet.getCell(i, indexSize + 1).contents} เส้น)"
+                                            textViewRailsSizeResult.text = "${sheet.getCell(i, 0).contents}"
+                                            textViewRailsSizeResult1.text = "( ${sheet.getCell(i, indexSize + 1).contents} เส้น )"
                                             textViewRailsSize2.visibility = View.GONE
                                             textViewRailsSizeResult2.visibility = View.GONE
+                                            textViewRailsSizeResult22.visibility = View.GONE
+                                            textViewRailsSizeResult1.visibility = View.VISIBLE
                                             break
                                         }else{
                                                 textViewRailsSizeResult.text = "- เส้น"
                                              if(sheet.getCell(i, indexSize + 1).contents.toInt() != 0){
-                                                 textViewRailsSizeResult2.text = "${sheet.getCell(i, 0).contents} (${sheet.getCell(i, indexSize + 1).contents} เส้น)"
+                                                 textViewRailsSizeResult2.text = "${sheet.getCell(i, 0).contents}"
+                                                 textViewRailsSizeResult22.text = "( ${sheet.getCell(i, indexSize + 1).contents} เส้น )"
                                                  maxamount = sheet.getCell(i, indexSize + 1).contents
                                                  textViewRailsSize2.visibility = View.VISIBLE
                                                  textViewRailsSizeResult2.visibility = View.VISIBLE
+                                                 textViewRailsSizeResult22.visibility = View.VISIBLE
+                                                 textViewRailsSizeResult1.visibility = View.GONE
                                              }
                                         }
                                     }
@@ -292,9 +302,9 @@ class AmountInRailsActivity : AppCompatActivity() {
             val typeCable = typeCableTextView.text.toString()
             val sizeCable = cableSizeTextView.text.toString()
             val rails = if( textViewRailsSizeResult.text.toString() != "- เส้น"){
-                textViewRailsSizeResult.text.toString()
+                textViewRailsSizeResult.text.toString() + " " + textViewRailsSizeResult1.text.toString()
             }else{
-                textViewRailsSizeResult2.text.toString()
+                textViewRailsSizeResult2.text.toString() + " " + textViewRailsSizeResult22.text.toString()
             }
             val amount = if( textViewRailsSizeResult.text.toString() != "- เส้น"){
                 editTextAmountCable.text.toString()

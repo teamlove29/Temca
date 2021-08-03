@@ -92,7 +92,7 @@ class ReportInOnePhaseActivity : AppCompatActivity() {
             }
         }else textViewResultConduitSize.text = DataFromWireSize[0].condutiSize
 
-        if(DataFromWireSize[0].pressure == "0.00 V (0.00%)"){
+        if(DataFromWireSize[0].pressure == "0.00 V ( 0.00% )"){
             blockPressureDrop.visibility = View.GONE
         }else{
             blockPressureDrop.visibility = View.VISIBLE
@@ -252,7 +252,7 @@ class ReportInOnePhaseActivity : AppCompatActivity() {
             addItemAndResult(document, "                ขนาดท่อไฟฟ้า                         ", data[0].condutiSize, titleStyleTitle, valueStyle)
             addLineSpace(document)
 
-            if(data[0].pressure != "0.00 V (0.00%)"){
+            if(data[0].pressure != "0.00 V ( 0.00% )"){
                 addItemAndResult(document, "                แรงดันตก                                 ", data[0].pressure, titleStyleTitle, valueStyle)
                 addItemAndResult(document, "                     ${textViewReferenceVoltageInReport.text}", "", subTitleStyle, valueStyle)
             }

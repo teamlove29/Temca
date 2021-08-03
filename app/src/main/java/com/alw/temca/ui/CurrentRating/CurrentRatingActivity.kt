@@ -155,7 +155,7 @@ class CurrentRatingActivity : AppCompatActivity() {
                     println(cableSizeTextView.text == sizeCable)
                     if (cableSizeTextView.text.toString().replace("mm2","mm2") == sizeCable){
                         val dataOfTale = sheet.getCell(colInTable, index+1).contents
-                        textViewResultMaxCurrent.text = "${dataOfTale}A"
+                        textViewResultMaxCurrent.text = "${dataOfTale} A"
 
                     }
             }

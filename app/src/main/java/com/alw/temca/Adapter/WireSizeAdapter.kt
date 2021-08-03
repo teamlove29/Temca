@@ -16,11 +16,11 @@ class WireSizeAdapter(var listCircuit : ArrayList<RailSizeModel>) : RecyclerView
         fun bind(itemList: RailSizeModel){
             itemView.textViewResultWireSizeInList.text = Html.fromHtml("${itemList.wireSize.replace("mm","mm<sup><small><small>2</small></small></sup>")}")
             itemView.textViewResultWireGround.text = Html.fromHtml("${itemList.groundSize} mm<sup><small><small>2</small></small></sup>")
-            itemView.textViewResultRailSize.text = "${itemList.railSize} mm"
+            itemView.textViewResultRailSize.text = "${itemList.railSize} mm."
             itemView.textViewReferenceVoltage.text = "(แรงดันอ้างอิง ${itemList.refPressure})"
             itemView.textResultPreessureInList.text = itemList.resultPressure
 
-            if(itemList.resultPressure == "0.00 V (0.00%)"){
+            if(itemList.resultPressure == "0.00 V ( 0.00% )"){
                 itemView.textViewPreessureInList.visibility = View.GONE
                 itemView.textViewReferenceVoltage.visibility = View.GONE
                 itemView.textResultPreessureInList.visibility = View.GONE

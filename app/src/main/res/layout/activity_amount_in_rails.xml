@@ -329,7 +329,6 @@ tools:context=".ui.AmountInRails.AmountInRailsActivity">
 
     </LinearLayout>
 
-
     <androidx.cardview.widget.CardView
         android:id="@+id/tableBeforeCalculateInPipe"
         android:layout_width="match_parent"
@@ -404,7 +403,19 @@ tools:context=".ui.AmountInRails.AmountInRailsActivity">
                 android:layout_marginTop="20dp"
                 android:layout_below="@+id/textViewResultMaxCable"
                 android:layout_alignParentRight="true"
-                android:text="null (null เส้น)"
+                android:text="null"
+                android:textSize="16sp"
+                android:fontFamily="@font/mitr_regular"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:id="@+id/textViewRailsSizeResult1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_below="@+id/textViewRailsSizeResult"
+                android:layout_alignParentRight="true"
+                android:text="(null เส้น)"
                 android:textSize="16sp"
                 android:fontFamily="@font/mitr_regular"
                 android:textColor="@color/white" />
@@ -414,7 +425,7 @@ tools:context=".ui.AmountInRails.AmountInRailsActivity">
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:layout_below="@+id/textViewRailsSize"
+                android:layout_below="@+id/textViewRailsSizeResult1"
                 android:text="เกินจำนวนตามมาตรฐาน"
                 android:textSize="16sp"
                 android:fontFamily="@font/mitr_regular"
@@ -425,20 +436,31 @@ tools:context=".ui.AmountInRails.AmountInRailsActivity">
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:layout_below="@+id/textViewRailsSizeResult"
+                android:layout_below="@+id/textViewRailsSizeResult1"
                 android:layout_alignParentRight="true"
-                android:text="null (null เส้น)"
+                android:text="null"
                 android:textSize="16sp"
                 android:fontFamily="@font/mitr_regular"
                 android:textColor="@color/white" />
 
+            <TextView
+                android:id="@+id/textViewRailsSizeResult22"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_below="@+id/textViewRailsSizeResult2"
+                android:layout_alignParentRight="true"
+                android:text="(null เส้น)"
+                android:textSize="16sp"
+                android:fontFamily="@font/mitr_regular"
+                android:textColor="@color/white" />
 
             <LinearLayout
                 android:gravity="bottom"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="bottom|center_horizontal"
-                android:layout_below="@+id/textViewShow8InPipe"
+                android:layout_below="@+id/textViewRailsSizeResult22"
                 android:layout_marginTop="20dp"
                 android:orientation="vertical">
 
@@ -490,5 +512,6 @@ tools:context=".ui.AmountInRails.AmountInRailsActivity">
             </LinearLayout>
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
+
 </LinearLayout>
 </ScrollView>

@@ -78,7 +78,7 @@ class ReportInThreePhaseActivity : AppCompatActivity() {
             }
         }else textViewResultConduitSize.text = DataFromWireSize[0].condutiSize
 
-        if(DataFromWireSize[0].pressure == "0.00 V (0.00%)"){
+        if(DataFromWireSize[0].pressure == "0.00 V ( 0.00% )"){
             blockPressureDrop.visibility = View.GONE
         }else{
             blockPressureDrop.visibility = View.VISIBLE

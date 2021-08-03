@@ -52,7 +52,7 @@ class MoterReportActivity : AppCompatActivity() {
         val DataFromMoter = intent.getParcelableArrayListExtra<DataToMoterReportModel>("DataFromMoter")!!
 
 
-        if(DataFromMoter[0].resultpressure == "0.00 V (0.00%)"){
+        if(DataFromMoter[0].resultpressure == "0.00 V ( 0.00% )"){
             drop.visibility = View.GONE
         }else{
             drop.visibility = View.VISIBLE
@@ -212,7 +212,7 @@ class MoterReportActivity : AppCompatActivity() {
             addLineSpace(document)
 
 
-            if(data[0].resultpressure != "0.00 V (0.00%)"){
+            if(data[0].resultpressure != "0.00 V ( 0.00% )"){
                 addItemAndResult(document, "                แรงดันตก                         ", data[0].resultpressure, titleStyleTitle, valueStyle)
                 addLineSpace(document)
             }

@@ -314,7 +314,7 @@ class MoterActivity : AppCompatActivity() {
                             textViewGroundSizeResult.text = Html.fromHtml("${calbeGroundIntable.replace("mm2","mm<sup><small><small>2</small></small></sup>")}")
                         }
                         else {
-                            textViewGroundSizeResult.text = "- G"
+                            textViewGroundSizeResult.text = Html.fromHtml("- mm<sup><small><small>2</small></small></sup>")
                         }
 //                        textViewConduitSizeResult.text = conduitInTable
                         textViewBreakerResult.text = breakerInTable
@@ -358,13 +358,13 @@ class MoterActivity : AppCompatActivity() {
                                 if(pullResult >= 1000){
                                     pullResulttoString = "${pullResulttoString.slice(0..0)},${pullResulttoString.slice(1 until pullResulttoString.length)}"
                                     if(PercentPressure >= 1000){
-                                        percentPressuretoString = "(${percentPressuretoString.slice(0..0)},${percentPressuretoString.slice(1 until percentPressuretoString.length)}%)"
+                                        percentPressuretoString = "( ${percentPressuretoString.slice(0..0)},${percentPressuretoString.slice(1 until percentPressuretoString.length)}% )"
                                     }else{
-                                        percentPressuretoString = "(${percentPressuretoString}%)"
+                                        percentPressuretoString = "( ${percentPressuretoString}% )"
                                     }
                                     textViewPressureResult.text = "$pullResulttoString $percentPressuretoString"
                                 }else{
-                                    textViewPressureResult.text = "${"%.2f V".format(pullResult)} (${"%.2f".format(PercentPressure)}%)"
+                                    textViewPressureResult.text = "${"%.2f V".format(pullResult)} ( ${"%.2f".format(PercentPressure)}% )"
                                 }
                                 break
                             }

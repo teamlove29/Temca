@@ -99,7 +99,7 @@ class ReportInCurrentRattingActivity : AppCompatActivity() {
             textViewResultPressure2.text = DataFromWireSize[1].pressure
              textViewReferenceVoltageInReport2.text = "(แรงดันอ้างอิง 400V)"
 
-            if(DataFromWireSize[0].pressure == "0.00 V (0.00%)"){
+            if(DataFromWireSize[0].pressure == "0.00 V ( 0.00% )"){
                 pressure.visibility = View.GONE
                 pressure2.visibility = View.GONE
             }else{
@@ -241,7 +241,7 @@ class ReportInCurrentRattingActivity : AppCompatActivity() {
             addLineSpace(document)
             addItemAndResult(document, "                ขนาดท่อไฟฟ้า                         ", data[0].condutiSize, titleStyleTitle, valueStyle)
             addLineSpace(document)
-            if(data[0].pressure != "0.00 V (0.00%)"){
+            if(data[0].pressure != "0.00 V ( 0.00% )"){
                 addItemAndResult(document, "                แรงดันตก                                 ", data[0].pressure, titleStyleTitle, valueStyle)
                 addItemAndResult(document, "                     ${textViewReferenceVoltageInReport.text}", "", subTitleStyle, valueStyle)
             }
@@ -255,7 +255,7 @@ class ReportInCurrentRattingActivity : AppCompatActivity() {
                 addLineSpace(document)
                 addItemAndResult(document, "                ขนาดท่อไฟฟ้า                         ", data[1].condutiSize, titleStyleTitle, valueStyle)
                 addLineSpace(document)
-                if(data[1].pressure != "0.00 V (0.00%)"){
+                if(data[1].pressure != "0.00 V ( 0.00% )"){
                     addItemAndResult(document, "                แรงดันตก                                 ", data[1].pressure, titleStyleTitle, valueStyle)
                     addItemAndResult(document, "                     ${textViewReferenceVoltageInReport.text}", "", subTitleStyle, valueStyle)
                 }
