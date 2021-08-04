@@ -1,6 +1,8 @@
 package com.alw.temca
 
 import android.content.Intent
+import android.content.pm.PackageInfo
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -15,25 +17,39 @@ import com.alw.temca.ui.Moter.MoterActivity
 import com.alw.temca.ui.SponsorActivity
 import com.alw.temca.ui.Transformer.TransformerActivity
 import kotlinx.android.synthetic.main.activity_main.*
+import java.sql.Timestamp
 import java.text.SimpleDateFormat
 import java.util.*
+
 
 class MainActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        val date:Date = Date()
-        val sdf = SimpleDateFormat("dd/MM/YYYY")
-        val dayOfTheWeek = sdf.format(date)
-//        if(dayOfTheWeek == "24/08/2021"){
-//            Toast.makeText(this,"หมดเวลาการใช้งาน",Toast.LENGTH_SHORT).show()
-//            finish()
-//        }
+
+        try {
+            val pInfo: PackageInfo = this.packageManager.getPackageInfo(this.packageName, 0)
+            val version = pInfo.versionName
+        } catch (e: PackageManager.NameNotFoundException) {
+            e.printStackTrace()
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        //        val sdf = SimpleDateFormat("dd/MM/YYYY")
+//        val dayOfTheWeek = sdf.format(timestamp)
+        val date:Date = Date()
+        val timestamp = Timestamp(System.currentTimeMillis())
+        val sdf = SimpleDateFormat("yyyy.MM.dd.HH.mm.ss")
+
+        if(date.time >= 1629565200000 ){
+            Toast.makeText(this, "หมดเวลาการใช้งาน", Toast.LENGTH_SHORT).show()
+            finish()
+        }
+
     }
 
     fun HandleOnClick(view: View) {
@@ -65,14 +81,12 @@ class MainActivity : AppCompatActivity() {
                 val intent = Intent(this, ThreePhaseActivity::class.java)
                 startActivity(intent)
             }
-            buttonTransformer -> {
-                val intent = Intent(this, TransformerActivity::class.java)
-//                intent.putExtra("txt",buttonTransformer.text)
-                startActivity(intent)
-            }
             buttonMoter -> {
                 val intent = Intent(this, MoterActivity::class.java)
-//                intent.putExtra("txt",buttonMoter.text)
+                startActivity(intent)
+            }
+            buttonTransformer -> {
+                val intent = Intent(this, TransformerActivity::class.java)
                 startActivity(intent)
             }
         }
