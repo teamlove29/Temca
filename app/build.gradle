@@ -39,6 +39,7 @@ android {
     }
     dexOptions {
         incremental true
+        jumboMode = true
     }
     lintOptions {
         checkReleaseBuilds false

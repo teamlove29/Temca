@@ -240,7 +240,7 @@ class AmountInRailsActivity : AppCompatActivity() {
                                     for (i in 14..22){
                                         if(editTextAmountCable.text.toString().toInt() <= sheet.getCell(i, indexSize + 1).contents.toInt()
                                             && sheet.getCell(i, indexSize + 1).contents.toInt() != 0) {
-                                            textViewRailsSizeResult.text = "${sheet.getCell(i, 0).contents}"
+                                            textViewRailsSizeResult.text = "${sheet.getCell(i, 0).contents} mm."
                                             textViewRailsSizeResult1.text = "( ${sheet.getCell(i, indexSize + 1).contents} เส้น )"
                                             textViewRailsSize2.visibility = View.GONE
                                             textViewRailsSizeResult2.visibility = View.GONE
@@ -250,7 +250,7 @@ class AmountInRailsActivity : AppCompatActivity() {
                                         }else{
                                                 textViewRailsSizeResult.text = "- เส้น"
                                              if(sheet.getCell(i, indexSize + 1).contents.toInt() != 0){
-                                                 textViewRailsSizeResult2.text = "${sheet.getCell(i, 0).contents}"
+                                                 textViewRailsSizeResult2.text = "${sheet.getCell(i, 0).contents} mm."
                                                  textViewRailsSizeResult22.text = "( ${sheet.getCell(i, indexSize + 1).contents} เส้น )"
                                                  maxamount = sheet.getCell(i, indexSize + 1).contents
                                                  textViewRailsSize2.visibility = View.VISIBLE
