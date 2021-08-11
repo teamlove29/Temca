@@ -36,7 +36,7 @@ class SizeConduitInRailsActivity : AppCompatActivity(),onClickInAdapter {
         val typeCableOfMain = intent.getStringExtra("typeCable").toString()
         val sizeCableOfMain = intent.getStringExtra("sizeCable").toString()
 
-
+    println("Dasdad ${sizeCableOfMain}")
 
 //        "1 mm2" -> 99
 //        "1.5 mm2" -> 99
@@ -105,7 +105,7 @@ class SizeConduitInRailsActivity : AppCompatActivity(),onClickInAdapter {
                 "2.5 mm2" -> 0
                 "4 mm2" -> 1
                 "6 mm2" -> 2
-                "10 mm2" -> 3
+                "10 mm2" -> 2
                 "16 mm2" -> 3
                 "25 mm2" -> 4
                 "35 mm2" -> 5
@@ -120,8 +120,8 @@ class SizeConduitInRailsActivity : AppCompatActivity(),onClickInAdapter {
             endCol = when(sizeCableOfMain){
                 "1 mm2" -> 3
                 "1.5 mm2" -> 3
-                "2.5 mm2" -> 3
-                "4 mm2" -> 3
+                "2.5 mm2" -> 4
+                "4 mm2" -> 4
                 "6 mm2" -> 4
                 "10 mm2" -> 5
                 "16 mm2" -> 6
@@ -354,7 +354,7 @@ class SizeConduitInRailsActivity : AppCompatActivity(),onClickInAdapter {
                 "1.5 mm2" -> 0
                 "2.5 mm2" -> 0
                 "4 mm2" -> 0
-                "6 mm2" -> 1
+                "6 mm2" -> 0
                 "10 mm2" -> 0
                 "16 mm2" ->0
                 "25 mm2" -> 0

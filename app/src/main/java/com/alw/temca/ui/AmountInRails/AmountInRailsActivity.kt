@@ -337,7 +337,6 @@ class AmountInRailsActivity : AppCompatActivity() {
         imm.showSoftInput(editTextAmountCable, InputMethodManager.SHOW_IMPLICIT)
     }
 
-
     // เลือกชนิดสายไฟ
     fun onclickChooseTypeCable(view: View) {
         val intent = Intent(this, TypeCableInRailsActivity::class.java)
@@ -361,6 +360,7 @@ class AmountInRailsActivity : AppCompatActivity() {
         val intent = Intent(this, SponsorActivity::class.java)
         startActivity(intent)
     }
+
     fun backOnClick(view: View) {
         val sharedPref =
             getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE).edit()
@@ -368,6 +368,7 @@ class AmountInRailsActivity : AppCompatActivity() {
         sharedPref.apply()
         finish()
     }
+
     override fun onBackPressed() {
         super.onBackPressed()
         val sharedPref =

@@ -27,12 +27,12 @@ class MainActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
 
-        try {
-            val pInfo: PackageInfo = this.packageManager.getPackageInfo(this.packageName, 0)
-            val version = pInfo.versionName
-        } catch (e: PackageManager.NameNotFoundException) {
-            e.printStackTrace()
-        }
+//        try {
+//            val pInfo: PackageInfo = this.packageManager.getPackageInfo(this.packageName, 0)
+//            val version = pInfo.versionName
+//        } catch (e: PackageManager.NameNotFoundException) {
+//            e.printStackTrace()
+//        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,10 +45,10 @@ class MainActivity : AppCompatActivity() {
         val timestamp = Timestamp(System.currentTimeMillis())
         val sdf = SimpleDateFormat("yyyy.MM.dd.HH.mm.ss")
 
-        if(date.time >= 1629565200000 ){
-            Toast.makeText(this, "หมดเวลาการใช้งาน", Toast.LENGTH_SHORT).show()
-            finish()
-        }
+//        if(date.time >= 1629565200000 ){
+//            Toast.makeText(this, "หมดเวลาการใช้งาน", Toast.LENGTH_SHORT).show()
+//            finish()
+//        }
 
     }
 

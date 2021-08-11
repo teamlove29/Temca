@@ -139,12 +139,12 @@ class TransformerActivity : AppCompatActivity() {
             else -> return
         }
         val transformerCableTypeInTable = when(TextViewCableType.text){
-            "NYY" -> {
+            "NYY 1/C" -> {
                 pressureDropIndexTable = 0
                 if(TextViewGroupInstallation.text == "ไม่มีฝาปิดแบบระบายอากาศ") 0
                 else 1
             }
-            "XLPE" -> {
+            "XLPE 1/C" -> {
                 pressureDropIndexTable = 2
                 if(TextViewGroupInstallation.text == "ไม่มีฝาปิดแบบบันได") 2
                 else 3
@@ -263,7 +263,7 @@ class TransformerActivity : AppCompatActivity() {
         val dataOfPressureVolt = sharedPref.getString(TASK_LIST_PREF_KEY_PRESSURE,"230/400 V")
         val dataOfSizeTransformer = sharedPref.getString(TASK_LIST_PREF_KEY_SIZE_TRANSFORMER,"500 kVA")
         val dataOfGroupInstall = sharedPref.getString(TASK_LIST_PREF_KEY_INSTALLATION,"รางเคเบิ้ลแบบระบายอากาศ")
-        val dataOfCableType = sharedPref.getString(TASK_LIST_PREF_KEY_TYPE_CABLE,"NYY")
+        val dataOfCableType = sharedPref.getString(TASK_LIST_PREF_KEY_TYPE_CABLE,"NYY 1/C")
 //        val dataOfDistanceInTransformer = sharedPref.getString(TASK_LIST_PREF_KEY_DISTANCE_TRANSFORMER,"20")
 
         TextViewPressure.text = dataOfPressureVolt

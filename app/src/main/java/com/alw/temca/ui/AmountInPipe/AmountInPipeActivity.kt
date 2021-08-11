@@ -175,6 +175,7 @@ class AmountInPipeActivity : AppCompatActivity() {
             val typeCabletitle = sheet.getCell(0, 0).contents
 
             if (typeCableTextView.text == typeCabletitle){
+
                 sizeCable.forEachIndexed { index, sizeCable  -> // หาขนาดสาย mm2
                     if (cableSizeTextView.text.toString().replace("mm2","mm2") == sizeCable){
                         for (i in 1..12){ // แนวนอนขนาดสาย

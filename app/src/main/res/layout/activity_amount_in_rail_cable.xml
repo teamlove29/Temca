@@ -366,6 +366,15 @@ android:overScrollMode="never"
                 tools:itemCount="2"
                 tools:listitem="@layout/rail_size_list" />
 
+        <LinearLayout
+            android:gravity="bottom"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="bottom|center_horizontal"
+            android:layout_below="@+id/textViewShow5InPipe"
+            android:layout_marginTop="20dp"
+            android:orientation="vertical">
+
             <Button
                 android:onClick="ReportOnClick"
                 android:id="@+id/btnCreateReports2"
@@ -411,6 +420,7 @@ android:overScrollMode="never"
                     android:textColor="@color/white"
                     android:text="@string/sponsor"/>
             </RelativeLayout>
+        </LinearLayout>
 
         </LinearLayout>
 

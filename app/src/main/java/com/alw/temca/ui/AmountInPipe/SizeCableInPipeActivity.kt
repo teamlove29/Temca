@@ -22,7 +22,7 @@ class SizeCableInPipeActivity : AppCompatActivity(),onClickInAdapter {
 
         val typeCableOfMain = intent.getStringExtra("typeCable").toString()
 
-        println("dsaasdd ${typeCableOfMain}")
+
         if(typeCableOfMain != "IEC01" && typeCableOfMain != "XLPE 1/C" && typeCableOfMain != "XLPE 2/C" && typeCableOfMain != "XLPE 3/C" && typeCableOfMain != "XLPE 4/C" ){
             listSizeCable.add(SizeCableModel("1 mm2"))
         }
@@ -44,6 +44,10 @@ class SizeCableInPipeActivity : AppCompatActivity(),onClickInAdapter {
         listSizeCable.add(SizeCableModel("300 mm2"))
         listSizeCable.add(SizeCableModel("400 mm2"))
         listSizeCable.add(SizeCableModel("500 mm2"))
+        if(typeCableOfMain == "XLPE 1/C"){
+            listSizeCable.add(SizeCableModel("630 mm2"))
+            listSizeCable.add(SizeCableModel("800 mm2"))
+        }
 
 
 
@@ -54,10 +58,10 @@ class SizeCableInPipeActivity : AppCompatActivity(),onClickInAdapter {
             "NYY 2/C" -> 16 // 300
             "NYY 3/C" -> 16 // 300
             "NYY 4/C" -> 16 // 300
-            "XLPE 1/C" -> 20 // 800
-            "XLPE 2/C" -> 17 // 400
-            "XLPE 3/C" -> 17 // 400
-            "XLPE 4/C" -> 17 // 400
+            "XLPE 1/C" -> 19 // 800
+            "XLPE 2/C" -> 16 // 400
+            "XLPE 3/C" -> 16 // 400
+            "XLPE 4/C" -> 16 // 400
             "VCT 1/C" -> 8 // 35
             "VCT 2/C" -> 8 // 35
             "VCT 3/C" -> 8 // 35

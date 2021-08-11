@@ -3,12 +3,12 @@
     package="com.alw.temca">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <!-- <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> -->
+     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_MEDIA_LOCATION" />
+<!--    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />-->
+<!--    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />-->
+<!--    <uses-permission android:name="android.permission.ACCESS_MEDIA_LOCATION" />-->
 
     <application
         android:allowBackup="true"
@@ -18,8 +18,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Temca"
-        android:versionCode="3"
-        android:versionName="1.2">
+        android:versionCode="5"
+        android:versionName="1.4">
         <activity android:name=".TermsOfUseActivity"></activity>
         <activity android:name=".ui.AmountInRailCable.ReportInCurrentRattingActivity" />
         <activity android:name=".ui.AmountInRailCable.CircuitBreakerInRailsCableActivity" />

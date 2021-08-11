@@ -49,9 +49,7 @@ class ReportInPipeActivity : AppCompatActivity() {
 
         Dexter.withActivity(this@ReportInPipeActivity)
                 .withPermissions(
-                        Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                        Manifest.permission.READ_EXTERNAL_STORAGE,
-                        Manifest.permission.ACCESS_MEDIA_LOCATION)
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE)
                 .withListener(object : MultiplePermissionsListener {
                     override fun onPermissionsChecked(p0: MultiplePermissionsReport?) {
                         p0?.let {
@@ -65,7 +63,6 @@ class ReportInPipeActivity : AppCompatActivity() {
                             p0: MutableList<PermissionRequest>?,
                             p1: PermissionToken?,
                     ) {
-                        println("dsadad $p1")
                         p1!!.continuePermissionRequest()
                     }
                 }) .withErrorListener {
