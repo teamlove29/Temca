@@ -12,6 +12,8 @@
     <color name="btnBlue">#0E4194</color>
     <color name="defaulthint">#2E2E2E</color>
 
+    <color name="color_font_main">#0F044C</color>
+
     <color name="disable_forground_grey">#42221f</color>
     <color name="disable_thumb_grey">#1c0000</color>
     <color name="disable_thumb_green">#46bdbf</color>
