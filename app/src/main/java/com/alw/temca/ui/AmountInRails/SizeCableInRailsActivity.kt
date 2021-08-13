@@ -63,6 +63,14 @@ class SizeCableInRailsActivity : AppCompatActivity(), onClickInAdapter {
         var startRow:Int = if(typeCableOfMain == "IEC01")
         { 2 } else 0
 
+        if(typeCableOfMain == "XLPE 1/C" || typeCableOfMain == "XLPE 2/C" || typeCableOfMain == "XLPE 3/C" || typeCableOfMain == "XLPE 4/C")
+        { startRow = 1 } else if(typeCableOfMain == "IEC01"){
+            startRow = 2
+        }else{
+            0
+        }
+
+
         if (amountRowInTable == 99 ){
             Toast.makeText(this,"Warning : ไม่มีค่าสำหรับชนิดสายนี้", Toast.LENGTH_SHORT).show()
             finish()

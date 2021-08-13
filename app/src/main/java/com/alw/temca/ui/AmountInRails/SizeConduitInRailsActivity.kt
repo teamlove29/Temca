@@ -241,12 +241,12 @@ class SizeConduitInRailsActivity : AppCompatActivity(),onClickInAdapter {
             }
             endCol = when (sizeCableOfMain) {
                 "1.5 mm2" -> 1
-                "2.5 mm2" -> 1
+                "2.5 mm2" -> 2
                 "4 mm2" -> 2
-                "6 mm2" -> 2
+                "6 mm2" -> 3
                 "10 mm2" -> 3
                 "16 mm2" -> 4
-                "25 mm2" -> 4
+                "25 mm2" -> 5
                 "35 mm2" -> 5
                 "50 mm2" -> 6
                 "70 mm2" -> 7
@@ -266,7 +266,7 @@ class SizeConduitInRailsActivity : AppCompatActivity(),onClickInAdapter {
                 "1.5 mm2" -> 0
                 "2.5 mm2" -> 0
                 "4 mm2" -> 0
-                "6 mm2" -> 1
+                "6 mm2" -> 0
                 "10 mm2" -> 0
                 "16 mm2" ->0
                 "25 mm2" -> 0
@@ -310,7 +310,7 @@ class SizeConduitInRailsActivity : AppCompatActivity(),onClickInAdapter {
                 "1.5 mm2" -> 0
                 "2.5 mm2" -> 0
                 "4 mm2" -> 0
-                "6 mm2" -> 1
+                "6 mm2" -> 0
                 "10 mm2" -> 0
                 "16 mm2" ->0
                 "25 mm2" -> 0

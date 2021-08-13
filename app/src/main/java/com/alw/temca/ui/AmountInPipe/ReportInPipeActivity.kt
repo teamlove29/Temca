@@ -26,8 +26,11 @@ import com.itextpdf.text.pdf.draw.VerticalPositionMark
 import com.karumi.dexter.Dexter
 import com.karumi.dexter.MultiplePermissionsReport
 import com.karumi.dexter.PermissionToken
+import com.karumi.dexter.listener.PermissionDeniedResponse
+import com.karumi.dexter.listener.PermissionGrantedResponse
 import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener
+import com.karumi.dexter.listener.single.PermissionListener
 import kotlinx.android.synthetic.main.activity_moter_report.*
 import kotlinx.android.synthetic.main.activity_report_in_pipe.*
 import java.io.ByteArrayOutputStream
@@ -47,41 +50,35 @@ class ReportInPipeActivity : AppCompatActivity() {
 
         val resultInPipe = intent.getParcelableExtra<ResultPipeToReportModel>("resultInPipe")
 
-        Dexter.withActivity(this@ReportInPipeActivity)
-                .withPermissions(
-                        Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                .withListener(object : MultiplePermissionsListener {
-                    override fun onPermissionsChecked(p0: MultiplePermissionsReport?) {
-                        p0?.let {
-                            if (p0.areAllPermissionsGranted() && resultInPipe != null) {
-                                createPDFFile(Common.getAppPath(this@ReportInPipeActivity) + file_name, resultInPipe)
-                            }
+
+        Dexter.withActivity(this)
+                .withPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                .withListener(object : PermissionListener {
+                    override fun onPermissionGranted(p0: PermissionGrantedResponse?) {
+                        if (resultInPipe != null) {
+                            createPDFFile(Common.getAppPath(this@ReportInPipeActivity) + file_name, resultInPipe)
                         }
                     }
 
+                    override fun onPermissionDenied(p0: PermissionDeniedResponse?) {
+                        Toast.makeText(
+                                this@ReportInPipeActivity,
+                                "Denied Permission",
+                                Toast.LENGTH_LONG
+                        ).show()
+                    }
+
                     override fun onPermissionRationaleShouldBeShown(
-                            p0: MutableList<PermissionRequest>?,
-                            p1: PermissionToken?,
+                            p0: PermissionRequest?,
+                            p1: PermissionToken?
                     ) {
                         p1!!.continuePermissionRequest()
                     }
-                }) .withErrorListener {
-                    println("withErrorListener : ${it.name}")
-                }.check()
-//                .withListener(object : PermissionListener {
-//                    override fun onPermissionGranted(p0: PermissionGrantedResponse?) {
-//                        if (resultInPipe != null) {
-//                            createPDFFile(Common.getAppPath(this@ReportInPipeActivity) + file_name, resultInPipe)
-//                        }
-//                    }
-//                    override fun onPermissionDenied(p0: PermissionDeniedResponse?) {
-//                        Toast.makeText(this@ReportInPipeActivity, "Denied Permission", Toast.LENGTH_LONG).show()
-//                    }
-//                    override fun onPermissionRationaleShouldBeShown(
-//                            p0: PermissionRequest?,
-//                            p1: PermissionToken?
-//                    ) { p1!!.continuePermissionRequest()}
-//                }).check()
+
+                })
+                .check()
+
+
 
         if(resultInPipe != null){
             textViewReslutMainCableTypeInPipeReport.text = resultInPipe.typeCable
