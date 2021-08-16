@@ -1,22 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fillViewport="true"
+
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:overScrollMode="never"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".MainActivity">
 
-
+<ScrollView
+    android:layout_weight="1"
+    android:layout_above="@+id/sponser"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:fillViewport="true"
+    android:overScrollMode="never">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:paddingTop="30dp"
         android:orientation="vertical">
 
-        <LinearLayout
+    <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingLeft="20dp"
@@ -44,10 +50,11 @@
                     android:layout_toRightOf="@+id/logoImageView"
                     android:textColor="#0E4194"
                     android:autoSizeTextType="uniform"
-                    android:textSize="25sp"
-                    android:autoSizeMinTextSize="20sp"
-                    android:autoSizeMaxTextSize="100sp"
+                    android:textSize="20sp"
+                    android:autoSizeMinTextSize="18sp"
+                    android:autoSizeMaxTextSize="25sp"
                     android:autoSizeStepGranularity="2sp"
+                    android:maxLines="1"
                     android:text="Cable and Raceway"/>
 
                 <TextView
@@ -57,11 +64,12 @@
                     android:layout_below="@+id/textMain1"
                     android:fontFamily="@font/mitr_regular"
                     android:textColor="#0E4194"
-                    android:textSize="25sp"
+                    android:textSize="20sp"
                     android:autoSizeTextType="uniform"
-                    android:autoSizeMinTextSize="20sp"
-                    android:autoSizeMaxTextSize="100sp"
+                    android:autoSizeMinTextSize="10sp"
+                    android:autoSizeMaxTextSize="23sp"
                     android:autoSizeStepGranularity="2sp"
+                    android:maxLines="1"
                     android:text="Calculator"/>
             </RelativeLayout>
 
@@ -80,10 +88,7 @@
             android:gravity="center_vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:autoSizeMaxTextSize="18sp"
-            android:autoSizeMinTextSize="17sp"
-            android:autoSizeStepGranularity="2sp"
-            android:autoSizeTextType="uniform"
+            android:textSize="18sp"
             android:background="@drawable/btn_rounded_main"
             android:backgroundTint="@color/white"
             android:elevation="10dp"
@@ -102,10 +107,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="15dp"
-            android:autoSizeMaxTextSize="18sp"
-            android:autoSizeMinTextSize="17sp"
-            android:autoSizeStepGranularity="2sp"
-            android:autoSizeTextType="uniform"
+            android:textSize="18sp"
             android:background="@drawable/btn_rounded_main"
             android:backgroundTint="@color/white"
             android:elevation="10dp"
@@ -130,10 +132,7 @@
             android:elevation="10dp"
             android:fontFamily="@font/mitr_light"
             android:onClick="HandleOnClick"
-            android:paddingTop="7dp"
-            android:paddingBottom="7dp"
-            android:paddingRight="7dp"
-            android:paddingLeft="10dp"
+            android:padding="15dp"
             android:layout_marginRight="20dp"
             android:layout_marginLeft="20dp"
             android:drawableRight="@drawable/ic_main_3"
@@ -152,10 +151,7 @@
             android:elevation="10dp"
             android:fontFamily="@font/mitr_light"
             android:onClick="HandleOnClick"
-            android:paddingTop="7dp"
-            android:paddingBottom="7dp"
-            android:paddingRight="7dp"
-            android:paddingLeft="10dp"
+            android:padding="15dp"
             android:layout_marginRight="20dp"
             android:layout_marginLeft="20dp"
             android:drawableRight="@drawable/ic_main_4"
@@ -167,10 +163,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="15dp"
-            android:autoSizeMaxTextSize="18sp"
-            android:autoSizeMinTextSize="17sp"
-            android:autoSizeStepGranularity="2sp"
-            android:autoSizeTextType="uniform"
+            android:textSize="18sp"
             android:background="@drawable/btn_rounded_main"
             android:backgroundTint="@color/white"
             android:elevation="10dp"
@@ -188,10 +181,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="15dp"
-            android:autoSizeMaxTextSize="18sp"
-            android:autoSizeMinTextSize="17sp"
-            android:autoSizeStepGranularity="2sp"
-            android:autoSizeTextType="uniform"
+            android:textSize="18sp"
             android:background="@drawable/btn_rounded_main"
             android:backgroundTint="@color/white"
             android:elevation="10dp"
@@ -209,10 +199,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="15dp"
-            android:autoSizeMaxTextSize="18sp"
-            android:autoSizeMinTextSize="17sp"
-            android:autoSizeStepGranularity="2sp"
-            android:autoSizeTextType="uniform"
+            android:textSize="18sp"
             android:background="@drawable/btn_rounded_main"
             android:backgroundTint="@color/white"
             android:elevation="10dp"
@@ -230,10 +217,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="15dp"
-            android:autoSizeMaxTextSize="18sp"
-            android:autoSizeMinTextSize="17sp"
-            android:autoSizeStepGranularity="2sp"
-            android:autoSizeTextType="uniform"
+            android:textSize="18sp"
             android:background="@drawable/btn_rounded_main"
             android:backgroundTint="@color/white"
             android:elevation="10dp"
@@ -246,91 +230,121 @@
             android:text="ขนาดวงจรหม้อแปลง"
             android:textColor="@color/color_font_main" />
 
-        <LinearLayout
-                android:layout_marginTop="30dp"
-                android:gravity="bottom|center_horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-
-                <LinearLayout
-                    android:gravity="center_horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/textViewTerm"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="10dp"
-                    android:drawableLeft="@drawable/ic_condition_main"
-                    android:fontFamily="@font/mitr_light"
-                    android:textColor="@color/white"
-                    android:autoSizeTextType="uniform"
-                    android:autoSizeMinTextSize="14sp"
-                    android:autoSizeMaxTextSize="15sp"
-                    android:autoSizeStepGranularity="1sp"
-                    android:text=" มาตรฐานการติดตั้ง"/>
-
-                    <TextView
-                        android:onClick="termsOfUseOnClick"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="10dp"
-                        android:drawableLeft="@drawable/ic_mata_main"
-                        android:fontFamily="@font/mitr_light"
-                        android:textColor="@color/white"
-                        android:autoSizeTextType="uniform"
-                        android:autoSizeMinTextSize="14sp"
-                        android:autoSizeMaxTextSize="15sp"
-                        android:autoSizeStepGranularity="1sp"
-                        android:text=" เงื่อนไขการใช้งาน"/>
-
-                    <TextView
-                        android:onClick="sponsorOnClick"
-                        android:id="@+id/textViewSponser"
-                        android:drawableLeft="@drawable/ic_sponser_main"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/mitr_light"
-                        android:textColor="@color/white"
-                        android:autoSizeTextType="uniform"
-                        android:autoSizeMinTextSize="14sp"
-                        android:autoSizeMaxTextSize="15sp"
-                        android:autoSizeStepGranularity="1sp"
-                        android:text=" ผู้สนับสนุน"/>
-                </LinearLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp">
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/kanit_regular"
-                    android:textColor="@color/white"
-                    android:text="สมาคมช่างเหมาไฟฟ้าและเครื่องกลไทย"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:fontFamily="@font/kanit_regular"
-                    android:textColor="@color/white"
-                    android:text="ผศ. ประสิทธิ์ พิทยพัฒน์"/>
-
-            </RelativeLayout>
-
-
-
-            </LinearLayout>
 
     </LinearLayout>
 
     </LinearLayout>
 
 </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/sponser"
+        android:gravity="bottom|center_horizontal"
+        android:layout_alignParentBottom="true"
+        android:paddingTop="10dp"
+        android:background="#0F4294"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:gravity="center_horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingRight="5dp"
+            android:paddingLeft="5dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:id="@+id/textViewTerm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:drawableLeft="@drawable/ic_condition_main"
+                android:fontFamily="@font/mitr_light"
+                android:textColor="@color/white"
+                android:autoSizeTextType="uniform"
+                android:autoSizeMinTextSize="8sp"
+                android:autoSizeMaxTextSize="15sp"
+                android:autoSizeStepGranularity="2sp"
+                android:maxLines="1"
+                android:text=" มาตรฐานการติดตั้ง"/>
+
+            <TextView
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:onClick="termsOfUseOnClick"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:drawableLeft="@drawable/ic_mata_main"
+                android:fontFamily="@font/mitr_light"
+                android:textColor="@color/white"
+                android:autoSizeMinTextSize="8sp"
+                android:autoSizeMaxTextSize="15sp"
+                android:autoSizeStepGranularity="2sp"
+                android:autoSizeTextType="uniform"
+                android:maxLines="1"
+                android:text=" เงื่อนไขการใช้งาน"/>
+
+            <TextView
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:onClick="sponsorOnClick"
+                android:id="@+id/textViewSponser"
+                android:drawableLeft="@drawable/ic_sponser_main"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/mitr_light"
+                android:textColor="@color/white"
+                android:autoSizeMinTextSize="8sp"
+                android:autoSizeMaxTextSize="15sp"
+                android:autoSizeStepGranularity="2sp"
+                android:autoSizeTextType="uniform"
+                android:maxLines="1"
+                android:text=" ผู้สนับสนุน"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_weight="1"
+                android:id="@+id/name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:autoSizeMinTextSize="10sp"
+                android:autoSizeMaxTextSize="12sp"
+                android:autoSizeStepGranularity="2sp"
+                android:autoSizeTextType="uniform"
+                android:fontFamily="@font/kanit_regular"
+                android:textColor="@color/white"
+                android:maxLines="1"
+                android:text="สมาคมช่างเหมาไฟฟ้าและเครื่องกลไทย"/>
+            <TextView
+                android:layout_weight="1"
+                android:textAlignment="textEnd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:autoSizeMinTextSize="11sp"
+                android:autoSizeMaxTextSize="12sp"
+                android:autoSizeStepGranularity="2sp"
+                android:autoSizeTextType="uniform"
+                android:layout_alignParentRight="true"
+                android:fontFamily="@font/kanit_regular"
+                android:textColor="@color/white"
+                android:maxLines="1"
+                android:text="ผศ. ประสิทธิ์ พิทยพัฒน์"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
