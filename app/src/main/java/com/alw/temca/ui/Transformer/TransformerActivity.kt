@@ -146,7 +146,7 @@ class TransformerActivity : AppCompatActivity() {
             }
             "XLPE 1/C" -> {
                 pressureDropIndexTable = 2
-                if(TextViewGroupInstallation.text == "รางเคเบิ้ลแบบบันได") 2
+                if(TextViewGroupInstallation.text == "รางเคเบิ้ลแบบระบายอากาศ") 2
                 else 3
             }
             else -> return
