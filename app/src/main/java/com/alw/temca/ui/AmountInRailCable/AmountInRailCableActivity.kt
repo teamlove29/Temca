@@ -74,7 +74,6 @@ class AmountInRailCableActivity : AppCompatActivity() {
         typeCableTextView.text = dataOfTypeCable
         circuitTextView.text = dataOfCircuit
         editTextDistance.setText(dataOfDistance)
-
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -316,10 +315,8 @@ class AmountInRailCableActivity : AppCompatActivity() {
     }
 
     private fun circuitCheckPhaseAndCableType(phase: String, cableType: String):Int{
-        val sharedPref = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
-        val dataOfInstallationDes = sharedPref.getString(TASK_LIST_PREF_KEY_INSTALLATION_IN_RAILS_CABLE_DES, null)
-
-        return if(dataOfInstallationDes == "วางบนรางเคเบิ้ล ไม่มีฝาปิดแบบระบายอากาศ"){
+        println(installationTextView.text)
+        return if(installationTextView.text == "รางเคเบิ้ลแบบระบายอากาศ"){
                     when(cableType){
                         "NYY 1/C" -> 0
                         "NYY 4/C" -> 2

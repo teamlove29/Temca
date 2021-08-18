@@ -141,12 +141,12 @@ class TransformerActivity : AppCompatActivity() {
         val transformerCableTypeInTable = when(TextViewCableType.text){
             "NYY 1/C" -> {
                 pressureDropIndexTable = 0
-                if(TextViewGroupInstallation.text == "ไม่มีฝาปิดแบบระบายอากาศ") 0
+                if(TextViewGroupInstallation.text == "รางเคเบิ้ลแบบระบายอากาศ") 0
                 else 1
             }
             "XLPE 1/C" -> {
                 pressureDropIndexTable = 2
-                if(TextViewGroupInstallation.text == "ไม่มีฝาปิดแบบบันได") 2
+                if(TextViewGroupInstallation.text == "รางเคเบิ้ลแบบบันได") 2
                 else 3
             }
             else -> return
@@ -159,12 +159,14 @@ class TransformerActivity : AppCompatActivity() {
 
         for(i in 3..20 step 2){ // row check transformer
 
+            println(TextViewGroupInstallation.text)
             val findSizeTransformer = sheet.getCell(0, i).contents.toInt()
             val TransformerSizeOfTextView = Integer.parseInt(TextViewTransformerSize.text.toString().replace("kVA","").trim())
             if (TransformerSizeOfTextView <= findSizeTransformer){
                 val getDataElectricCurrentInTable = sheet.getCell(1, i).contents // resultElectricCurrent
                 textViewElectricCurrenResult.text = getDataElectricCurrentInTable
                 for (j in i..i+1){ // row Data
+
                 val getDataSizeCableInTable = sheet.getCell(2, j).contents // resultSizeCable
                 val getDataSizeConduitInTable = sheet.getCell(3, j).contents // resultSizeConduit
                 val getCableTypeInTable = sheet.getCell(5, j).contents // get TableType

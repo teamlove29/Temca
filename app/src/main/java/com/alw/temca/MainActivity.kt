@@ -45,10 +45,10 @@ class MainActivity : AppCompatActivity() {
         val timestamp = Timestamp(System.currentTimeMillis())
         val sdf = SimpleDateFormat("yyyy.MM.dd.HH.mm.ss")
 
-//        if(date.time >= 1629565200000 ){
-//            Toast.makeText(this, "หมดเวลาการใช้งาน", Toast.LENGTH_SHORT).show()
-//            finish()
-//        }
+        if(date.time >= 1725080400000 ){
+            Toast.makeText(this, "หมดเวลาการใช้งาน", Toast.LENGTH_SHORT).show()
+            finish()
+        }
 
     }
 
