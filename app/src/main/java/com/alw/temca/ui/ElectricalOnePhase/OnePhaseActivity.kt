@@ -183,7 +183,7 @@ class OnePhaseActivity : AppCompatActivity() {
                         val resultSizeConduitOfInch = sheet.getCell(4, i).contents
                         val temp:String
                         var pressureDropIndexTable:Int
-                        if(resultSizeConduitOfInch == "-") temp = "${resultSizeConduitOfmm}mm"
+                        if(resultSizeConduitOfInch == "-") temp = "${resultSizeConduitOfmm}mm."
                         else temp = "$resultSizeConduitOfmm mm. ( $resultSizeConduitOfInch\" )"
 
                         val s = SpannableString(temp.trim())
@@ -202,8 +202,7 @@ class OnePhaseActivity : AppCompatActivity() {
                         if(typeCableTextView.text == "NYY - G"
                                 || typeCableTextView.text == "VCT - G"
                                 || typeCableTextView.text == "VCT 2/C - G"
-                                || typeCableTextView.text == "NYY 2/C - G"
-                                || typeCableTextView.text == "XLPE 2/C, G") {
+                                || typeCableTextView.text == "NYY 2/C - G"){
                                 textViewResultWireGround.text = Html.fromHtml("- mm<sup><small><small>2</small></small></sup>")
                                 pressureDropIndexTable = 1
                         }else{
