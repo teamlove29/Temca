@@ -18,7 +18,7 @@ class TypeCableInRailsActivity : AppCompatActivity(), onClickInAdapter {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_type_cable_in_rails)
 
-        typeCableItem.add(TypeCableModel("IEC01"))
+        typeCableItem.add(TypeCableModel("IEC 01"))
         typeCableItem.add(TypeCableModel("NYY 1/C"))
         typeCableItem.add(TypeCableModel("NYY 2/C"))
         typeCableItem.add(TypeCableModel("NYY 3/C"))

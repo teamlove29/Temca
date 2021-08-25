@@ -155,7 +155,7 @@ class PipeSizeActivity : AppCompatActivity() {
         btnCalInPipeSize.visibility = View.GONE
 
         val fineSheetInTableCableSize = when(typeCableTextView.text){
-            "IEC01" -> 0
+            "IEC 01" -> 0
             "IEC10 2C" -> 1
             "IEC10 3C" -> 2
             "IEC10 4C" -> 3
@@ -319,7 +319,7 @@ class PipeSizeActivity : AppCompatActivity() {
     private fun loadData(){
     val sharedPref = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
     val dataOfSizeCable = sharedPref.getString(TASK_LIST_PREF_KEY_SIZE_IN_PIPE, "2.5 มม2")
-    val dataOfTypeCable = sharedPref.getString(TASK_LIST_PREF_KEY_TYPE_CABLE_IN_PIPE, "IEC01")
+    val dataOfTypeCable = sharedPref.getString(TASK_LIST_PREF_KEY_TYPE_CABLE_IN_PIPE, "IEC 01")
 //    val dataOfAmount = sharedPref.getString(TASK_LIST_PREF_KEY_AMOUNT_IN_PIPE, null)
     val dataOfConduit = sharedPref.getString(TASK_LIST_PREF_KEY_CONDUIT_IN_PIPE, "50x75 มม.")
 

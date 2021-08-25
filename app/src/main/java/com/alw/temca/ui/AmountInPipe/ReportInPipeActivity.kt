@@ -10,6 +10,10 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Environment
 import android.text.Html
+import android.text.Spannable
+import android.text.SpannableString
+import android.text.style.SubscriptSpan
+import android.text.style.SuperscriptSpan
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
@@ -31,7 +35,6 @@ import com.karumi.dexter.listener.PermissionGrantedResponse
 import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener
 import com.karumi.dexter.listener.single.PermissionListener
-import kotlinx.android.synthetic.main.activity_moter_report.*
 import kotlinx.android.synthetic.main.activity_report_in_pipe.*
 import java.io.ByteArrayOutputStream
 import java.io.File
@@ -41,6 +44,8 @@ class ReportInPipeActivity : AppCompatActivity() {
 
     companion object{
         const val file_name:String = "_result_calculate.pdf"
+        private val fractionValues = arrayOf("1/2", "1/4", "3/4")
+        private val fractionValues2 = arrayOf("\u00BD", "\u00BC", "\u00BE")
     }
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP_MR1)
@@ -84,8 +89,31 @@ class ReportInPipeActivity : AppCompatActivity() {
             textViewReslutMainCableTypeInPipeReport.text = resultInPipe.typeCable
             textViewMainResultInstallationInReport.text = Html.fromHtml( resultInPipe.sizeCable.replace("mm2","mm<sup><small>2</small></sup>"))
             textViewMainResultBreakerInReportData.text = resultInPipe.amountCable
-            textViewResultConduitSize.text = resultInPipe.maxConduit
-//            textViewResultRailSizeInReportPipeSize.text = resultInPipe.maxRails
+//            textViewResultConduitSize.text = resultInPipe.maxConduit
+            textViewResultMaxCalbe.text = resultInPipe.maxRails
+
+            val temp:String = resultInPipe.maxConduit
+            val s = SpannableString(temp.trim())
+            if (temp.indexOf('/') != -1) {
+                val len = temp.length
+                s.setSpan(SuperscriptSpan(), len - 6, len - 5, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) // ตัวเศษ
+                s.setSpan(applicationContext,len - 6, len - 5, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) // ตัวเศษ
+                s.setSpan(applicationContext, len - 5, len - 4, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) // ตัว /
+                s.setSpan(SubscriptSpan(), len - 4, len - 3, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) // ตัวส่วน
+                s.setSpan(applicationContext, len - 4, len - 3, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) // ตัวส่วน
+            }
+
+            textViewResultConduitSize.text = s
+
+//            if(resultInPipe.maxConduit.indexOf('/') != -1){
+//                for(i in 0..2){
+//                    if(resultInPipe.maxConduit.indexOf(fractionValues[i]) != -1){
+//                        textViewResultConduitSize.text = resultInPipe.maxConduit.replace(fractionValues[i],fractionValues2[i])
+//                        break
+//                    }else if(i == 2) textViewResultConduitSize.text = resultInPipe.maxConduit
+//                }
+//            }else textViewResultConduitSize.text = resultInPipe.maxConduit
+
         }
 
         btnSendEmailInPipeSize.setOnClickListener {
@@ -181,8 +209,9 @@ class ReportInPipeActivity : AppCompatActivity() {
             addNewItem(document, "ผลการคำนวน", Element.ALIGN_LEFT, headingStyle)
             addLineSpace(document)
 
-            addItemAndResult(document, "                ขนาดท่อ                    ", data.maxConduit, titleStyleTitle, valueStyle)
-            addItemAndResult(document, "                   (จำนวนสูงสุด)", "", subTitleStyle, valueStyle)
+            addItemAndResult(document, "                ขนาดท่อ                                    ", data.maxConduit, titleStyleTitle, valueStyle)
+            addLineSpace(document)
+            addItemAndResult(document, "                จำนวนสายไฟฟ้าสูงสุด              ", data.maxRails, titleStyleTitle, valueStyle)
             addLineSpace(document)
 //            addItemAndResult(document, "                ขนาดราง                    ", data.maxRails, titleStyleTitle, valueStyle)
 //            addItemAndResult(document, "                   (จำนวนสูงสุด)", "", subTitleStyle, valueStyle)
@@ -199,7 +228,24 @@ class ReportInPipeActivity : AppCompatActivity() {
     fun addItemAndResult(document: Document, textLeft: String, textRight: String, leftStyle: Font, rightStyle: Font){
         val p = Paragraph()
         p.add(Chunk(textLeft, leftStyle))
-        p.add(Chunk(textRight, rightStyle))
+//        p.add(Chunk(textRight, rightStyle))
+
+        if (textRight.indexOf("mm2") > 1){
+            p.add(Chunk(textRight.replace("mm2", "mm²"), rightStyle))
+        }else{
+            if(textRight.indexOf('/') != -1){
+                for(i in 0..2){
+                    if(textRight.indexOf(fractionValues[i]) != -1){
+                        p.add(Chunk(textRight.replace(fractionValues[i],fractionValues2[i]), rightStyle))
+                        break
+                    }else if(i == 2) p.add(Chunk(textRight, rightStyle))
+                }
+            }else{
+                p.add(Chunk(textRight, rightStyle))
+            }
+        }
+
+
         document.add(p)
 
     }

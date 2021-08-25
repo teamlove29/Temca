@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Temca</string>
+    <string name="app_name">Cable and raceway calculator</string>
     <string name="copy_right">จัดทำโดย สมาคมช่างเหมาไฟฟ้าและเครื่องกลไทย</string>
     <string name="back_Button">ย้อนกลับ</string>
     <string name="sponsor">ผู้สนับสนุน</string>
@@ -7,8 +7,8 @@
     <string name="share">แชร์</string>
     <string name="calculate">คำนวณ</string>
     <string name="cable_and_conduit_calculator">Cable and Conduit Calculator</string>
-    <string name="typeAndAmountInPipe">หาชนิดและจำนวนสายในท่อ</string>
-    <string name="typeAndAmountInRails">หาชนิดและจำนวนสายในรางเดินสาย(Wireway)</string>
+    <string name="typeAndAmountInPipe">ชนิดและจำนวนสายไฟฟ้าในท่อร้อยสาย</string>
+    <string name="typeAndAmountInRails">ชนิดและจำนวนสายไฟฟ้าในรางเดินสาย (wireway)</string>
     <string name="title_one_phase">ขนาดวงจรไฟฟ้า 1 เฟส</string>
     <string name="title_three_phase">ขนาดวงจรไฟฟ้า 3 เฟส</string>
     <string name="title_current_rating">หาพิกัดกระแสสายไฟฟ้า</string>

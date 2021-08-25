@@ -82,16 +82,19 @@ class ReportInRailsActivity : AppCompatActivity() {
                 railsInReport.visibility = View.VISIBLE
                 railsInReport2.visibility = View.GONE
                 amountInReport.visibility = View.GONE
+                railsInReport3.visibility = View.GONE
             }else{
                 textViewReslutMainCableTypeInPipeReport.text = resultInRails.typeCable
                 textViewMainResultInstallationInReport.text =  Html.fromHtml(resultInRails.sizeCable.replace("mm2","mm<sup><small>2</small></sup>"))
-                textViewMainResultBreakerInReportData.text = resultInRails.amount
+                textViewMainResultBreakerInReportData.text = "${resultInRails.amount} เส้น"
                 textViewReslutAmountCableInPipeReport2.text = resultInRails.rails
+                textViewReslutAmountCableInPipeReport3.text = resultInRails.amountCable
 
 
                 amountCableInReport.visibility = View.GONE
                 railsInReport.visibility = View.GONE
                 railsInReport2.visibility = View.VISIBLE
+                railsInReport3.visibility = View.VISIBLE
                 amountInReport.visibility = View.VISIBLE
             }
 
@@ -181,7 +184,8 @@ class ReportInRailsActivity : AppCompatActivity() {
             var valueStyle = Font(fontName, valueFontSize, Font.NORMAL, colorAccent)
 
 
-            addNewItemWithLeftAndRight(document, "รายงานการคำนวนชนิดและจำนวนสายในรางเดินสาย(Wireway)", "", titleStyle, detailStyleTitle)
+            addNewItemWithLeftAndRight(document, "รายงานการคำนวนชนิดและจำนวน", "", titleStyle, detailStyleTitle)
+            addNewItemWithLeftAndRight(document, "สายในรางเดินสาย (Wireway)", "", titleStyle, detailStyleTitle)
             addLineSeperator(document)
 
             addNewItem(document, "ข้อมูลการใช้งาน", Element.ALIGN_LEFT, headingStyle)
@@ -195,7 +199,7 @@ class ReportInRailsActivity : AppCompatActivity() {
                 addItemAndResult(document, "                ขนาดราง :   ", data.sizeRails, titleStyleTitle, valueStyle)
                 addLineSpace(document)
             }else{
-                addItemAndResult(document, "                จำนวนสาย :   ", data.amount, titleStyleTitle, valueStyle)
+                addItemAndResult(document, "                จำนวนสาย :   ", "${data.amount} เส้น", titleStyleTitle, valueStyle)
                 addLineSpace(document)
             }
 
@@ -204,10 +208,12 @@ class ReportInRailsActivity : AppCompatActivity() {
             addLineSpace(document)
 
             if(!data.status){
-                addItemAndResult(document, "                จำนวนสายไฟ                    ", data.amountCable, titleStyleTitle, valueStyle)
+                addItemAndResult(document, "                จำนวนสายไฟฟ้าสูงสุด               ", data.amountCable, titleStyleTitle, valueStyle)
                 addLineSpace(document)
             }else{
-                addItemAndResult(document, "                ขนาดราง                    ", data.rails, titleStyleTitle, valueStyle)
+                addItemAndResult(document, "                ขนาดราง                                  ", data.rails, titleStyleTitle, valueStyle)
+                addLineSpace(document)
+                addItemAndResult(document, "                จำนวนสายไฟฟ้าสูงสุด             ", data.amountCable, titleStyleTitle, valueStyle)
                 addLineSpace(document)
             }
 
@@ -227,8 +233,15 @@ class ReportInRailsActivity : AppCompatActivity() {
         val glue =  Chunk(VerticalPositionMark())
         val p = Paragraph()
         p.add(Chunk(textLeft, leftStyle))
-        p.add(Chunk(textRight, rightStyle))
+        if (textRight.indexOf("mm2") > 1){
+            p.add(Chunk(textRight.replace("mm2", "mm²"), rightStyle))
+        }else{
+            p.add(Chunk(textRight, rightStyle))
+        }
+
         document.add(p)
+
+
 
     }
 
@@ -248,8 +261,8 @@ class ReportInRailsActivity : AppCompatActivity() {
         val stream = ByteArrayOutputStream()
         bmp.compress(Bitmap.CompressFormat.PNG, 100, stream)
         val image: Image = Image.getInstance(stream.toByteArray())
-        var chunkTextRight = if (textLeft == "รายงานการคำนวนชนิดและจำนวนสายในรางเดินสาย"){
-            Chunk(image, 0F, -20F, true)
+        var chunkTextRight = if (textLeft == "รายงานการคำนวนชนิดและจำนวน"){
+            Chunk(image, 0F, -35F, true)
         }else{
             Chunk(textRight, rightStyle)
         }

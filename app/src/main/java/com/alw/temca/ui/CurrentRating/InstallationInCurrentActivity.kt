@@ -26,7 +26,7 @@ class InstallationInCurrentActivity : AppCompatActivity(), onClickInAdapter {
         val setResourceImage7 = resources.getIdentifier("setting_group7", "drawable", this.packageName)
 
 
-        installItem.add(InstallationModel(resources.getDrawable(setResourceImage2),"กลุ่ม 2","เดินเกาะผนัง,เพดาน,ฝังคอนกรีต"))
+        installItem.add(InstallationModel(resources.getDrawable(setResourceImage2),"กลุ่ม 2","เดินในท่อ เกาะผนัง, เพดาน หรือฝังผนังคอนกรีต"))
         installItem.add(InstallationModel(resources.getDrawable(setResourceImage5),"กลุ่ม 5","เดินในท่อฝังดิน"))
 
         recyclerViewInstallation.adapter = InstallationCurrentAdapter(installItem,this)

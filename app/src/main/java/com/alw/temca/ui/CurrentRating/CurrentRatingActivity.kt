@@ -62,7 +62,7 @@ class CurrentRatingActivity : AppCompatActivity() {
         val dataOfInstallation = sharedPref.getString(TASK_LIST_PREF_KEY_INSTALLATION_CURRENT_RATING, "กลุ่ม 2")
 //        val dataOfTypeCable = if(dataOfInstallation!!.slice(0..6) == "กลุ่ม 5" ){
 //            sharedPref.getString(TASK_LIST_PREF_KEY_TYPE_CABLE_CURRENT_RATING, "NYY") }
-//            else{ sharedPref.getString(TASK_LIST_PREF_KEY_TYPE_CABLE_CURRENT_RATING, "IEC01") }
+//            else{ sharedPref.getString(TASK_LIST_PREF_KEY_TYPE_CABLE_CURRENT_RATING, "IEC 01") }
         val dataOfTypeCable = sharedPref.getString(TASK_LIST_PREF_KEY_TYPE_CABLE_CURRENT_RATING, "PVC แกนเดี่ยว")
         val dataOfSizeCable = sharedPref.getString(TASK_LIST_PREF_KEY_SIZE_CABLE_CURRENT_RATING, "2.5 mm2")
 
@@ -107,7 +107,7 @@ class CurrentRatingActivity : AppCompatActivity() {
                 "PVC หลายแกน" -> 2
                 "XLPE แกนเดี่ยว" -> 3
                 "XLPE หลายแกน" -> 4
-//                "IEC01" -> 1
+//                "IEC 01" -> 1
 //                "IEC10 2C" -> 2
 //                "IEC10 3C" -> 2
 //                "IEC10 4C" -> 2
@@ -238,7 +238,7 @@ class CurrentRatingActivity : AppCompatActivity() {
 //                        typeCableTextView.text = "NYY 1C"
 //                        saveData("typeCable", typeCableTextView.text.toString())
 //                    }else{
-//                        typeCableTextView.text = "IEC01"
+//                        typeCableTextView.text = "IEC 01"
 //                        saveData("typeCable", typeCableTextView.text.toString())
 //                    }
                     PhaseTextView.text = "$dataPhase เฟส"
@@ -250,7 +250,7 @@ class CurrentRatingActivity : AppCompatActivity() {
 //                        typeCableTextView.text = "NYY 1C"
 //                        saveData("typeCable", typeCableTextView.text.toString())
 //                    }else{
-//                        typeCableTextView.text = "IEC01"
+//                        typeCableTextView.text = "IEC 01"
 //                        saveData("typeCable", typeCableTextView.text.toString())
 //                    }
 

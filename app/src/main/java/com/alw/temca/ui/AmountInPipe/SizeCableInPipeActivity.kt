@@ -23,7 +23,7 @@ class SizeCableInPipeActivity : AppCompatActivity(),onClickInAdapter {
         val typeCableOfMain = intent.getStringExtra("typeCable").toString()
 
 
-        if(typeCableOfMain != "IEC01" && typeCableOfMain != "XLPE 1/C" && typeCableOfMain != "XLPE 2/C" && typeCableOfMain != "XLPE 3/C" && typeCableOfMain != "XLPE 4/C" ){
+        if(typeCableOfMain != "IEC 01" && typeCableOfMain != "XLPE 1/C" && typeCableOfMain != "XLPE 2/C" && typeCableOfMain != "XLPE 3/C" && typeCableOfMain != "XLPE 4/C" ){
             listSizeCable.add(SizeCableModel("1 mm2"))
         }
         listSizeCable.add(SizeCableModel("1.5 mm2"))
@@ -53,7 +53,7 @@ class SizeCableInPipeActivity : AppCompatActivity(),onClickInAdapter {
 
 
         val amountRowInTable:Int = when(typeCableOfMain){
-            "IEC01" -> 17 // 400
+            "IEC 01" -> 17 // 400
             "NYY 1/C" -> 18 // 500
             "NYY 2/C" -> 16 // 300
             "NYY 3/C" -> 16 // 300

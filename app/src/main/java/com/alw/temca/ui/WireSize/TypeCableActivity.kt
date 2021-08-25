@@ -23,7 +23,7 @@ class TypeCableActivity : AppCompatActivity() , InstallationonClickAdapterListen
 
         if (checkActivity.equals("PipeSize")){
             headerTypeCable.text = "หาขนาดท่อและราง"
-            typeCableItem.add(TypeCableModel("IEC01"))
+            typeCableItem.add(TypeCableModel("IEC 01"))
             typeCableItem.add(TypeCableModel("IEC10 2C"))
             typeCableItem.add(TypeCableModel("IEC10 3C"))
             typeCableItem.add(TypeCableModel("IEC10 4C"))
@@ -75,7 +75,7 @@ class TypeCableActivity : AppCompatActivity() , InstallationonClickAdapterListen
             typeCableItem.add(TypeCableModel("XLPE 1/C"))
         }else{
             if(checkActivity!="Group5"){
-                typeCableItem.add(TypeCableModel("IEC01"))
+                typeCableItem.add(TypeCableModel("IEC 01"))
             }
             typeCableItem.add(TypeCableModel("NYY"))
             typeCableItem.add(TypeCableModel("XLPE"))

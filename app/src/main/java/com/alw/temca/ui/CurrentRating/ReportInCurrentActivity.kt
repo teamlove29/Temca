@@ -46,6 +46,9 @@ class ReportInCurrentActivity : AppCompatActivity() {
         val MY_REQUEST_CODE = 0
         private val fractionValues = arrayOf("1/2", "1/4", "3/4")
         private val fractionValues2 = arrayOf("\u00BD", "\u00BC", "\u00BE")
+
+        lateinit var typeCableInReport:String
+        lateinit var phaseInReport:String
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,9 +56,59 @@ class ReportInCurrentActivity : AppCompatActivity() {
 
         val dataFromCurrentRating = intent.getParcelableArrayListExtra<ReportResultCurrent>("DataFromCurrentRating")!!
 
-        textViewReslutMainPhaseInReportCurrent.text = dataFromCurrentRating[0].phase
-        textViewResultInstallationInReport.text = dataFromCurrentRating[0].installation
-        textViewReslutMainCableTypeInPipeReport.text = dataFromCurrentRating[0].cableType
+
+
+
+        // เฟส
+        if(dataFromCurrentRating[0].phase == "1 เฟส"){
+            phaseInReport = "1 เฟส (230 V)"
+            // ชนิดสายไฟ
+            when (dataFromCurrentRating[0].cableType) {
+                "PVC แกนเดี่ยว" -> {
+                    typeCableInReport = "PVC แกนเดี่ยว เช่น IEC 01 , NYY , VCT"
+                }
+                "PVC หลายแกน" -> {
+                    typeCableInReport = "PVC หลายแกน 2/C เช่น NYY , VCT"
+                }
+                "XLPE แกนเดี่ยว" -> {
+                    typeCableInReport = "XLPE แกนเดี่ยว เช่น XLPE , สายทนไฟ"
+                }
+                "XLPE หลายแกน" -> {
+                    typeCableInReport = "XLPE หลายแกน 2/C เช่น XLPE , สายทนไฟ"
+                }
+            }
+
+        }else{
+            phaseInReport = "3 เฟส (400 V)"
+
+            // ชนิดสายไฟ
+            when (dataFromCurrentRating[0].cableType) {
+                "PVC แกนเดี่ยว" -> {
+                    typeCableInReport = "PVC แกนเดี่ยว เช่น IEC 01 , NYY , VCT"
+                }
+                "PVC หลายแกน" -> {
+                    typeCableInReport = "PVC หลายแกน 3/C, 4/C เช่น NYY , VCT   "
+                }
+                "XLPE แกนเดี่ยว" -> {
+                    typeCableInReport = "XLPE แกนเดี่ยว เช่น XLPE , สายทนไฟ"
+                }
+                "XLPE หลายแกน" -> {
+                    typeCableInReport = "XLPE หลายแกน 3/C, 4/C เช่น XLPE , สายทนไฟฟ"
+                }
+            }
+        }
+
+        // กลุ่มการติดตั้ง
+        val groupReport = if(dataFromCurrentRating[0].installation == "กลุ่ม 2"){
+            "กลุ่มที่ 2 เดินในท่อ เกาะผนัง, เพดาน หรือฝังผนังคอนกรีต"
+        }else{
+            "กลุ่มที่ 5 เดินในท่อฝังดิน"
+        }
+
+
+        textViewReslutMainPhaseInReportCurrent.text = phaseInReport
+        textViewResultInstallationInReport.text = groupReport
+        textViewReslutMainCableTypeInPipeReport.text = typeCableInReport
         textViewMainResultInstallationInReport.text = Html.fromHtml(dataFromCurrentRating[0].cableSize.replace("mm2","mm<sup><small>2</small></sup>"))
         textViewResultConduitSize.text = dataFromCurrentRating[0].resultCurrentMax
 
@@ -180,15 +233,66 @@ class ReportInCurrentActivity : AppCompatActivity() {
             var valueStyle = Font(fontName, valueFontSzie, Font.NORMAL, colorAccent)
             var subValueStyle = Font(fontName, SubvalueFontSzie, Font.NORMAL, colorAccent)
 
+
+            var typeCableInPDF = ""
+            var phaseInPDF = ""
+
+            // เฟส
+            if(data[0].phase == "1 เฟส"){
+                phaseInPDF = "1 เฟส (230 V)"
+                // ชนิดสายไฟ
+                when (data[0].cableType) {
+                    "PVC แกนเดี่ยว" -> {
+                        typeCableInPDF = "PVC แกนเดี่ยว เช่น IEC 01 , NYY , VCT"
+                    }
+                    "PVC หลายแกน" -> {
+                        typeCableInPDF = "PVC หลายแกน 2/C เช่น NYY , VCT"
+                    }
+                    "XLPE แกนเดี่ยว" -> {
+                        typeCableInPDF = "XLPE แกนเดี่ยว เช่น XLPE , สายทนไฟ"
+                    }
+                    "XLPE หลายแกน" -> {
+                        typeCableInPDF = "XLPE หลายแกน 2/C เช่น XLPE , สายทนไฟ"
+                    }
+                }
+
+            }else{
+                phaseInPDF = "3 เฟส (400 V)"
+
+                // ชนิดสายไฟ
+                when (data[0].cableType) {
+                    "PVC แกนเดี่ยว" -> {
+                        typeCableInPDF = "PVC แกนเดี่ยว เช่น IEC 01 , NYY , VCT"
+                    }
+                    "PVC หลายแกน" -> {
+                        typeCableInPDF = "PVC หลายแกน 3/C, 4/C เช่น NYY , VCT   "
+                    }
+                    "XLPE แกนเดี่ยว" -> {
+                        typeCableInPDF = "XLPE แกนเดี่ยว เช่น XLPE , สายทนไฟ"
+                    }
+                    "XLPE หลายแกน" -> {
+                        typeCableInPDF = "XLPE หลายแกน 3/C, 4/C เช่น XLPE , สายทนไฟฟ"
+                    }
+                }
+            }
+
+            // กลุ่มการติดตั้ง
+            val groupReport = if(data[0].installation == "กลุ่ม 2"){
+                "กลุ่มที่ 2 เดินในท่อ เกาะผนัง, เพดาน หรือฝังผนังคอนกรีต"
+            }else{
+                "กลุ่มที่ 5 เดินในท่อฝังดิน"
+            }
+
+
             addNewItemWithLeftAndRight(document, "รายงานการคำนวนพิกัดกระแสสายไฟฟ้า", "", titleStyle, detailStyleTitle)
             addLineSeperator(document)
             addNewItem(document, "ข้อมูลการใช้งาน", Element.ALIGN_LEFT, headingStyle)
             addLineSpace(document)
-            addItemAndResult(document, "                เฟส : ", data[0].phase, titleStyleTitle, valueStyle)
+            addItemAndResult(document, "                เฟส : ", phaseInPDF, titleStyleTitle, valueStyle)
             addLineSpace(document)
-            addItemAndResult(document, "                กลุ่มการติดตั้ง : ", data[0].installation, titleStyleTitle, valueStyle)
+            addItemAndResult(document, "                กลุ่มการติดตั้ง : ", groupReport, titleStyleTitle, valueStyle)
             addLineSpace(document)
-            addItemAndResult(document, "                ชนิดสายไฟฟ้า : ", data[0].cableType, titleStyleTitle, valueStyle)
+            addItemAndResult(document, "                ชนิดสายไฟฟ้า : ", typeCableInPDF, titleStyleTitle, valueStyle)
             addLineSpace(document)
             addItemAndResult(document, "                ขนาดสายไฟฟ้า : ", data[0].cableSize, titleStyleTitle, valueStyle)
             addLineSpace(document)

@@ -28,7 +28,7 @@ class TypeCableInCurrentActivity : AppCompatActivity(), onClickInAdapter {
 
 //        if(phaseOfMain == "1 เฟส"){
 //            if(groupOfMain == "กลุ่ม 2"){
-//                typeCableItem.add(TypeCableModel("IEC01"))
+//                typeCableItem.add(TypeCableModel("IEC 01"))
 //                typeCableItem.add(TypeCableModel("IEC10 2C"))
 //                typeCableItem.add(TypeCableModel("NYY 1C"))
 //                typeCableItem.add(TypeCableModel("NYY 2C"))
@@ -45,7 +45,7 @@ class TypeCableInCurrentActivity : AppCompatActivity(), onClickInAdapter {
 //
 //        }else{
 //            if(groupOfMain == "กลุ่ม 2"){
-//                typeCableItem.add(TypeCableModel("IEC01"))
+//                typeCableItem.add(TypeCableModel("IEC 01"))
 //                typeCableItem.add(TypeCableModel("IEC10 3C"))
 //                typeCableItem.add(TypeCableModel("IEC10 4C"))
 //                typeCableItem.add(TypeCableModel("NYY 1C"))

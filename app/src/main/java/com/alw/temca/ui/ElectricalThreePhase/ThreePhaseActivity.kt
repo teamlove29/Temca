@@ -70,7 +70,7 @@ class ThreePhaseActivity : AppCompatActivity() {
         val dataOfTypeCable = if(dataOfInstallation!!.slice(0..6) == "กลุ่ม 5" ){
             sharedPref.getString(TASK_LIST_PREF_KEY_TYPE_CABLE_IN_THREE_PHASE, "NYY 1/C")
         }else{
-            sharedPref.getString(TASK_LIST_PREF_KEY_TYPE_CABLE_IN_THREE_PHASE, "IEC01")
+            sharedPref.getString(TASK_LIST_PREF_KEY_TYPE_CABLE_IN_THREE_PHASE, "IEC 01")
         }
         installationTextView.text = dataOfInstallation!!.slice(0..6)
         typeCableTextView.text = dataOfTypeCable
@@ -360,7 +360,7 @@ class ThreePhaseActivity : AppCompatActivity() {
     private fun circuitCheckPhaseAndCableType(phase: String, cableType: String):Int{
         textViewReferenceVoltage.text = "(แรงดันอ้างอิง 400V)"
         return when(cableType){  // 3 เฟส
-                    "IEC01" -> 9
+                    "IEC 01" -> 9
                     "NYY 1/C" -> 10
                     "VCT 1/C" -> 11
                     "XLPE 1/C" -> 12
@@ -389,7 +389,7 @@ class ThreePhaseActivity : AppCompatActivity() {
                         typeCableTextView.text = "NYY 1/C"
                         saveData("typeCable", typeCableTextView.text.toString())
                     }else{
-                        typeCableTextView.text = "IEC01"
+                        typeCableTextView.text = "IEC 01"
                         saveData("typeCable", typeCableTextView.text.toString())
                     }
 

@@ -17,7 +17,7 @@
             android:id="@+id/textViewTypeCableList"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="IEC01"
+            android:text="IEC 01"
             android:textSize="16sp"
             android:fontFamily="@font/mitr_regular"
             android:textColor="@color/black"

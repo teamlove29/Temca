@@ -37,7 +37,7 @@ class AmountInRailsActivity : AppCompatActivity() {
 
     private fun loadData() {
         val sharedPref = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
-        val dataOfTypeCable = sharedPref.getString(TASK_LIST_PREF_KEY_TYPE_CABLE_IN_AMOUNT_RAILS, "IEC01")
+        val dataOfTypeCable = sharedPref.getString(TASK_LIST_PREF_KEY_TYPE_CABLE_IN_AMOUNT_RAILS, "IEC 01")
         val dataOfSizeCable = sharedPref.getString(TASK_LIST_PREF_KEY_SIZE_IN_AMOUNT_RAILS, "2.5 mm2")
         val dataOfRails = sharedPref.getString(TASK_LIST_PREF_KEY_AMOUNT_IN_AMOUNT_RAILS, "mm.")
 
@@ -194,7 +194,7 @@ class AmountInRailsActivity : AppCompatActivity() {
         btnCalInPipeSize.visibility = View.GONE
 
         val findSheetInTableCableSize = when(typeCableTextView.text){
-            "IEC01" -> 0
+            "IEC 01" -> 0
             "NYY 1/C" -> 1
             "NYY 2/C" -> 2
             "NYY 3/C" -> 3
@@ -234,6 +234,8 @@ class AmountInRailsActivity : AppCompatActivity() {
                                     }
                                 textViewRailsSize2.visibility = View.GONE
                                 textViewRailsSizeResult2.visibility = View.GONE
+                                textViewMaxCalbe.visibility = View.GONE
+                                textViewRailsSizeResult1.visibility = View.GONE
 
                             }else{
                                 if(switchButtonPipeSize.isChecked){
@@ -241,22 +243,27 @@ class AmountInRailsActivity : AppCompatActivity() {
                                         if(editTextAmountCable.text.toString().toInt() <= sheet.getCell(i, indexSize + 1).contents.toInt()
                                             && sheet.getCell(i, indexSize + 1).contents.toInt() != 0) {
                                             textViewRailsSizeResult.text = "${sheet.getCell(i, 0).contents} mm."
-                                            textViewRailsSizeResult1.text = "( ${sheet.getCell(i, indexSize + 1).contents} เส้น )"
+                                            textViewRailsSizeResult1.text = "${sheet.getCell(i, indexSize + 1).contents} เส้น"
                                             textViewRailsSize2.visibility = View.GONE
                                             textViewRailsSizeResult2.visibility = View.GONE
                                             textViewRailsSizeResult22.visibility = View.GONE
                                             textViewRailsSizeResult1.visibility = View.VISIBLE
+                                            textViewMaxCalbe.visibility = View.VISIBLE
+                                            textViewRailsSizeResult1.visibility = View.VISIBLE
                                             break
                                         }else{
-                                                textViewRailsSizeResult.text = "- เส้น"
+                                                textViewRailsSizeResult.text = "- mm."
+                                            textViewRailsSizeResult1.text = "- เส้น"
                                              if(sheet.getCell(i, indexSize + 1).contents.toInt() != 0){
                                                  textViewRailsSizeResult2.text = "${sheet.getCell(i, 0).contents} mm."
-                                                 textViewRailsSizeResult22.text = "( ${sheet.getCell(i, indexSize + 1).contents} เส้น )"
+                                                 textViewRailsSizeResult22.text = "${sheet.getCell(i, indexSize + 1).contents} เส้น"
                                                  maxamount = sheet.getCell(i, indexSize + 1).contents
                                                  textViewRailsSize2.visibility = View.VISIBLE
                                                  textViewRailsSizeResult2.visibility = View.VISIBLE
                                                  textViewRailsSizeResult22.visibility = View.VISIBLE
-                                                 textViewRailsSizeResult1.visibility = View.GONE
+                                                 textViewMaxCalbe.visibility = View.VISIBLE
+                                                 textViewRailsSizeResult1.visibility = View.VISIBLE
+
                                              }
                                         }
                                     }
@@ -296,27 +303,37 @@ class AmountInRailsActivity : AppCompatActivity() {
                             sizeCable,
                             sizeRails,
                             amountCable,
-                            "","",
+                            "",
+                            "",
                             false))
         }else{
             val typeCable = typeCableTextView.text.toString()
             val sizeCable = cableSizeTextView.text.toString()
-            val rails = if( textViewRailsSizeResult.text.toString() != "- เส้น"){
-                textViewRailsSizeResult.text.toString() + " " + textViewRailsSizeResult1.text.toString()
+            val rails = if( textViewRailsSizeResult.text.toString() != "- mm."){
+                textViewRailsSizeResult.text.toString()
             }else{
-                textViewRailsSizeResult2.text.toString() + " " + textViewRailsSizeResult22.text.toString()
+                textViewRailsSizeResult2.text.toString()
             }
-            val amount = if( textViewRailsSizeResult.text.toString() != "- เส้น"){
+            val amount = if( textViewRailsSizeResult.text.toString() != "- mm."){
                 editTextAmountCable.text.toString()
             }else{
                 maxamount
             }
+
+            val maxCable = if(textViewRailsSizeResult1.text.toString() != "- เส้น"){
+                textViewRailsSizeResult1.text.toString()
+            }else{
+                textViewRailsSizeResult22.text.toString()
+            }
+
+
+
             bundle.putParcelable("resultInRails",
                     ResultRailsToReportModel(
                             typeCable,
                             sizeCable,
                             "",
-                            "",
+                            maxCable,
                             rails,
                             amount,
                             true))
@@ -326,6 +343,10 @@ class AmountInRailsActivity : AppCompatActivity() {
 
         intent.putExtras(bundle)
         startActivity(intent)
+        val sharedPref =
+                getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE).edit()
+                        .clear()
+        sharedPref.apply()
         finish()
     }
 

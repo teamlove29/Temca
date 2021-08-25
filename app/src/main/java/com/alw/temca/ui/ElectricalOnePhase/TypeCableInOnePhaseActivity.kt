@@ -21,7 +21,7 @@ class TypeCableInOnePhaseActivity : AppCompatActivity() ,onClickInAdapter{
         val checkGroup = intent.getStringExtra("Group")
 
         if(checkGroup == "Group2"){ // has 7
-            typeCableItem.add(TypeCableModel("IEC01")) // 2
+            typeCableItem.add(TypeCableModel("IEC 01")) // 2
             typeCableItem.add(TypeCableModel("NYY 1/C")) // 2, 5
             typeCableItem.add(TypeCableModel("XLPE 1/C")) // 2, 5
             typeCableItem.add(TypeCableModel("XLPE 2/C, G")) // 2, 5

@@ -4,9 +4,9 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.Editable
-import android.text.Html
-import android.text.TextWatcher
+import android.text.*
+import android.text.style.SubscriptSpan
+import android.text.style.SuperscriptSpan
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
@@ -28,7 +28,8 @@ class AmountInPipeActivity : AppCompatActivity() {
          const val TASK_LIST_PREF_KEY_AMOUNT_IN_AMOUNT_PIPE = "task_list_amount_in_amount_pipe"
          const val PREF_NAME = "task_amount_in_pipe"
         var amountCable_result = "0"
-        var amountCable_result๘_full = "0"
+        var amountCable_result_conduit = "0"
+        var amountCable_result_max = "0"
     }
     override fun onStart() {
         super.onStart()
@@ -37,7 +38,7 @@ class AmountInPipeActivity : AppCompatActivity() {
 
     private fun loadData(){
         val sharedPref = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
-        val dataOfTypeCable = sharedPref.getString(TASK_LIST_PREF_KEY_TYPE_CABLE_IN_AMOUNT_PIPE, "IEC01")
+        val dataOfTypeCable = sharedPref.getString(TASK_LIST_PREF_KEY_TYPE_CABLE_IN_AMOUNT_PIPE, "IEC 01")
         val dataOfSizeCable = sharedPref.getString(TASK_LIST_PREF_KEY_SIZE_IN_AMOUNT_PIPE, "2.5 mm2")
         val dataOfAmount = sharedPref.getString(TASK_LIST_PREF_KEY_AMOUNT_IN_AMOUNT_PIPE, "5")
 
@@ -145,7 +146,7 @@ class AmountInPipeActivity : AppCompatActivity() {
 
 
         val findSheetInTableCableSize = when(typeCableTextView.text){
-            "IEC01" -> 0
+            "IEC 01" -> 0
             "NYY 1/C" -> 1
             "NYY 2/C" -> 2
             "NYY 3/C" -> 3
@@ -181,17 +182,46 @@ class AmountInPipeActivity : AppCompatActivity() {
                         for (i in 1..12){ // แนวนอนขนาดสาย
                             //  i is col result ขนาดท่อ
                             if (editTextAmountCable.text.toString().toInt() <= sheet.getCell(i, index + 1).contents.toInt()){
-                                textViewResultSizePipe.text = "${sheet.getCell(i, 0).contents} ( ${sheet.getCell(i, index + 1).contents} เส้น )"
+
+
+                                val temp:String = sheet.getCell(i, 0).contents
+                                val s = SpannableString(temp.trim())
+                                if (temp.indexOf('/') != -1) {
+                                    val len = temp.length
+                                    s.setSpan(SuperscriptSpan(), len - 6, len - 5, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) // ตัวเศษ
+                                    s.setSpan(applicationContext,len - 6, len - 5, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) // ตัวเศษ
+                                    s.setSpan(applicationContext, len - 5, len - 4, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) // ตัว /
+                                    s.setSpan(SubscriptSpan(), len - 4, len - 3, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) // ตัวส่วน
+                                    s.setSpan(applicationContext, len - 4, len - 3, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) // ตัวส่วน
+                                }
+
+                                textViewResultSizePipe.text = s
+                                textViewResultMaxCable.text = "${sheet.getCell(i, index + 1).contents} เส้น"
                                 textViewSizePipe2.visibility = View.GONE
                                 textViewResultSizePipe2.visibility = View.GONE
                                 amountCable_result = sheet.getCell(i, index + 1).contents.toString()
                                 break
                             }else {
                                 if(sheet.getCell(i, index + 1).contents != "0"){
-                                    textViewResultSizePipe.text = "- เส้น"
+
+
+                                    val temp:String = "${sheet.getCell(i, 0).contents} ( ${sheet.getCell(i, index + 1).contents} เส้น )"
+                                    val ss = SpannableString(temp.trim())
+                                    if (temp.indexOf('/') != -1) {
+                                        val len = temp.length
+                                        ss.setSpan(SuperscriptSpan(), len - 18, len - 17, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) // ตัวเศษ
+                                        ss.setSpan(applicationContext,len - 18, len - 17, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) // ตัวเศษ
+                                        ss.setSpan(applicationContext, len - 17, len - 16, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) // ตัว /
+                                        ss.setSpan(SubscriptSpan(), len - 16, len - 15, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) // ตัวส่วน
+                                        ss.setSpan(applicationContext, len - 16, len - 15, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) // ตัวส่วน
+                                    }
+
+                                    textViewResultSizePipe.text = "- mm."
+                                    textViewResultMaxCable.text = "- เส้น"
                                     amountCable_result = sheet.getCell(i, index + 1).contents.toString()
-                                    amountCable_result๘_full = "${sheet.getCell(i, 0).contents} ( ${sheet.getCell(i, index + 1).contents} เส้น )"
-                                    textViewResultSizePipe2.text = "${sheet.getCell(i, 0).contents} ( ${sheet.getCell(i, index + 1).contents} เส้น )"
+                                    amountCable_result_conduit = "${sheet.getCell(i, 0).contents}"
+                                    amountCable_result_max = "${sheet.getCell(i, index + 1).contents} เส้น"
+                                    textViewResultSizePipe2.text = ss
                                     textViewSizePipe2.visibility = View.VISIBLE
                                     textViewResultSizePipe2.visibility = View.VISIBLE
                                 }
@@ -239,12 +269,17 @@ class AmountInPipeActivity : AppCompatActivity() {
         val typeCable = typeCableTextView.text.toString()
         val sizeCable = cableSizeTextView.text.toString()
 //        val maxConduit = textViewResultSizePipe.text.toString()
-        val maxConduit = if(textViewResultSizePipe.text.toString() != "- เส้น"){
+        val maxConduit = if(textViewResultSizePipe.text.toString() != "- mm."){
             textViewResultSizePipe.text.toString()
         }else{
-            amountCable_result๘_full
+            amountCable_result_conduit
         }
-        val maxRails = ""
+
+        val maxRails = if(textViewResultMaxCable.text.toString() != "- เส้น"){
+            textViewResultMaxCable.text.toString()
+        }else{
+            amountCable_result_max
+        }
 
         bundle.putParcelable("resultInPipe",
             ResultPipeToReportModel(

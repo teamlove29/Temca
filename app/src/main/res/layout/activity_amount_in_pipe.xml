@@ -28,6 +28,7 @@ tools:context=".ui.AmountInPipe.AmountInPipeActivity">
             android:layout_width="70dp"
             android:layout_height="50dp"
             android:layout_marginRight="10dp"
+            android:layout_centerVertical="true"
             android:background="@drawable/temca_logo_mini"/>
 
         <TextView
@@ -40,7 +41,7 @@ tools:context=".ui.AmountInPipe.AmountInPipeActivity">
             android:textSize="25sp"
             android:text="@string/typeAndAmountInPipe"
             android:autoSizeTextType="uniform"
-            android:autoSizeMinTextSize="24sp"
+            android:autoSizeMinTextSize="20sp"
             android:autoSizeMaxTextSize="30sp"
             android:autoSizeStepGranularity="5sp"/>
 
@@ -76,7 +77,7 @@ tools:context=".ui.AmountInPipe.AmountInPipeActivity">
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="10dp"
-                android:hint="IEC01"
+                android:hint="IEC 01"
                 android:textSize="16sp"
                 android:layout_toLeftOf="@+id/iconWireType"
                 android:textColorHint="@color/defaulthint"
@@ -287,7 +288,7 @@ tools:context=".ui.AmountInPipe.AmountInPipeActivity">
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:layout_below="@+id/textViewShowInPipe"
-                android:text="ขนาดท่อ(จำนวนสูงสุด)"
+                android:text="ขนาดท่อ"
                 android:textSize="16sp"
                 android:fontFamily="@font/mitr_regular"
                 android:textColor="@color/white" />
@@ -297,19 +298,46 @@ tools:context=".ui.AmountInPipe.AmountInPipeActivity">
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
                 android:layout_below="@+id/textViewShow2InPipe"
                 android:layout_alignParentRight="true"
-                android:text="null นิ้ว (null เส้น)"
+                android:text="- นิ้ว"
                 android:textSize="16sp"
                 android:fontFamily="@font/mitr_regular"
                 android:textColor="@color/white" />
+
+
+            <TextView
+                android:id="@+id/textViewMaxCable"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_below="@+id/textViewSizePipe"
+                android:text="จำนวนสายไฟฟ้าสูงสุด"
+                android:textSize="16sp"
+                android:fontFamily="@font/mitr_regular"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:id="@+id/textViewResultMaxCable"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_below="@+id/textViewResultSizePipe"
+                android:layout_alignParentRight="true"
+                android:text="- เส้น"
+                android:textSize="16sp"
+                android:fontFamily="@font/mitr_regular"
+                android:textColor="@color/white" />
+
 
             <TextView
                 android:id="@+id/textViewSizePipe2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:layout_below="@+id/textViewSizePipe"
+                android:layout_below="@+id/textViewMaxCable"
                 android:text="เกินจำนวนสูงสุดตามมาตรฐาน"
                 android:textSize="16sp"
                 android:fontFamily="@font/mitr_regular"
@@ -320,43 +348,21 @@ tools:context=".ui.AmountInPipe.AmountInPipeActivity">
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
                 android:layout_below="@+id/textViewSizePipe2"
                 android:layout_alignParentRight="true"
-                android:text="null นิ้ว (null เส้น)"
+                android:text="- นิ้ว (- เส้น)"
                 android:textSize="16sp"
                 android:fontFamily="@font/mitr_regular"
                 android:textColor="@color/white" />
-
-<!--            <TextView-->
-<!--                android:id="@+id/textViewRailSize"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginTop="20dp"-->
-<!--                android:layout_below="@+id/textViewSizePipe"-->
-<!--                android:text="ขนาดราง(จำนวนสูงสุด)"-->
-<!--                android:textSize="16sp"-->
-<!--                android:fontFamily="@font/mitr_regular"-->
-<!--                android:textColor="@color/white" />-->
-
-<!--            <TextView-->
-<!--                android:id="@+id/textViewResultRailSize"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginTop="20dp"-->
-<!--                android:layout_below="@+id/textViewResultSizePipe"-->
-<!--                android:layout_alignParentRight="true"-->
-<!--                android:text="null (null เส้น)"-->
-<!--                android:textSize="16sp"-->
-<!--                android:fontFamily="@font/mitr_regular"-->
-<!--                android:textColor="@color/white" />-->
-
 
             <LinearLayout
                 android:gravity="bottom"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="bottom|center_horizontal"
-                android:layout_below="@+id/textViewShow5InPipe"
+                android:layout_below="@+id/textViewMaxCable"
                 android:layout_marginTop="20dp"
                 android:orientation="vertical">
 

@@ -58,7 +58,7 @@ class SizeConduitInRailsActivity : AppCompatActivity(),onClickInAdapter {
 //        "400 mm2" -> 99
 //        "500 mm2" -> 99
 
-        if(typeCableOfMain == "IEC01"){
+        if(typeCableOfMain == "IEC 01"){
             // เริ่มจาก col ไหน
             startCol = when(sizeCableOfMain){
                 "2.5 mm2" -> 0

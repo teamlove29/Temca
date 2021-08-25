@@ -475,14 +475,14 @@ class WireSizeActivity : AppCompatActivity() {
         val sharedPref = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
         val dataOfPhase = sharedPref.getString(TASK_LIST_PREF_KEY_PHASE_IN_WIRESIZE, "1")
         val dataOfInstallation = sharedPref.getString(TASK_LIST_PREF_KEY_INSTALLATION_IN_WIRESIZE, "กลุ่ม 2")
-//        val dataOfTypeCable = sharedPref.getString(TASK_LIST_PREF_KEY_TYPE_CABLE_IN_WIRESIZE, "IEC01(THW)")
+//        val dataOfTypeCable = sharedPref.getString(TASK_LIST_PREF_KEY_TYPE_CABLE_IN_WIRESIZE, "IEC 01(THW)")
         val dataOfCircuit = sharedPref.getString(TASK_LIST_PREF_KEY_CIRCUIT_IN_WIRESIZE, "40A")
         val dataOfDistance = sharedPref.getString(TASK_LIST_PREF_KEY_DISTANCE_IN_WIRESIZE, "10")
 
         val dataOfTypeCable = if(dataOfInstallation!!.slice(0..6) == "กลุ่ม 5" ){
             sharedPref.getString(TASK_LIST_PREF_KEY_TYPE_CABLE_IN_WIRESIZE, "NYY")
         }else{
-            sharedPref.getString(TASK_LIST_PREF_KEY_TYPE_CABLE_IN_WIRESIZE, "IEC01")
+            sharedPref.getString(TASK_LIST_PREF_KEY_TYPE_CABLE_IN_WIRESIZE, "IEC 01")
         }
         phaseTextView.text = "$dataOfPhase เฟส"
         installationTextView.text = dataOfInstallation!!.slice(0..6)
@@ -515,7 +515,7 @@ class WireSizeActivity : AppCompatActivity() {
         return if(phase == "1 เฟส"){
             textViewReferenceVoltage.text = "(แรงดันอ้างอิง 230V)"
             when(cableType){
-                "IEC01" -> 0
+                "IEC 01" -> 0
                 "NYY" -> 1
                 "VCT" -> 2
                 "XLPE" -> 3
@@ -547,7 +547,7 @@ class WireSizeActivity : AppCompatActivity() {
             }else{
                 textViewReferenceVoltage.text = "(แรงดันอ้างอิง 400V)"
                 when(cableType){
-                    "IEC01" -> 6
+                    "IEC 01" -> 6
                     "NYY" -> 7
                     "VCT" -> 8
                     "XLPE" -> 9

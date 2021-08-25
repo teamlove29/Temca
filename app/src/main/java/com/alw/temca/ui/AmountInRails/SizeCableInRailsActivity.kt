@@ -43,7 +43,7 @@ class SizeCableInRailsActivity : AppCompatActivity(), onClickInAdapter {
         val typeCableOfMain = intent.getStringExtra("typeCable").toString()
 
         val amountRowInTable:Int = when(typeCableOfMain){
-            "IEC01" -> 16 // 300
+            "IEC 01" -> 16 // 300
             "NYY 1/C" -> 14 // 185
             "NYY 2/C" -> 8 // 35
             "NYY 3/C" -> 8 // 35
@@ -60,11 +60,11 @@ class SizeCableInRailsActivity : AppCompatActivity(), onClickInAdapter {
         }
 
 
-        var startRow:Int = if(typeCableOfMain == "IEC01")
+        var startRow:Int = if(typeCableOfMain == "IEC 01")
         { 2 } else 0
 
         if(typeCableOfMain == "XLPE 1/C" || typeCableOfMain == "XLPE 2/C" || typeCableOfMain == "XLPE 3/C" || typeCableOfMain == "XLPE 4/C")
-        { startRow = 1 } else if(typeCableOfMain == "IEC01"){
+        { startRow = 1 } else if(typeCableOfMain == "IEC 01"){
             startRow = 2
         }else{
             0
@@ -80,7 +80,7 @@ class SizeCableInRailsActivity : AppCompatActivity(), onClickInAdapter {
             }
         }
 
-//        var startRow:Int = if(typeCableOfMain == "IEC01"
+//        var startRow:Int = if(typeCableOfMain == "IEC 01"
 //            || typeCableOfMain == "XLPE 1C"
 //            || typeCableOfMain == "XLPE 2C"
 //            || typeCableOfMain == "XLPE 3C"

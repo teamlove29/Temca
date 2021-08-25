@@ -70,7 +70,7 @@ class OnePhaseActivity : AppCompatActivity() {
         val dataOfTypeCable = if(dataOfInstallation!!.slice(0..6) == "กลุ่ม 5" ){
             sharedPref.getString(TASK_LIST_PREF_KEY_TYPE_CABLE_ONE_PHASE, "NYY 1/C")
         }else{
-            sharedPref.getString(TASK_LIST_PREF_KEY_TYPE_CABLE_ONE_PHASE, "IEC01")
+            sharedPref.getString(TASK_LIST_PREF_KEY_TYPE_CABLE_ONE_PHASE, "IEC 01")
         }
         installationTextView.text = dataOfInstallation!!.slice(0..6)
         typeCableTextView.text = dataOfTypeCable
@@ -357,7 +357,7 @@ class OnePhaseActivity : AppCompatActivity() {
     private fun circuitCheckPhaseAndCableType(phase: String, cableType: String):Int{
         textViewReferenceVoltage.text = "(แรงดันอ้างอิง 230V)"
         return  when(cableType){
-                "IEC01" -> 0
+                "IEC 01" -> 0
                 "NYY 1/C" -> 1
                 "VCT 1/C" -> 2
                 "XLPE 1/C" -> 3
@@ -385,7 +385,7 @@ class OnePhaseActivity : AppCompatActivity() {
                             typeCableTextView.text = "NYY 1/C"
                             saveData("typeCable", typeCableTextView.text.toString())
                     }else{
-                        typeCableTextView.text = "IEC01"
+                        typeCableTextView.text = "IEC 01"
                         saveData("typeCable", typeCableTextView.text.toString())
                     }
 
