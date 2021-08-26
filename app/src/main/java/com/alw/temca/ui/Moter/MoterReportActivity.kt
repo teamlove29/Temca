@@ -58,12 +58,18 @@ class MoterReportActivity : AppCompatActivity() {
             drop.visibility = View.VISIBLE
         }
 
+
+        if(DataFromMoter[0].phase == "1 เฟส 230V"){
+            textViewReslutSizeMoterInMoterReport.text = "${DataFromMoter[0].sizemoter} ${DataFromMoter[0].unit}, 230V"
+        }else{
+            textViewReslutSizeMoterInMoterReport.text = "${DataFromMoter[0].sizemoter} ${DataFromMoter[0].unit}, 400V"
+        }
         // Data
-        textViewReslutSizeMoterInMoterReport.text = "${DataFromMoter[0].sizemoter} ${DataFromMoter[0].unit}"
+
         textViewMainResultPhaseInMoterReport.text = DataFromMoter[0].phase
         textViewResultPanternInMoterReport.text = DataFromMoter[0].panternstart
         textViewResultSizeCableInMoterReport.text = DataFromMoter[0].cabletype
-        textViewResultAmountDistanceInMoterReport.text = "${DataFromMoter[0].amountdistance}m"
+        textViewResultAmountDistanceInMoterReport.text = "${DataFromMoter[0].amountdistance} m."
         // Cal
         textViewReslutPowerRatingInMoterReport.text = DataFromMoter[0].resultpowerrate
         textViewReferenceVoltageInMoterReport.text = DataFromMoter[0].resultrefpower
@@ -181,11 +187,17 @@ class MoterReportActivity : AppCompatActivity() {
             var valueStyle = Font(fontName, valueFontSzie, Font.NORMAL, colorAccent)
             var SubvalueStyle = Font(fontName, SubvalueFontSzie, Font.NORMAL, colorAccent)
 
+            var sizeMoter = if(data[0].phase == "1 เฟส 230V"){
+                "${data[0].sizemoter} ${data[0].unit}, 230V"
+            }else{
+                "${data[0].sizemoter} ${data[0].unit}, 400V"
+            }
+
             addNewItemWithLeftAndRight(document, "รายงานการคำนวนขนาดวงจรมอเตอร์", "", titleStyle, detailStyleTitle)
             addLineSeperator(document)
             addNewItem(document, "ข้อมูลการใช้งาน", Element.ALIGN_LEFT, headingStyle)
             addLineSpace(document)
-            addItemAndResult(document, "                ขนาดมอเตอร์ : ", "${data[0].sizemoter} ${data[0].unit}", titleStyleTitle, valueStyle)
+            addItemAndResult(document, "                ขนาดมอเตอร์ : ", sizeMoter, titleStyleTitle, valueStyle)
             addLineSpace(document)
             addItemAndResult(document, "                เฟส : ", data[0].phase, titleStyleTitle, valueStyle)
             addLineSpace(document)
@@ -194,7 +206,7 @@ class MoterReportActivity : AppCompatActivity() {
             addItemAndResult(document, "                ชนิดสายไฟ : ", data[0].cabletype, titleStyleTitle, valueStyle)
             addLineSpace(document)
 
-            addItemAndResult(document, "                ระยะทาง : ", "${data[0].amountdistance}m", titleStyleTitle, valueStyle)
+            addItemAndResult(document, "                ระยะทาง : ", "${data[0].amountdistance} m.", titleStyleTitle, valueStyle)
             addLineSpace(document)
 
             addNewItem(document, "ผลการคำนวน", Element.ALIGN_LEFT, headingStyle)

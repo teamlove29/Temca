@@ -56,7 +56,7 @@ class ReportInCurrentRattingActivity : AppCompatActivity() {
         textViewResultInstallationInReport.text =  DataFromWireSize[0].installation
         textViewResultCableTypeInReport.text =  DataFromWireSize[0].cableType
         textViewResultBreakerInReportData.text =  DataFromWireSize[0].breaker
-        textViewResultDistanceInReport.text = "${DataFromWireSize[0].distance}M"
+        textViewResultDistanceInReport.text = "${DataFromWireSize[0].distance} m."
 
         resultTwoInReportWireSize.visibility = View.GONE
         textViewResultWireSize.text = Html.fromHtml(DataFromWireSize[0].cableSize.replace("mm", "mm<sup><small><small>2</small></small></sup>"))
@@ -78,7 +78,7 @@ class ReportInCurrentRattingActivity : AppCompatActivity() {
         textViewResultPressure.text = DataFromWireSize[0].pressure
         textViewReferenceVoltageInReport.text = "(แรงดันอ้างอิง 400V)"
 
-        textViewDegree.text = "** ใช้งานที่อุณหภูมิ 36-40 C\u00B0 เดินสาย 1 กลุ่มวงจร"
+//        textViewDegree.text = "** ใช้งานที่อุณหภูมิ 36-40 C\u00B0 เดินสาย 1 กลุ่มวงจร"
 
         if(DataFromWireSize.size >= 2){
             resultTwoInReportWireSize.visibility = View.VISIBLE
@@ -230,41 +230,41 @@ class ReportInCurrentRattingActivity : AppCompatActivity() {
             addLineSpace(document)
             addItemAndResult(document, "                Circuit Breaker : ", data[0].breaker, titleStyleTitle, valueStyle)
             addLineSpace(document)
-            addItemAndResult(document, "                ระยะสายไฟฟ้า : ", "${data[0].distance}M", titleStyleTitle, valueStyle)
+            addItemAndResult(document, "                ระยะสายไฟฟ้า : ", "${data[0].distance} m.", titleStyleTitle, valueStyle)
             addLineSpace(document)
 
             addNewItem(document, "ผลการคำนวน", Element.ALIGN_LEFT, headingStyle)
             addLineSpace(document)
-            addItemAndResult(document, "                ขนาดสายไฟฟ้าที่เหมาะสม     ", data[0].cableSize.replace("mm", "mm2"), titleStyleTitle, valueStyle)
+            addItemAndResult(document, "                ขนาดสายไฟฟ้า          ", data[0].cableSize.replace("mm", "mm2"), titleStyleTitle, valueStyle)
             addLineSpace(document)
-            addItemAndResult(document, "                ขนาดสายดินที่เหมาะสม          ", data[0].wireGround, titleStyleTitle, valueStyle)
+            addItemAndResult(document, "                ขนาดสายดิน               ", data[0].wireGround, titleStyleTitle, valueStyle)
             addLineSpace(document)
-            addItemAndResult(document, "                ขนาดท่อไฟฟ้า                         ", data[0].condutiSize, titleStyleTitle, valueStyle)
+            addItemAndResult(document, "                ขนาดรางเคเบิล           ", data[0].condutiSize, titleStyleTitle, valueStyle)
             addLineSpace(document)
             if(data[0].pressure != "0.00 V ( 0.00% )"){
-                addItemAndResult(document, "                แรงดันตก                                 ", data[0].pressure, titleStyleTitle, valueStyle)
+                addItemAndResult(document, "                แรงดันตก                     ", data[0].pressure, titleStyleTitle, valueStyle)
                 addItemAndResult(document, "                     ${textViewReferenceVoltageInReport.text}", "", subTitleStyle, valueStyle)
             }
             addLineSpace(document)
             addLineSpace(document)
 
             if(data.size >=2 ){
-                addItemAndResult(document, "                ขนาดสายไฟฟ้าที่เหมาะสม     ", data[1].cableSize.replace("mm", "mm2"), titleStyleTitle, valueStyle)
+                addItemAndResult(document, "                ขนาดสายไฟฟ้า          ", data[1].cableSize.replace("mm", "mm2"), titleStyleTitle, valueStyle)
                 addLineSpace(document)
-                addItemAndResult(document, "                ขนาดสายดินที่เหมาะสม          ", data[1].wireGround, titleStyleTitle, valueStyle)
+                addItemAndResult(document, "                ขนาดสายดิน               ", data[1].wireGround, titleStyleTitle, valueStyle)
                 addLineSpace(document)
-                addItemAndResult(document, "                ขนาดท่อไฟฟ้า                         ", data[1].condutiSize, titleStyleTitle, valueStyle)
+                addItemAndResult(document, "                ขนาดรางเคเบิล           ", data[1].condutiSize, titleStyleTitle, valueStyle)
                 addLineSpace(document)
                 if(data[1].pressure != "0.00 V ( 0.00% )"){
-                    addItemAndResult(document, "                แรงดันตก                                 ", data[1].pressure, titleStyleTitle, valueStyle)
+                    addItemAndResult(document, "                แรงดันตก                     ", data[1].pressure, titleStyleTitle, valueStyle)
                     addItemAndResult(document, "                     ${textViewReferenceVoltageInReport.text}", "", subTitleStyle, valueStyle)
                 }
                 addLineSpace(document)
                 addLineSpace(document)
             }
 
-            addNewItem(document, "* อ้างอิงตามมาตรฐานการติดตั้งทางไฟฟ้า วสท. 2562", Element.ALIGN_LEFT, subValueStyle)
-            addNewItem(document, "** ใช้งานที่อุณหภูมิ 36-40 C° เดินสาย 1 กลุ่มวงจร", Element.ALIGN_LEFT, subValueStyle)
+            addNewItem(document, "* อ้างอิงตามมาตรฐานการติดตั้งทางไฟฟ้า วสท.", Element.ALIGN_LEFT, subValueStyle)
+//            addNewItem(document, "** ใช้งานที่อุณหภูมิ 36-40 C° เดินสาย 1 กลุ่มวงจร", Element.ALIGN_LEFT, subValueStyle)
 
             //close
             document.close()

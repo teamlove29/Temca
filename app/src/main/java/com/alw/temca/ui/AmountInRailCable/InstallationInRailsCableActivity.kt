@@ -23,8 +23,8 @@ class InstallationInRailsCableActivity : AppCompatActivity(),onClickInAdapter {
         val setResourceImage7_air = resources.getIdentifier("ic_group7_air", "drawable", this.packageName)
         val setResourceImage7_stairs = resources.getIdentifier("ic_group7_stairs", "drawable", this.packageName)
 
-        installItem.add(InstallationModel(resources.getDrawable(setResourceImage7_air),"กลุ่ม 7","วางบนรางเคเบิ้ล ไม่มีฝาปิดแบบระบายอากาศ"))
-        installItem.add(InstallationModel(resources.getDrawable(setResourceImage7_stairs),"กลุ่ม 7","วางบนรางเคเบิ้ล ไม่มีผาปิดแบบบันได"))
+        installItem.add(InstallationModel(resources.getDrawable(setResourceImage7_air),"กลุ่ม 7","วางบนรางเคเบิล ไม่มีฝาปิดแบบระบายอากาศ"))
+        installItem.add(InstallationModel(resources.getDrawable(setResourceImage7_stairs),"กลุ่ม 7","วางบนรางเคเบิล ไม่มีผาปิดแบบบันได"))
 
         recyclerViewInstallation.adapter = InstallationInRailsCableAdapter(installItem,this)
         recyclerViewInstallation.layoutManager = LinearLayoutManager(this)
@@ -34,10 +34,10 @@ class InstallationInRailsCableActivity : AppCompatActivity(),onClickInAdapter {
         val resultIntent = Intent()
 
         resultIntent.putExtra("dataInstall",installItem[postion].title)
-        val installDes:String = if(installItem[postion].des == "วางบนรางเคเบิ้ล ไม่มีฝาปิดแบบระบายอากาศ"){
-            "รางเคเบิ้ลแบบระบายอากาศ"
+        val installDes:String = if(installItem[postion].des == "วางบนรางเคเบิล ไม่มีฝาปิดแบบระบายอากาศ"){
+            "รางเคเบิลแบบระบายอากาศ"
         }else{
-            "รางเคเบิ้ลแบบบันได"
+            "รางเคเบิลแบบบันได"
         }
         resultIntent.putExtra("dataInstallDes",installDes)
         setResult(Activity.RESULT_OK, resultIntent)

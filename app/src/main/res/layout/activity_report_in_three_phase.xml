@@ -64,6 +64,7 @@ tools:context=".ui.ElectricalThreePhase.ReportInThreePhaseActivity">
         android:background="@color/white"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:paddingRight="10dp"
         android:orientation="vertical">
 
         <LinearLayout
@@ -254,7 +255,7 @@ tools:context=".ui.ElectricalThreePhase.ReportInThreePhaseActivity">
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="50dp"
-                    android:text="ขนาดสายไฟฟ้าที่เหมาะสม"
+                    android:text="ขนาดสายไฟฟ้า"
                     android:textColor="@color/black"
                     android:fontFamily="@font/sarabun_medium"
                     android:textSize="12dp"/>
@@ -283,7 +284,7 @@ tools:context=".ui.ElectricalThreePhase.ReportInThreePhaseActivity">
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="50dp"
-                    android:text="ขนาดสายดินที่เหมาะสม"
+                    android:text="ขนาดสายดิน"
                     android:textColor="@color/black"
                     android:fontFamily="@font/sarabun_medium"
                     android:textSize="12dp"/>
@@ -291,7 +292,7 @@ tools:context=".ui.ElectricalThreePhase.ReportInThreePhaseActivity">
                 <TextView
                     android:id="@+id/textViewResultWireGroundInReport"
                     android:layout_toRightOf="@+id/textViewWireGround"
-                    android:layout_marginLeft="45dp"
+                    android:layout_marginLeft="43dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="- mm"
@@ -322,7 +323,7 @@ tools:context=".ui.ElectricalThreePhase.ReportInThreePhaseActivity">
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@+id/textViewConduitSize"
-                    android:layout_marginLeft="90dp"
+                    android:layout_marginLeft="35dp"
                     android:fontFamily="@font/sarabun_regular"
                     android:text="-"
                     android:textColor="@color/btnBlue"
@@ -360,7 +361,7 @@ tools:context=".ui.ElectricalThreePhase.ReportInThreePhaseActivity">
                 <TextView
                     android:id="@+id/textViewResultPressure"
                     android:layout_toRightOf="@+id/textViewPressure"
-                    android:layout_marginLeft="115dp"
+                    android:layout_marginLeft="60dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="-%"
@@ -382,21 +383,21 @@ tools:context=".ui.ElectricalThreePhase.ReportInThreePhaseActivity">
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:layout_marginLeft="40dp"
-                android:text="* อ้างอิงตามมาตรฐานการติดตั้งทางไฟฟ้า วสท. 2562"
+                android:text="* อ้างอิงตามมาตรฐานการติดตั้งทางไฟฟ้า วสท."
                 android:textSize="12dp"
                 android:textColor="@color/btnBlue"
                 android:fontFamily="@font/sarabun_regular"/>
 
-            <TextView
-                android:id="@+id/textViewDegree"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:layout_marginLeft="40dp"
-                android:text="** ใช้งานที่อุณหภูมิ 36-40 C เดินสาย 1 กลุ่มวงจร"
-                android:textSize="12dp"
-                android:textColor="@color/btnBlue"
-                android:fontFamily="@font/sarabun_regular"/>
+<!--            <TextView-->
+<!--                android:id="@+id/textViewDegree"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginBottom="10dp"-->
+<!--                android:layout_marginLeft="40dp"-->
+<!--                android:text="** ใช้งานที่อุณหภูมิ 36-40 C เดินสาย 1 กลุ่มวงจร"-->
+<!--                android:textSize="12dp"-->
+<!--                android:textColor="@color/btnBlue"-->
+<!--                android:fontFamily="@font/sarabun_regular"/>-->
         </LinearLayout>
 
         <LinearLayout

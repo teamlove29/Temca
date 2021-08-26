@@ -12,7 +12,7 @@
     <string name="title_one_phase">ขนาดวงจรไฟฟ้า 1 เฟส</string>
     <string name="title_three_phase">ขนาดวงจรไฟฟ้า 3 เฟส</string>
     <string name="title_current_rating">หาพิกัดกระแสสายไฟฟ้า</string>
-    <string name="title_rails_cable">ชนิดและจำนวนสายในรางเคเบิ้ล(Cable Tray)</string>
+    <string name="title_rails_cable">ชนิดและจำนวนสายไฟฟ้าในรางเคเบิล (cable tray)</string>
     <string name="title_motor">ขนาดวงจรมอเตอร์</string>
     <string name="title_transformer">ขนาดวงจรหม้อแปลง</string>
 </resources>

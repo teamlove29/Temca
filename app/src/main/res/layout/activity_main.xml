@@ -155,7 +155,7 @@
             android:layout_marginRight="20dp"
             android:layout_marginLeft="20dp"
             android:drawableRight="@drawable/ic_main_4"
-            android:text="ชนิดและจำนวนสายในรางเดินเคเบิ้ล (cable tray)"
+            android:text="ชนิดและจำนวนสายในรางเดินเคเบิล (cable tray)"
             android:textColor="@color/color_font_main" />
         <Button
             android:id="@+id/buttonOnePhase"

@@ -86,7 +86,7 @@ class MoterActivity : AppCompatActivity() {
 //            }
 //        })
 
-        if(phaseTextView.text == "1 เฟส") iconImageViewToPage.visibility = View.GONE
+        if(phaseTextView.text == "1 เฟส 230V") iconImageViewToPage.visibility = View.GONE
         else iconImageViewToPage.visibility = View.VISIBLE
 
     }
@@ -122,18 +122,16 @@ class MoterActivity : AppCompatActivity() {
     fun sizeCableTypeOnClick(view: View) {
         val intent = Intent(this, TypeCableActivity::class.java)
         intent.putExtra("Activity","Moter")
-        if(phaseTextView.text == "3 เฟส"){
+        if(phaseTextView.text == "3 เฟส 400V"){
             intent.putExtra("Phase","3")
         }
 
         if(TextViewStartPantern.text == "STAR DELTA")  intent.putExtra("Type","DELTA")
-
-
         startActivityForResult(intent,TASK_NAME_REQUEST_CODE)
     }
 
     fun startPantternOnClick(view: View) {
-        if(phaseTextView.text != "1 เฟส"){
+        if(phaseTextView.text != "1 เฟส 230V"){
             val intent = Intent(this, StartPatternActivity::class.java)
             startActivityForResult(intent,TASK_NAME_REQUEST_CODE)
         }
@@ -249,7 +247,7 @@ class MoterActivity : AppCompatActivity() {
         var stepInFor:Int = 0
         val maxRowsheet:Int
         val indexSheetInMoter:Int
-        if(phaseTextView.text == "1 เฟส") {
+        if(phaseTextView.text == "1 เฟส 230V") {
             maxRowsheet = 53
             stepInFor = 4
             indexSheetInMoter = 0
@@ -285,7 +283,7 @@ class MoterActivity : AppCompatActivity() {
         }
 
         val phaseIndex:Int =  when(phaseTextView.text){
-            "1 เฟส" -> 1
+            "1 เฟส 230V" -> 1
             else -> 2
         }
 
@@ -331,7 +329,7 @@ class MoterActivity : AppCompatActivity() {
                         }
 
 
-                        if(phaseTextView.text == "1 เฟส") {
+                        if(phaseTextView.text == "1 เฟส 230V") {
                             textViewCableSize.text = "แรงดัน(230V)"
                             voteInMoter = 230
                         }
@@ -408,7 +406,7 @@ class MoterActivity : AppCompatActivity() {
                 }
 
                 if (dataUnitMoter != null){
-                    if(phaseTextView.text == "1 เฟส"){
+                    if(phaseTextView.text == "1 เฟส 230V"){
                         if(dataUnitMoter == "A"){
                             TextAmountMoterSize.text = "3.9"
                             saveData("dataSizeMoter", "3.9")
@@ -456,13 +454,17 @@ class MoterActivity : AppCompatActivity() {
                 }
 
                 if (dataPhase != 0) {
-                    phaseTextView.text = "$dataPhase เฟส"
-                    saveData("phase", "$dataPhase เฟส")
-
+                    if(dataPhase == 1){
+                        phaseTextView.text = "$dataPhase เฟส 230V"
+                        saveData("phase", "$dataPhase เฟส")
+                    }else{
+                        phaseTextView.text = "$dataPhase เฟส 400V"
+                        saveData("phase", "$dataPhase เฟส")
+                    }
                     TextViewCableTypeInMoter.text = "NYY 1/C"
                     saveData("dataTypeCable", "NYY 1/C")
 
-                    if(phaseTextView.text == "1 เฟส"){
+                    if(phaseTextView.text == "1 เฟส 230V"){
                         if(textUnit.text == "A"){
                             TextAmountMoterSize.text = "3.9"
                             saveData("dataSizeMoter", "3.9")
@@ -514,7 +516,7 @@ class MoterActivity : AppCompatActivity() {
                     TextViewCableTypeInMoter.text = "NYY 1/C"
                     saveData("dataTypeCable", "NYY 1/C")
 
-                    if(phaseTextView.text == "1 เฟส"){
+                    if(phaseTextView.text == "1 เฟส 230V"){
                         if(textUnit.text == "A"){
                             TextAmountMoterSize.text = "3.9"
                             saveData("dataSizeMoter", "3.9")
@@ -570,7 +572,7 @@ class MoterActivity : AppCompatActivity() {
             tableBeforeCalculateInMoter.visibility = View.GONE
 
 
-            if(phaseTextView.text == "1 เฟส") {
+            if(phaseTextView.text == "1 เฟส 230V") {
                 iconImageViewToPage.visibility = View.GONE
                 TextViewStartPantern.text = "DOL"
                 saveData("dataStartPantern", "DOL")
@@ -617,7 +619,7 @@ class MoterActivity : AppCompatActivity() {
         val sharedPref = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
         val dataSizeOfMoter = sharedPref.getString(TASK_LIST_PREF_KEY_SIZE_MOTER,"0.37")
         val dataOfUnitMoter = sharedPref.getString(TASK_LIST_PREF_KEY_SIZE_UNIT,"kW")
-        val dataOfPhase = sharedPref.getString(TASK_LIST_PREF_KEY_PHASE_IN_MOTER,"1 เฟส")
+        val dataOfPhase = sharedPref.getString(TASK_LIST_PREF_KEY_PHASE_IN_MOTER,"1 เฟส 230V")
 //        val dataOfInstall = sharedPref.getString(TASK_LIST_PREF_KEY_INSTALLATION_IN_MOTER,"เดินเคเบิลแบบระบายอากาศ")
         val dataOfStartPantern = sharedPref.getString(TASK_LIST_PREF_KEY_STARTPANTERN_IN_MOTER,"DOL")
         val dataOfCableSize = sharedPref.getString(TASK_LIST_PREF_KEY_TYPE_CABLE_IN_MOTER,"NYY 1/C")

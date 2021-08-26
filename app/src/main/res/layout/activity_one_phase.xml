@@ -256,7 +256,7 @@ tools:context=".ui.ElectricalOnePhase.OnePhaseActivity">
                 android:layout_height="wrap_content"
                 android:layout_marginRight="10dp"
                 android:layout_marginLeft="5dp"
-                android:text="ระยะทาง(M.)"
+                android:text="ระยะทาง(m.)"
                 android:textSize="16sp"
                 android:fontFamily="@font/mitr_regular"
                 android:textColor="@color/black"
@@ -347,6 +347,7 @@ tools:context=".ui.ElectricalOnePhase.OnePhaseActivity">
         android:layout_marginTop="20dp"
         app:cardCornerRadius="5dp">
 
+
         <RelativeLayout
             android:id="@+id/resultWireSizeNotGroup7"
             android:paddingTop="30dp"
@@ -355,11 +356,30 @@ tools:context=".ui.ElectricalOnePhase.OnePhaseActivity">
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+
+            <TextView
+                android:id="@+id/textViewShowInPipe"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:fontFamily="@font/mitr_regular"
+                android:text="ผลการคำนวณ "
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+            <TextView
+                android:id="@+id/textViewShow2InPipe"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignRight="@+id/textViewShowInPipe"
+                android:textSize="18sp" />
+
             <TextView
                 android:id="@+id/textViewShow2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
+                android:layout_below="@+id/textViewShow2InPipe"
                 android:paddingTop="3dp"
                 android:text="- มม"
                 android:textSize="16sp"
@@ -371,6 +391,7 @@ tools:context=".ui.ElectricalOnePhase.OnePhaseActivity">
                 android:id="@+id/textViewShow3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_below="@+id/textViewShowInPipe"
                 android:text="ขนาดสายไฟฟ้า"
                 android:textSize="16sp"
                 android:fontFamily="@font/mitr_regular"
@@ -394,7 +415,7 @@ tools:context=".ui.ElectricalOnePhase.OnePhaseActivity">
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/textViewShow3"
                 android:layout_marginTop="20dp"
-                android:text="ขนาดสายดินที่เหมาะสม(G)"
+                android:text="ขนาดสายดิน (G)"
                 android:textSize="16sp"
                 android:fontFamily="@font/mitr_regular"
                 android:textColor="@color/white" />
@@ -465,7 +486,7 @@ tools:context=".ui.ElectricalOnePhase.OnePhaseActivity">
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="bottom|center_horizontal"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="50dp"
                 android:layout_below="@+id/textViewShow6"
                 android:orientation="vertical">
 

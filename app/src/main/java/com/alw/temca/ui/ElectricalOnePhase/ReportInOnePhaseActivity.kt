@@ -36,20 +36,6 @@ import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.single.PermissionListener
 
 import kotlinx.android.synthetic.main.activity_report_in_one_phase.*
-import kotlinx.android.synthetic.main.activity_report_in_one_phase.blockPressureDrop
-import kotlinx.android.synthetic.main.activity_report_in_one_phase.btnSendEmailInWireSize
-import kotlinx.android.synthetic.main.activity_report_in_one_phase.textViewDegree
-import kotlinx.android.synthetic.main.activity_report_in_one_phase.textViewReferenceVoltageInReport
-import kotlinx.android.synthetic.main.activity_report_in_one_phase.textViewResultBreakerInReportData
-import kotlinx.android.synthetic.main.activity_report_in_one_phase.textViewResultCableTypeInReport
-import kotlinx.android.synthetic.main.activity_report_in_one_phase.textViewResultConduitSize
-import kotlinx.android.synthetic.main.activity_report_in_one_phase.textViewResultDistanceInReport
-import kotlinx.android.synthetic.main.activity_report_in_one_phase.textViewResultInstallationInReport
-import kotlinx.android.synthetic.main.activity_report_in_one_phase.textViewResultPhaseInReport
-import kotlinx.android.synthetic.main.activity_report_in_one_phase.textViewResultPressure
-import kotlinx.android.synthetic.main.activity_report_in_one_phase.textViewResultWireGroundInReport
-import kotlinx.android.synthetic.main.activity_report_in_one_phase.textViewResultWireSize
-import kotlinx.android.synthetic.main.activity_report_in_three_phase.*
 
 import java.io.ByteArrayOutputStream
 
@@ -76,7 +62,7 @@ class ReportInOnePhaseActivity : AppCompatActivity() {
         textViewResultInstallationInReport.text =  DataFromWireSize[0].installation
         textViewResultCableTypeInReport.text =  DataFromWireSize[0].cableType
         textViewResultBreakerInReportData.text =  DataFromWireSize[0].breaker
-        textViewResultDistanceInReport.text = "${DataFromWireSize[0].distance}M"
+        textViewResultDistanceInReport.text = "${DataFromWireSize[0].distance} m."
         textViewResultWireSize.text = Html.fromHtml(DataFromWireSize[0].cableSize.replace("mm", "mm<sup><small><small>2</small></small></sup>"))
         if(DataFromWireSize[0].wireGround != "-")
             textViewResultWireGroundInReport.text = Html.fromHtml(DataFromWireSize[0].wireGround.replace("mm2", "mm<sup><small><small>2</small></small></sup>"))
@@ -103,7 +89,7 @@ class ReportInOnePhaseActivity : AppCompatActivity() {
         }else{
             textViewReferenceVoltageInReport.text = "(แรงดันอ้างอิง 400V)"
         }
-        textViewDegree.text = "** ใช้งานที่อุณหภูมิ 36-40 C\u00B0 เดินสาย 1 กลุ่มวงจร"
+//        textViewDegree.text = "** ใช้งานที่อุณหภูมิ 36-40 C\u00B0 เดินสาย 1 กลุ่มวงจร"
 
 
         Dexter.withActivity(this)
@@ -240,27 +226,27 @@ class ReportInOnePhaseActivity : AppCompatActivity() {
             addLineSpace(document)
             addItemAndResult(document, "                Circuit Breaker : ", data[0].breaker, titleStyleTitle, valueStyle)
             addLineSpace(document)
-            addItemAndResult(document, "                ระยะสายไฟฟ้า : ", "${data[0].distance}M", titleStyleTitle, valueStyle)
+            addItemAndResult(document, "                ระยะสายไฟฟ้า : ", "${data[0].distance} m.", titleStyleTitle, valueStyle)
             addLineSpace(document)
 
             addNewItem(document, "ผลการคำนวน", Element.ALIGN_LEFT, headingStyle)
             addLineSpace(document)
-            addItemAndResult(document, "                ขนาดสายไฟฟ้าที่เหมาะสม     ", data[0].cableSize.replace("mm", "mm2"), titleStyleTitle, valueStyle)
+            addItemAndResult(document, "                ขนาดสายไฟฟ้า          ", data[0].cableSize.replace("mm", "mm2"), titleStyleTitle, valueStyle)
             addLineSpace(document)
-            addItemAndResult(document, "                ขนาดสายดินที่เหมาะสม          ", data[0].wireGround, titleStyleTitle, valueStyle)
+            addItemAndResult(document, "                ขนาดสายดิน               ", data[0].wireGround, titleStyleTitle, valueStyle)
             addLineSpace(document)
-            addItemAndResult(document, "                ขนาดท่อไฟฟ้า                         ", data[0].condutiSize, titleStyleTitle, valueStyle)
+            addItemAndResult(document, "                ขนาดท่อไฟฟ้า            ", data[0].condutiSize, titleStyleTitle, valueStyle)
             addLineSpace(document)
 
             if(data[0].pressure != "0.00 V ( 0.00% )"){
-                addItemAndResult(document, "                แรงดันตก                                 ", data[0].pressure, titleStyleTitle, valueStyle)
+                addItemAndResult(document, "                แรงดันตก                     ", data[0].pressure, titleStyleTitle, valueStyle)
                 addItemAndResult(document, "                     ${textViewReferenceVoltageInReport.text}", "", subTitleStyle, valueStyle)
             }
             addLineSpace(document)
             addLineSpace(document)
 
-            addNewItem(document, "* อ้างอิงตามมาตรฐานการติดตั้งทางไฟฟ้า วสท. 2562", Element.ALIGN_LEFT, subValueStyle)
-            addNewItem(document, "** ใช้งานที่อุณหภูมิ 36-40 C° เดินสาย 1 กลุ่มวงจร", Element.ALIGN_LEFT, subValueStyle)
+            addNewItem(document, "* อ้างอิงตามมาตรฐานการติดตั้งทางไฟฟ้า วสท.", Element.ALIGN_LEFT, subValueStyle)
+//            addNewItem(document, "** ใช้งานที่อุณหภูมิ 36-40 C° เดินสาย 1 กลุ่มวงจร", Element.ALIGN_LEFT, subValueStyle)
 
             //close
             document.close()

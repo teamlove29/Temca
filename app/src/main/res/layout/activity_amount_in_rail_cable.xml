@@ -29,6 +29,7 @@ android:overScrollMode="never"
             android:layout_width="70dp"
             android:layout_height="50dp"
             android:layout_marginRight="10dp"
+            android:layout_centerVertical="true"
             android:background="@drawable/temca_logo_mini"/>
 
         <TextView
@@ -38,7 +39,7 @@ android:overScrollMode="never"
             android:layout_centerVertical="true"
             android:fontFamily="@font/mitr_regular"
             android:textColor="@color/btnBlue"
-            android:textSize="20sp"
+            android:textSize="25sp"
             android:text="@string/title_rails_cable"
             android:autoSizeTextType="uniform"
             android:autoSizeMinTextSize="20sp"
@@ -255,7 +256,7 @@ android:overScrollMode="never"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="10dp"
                 android:layout_marginLeft="5dp"
-                android:text="ระยะทาง(M.)"
+                android:text="ระยะทาง(m.)"
                 android:textSize="16sp"
                 android:fontFamily="@font/mitr_regular"
                 android:textColor="@color/black"
@@ -358,6 +359,30 @@ android:overScrollMode="never"
             android:orientation="vertical">
             <!--                    RecyclerView-->
             <!--                    MaterialButton รายงาน -->
+
+
+            <RelativeLayout
+                android:paddingTop="10dp"
+                android:paddingBottom="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/textViewShowInPipe"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/mitr_regular"
+                android:text="ผลการคำนวณ "
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+            <TextView
+                android:id="@+id/textViewShow2InPipe"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignRight="@+id/textViewShowInPipe"
+                android:textSize="18sp" />
+            </RelativeLayout>
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycerViewWireSize"
                 android:layout_width="match_parent"
