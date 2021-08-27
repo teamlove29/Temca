@@ -17,6 +17,16 @@ import com.alw.temca.ui.ElectricalOnePhase.OnePhaseActivity
 import com.alw.temca.ui.SponsorActivity
 import jxl.Workbook
 import kotlinx.android.synthetic.main.activity_amount_in_rail_cable.*
+import kotlinx.android.synthetic.main.activity_amount_in_rail_cable.btnCal
+import kotlinx.android.synthetic.main.activity_amount_in_rail_cable.circuitTextView
+import kotlinx.android.synthetic.main.activity_amount_in_rail_cable.editTextDistance
+import kotlinx.android.synthetic.main.activity_amount_in_rail_cable.installationTextView
+import kotlinx.android.synthetic.main.activity_amount_in_rail_cable.phaseTextView
+import kotlinx.android.synthetic.main.activity_amount_in_rail_cable.recycerViewWireSize
+import kotlinx.android.synthetic.main.activity_amount_in_rail_cable.tableBeforeCalculateGroup7
+import kotlinx.android.synthetic.main.activity_amount_in_rail_cable.typeCableTextView
+import kotlinx.android.synthetic.main.activity_amount_in_rail_cable.wayBackActivity1
+import kotlinx.android.synthetic.main.activity_three_phase.*
 import java.io.IOException
 
 class AmountInRailCableActivity : AppCompatActivity() {
@@ -164,9 +174,7 @@ class AmountInRailCableActivity : AppCompatActivity() {
                                 val getRailSizeInTable = sheet.getCell(3, j).contents
                                 val getSizeCableIntable = sheet.getCell(6, j).contents
 
-                                var pressureDropIndexTable:Int
-
-                                pressureDropIndexTable =  when(typeCableTextView.text){
+                                var pressureDropIndexTable:Int = when(typeCableTextView.text){
                                     "NYY 1/C" -> 0
                                     "NYY 4/C" -> 1
                                     "XLPE 1/C" -> 2
@@ -174,7 +182,9 @@ class AmountInRailCableActivity : AppCompatActivity() {
                                     else -> 0
                                 }
 
+
                                 for (h in 2..20) {
+
                                     val pressureCable = applicationContext.assets.open("pressure_drop.xls") // pressure_drop_file
                                     val wbPressure = Workbook.getWorkbook(pressureCable)
                                     val sheetPressure = wbPressure.getSheet(pressureDropIndexTable)
@@ -182,7 +192,7 @@ class AmountInRailCableActivity : AppCompatActivity() {
                                     val amountDeistance = Integer.parseInt(editTextDistance.text.toString())
 
                                     if (getSizeCableIntable == fineCableTypeInTable) { // แก้ cableSize ตัดคำออก
-                                        val getreslutInTable = sheetPressure.getCell(2, h).contents.toDouble()
+                                        val getreslutInTable = sheetPressure.getCell(3, h).contents.toDouble()
                                         val pullResult = getreslutInTable * Integer.parseInt(circuitTextView.text.toString().replace("A", "")) * amountDeistance / 1000 // result
                                         val PercentPressure  = 100 * pullResult / 400 // result
                                         var resultRefPressure:String
@@ -211,6 +221,8 @@ class AmountInRailCableActivity : AppCompatActivity() {
                                     }
                                 }
                             }
+
+
                             recycerViewWireSize.adapter = WireSizeAdapter(railSizeList)
                             recycerViewWireSize.layoutManager = LinearLayoutManager(this)
                             break

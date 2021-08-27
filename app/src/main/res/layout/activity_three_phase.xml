@@ -471,7 +471,7 @@ tools:context=".ui.ElectricalThreePhase.ThreePhaseActivity">
                 android:id="@+id/textViewShow6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="30dp"
                 android:layout_below="@+id/textViewShow4"
                 android:layout_alignParentRight="true"
                 android:text="-%"
@@ -493,7 +493,7 @@ tools:context=".ui.ElectricalThreePhase.ThreePhaseActivity">
                 <Button
                     android:onClick="ReportOnClick"
                     android:id="@+id/btnCreateReports"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="50dp"
                     android:layout_marginBottom="20dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

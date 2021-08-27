@@ -17,7 +17,22 @@ import com.alw.temca.ui.ElectricalOnePhase.OnePhaseActivity
 import com.alw.temca.ui.SoonActivity
 import com.alw.temca.ui.SponsorActivity
 import jxl.Workbook
+import kotlinx.android.synthetic.main.activity_one_phase.*
 import kotlinx.android.synthetic.main.activity_three_phase.*
+import kotlinx.android.synthetic.main.activity_three_phase.btnCal
+import kotlinx.android.synthetic.main.activity_three_phase.circuitTextView
+import kotlinx.android.synthetic.main.activity_three_phase.editTextDistance
+import kotlinx.android.synthetic.main.activity_three_phase.installationTextView
+import kotlinx.android.synthetic.main.activity_three_phase.phaseTextView
+import kotlinx.android.synthetic.main.activity_three_phase.tableBeforeCalculate
+import kotlinx.android.synthetic.main.activity_three_phase.textViewReferenceVoltage
+import kotlinx.android.synthetic.main.activity_three_phase.textViewResultWireGround
+import kotlinx.android.synthetic.main.activity_three_phase.textViewShow2
+import kotlinx.android.synthetic.main.activity_three_phase.textViewShow4
+import kotlinx.android.synthetic.main.activity_three_phase.textViewShow5
+import kotlinx.android.synthetic.main.activity_three_phase.textViewShow6
+import kotlinx.android.synthetic.main.activity_three_phase.typeCableTextView
+import kotlinx.android.synthetic.main.activity_three_phase.wayBackActivity1
 import java.io.IOException
 
 class ThreePhaseActivity : AppCompatActivity() {
@@ -31,6 +46,7 @@ class ThreePhaseActivity : AppCompatActivity() {
         private const val TASK_LIST_PREF_KEY_DISTANCE_IN_THREE_PHASE = "task_list_distance_in_three_phase"
         private const val PREF_NAME = "task_three_phase"
         private val railSizeList = ArrayList<RailSizeModel>()
+        var pressureDropIndexTable:Int = 0
     }
 
     override fun onStart() {
@@ -187,7 +203,6 @@ class ThreePhaseActivity : AppCompatActivity() {
                     val resultSizeConduitOfmm = sheet.getCell(3, i).contents
                     val resultSizeConduitOfInch = sheet.getCell(4, i).contents
                     val temp:String
-                    var pressureDropIndexTable:Int
                     if(resultSizeConduitOfInch == "-") temp = "${resultSizeConduitOfmm}mm."
                     else temp = "$resultSizeConduitOfmm mm. ( $resultSizeConduitOfInch\" )"
 
@@ -209,7 +224,6 @@ class ThreePhaseActivity : AppCompatActivity() {
                         || typeCableTextView.text == "NYY 2/C - G"
                         || typeCableTextView.text == "VCT 2/C - G") {
                         textViewResultWireGround.text =  Html.fromHtml("- mm<sup><small><small>2</small></small></sup>")
-                        pressureDropIndexTable = 1
                     }else{
                         if(circuitTextView.text == "500A"
                                 ||circuitTextView.text == "500A"
@@ -220,9 +234,26 @@ class ThreePhaseActivity : AppCompatActivity() {
                         }else{
                             textViewResultWireGround.text = Html.fromHtml("$sizeWireGround mm<sup><small><small>2</small></small></sup>")
                         }
-                        if(typeCableTextView.text == "XLPE") pressureDropIndexTable = 2
-                        else pressureDropIndexTable = 0
                     }
+
+
+                    if(typeCableTextView.text == "IEC 01"
+                            ||typeCableTextView.text == "NYY 1/C"
+                            ||typeCableTextView.text == "VCT 1/C"){
+                        OnePhaseActivity.pressureDropIndexTable = 0
+                    }else if(typeCableTextView.text == "NYY 2/C - G"
+                            ||typeCableTextView.text == "VCT 2/C - G"
+                            ||typeCableTextView.text == "NYY 4/C - G"
+                            ||typeCableTextView.text == "VCT 4/C - G"){
+                        OnePhaseActivity.pressureDropIndexTable = 1
+                    }else if(typeCableTextView.text == "XLPE 1/C"){
+                        OnePhaseActivity.pressureDropIndexTable = 2
+                    }else if(typeCableTextView.text == "XLPE 2/C, G"
+                            ||typeCableTextView.text == "XLPE 4/C, G"){
+                        OnePhaseActivity.pressureDropIndexTable = 3
+                    }
+
+
                     textViewShow4.text = s
 
                     for (h in 2..20) {
@@ -233,7 +264,7 @@ class ThreePhaseActivity : AppCompatActivity() {
                         val amountDeistance = Integer.parseInt(editTextDistance.text.toString())
 
                         if (cableSizeWithOutX == fineCableTypeInTable) { // แก้ cableSize ตัดคำออก
-                            val getreslutInTable = sheetPressure.getCell(1, h).contents.toDouble()
+                            val getreslutInTable = sheetPressure.getCell(2, h).contents.toDouble()
                             val pullResult = getreslutInTable * Integer.parseInt(circuitTextView.text.toString().replace("A", "")) * amountDeistance / 1000 // result
                             val PercentPressure  = 100 * pullResult / 230 // result
 

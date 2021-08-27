@@ -277,7 +277,8 @@ class MoterActivity : AppCompatActivity() {
         val pressureDropIndexTable:Int =  when(TextViewCableTypeInMoter.text){
             "IEC 01" -> 0
             "NYY 1/C" -> 0
-            "NYY 2/C-G" -> 1
+            "NYY 2/C - G" -> 1
+            "NYY 3/C - G" -> 1
             "XLPE 1/C" -> 2
             else -> 0
         }
@@ -348,6 +349,7 @@ class MoterActivity : AppCompatActivity() {
                             val amountDeistance = Integer.parseInt(editTextDistanceInMoter.text.toString())
                             if (cableSizeWithOutX == fineCableTypeInTable) { // แก้ cableSize ตัดคำออก
                                 val getreslutInTable = sheetPressure.getCell(phaseIndex, h).contents.toDouble()
+                                println("dasdsad ${getreslutInTable}")
                                 val pullResult = getreslutInTable * Integer.parseInt(breakerInTable.toString().replace(" A", "")) * amountDeistance / 1000 // result
                                 val PercentPressure  = 100 * pullResult / voteInMoter // result
 
@@ -579,7 +581,7 @@ class MoterActivity : AppCompatActivity() {
             }
             else {
                 if(TextViewStartPantern.text == "STAR DELTA") {
-                    if(TextViewCableTypeInMoter.text == "NYY 2/C-G"){
+                    if(TextViewCableTypeInMoter.text == "NYY 2/C - G"){
                         TextViewCableTypeInMoter.text = "NYY 1/C"
                         saveData("dataTypeCable", "NYY 1/C")
                     }

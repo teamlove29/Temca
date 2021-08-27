@@ -48,12 +48,12 @@ class TypeCableActivity : AppCompatActivity() , InstallationonClickAdapterListen
                 if(phase == "3"){
                 typeCableItem.add(TypeCableModel("IEC 01"))
                 typeCableItem.add(TypeCableModel("NYY 1/C"))
-                typeCableItem.add(TypeCableModel("NYY 3/C-G"))
+                typeCableItem.add(TypeCableModel("NYY 3/C - G"))
                 typeCableItem.add(TypeCableModel("XLPE 1/C"))
                 }else{
                     typeCableItem.add(TypeCableModel("IEC 01"))
                     typeCableItem.add(TypeCableModel("NYY 1/C"))
-                    typeCableItem.add(TypeCableModel("NYY 2/C-G"))
+                    typeCableItem.add(TypeCableModel("NYY 2/C - G"))
                     typeCableItem.add(TypeCableModel("XLPE 1/C"))
                 }
 
@@ -80,8 +80,8 @@ class TypeCableActivity : AppCompatActivity() , InstallationonClickAdapterListen
             typeCableItem.add(TypeCableModel("NYY"))
             typeCableItem.add(TypeCableModel("XLPE"))
             typeCableItem.add(TypeCableModel("VCT"))
-            typeCableItem.add(TypeCableModel("NYY-G"))
-            typeCableItem.add(TypeCableModel("VCT-G"))
+            typeCableItem.add(TypeCableModel("NYY - G"))
+            typeCableItem.add(TypeCableModel("VCT - G"))
         }
         if(checkActivity == "Group7"){
             typeCableItem.clear()
