@@ -80,7 +80,7 @@ class AmountInRailCableActivity : AppCompatActivity() {
 
 //        installationTextView.text = dataOfInstallation!!.slice(0..6)
         groupInstall = dataOfInstallation.toString()
-        installationTextView.text = "$dataOfInstallation $dataOfGroupInstall"
+        installationTextView.text = "$dataOfGroupInstall"
         typeCableTextView.text = dataOfTypeCable
         circuitTextView.text = dataOfCircuit
         editTextDistance.setText(dataOfDistance)
@@ -240,10 +240,20 @@ class AmountInRailCableActivity : AppCompatActivity() {
         val dataToReport = ArrayList<ReportResultCurrentRatting>()
         val intent = Intent(this, ReportInCurrentRattingActivity::class.java)
 //        val bundle = Bundle()
-        val textInstallation = FindDetailInstallation(installationTextView.text.toString())
+
+//        val textInstallation = FindDetailInstallation(installationTextView.text.toString())
+        val textInstallation = if(installationTextView.text == "รางเคเบิลแบบบันได"){
+            "กลุ่ม 7 วางบนรางเคเบิลไม่มีฝาปิด แบบบันได "
+        }else{
+            "กลุ่ม 7 วางบนรางเคเบิลไม่มีฝาปิด แบบระบายอากาศ"
+        }
+
+
+
+
         dataToReport.add(ReportResultCurrentRatting(
                 phaseTextView.text.toString(), // phase
-                installationTextView.text.toString(),  // groupinstallation
+                textInstallation,  // groupinstallation
                 typeCableTextView.text.toString(), // typcable
                 circuitTextView.text.toString(), // CB
                 editTextDistance.text.toString(), // amountDis
@@ -254,7 +264,7 @@ class AmountInRailCableActivity : AppCompatActivity() {
         )
         dataToReport.add(ReportResultCurrentRatting(
                 phaseTextView.text.toString(), // phase
-                installationTextView.text.toString(),  // groupinstallation
+                textInstallation,  // groupinstallation
                 typeCableTextView.text.toString(), // typcable
                 circuitTextView.text.toString(), // CB
                 editTextDistance.text.toString(), // amountDis
@@ -328,7 +338,7 @@ class AmountInRailCableActivity : AppCompatActivity() {
 
     private fun circuitCheckPhaseAndCableType(phase: String, cableType: String):Int{
 
-        return if(installationTextView.text == "กลุ่ม 7 รางเคเบิลแบบระบายอากาศ"){
+        return if(installationTextView.text == "รางเคเบิลแบบระบายอากาศ"){
                     when(cableType){
                         "NYY 1/C" -> 0
                         "NYY 4/C" -> 2
@@ -359,7 +369,7 @@ class AmountInRailCableActivity : AppCompatActivity() {
 
                 if (dataInstallation != null) {
                     val dataInstallationSlice = dataInstallation.slice(0..6)
-                    installationTextView.text = "$dataInstallationSlice $dataInstallationDes"
+                    installationTextView.text = "$dataInstallationDes"
                     saveData("installation", dataInstallationSlice)
                     saveData("installationDes", dataInstallationDes)
                 }

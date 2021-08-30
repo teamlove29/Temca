@@ -18,6 +18,7 @@ import com.alw.temca.ui.ElectricalOnePhase.OnePhaseActivity
 import com.alw.temca.ui.SponsorActivity
 import com.alw.temca.ui.WireSize.TypeCableActivity
 import jxl.Workbook
+import kotlinx.android.synthetic.main.activity_amount_in_rail_cable.*
 import kotlinx.android.synthetic.main.activity_transformer.*
 import kotlinx.android.synthetic.main.activity_transformer.btnCalInPipeSize
 import kotlinx.android.synthetic.main.activity_transformer.textViewElectricCurrenResult
@@ -95,10 +96,18 @@ class TransformerActivity : AppCompatActivity() {
     val sharedPref = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
     val dataOfGroup = sharedPref.getString(TASK_LIST_PREF_KEY_INSTALLATION_GROUP,"กลุ่ม 7")
 
+
+        val textInstallation = if(TextViewGroupInstallation.text == "รางเคเบิลแบบบันได"){
+            "กลุ่ม 7 วางบนรางเคเบิลไม่มีฝาปิด แบบบันได "
+        }else{
+            "กลุ่ม 7 วางบนรางเคเบิลไม่มีฝาปิด แบบระบายอากาศ"
+        }
+
+
     for (i in 0..dataListOfTable.size - 1){
         dataOfResultTransformer.add(DataToTransformerReportModel(
             TextViewPressure.text.toString(),
-            "$dataOfGroup ${TextViewGroupInstallation.text}",
+                textInstallation,
             TextViewCableType.text.toString(),
             TextViewTransformerSize.text.toString(),
             dataListOfTable[i].electricCurrent,
@@ -159,7 +168,6 @@ class TransformerActivity : AppCompatActivity() {
 
         for(i in 3..20 step 2){ // row check transformer
 
-            println(TextViewGroupInstallation.text)
             val findSizeTransformer = sheet.getCell(0, i).contents.toInt()
             val TransformerSizeOfTextView = Integer.parseInt(TextViewTransformerSize.text.toString().replace("kVA","").trim())
             if (TransformerSizeOfTextView <= findSizeTransformer){

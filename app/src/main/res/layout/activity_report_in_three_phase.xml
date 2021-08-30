@@ -64,7 +64,7 @@ tools:context=".ui.ElectricalThreePhase.ReportInThreePhaseActivity">
         android:background="@color/white"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingRight="10dp"
+        android:paddingRight="20dp"
         android:orientation="vertical">
 
         <LinearLayout

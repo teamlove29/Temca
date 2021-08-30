@@ -41,8 +41,8 @@ class InstallationTransformerActivity : AppCompatActivity(), InstallationonClick
         val setResourceImage7_air = resources.getIdentifier("ic_group7_air", "drawable", this.packageName)
         val setResourceImage7_stairs = resources.getIdentifier("ic_group7_stairs", "drawable", this.packageName)
 
-        installItem.add(InstallationModel(resources.getDrawable(setResourceImage7_air),"กลุ่ม 7","วางบนรางเคเบิ้ล ไม่มีฝาปิดแบบระบายอากาศ"))
-        installItem.add(InstallationModel(resources.getDrawable(setResourceImage7_stairs),"กลุ่ม 7","วางบนรางเคเบิ้ล ไม่มีฝาปิดแบบบันได"))
+        installItem.add(InstallationModel(resources.getDrawable(setResourceImage7_air),"กลุ่ม 7","วางบนรางเคเบิล ไม่มีฝาปิดแบบระบายอากาศ"))
+        installItem.add(InstallationModel(resources.getDrawable(setResourceImage7_stairs),"กลุ่ม 7","วางบนรางเคเบิล ไม่มีฝาปิดแบบบันได"))
 
         recyclerViewInstallationTransformer.adapter = InstallationAdapter(installItem, this)
         recyclerViewInstallationTransformer.layoutManager = LinearLayoutManager(this)
@@ -51,10 +51,10 @@ class InstallationTransformerActivity : AppCompatActivity(), InstallationonClick
 
     override fun onClick(postion: Int) {
         val resultIntent = Intent()
-        val installDes:String = if(installItem[postion].des == "วางบนรางเคเบิ้ล ไม่มีฝาปิดแบบระบายอากาศ"){
-            "รางเคเบิ้ลแบบระบายอากาศ"
+        val installDes:String = if(installItem[postion].des == "วางบนรางเคเบิล ไม่มีฝาปิดแบบระบายอากาศ"){
+            "รางเคเบิลแบบระบายอากาศ"
         }else{
-            "รางเคเบิ้ลแบบบันได"
+            "รางเคเบิลแบบบันได"
         }
         resultIntent.putExtra("dataInstall",installItem[postion].title)
         resultIntent.putExtra("dataInstallDes",installDes)
