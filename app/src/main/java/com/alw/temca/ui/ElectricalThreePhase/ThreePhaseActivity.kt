@@ -17,7 +17,7 @@ import com.alw.temca.ui.ElectricalOnePhase.OnePhaseActivity
 import com.alw.temca.ui.SoonActivity
 import com.alw.temca.ui.SponsorActivity
 import jxl.Workbook
-import kotlinx.android.synthetic.main.activity_one_phase.*
+
 import kotlinx.android.synthetic.main.activity_three_phase.*
 import kotlinx.android.synthetic.main.activity_three_phase.btnCal
 import kotlinx.android.synthetic.main.activity_three_phase.circuitTextView
@@ -240,17 +240,17 @@ class ThreePhaseActivity : AppCompatActivity() {
                     if(typeCableTextView.text == "IEC 01"
                             ||typeCableTextView.text == "NYY 1/C"
                             ||typeCableTextView.text == "VCT 1/C"){
-                        OnePhaseActivity.pressureDropIndexTable = 0
+                        pressureDropIndexTable = 0
                     }else if(typeCableTextView.text == "NYY 2/C - G"
                             ||typeCableTextView.text == "VCT 2/C - G"
                             ||typeCableTextView.text == "NYY 4/C - G"
                             ||typeCableTextView.text == "VCT 4/C - G"){
-                        OnePhaseActivity.pressureDropIndexTable = 1
+                        pressureDropIndexTable = 1
                     }else if(typeCableTextView.text == "XLPE 1/C"){
-                        OnePhaseActivity.pressureDropIndexTable = 2
+                        pressureDropIndexTable = 2
                     }else if(typeCableTextView.text == "XLPE 2/C, G"
                             ||typeCableTextView.text == "XLPE 4/C, G"){
-                        OnePhaseActivity.pressureDropIndexTable = 3
+                        pressureDropIndexTable = 3
                     }
 
 
@@ -265,9 +265,11 @@ class ThreePhaseActivity : AppCompatActivity() {
 
                         if (cableSizeWithOutX == fineCableTypeInTable) { // แก้ cableSize ตัดคำออก
                             val getreslutInTable = sheetPressure.getCell(2, h).contents.toDouble()
+
                             val pullResult = getreslutInTable * Integer.parseInt(circuitTextView.text.toString().replace("A", "")) * amountDeistance / 1000 // result
                             val PercentPressure  = 100 * pullResult / 230 // result
 
+println("adsasd ${pressureDropIndexTable}")
 
                             var pullResulttoString = "${"%.2f V".format(pullResult)}"
                             var percentPressuretoString = "${"%.2f".format(PercentPressure)}"
