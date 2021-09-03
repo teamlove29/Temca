@@ -13,6 +13,7 @@ import com.alw.temca.Function.FindDetailInstallation
 import com.alw.temca.Model.RailSizeModel
 import com.alw.temca.Model.ReportResultWireSize
 import com.alw.temca.R
+import com.alw.temca.ui.AmountInRailCable.AmountInRailCableActivity
 import com.alw.temca.ui.ElectricalOnePhase.OnePhaseActivity
 import com.alw.temca.ui.SoonActivity
 import com.alw.temca.ui.SponsorActivity
@@ -202,6 +203,10 @@ class ThreePhaseActivity : AppCompatActivity() {
                     val sizeWireGround = sheet.getCell(2, i).contents
                     val resultSizeConduitOfmm = sheet.getCell(3, i).contents
                     val resultSizeConduitOfInch = sheet.getCell(4, i).contents
+                    val divisor = sheet.getCell(7, i).contents.toInt()
+
+
+
                     val temp:String
                     if(resultSizeConduitOfInch == "-") temp = "${resultSizeConduitOfmm}mm."
                     else temp = "$resultSizeConduitOfmm mm. ( $resultSizeConduitOfInch\" )"
@@ -266,10 +271,8 @@ class ThreePhaseActivity : AppCompatActivity() {
                         if (cableSizeWithOutX == fineCableTypeInTable) { // แก้ cableSize ตัดคำออก
                             val getreslutInTable = sheetPressure.getCell(2, h).contents.toDouble()
 
-                            val pullResult = getreslutInTable * Integer.parseInt(circuitTextView.text.toString().replace("A", "")) * amountDeistance / 1000 // result
-                            val PercentPressure  = 100 * pullResult / 230 // result
-
-println("adsasd ${pressureDropIndexTable}")
+                            val pullResult = getreslutInTable * Integer.parseInt(circuitTextView.text.toString().replace("A", "")) * amountDeistance / 1000 / divisor.toDouble() // result
+                            val PercentPressure  = 100 * pullResult / 230 / divisor.toDouble() // result
 
                             var pullResulttoString = "${"%.2f V".format(pullResult)}"
                             var percentPressuretoString = "${"%.2f".format(PercentPressure)}"
@@ -302,6 +305,15 @@ println("adsasd ${pressureDropIndexTable}")
         val intent = Intent(this, ReportInThreePhaseActivity::class.java)
 //        val bundle = Bundle()
         val textInstallation = FindDetailInstallation(installationTextView.text.toString())
+
+
+//        val groundSize = if(AmountInRailCableActivity.railSizeList[0].divisor == "1"){
+//            "${AmountInRailCableActivity.railSizeList[0].groundSize} mm2"
+//        }else{
+//            "${AmountInRailCableActivity.railSizeList[0].divisor} ( ${AmountInRailCableActivity.railSizeList[0].groundSize} mm2 )"
+//        }
+
+
 
         dataToReport.add(
             ReportResultWireSize(

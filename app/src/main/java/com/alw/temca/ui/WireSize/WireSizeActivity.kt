@@ -350,7 +350,7 @@ class WireSizeActivity : AppCompatActivity() {
                                                 , getGroudSizeInTable
                                                 , getRailSizeInTable
                                                 , "400V"
-                                                , resultRefPressure))
+                                                , resultRefPressure,""))
                                     }
                                 }
                             }

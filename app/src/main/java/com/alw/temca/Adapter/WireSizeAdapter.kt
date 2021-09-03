@@ -13,9 +13,15 @@ import kotlinx.android.synthetic.main.rail_size_list.view.*
 class WireSizeAdapter(var listCircuit : ArrayList<RailSizeModel>) : RecyclerView.Adapter<WireSizeAdapter.WireSizeViewHolder>() {
     class WireSizeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        fun bind(itemList: RailSizeModel){
+        fun bind(itemList: RailSizeModel,index:Int){
+
+            itemView.title.text = "ผลการคำนวนที่ ${index+1}"
             itemView.textViewResultWireSizeInList.text = Html.fromHtml("${itemList.wireSize.replace("mm","mm<sup><small><small>2</small></small></sup>")}")
-            itemView.textViewResultWireGround.text = Html.fromHtml("${itemList.groundSize} mm<sup><small><small>2</small></small></sup>")
+            if(itemList.divisor == "1"){
+                itemView.textViewResultWireGround.text = Html.fromHtml("${itemList.groundSize} mm<sup><small><small>2</small></small></sup>")
+            }else{
+                itemView.textViewResultWireGround.text = Html.fromHtml("${itemList.divisor} ( ${itemList.groundSize} mm<sup><small><small>2</small></small></sup> )")
+            }
             itemView.textViewResultRailSize.text = "${itemList.railSize} mm."
             itemView.textViewReferenceVoltage.text = "(แรงดันอ้างอิง ${itemList.refPressure})"
             itemView.textResultPreessureInList.text = itemList.resultPressure
@@ -40,7 +46,7 @@ class WireSizeAdapter(var listCircuit : ArrayList<RailSizeModel>) : RecyclerView
 
     override fun onBindViewHolder(holder: WireSizeViewHolder, position: Int) {
         val currency = listCircuit[position]
-        holder.bind(currency)
+        holder.bind(currency,position)
     }
 
     override fun getItemCount(): Int {

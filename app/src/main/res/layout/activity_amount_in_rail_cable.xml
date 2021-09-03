@@ -363,9 +363,8 @@ android:overScrollMode="never"
 
             <RelativeLayout
                 android:paddingTop="10dp"
-                android:paddingBottom="20dp"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content">
             <TextView
                 android:id="@+id/textViewShowInPipe"
                 android:layout_width="wrap_content"
@@ -381,22 +380,26 @@ android:overScrollMode="never"
                 android:layout_alignParentRight="true"
                 android:layout_alignRight="@+id/textViewShowInPipe"
                 android:textSize="18sp" />
-            </RelativeLayout>
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recycerViewWireSize"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:itemCount="2"
-                tools:listitem="@layout/rail_size_list" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycerViewWireSize"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_below="@+id/textViewShowInPipe"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:itemCount="2"
+                    tools:listitem="@layout/rail_size_list" />
+
+            </RelativeLayout>
 
         <LinearLayout
             android:gravity="bottom"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="bottom|center_horizontal"
-            android:layout_below="@+id/textViewShow5InPipe"
+            android:layout_below="@+id/recycerViewWireSize"
             android:layout_marginTop="20dp"
             android:orientation="vertical">
 

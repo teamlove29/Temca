@@ -17,16 +17,7 @@ import com.alw.temca.ui.ElectricalOnePhase.OnePhaseActivity
 import com.alw.temca.ui.SponsorActivity
 import jxl.Workbook
 import kotlinx.android.synthetic.main.activity_amount_in_rail_cable.*
-import kotlinx.android.synthetic.main.activity_amount_in_rail_cable.btnCal
-import kotlinx.android.synthetic.main.activity_amount_in_rail_cable.circuitTextView
-import kotlinx.android.synthetic.main.activity_amount_in_rail_cable.editTextDistance
-import kotlinx.android.synthetic.main.activity_amount_in_rail_cable.installationTextView
-import kotlinx.android.synthetic.main.activity_amount_in_rail_cable.phaseTextView
-import kotlinx.android.synthetic.main.activity_amount_in_rail_cable.recycerViewWireSize
-import kotlinx.android.synthetic.main.activity_amount_in_rail_cable.tableBeforeCalculateGroup7
-import kotlinx.android.synthetic.main.activity_amount_in_rail_cable.typeCableTextView
-import kotlinx.android.synthetic.main.activity_amount_in_rail_cable.wayBackActivity1
-import kotlinx.android.synthetic.main.activity_three_phase.*
+
 import java.io.IOException
 
 class AmountInRailCableActivity : AppCompatActivity() {
@@ -173,6 +164,9 @@ class AmountInRailCableActivity : AppCompatActivity() {
                                 val getGroudSizeInTable = sheet.getCell(2, j).contents
                                 val getRailSizeInTable = sheet.getCell(3, j).contents
                                 val getSizeCableIntable = sheet.getCell(6, j).contents
+                                val divisor = sheet.getCell(7, j).contents.toInt()
+
+
 
                                 var pressureDropIndexTable:Int = when(typeCableTextView.text){
                                     "NYY 1/C" -> 0
@@ -193,8 +187,8 @@ class AmountInRailCableActivity : AppCompatActivity() {
 
                                     if (getSizeCableIntable == fineCableTypeInTable) { // แก้ cableSize ตัดคำออก
                                         val getreslutInTable = sheetPressure.getCell(3, h).contents.toDouble()
-                                        val pullResult = getreslutInTable * Integer.parseInt(circuitTextView.text.toString().replace("A", "")) * amountDeistance / 1000 // result
-                                        val PercentPressure  = 100 * pullResult / 400 // result
+                                        val pullResult = getreslutInTable * Integer.parseInt(circuitTextView.text.toString().replace("A", "")) * amountDeistance / 1000 / divisor.toDouble() // result
+                                        val PercentPressure  = 100 * pullResult / 400 / divisor.toDouble() // result
                                         var resultRefPressure:String
 
                                         var pullResulttoString = "${"%.2f V".format(pullResult)}"
@@ -217,7 +211,9 @@ class AmountInRailCableActivity : AppCompatActivity() {
                                             , getGroudSizeInTable
                                             , getRailSizeInTable
                                             , "400V"
-                                            , resultRefPressure))
+                                            , resultRefPressure,
+                                                divisor.toString()))
+
                                     }
                                 }
                             }
@@ -249,7 +245,17 @@ class AmountInRailCableActivity : AppCompatActivity() {
         }
 
 
+        val groundSize1 = if(railSizeList[0].divisor == "1"){
+            "${railSizeList[0].groundSize} mm2"
+        }else{
+            "${railSizeList[0].divisor} ( ${railSizeList[0].groundSize} mm2 )"
+        }
 
+        val groundSize2 = if(railSizeList[1].divisor == "1"){
+            "${railSizeList[1].groundSize} mm2"
+        }else{
+            "${railSizeList[1].divisor} ( ${railSizeList[1].groundSize} mm2 )"
+        }
 
         dataToReport.add(ReportResultCurrentRatting(
                 phaseTextView.text.toString(), // phase
@@ -258,7 +264,7 @@ class AmountInRailCableActivity : AppCompatActivity() {
                 circuitTextView.text.toString(), // CB
                 editTextDistance.text.toString(), // amountDis
                 railSizeList[0].wireSize, // text2 is cablesize
-                "${railSizeList[0].groundSize} mm2", // wiresizegroud
+                groundSize1, // wiresizegroud
                 "${railSizeList[0].railSize} mm.", // text4 is conduitsize
                 railSizeList[0].resultPressure) // result presure
         )
@@ -269,7 +275,7 @@ class AmountInRailCableActivity : AppCompatActivity() {
                 circuitTextView.text.toString(), // CB
                 editTextDistance.text.toString(), // amountDis
                 railSizeList[1].wireSize, // text2 is cablesize
-                "${railSizeList[1].groundSize} mm2", // wiresizegroud
+                groundSize2, // wiresizegroud
                 "${railSizeList[1].railSize} mm.", // text4 is conduitsize
                 railSizeList[1].resultPressure) // result presure
         )
