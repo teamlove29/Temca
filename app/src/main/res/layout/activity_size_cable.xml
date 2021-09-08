@@ -19,8 +19,8 @@ tools:context=".ui.PipeSize.SizeCableActivity">
 
     <ImageView
         android:id="@+id/logoImageView"
-        android:layout_width="70dp"
-        android:layout_height="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginRight="10dp"
         android:background="@drawable/temca_logo_mini"/>
 
@@ -31,7 +31,7 @@ tools:context=".ui.PipeSize.SizeCableActivity">
         android:layout_toRightOf="@id/logoImageView"
         android:layout_centerVertical="true"
         android:fontFamily="@font/mitr_regular"
-        android:textColor="@color/black"
+        android:textColor="@color/btnBlue"
         android:textSize="20sp"
         android:text="หาขนาดท่อและราง"
         android:maxLines="1"

@@ -250,7 +250,7 @@ class MoterReportActivity : AppCompatActivity() {
         rightStyle: Font
     ) {
         //add Image
-        val d = resources.getDrawable(R.drawable.logo_pdf_temca)
+        val d = resources.getDrawable(R.drawable.temca_logo_mini)
         val bitDw = d as BitmapDrawable
         val bmp = bitDw.bitmap
         val stream = ByteArrayOutputStream()

@@ -41,10 +41,10 @@ android:fillViewport="true"
             android:id="@+id/logoImageView"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:layout_width="100dp"
-            android:layout_height="50dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginRight="10dp"
-            android:background="@drawable/logo_pdf_temca"/>
+            android:background="@drawable/temca_logo_mini"/>
 
     </RelativeLayout>
 
@@ -243,10 +243,26 @@ android:fillViewport="true"
                 android:textSize="13dp"
                 android:textStyle="bold"/>
 
+
             <RelativeLayout
                 android:padding="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="40dp"
+                    android:text="ผลการคำนวนที่ 1"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/sarabun_medium"
+                    android:textSize="12dp"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:padding="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
 
                 <TextView
                     android:id="@+id/textViewWireSize"
@@ -387,6 +403,21 @@ android:fillViewport="true"
                 android:textColor="@color/black"
                 android:textSize="5dp"
                 android:textStyle="bold"/>
+
+
+            <RelativeLayout
+                android:padding="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="40dp"
+                    android:text="ผลการคำนวนที่ 2"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/sarabun_medium"
+                    android:textSize="12dp"/>
+            </RelativeLayout>
 
             <RelativeLayout
                 android:padding="5dp"

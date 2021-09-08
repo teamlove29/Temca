@@ -28,7 +28,7 @@ tools:context=".ui.AmountInPipe.ReportInPipeActivity">
             android:id="@+id/textViewTitleReport"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="40dp"
             android:fontFamily="@font/mitr_regular"
             android:textColor="@color/black"
             android:text="รายงานคำนวนชนิดและจำนวนสายในท่อ"
@@ -40,10 +40,10 @@ tools:context=".ui.AmountInPipe.ReportInPipeActivity">
             android:id="@+id/logoImageView"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:layout_width="100dp"
-            android:layout_height="60dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginRight="10dp"
-            android:background="@drawable/logo_pdf_temca"/>
+            android:background="@drawable/temca_logo_mini"/>
 
     </RelativeLayout>
     <TextView
