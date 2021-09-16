@@ -17,11 +17,12 @@ class WireSizeAdapter(var listCircuit : ArrayList<RailSizeModel>) : RecyclerView
 
             itemView.title.text = "ผลการคำนวนที่ ${index+1}"
             itemView.textViewResultWireSizeInList.text = Html.fromHtml("${itemList.wireSize.replace("mm","mm<sup><small><small>2</small></small></sup>")}")
-            if(itemList.divisor == "1"){
-                itemView.textViewResultWireGround.text = Html.fromHtml("${itemList.groundSize} mm<sup><small><small>2</small></small></sup>")
-            }else{
-                itemView.textViewResultWireGround.text = Html.fromHtml("${itemList.divisor} ( ${itemList.groundSize} mm<sup><small><small>2</small></small></sup> )")
-            }
+            itemView.textViewResultWireGround.text = Html.fromHtml("${itemList.groundSize} mm<sup><small><small>2</small></small></sup>")
+//            if(itemList.divisor == "1"){
+
+//            }else{
+//                itemView.textViewResultWireGround.text = Html.fromHtml("${itemList.divisor} ( ${itemList.groundSize} mm<sup><small><small>2</small></small></sup> )")
+//            }
             itemView.textViewResultRailSize.text = "${itemList.railSize} mm."
             itemView.textViewReferenceVoltage.text = "(แรงดันอ้างอิง ${itemList.refPressure})"
             itemView.textResultPreessureInList.text = itemList.resultPressure

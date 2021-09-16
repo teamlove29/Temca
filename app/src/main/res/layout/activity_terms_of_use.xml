@@ -70,14 +70,16 @@ tools:context=".TermsOfUseActivity">
         android:text="เงื่อนไข/ข้อตกลงในการใช้งานโปรแกรมหาขนาดสายไฟฟ้า"
         android:textColor="@color/black"
         android:textStyle="bold"
+        android:fontFamily="@font/tahoma"
         android:textSize="12sp"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="โปรดศึกษาและทำความเข้าใจเงื่อนไข/ข้อตกลงในการใช้งานโปรแกรมหาขนาดสายไฟฟ้าให้ละเอียด  เนื่องจากเงื่อนไข/ข้อตกลงตามเอกสารฉบับนี้ได้กำหนดข้อมูลที่สำคัญเกี่ยวกับสิทธิและหน้าที่ โดยเนื้อหาทั้งหมดจะประกอบด้วยข้อกำหนดและข้อยกเว้น ตลอดจนหน้าที่ต่าง ๆ ตามที่กฎหมายและข้อบังคับต่าง ๆ มีผลบังคับใช้"
+        android:text="โปรดศึกษาและทำความเข้าใจเงื่อนไข/ข้อตกลงในการใช้งานโปรแกรมหาขนาดสายไฟฟ้าให้ละเอียด เนื่องจากเงื่อนไข/ข้อตกลงตามเอกสารฉบับนี้ได้กำหนดข้อมูลที่สำคัญเกี่ยวกับสิทธิและหน้าที่ โดยเนื้อหาทั้งหมดจะประกอบด้วยข้อกำหนดและข้อยกเว้น ตลอดจนหน้าที่ต่าง ๆ ตามที่กฎหมายและข้อบังคับต่าง ๆ มีผลบังคับใช้"
         android:textColor="@color/black"
+        android:fontFamily="@font/tahoma"
         android:textSize="12sp"/>
     <TextView
         android:layout_width="match_parent"
@@ -86,6 +88,7 @@ tools:context=".TermsOfUseActivity">
         android:text="1. คำนิยามและคำจำกัดความ"
         android:textColor="@color/black"
         android:textStyle="bold"
+        android:fontFamily="@font/tahoma"
         android:textSize="12sp"/>
     <TextView
         android:layout_width="match_parent"
@@ -93,6 +96,7 @@ tools:context=".TermsOfUseActivity">
         android:layout_marginTop="15dp"
         android:text="“ ผู้ใช้งาน “  หมายความถึง ลูกค้าหรือบุคคล หรือนิติบุคคล ที่ใช้งานโปรแกรมหาขนาดสายไฟฟ้า"
         android:textColor="@color/black"
+        android:fontFamily="@font/tahoma"
         android:textSize="12sp"/>
     <TextView
         android:layout_width="match_parent"
@@ -100,6 +104,7 @@ tools:context=".TermsOfUseActivity">
         android:layout_marginTop="15dp"
         android:text="“ โปรแกรมค้นหาขนาดสายไฟฟ้า “  หมายถึงโปรแกรมค้นหาขนาดสายไฟฟ้าที่ TEMCA เป็นผู้จัดทำขึ้นเท่านั้น"
         android:textColor="@color/black"
+        android:fontFamily="@font/tahoma"
         android:textSize="12sp"/>
     <TextView
         android:layout_width="match_parent"
@@ -107,6 +112,7 @@ tools:context=".TermsOfUseActivity">
         android:layout_marginTop="15dp"
         android:text="“TEMCA” หมายถึงสมาคมช่างเหมาไฟฟ้าและเครื่องกลไทย ที่อยู่ อาคาร L.P.N Tower ถนนนางลิ้นจี่ แขวงช่องนนทรี เขตยานาวา กรุงเทพมหานคร"
         android:textColor="@color/black"
+        android:fontFamily="@font/tahoma"
         android:textSize="12sp"/>
     <TextView
         android:layout_width="match_parent"
@@ -114,6 +120,7 @@ tools:context=".TermsOfUseActivity">
         android:layout_marginTop="15dp"
         android:text="“มาตรฐานการติดตั้งทางไฟฟ้า” หมายถึง มาตรฐานการติดตั้งทางไฟฟ้า ฉบับล่าสุด โดยวิศวกรรมสถานแห่งประเทศไทย ในพระบรมราชูปถัมภ์ (วสท.)"
         android:textColor="@color/black"
+        android:fontFamily="@font/tahoma"
         android:textSize="12sp"/>
 
     <TextView
@@ -123,6 +130,7 @@ tools:context=".TermsOfUseActivity">
         android:text="2. การใช้งานโปรแกรม"
         android:textColor="@color/black"
         android:textStyle="bold"
+        android:fontFamily="@font/tahoma"
         android:textSize="12sp"/>
     <TextView
         android:layout_width="match_parent"
@@ -130,6 +138,7 @@ tools:context=".TermsOfUseActivity">
         android:layout_marginTop="15dp"
         android:text="2.1 รายละเอียดภายในโปรแกรมค้นหาขนาดสายไฟฟ้าจัดทำขึ้นตามมาตรฐานการติดตั้งทางไฟฟ้า เพื่อลดขั้นตอนในการทำงานของผู้ใช้งาน"
         android:textColor="@color/black"
+        android:fontFamily="@font/tahoma"
         android:textSize="12sp"/>
     <TextView
         android:layout_width="match_parent"
@@ -137,6 +146,7 @@ tools:context=".TermsOfUseActivity">
         android:layout_marginTop="15dp"
         android:text="2.2 เนื้อหาภายในโปรแกรมค้นหาขนาดสายไฟฟ้าไม่ได้ครอบคลุมเนื้อหาทั้งหมดในมาตรฐานการติดตั้งทางไฟฟ้า ผู้ใช้งานควรตรวจสอบกับมาตรฐานการติดตั้งทางไฟฟ้าอีกครั้ง เพื่อความเที่ยงตรงและถูกต้อง"
         android:textColor="@color/black"
+        android:fontFamily="@font/tahoma"
         android:textSize="12sp"/>
     <TextView
         android:layout_width="match_parent"
@@ -144,6 +154,7 @@ tools:context=".TermsOfUseActivity">
         android:layout_marginTop="15dp"
         android:text="2.3 TEMCA ไม่ใช่ผู้รับรองผลการคำนวนภายในโปรแกรมค้นหาขนาดสายไฟฟ้า ผู้ใช้งานควรให้วิศวกรรับรองผลการคำนวนก่อนการนำไปใช้งานจริงอีกครั้ง"
         android:textColor="@color/black"
+        android:fontFamily="@font/tahoma"
         android:textSize="12sp"/>
     <TextView
         android:layout_width="match_parent"
@@ -151,6 +162,7 @@ tools:context=".TermsOfUseActivity">
         android:layout_marginTop="15dp"
         android:text="2.4 เนื้อหาภายในโปรแกรมค้นหาขนาดสายไฟฟ้าอาจมีการเปลี่ยนแปลงได้ในอนาคตขึ้นอยู่กับความเหมาะสมและมาตรฐานการติดตั้งทางไฟฟ้าที่อาจมีการปรับปรุงได้"
         android:textColor="@color/black"
+        android:fontFamily="@font/tahoma"
         android:textSize="12sp"/>
 
     <TextView
@@ -160,6 +172,7 @@ tools:context=".TermsOfUseActivity">
         android:text="3. เงื่อนไขอื่น ๆ ทั่วไป"
         android:textColor="@color/black"
         android:textStyle="bold"
+        android:fontFamily="@font/tahoma"
         android:textSize="12sp"/>
     <TextView
         android:layout_width="match_parent"
@@ -167,6 +180,7 @@ tools:context=".TermsOfUseActivity">
         android:layout_marginTop="15dp"
         android:text="TEMCA ขอสงวนสิทธิ์ในการแก้ไข เปลี่ยนแปลง เพิ่มเติมหน้าเว็บไซด์ แอปพลิเคชั่น และบริการ รวมถึงการแก้ไขเปลี่ยนแปลง เพิ่มเติม เงื่อนไข/ข้อตกลงในโปรแกรมหาขนาดสายไฟฟ้า ณ เวลาใด ๆ โดยไม่จำเป็นต้องแจ้งให้ผู้ใช้งานทราบล่วงหน้า โดยการแก้ไข เปลี่ยนแปลง เพิ่มเติม ดังกล่าวจะดำเนินการตามดุลยพินิจเฉพาะของทาง TEMCA เพียงผู้เดียวเท่านั้น"
         android:textColor="@color/black"
+        android:fontFamily="@font/tahoma"
         android:textSize="12sp"/>
     <TextView
         android:layout_width="match_parent"
@@ -174,6 +188,7 @@ tools:context=".TermsOfUseActivity">
         android:layout_marginTop="15dp"
         android:text="หากมีการแก้ไข เปลี่ยนแปลง เพิ่มเติม เงื่อนไข/ข้อตกลงในการใช้งานฉบับนี้  TEMCA จะทำการแจ้งให้ผู้ใช้งานทราบผ่านช่องทางต่าง ๆ ก่อนที่ข้อกำหนดแก้ไข เปลี่ยนแปลงจะมีผลบังคับใช้   โดยทุกครั้งที่มีการแก้ไข เปลี่ยนแปลง เพิ่มเติม ใดๆ ของเงื่อนไข/ข้อตกลงในการใช้งาน ทาง TEMCA จะแสดงวันที่ล่าสุดที่มีการแก้ไขให้ทราบทุกครั้ง"
         android:textColor="@color/black"
+        android:fontFamily="@font/tahoma"
         android:textSize="12sp"/>
 
     <TextView
@@ -183,6 +198,7 @@ tools:context=".TermsOfUseActivity">
         android:text="คณะผู้จัดทำ"
         android:textColor="@color/black"
         android:textStyle="bold"
+        android:fontFamily="@font/tahoma"
         android:textSize="12sp"/>
     <TextView
         android:layout_width="match_parent"
@@ -190,6 +206,7 @@ tools:context=".TermsOfUseActivity">
         android:layout_marginTop="5dp"
         android:text="1. ผศ.ประสิทธิ์ พิทยพัฒน์"
         android:textColor="@color/black"
+        android:fontFamily="@font/tahoma"
         android:textSize="12sp"/>
     <TextView
         android:layout_width="match_parent"
@@ -197,6 +214,7 @@ tools:context=".TermsOfUseActivity">
         android:layout_marginTop="5dp"
         android:text="2. คุณธีรภพ พงษ์พิทยาภา"
         android:textColor="@color/black"
+        android:fontFamily="@font/tahoma"
         android:textSize="12sp"/>
     <TextView
         android:layout_width="match_parent"
@@ -204,20 +222,15 @@ tools:context=".TermsOfUseActivity">
         android:layout_marginTop="5dp"
         android:text="3. คุณวิริทธิ์พล สิริโภคารักษ์"
         android:textColor="@color/black"
+        android:fontFamily="@font/tahoma"
         android:textSize="12sp"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:text="4. คุณพิทยา มีผล์"
+        android:text="4. คุณณัฐวุฒิ เดชระพีพงษ์"
         android:textColor="@color/black"
-        android:textSize="12sp"/>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:text="5. คุณณัฐวุฒิ เดชระพีพงษ์"
-        android:textColor="@color/black"
+        android:fontFamily="@font/tahoma"
         android:textSize="12sp"/>
 
 

@@ -438,8 +438,8 @@ android:fillViewport="true"
                     android:id="@+id/textViewResultWireSize2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_toRightOf="@+id/textViewWireSize2"
                     android:layout_marginLeft="30dp"
+                    android:layout_toRightOf="@+id/textViewWireSize2"
                     android:fontFamily="@font/sarabun_regular"
                     android:text="- mm"
                     android:textColor="@color/btnBlue"
@@ -465,14 +465,14 @@ android:fillViewport="true"
 
                 <TextView
                     android:id="@+id/textViewResultWireGroundInReport2"
-                    android:layout_toRightOf="@+id/textViewWireGround2"
-                    android:layout_marginLeft="43dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="43dp"
+                    android:layout_toRightOf="@+id/textViewWireGround2"
+                    android:fontFamily="@font/sarabun_regular"
                     android:text="- mm"
                     android:textColor="@color/btnBlue"
-                    android:fontFamily="@font/sarabun_regular"
-                    android:textSize="12dp"/>
+                    android:textSize="12dp" />
 
             </RelativeLayout>
 

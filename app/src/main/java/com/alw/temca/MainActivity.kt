@@ -1,11 +1,13 @@
 package com.alw.temca
 
+import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.PackageInfo
-import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.alw.temca.ui.AmountInPipe.AmountInPipeActivity
 import com.alw.temca.ui.AmountInRailCable.AmountInRailCableActivity
@@ -28,8 +30,41 @@ class MainActivity : AppCompatActivity() {
         super.onStart()
 
 //        try {
-//            val pInfo: PackageInfo = this.packageManager.getPackageInfo(this.packageName, 0)
-//            val version = pInfo.versionName
+            val pInfo: PackageInfo = this.packageManager.getPackageInfo(this.packageName, 0)
+            val version:Double = pInfo.versionName.toDouble()
+
+
+        fun showdialog() {
+            val alertDialog = AlertDialog.Builder(this)
+                //set icon
+//                .setIcon(android.R.drawable.gallery_thumb)
+                //set title
+                .setTitle("มีการอัพเดท")
+                //set message
+                .setMessage(
+                    "มีอะไรใหม่ \n " + "- แก้ไขโหมดมืด \n " + "- ปรับฟอนต์บางส่วน\n "
+                )
+                //set positive button
+                .setPositiveButton("update", DialogInterface.OnClickListener { dialog, i ->
+                    //set what would happen when positive button is clicked
+                    intent = Intent(
+                        Intent.ACTION_VIEW,
+                        Uri.parse("market://details?id=com.alw.android.temca")
+                    )
+                    startActivity(intent)
+                })
+                //set negative button
+//                .setNegativeButton("No", DialogInterface.OnClickListener { dialog, i ->
+//                    //set what should happen when negative button is clicked
+//                    Toast.makeText(applicationContext, "Nothing Happened", Toast.LENGTH_LONG).show()
+//                })
+                .show()
+        }
+
+            if(version < 1.11){
+                println("please update now!")
+                showdialog()
+            }
 //        } catch (e: PackageManager.NameNotFoundException) {
 //            e.printStackTrace()
 //        }
@@ -38,6 +73,10 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+
+
+
 
         //        val sdf = SimpleDateFormat("dd/MM/YYYY")
 //        val dayOfTheWeek = sdf.format(timestamp)

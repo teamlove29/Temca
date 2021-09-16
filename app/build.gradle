@@ -18,8 +18,8 @@ android {
         applicationId "com.alw.android.temca"
         minSdkVersion 21
         targetSdkVersion 30
-        versionCode 8
-        versionName "1.7"
+        versionCode 12
+        versionName "1.11"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }

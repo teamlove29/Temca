@@ -245,17 +245,20 @@ class AmountInRailCableActivity : AppCompatActivity() {
         }
 
 
-        val groundSize1 = if(railSizeList[0].divisor == "1"){
-            "${railSizeList[0].groundSize} mm2"
-        }else{
-            "${railSizeList[0].divisor} ( ${railSizeList[0].groundSize} mm2 )"
-        }
+        val groundSize1 = "${railSizeList[0].groundSize} mm2"
+        val groundSize2 = "${railSizeList[1].groundSize} mm2"
 
-        val groundSize2 = if(railSizeList[1].divisor == "1"){
-            "${railSizeList[1].groundSize} mm2"
-        }else{
-            "${railSizeList[1].divisor} ( ${railSizeList[1].groundSize} mm2 )"
-        }
+//        val groundSize1 = if(railSizeList[0].divisor == "1"){
+//            "${railSizeList[0].groundSize} mm2"
+//        }else{
+//            "${railSizeList[0].divisor} ( ${railSizeList[0].groundSize} mm2 )"
+//        }
+
+//        val groundSize2 = if(railSizeList[1].divisor == "1"){
+//            "${railSizeList[1].groundSize} mm2"
+//        }else{
+//            "${railSizeList[1].divisor} ( ${railSizeList[1].groundSize} mm2 )"
+//        }
 
         dataToReport.add(ReportResultCurrentRatting(
                 phaseTextView.text.toString(), // phase

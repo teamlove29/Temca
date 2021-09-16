@@ -15,8 +15,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Temca"
-        android:versionCode="8"
-        android:versionName="1.7">
+        android:versionCode="12"
+        android:versionName="1.11">
         <activity android:name=".TermsOfUseActivity"></activity>
         <activity android:name=".ui.AmountInRailCable.ReportInCurrentRattingActivity" />
         <activity android:name=".ui.AmountInRailCable.CircuitBreakerInRailsCableActivity" />

@@ -26,11 +26,13 @@ class SizeMoterActivity : AppCompatActivity(), InstallationonClickAdapterListene
         val pantern = unitOfMoterActivity[0].panternStart
         val unit = unitOfMoterActivity[0].unit
 
+
+
         val stepInFor:Int
         val maxRowsheet:Int
         val SizeMoterIndex:Int
             when(phase){
-            "1 เฟส" -> {
+            "1 เฟส 230V" -> {
                 SizeMoterIndex = 0
                 maxRowsheet = 53
                 stepInFor = 4
@@ -61,6 +63,7 @@ class SizeMoterActivity : AppCompatActivity(), InstallationonClickAdapterListene
 
         for(i in 2..maxRowsheet step stepInFor){
             val findAmountTypeInTable = sheetPressure.getCell(columnInTable, i).contents
+            println(phase)
             sizeMoterList.add(SizeMoterModel(findAmountTypeInTable,unit))
         }
         recyclerViewSizeMoter.adapter = SizeMoterAdapter(sizeMoterList,this)
