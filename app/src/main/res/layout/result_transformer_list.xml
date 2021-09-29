@@ -16,9 +16,10 @@
         android:fontFamily="@font/mitr_regular"
         android:textColor="@color/white" />
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="horizontal"
         android:layout_marginTop="5dp">
 
         <TextView
@@ -27,19 +28,28 @@
             android:layout_height="wrap_content"
             android:text="ขนาดสายไฟ"
             android:textSize="16sp"
+            android:autoSizeMaxTextSize="17sp"
+            android:autoSizeMinTextSize="12sp"
+            android:maxLines="1"
             android:fontFamily="@font/mitr_regular"
             android:textColor="@color/white" />
 
         <TextView
+            android:gravity="center_vertical|right"
+            android:layout_gravity="center_vertical"
             android:id="@+id/TextViewTransformerSizeResult1"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
             android:text="2(3x300mm2, 1x150mm2)"
             android:textSize="16sp"
+            android:autoSizeMaxTextSize="17sp"
+            android:autoSizeMinTextSize="12sp"
+            android:maxLines="1"
+            android:autoSizeStepGranularity="2sp"
+            android:autoSizeTextType="uniform"
             android:fontFamily="@font/mitr_regular"
             android:textColor="@color/white" />
-    </RelativeLayout>
+    </LinearLayout>
 
 
         <RelativeLayout

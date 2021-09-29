@@ -98,41 +98,47 @@ android:overScrollMode="never"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <RelativeLayout
+        <LinearLayout
+            android:gravity="center_vertical"
             android:padding="15dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
             <TextView
+                android:layout_weight="1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center_vertical"
                 android:text="กลุ่มการติดตั้ง"
                 android:textSize="16sp"
+                android:maxLines="1"
                 android:fontFamily="@font/mitr_regular"
                 android:textColor="@color/black"
                 android:layout_centerVertical="true"/>
-
             <TextView
                 android:id="@+id/installationTextView"
+                android:layout_weight="1"
+                android:gravity="right|center_vertical"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="35dp"
                 android:layout_marginRight="10dp"
-                android:hint="-"
-                android:textSize="16sp"
-                android:layout_toLeftOf="@+id/iconInstallation"
+                android:text="-"
+                android:autoSizePresetSizes="@array/autosize_text_sizes"
+                android:maxLines="1"
                 android:fontFamily="@font/mitr_regular"
                 android:textColorHint="@color/defaulthint"
-                android:textColor="@color/defaulthint"
-                android:layout_centerVertical="true"/>
+                android:textColor="@color/defaulthint" />
 
             <ImageView
                 android:id="@+id/iconInstallation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_baseline_keyboard_arrow_right_24"
-                android:layout_centerVertical="true"
-                android:layout_alignParentRight="true"/>
+                android:layout_gravity="center_vertical"/>
 
-        </RelativeLayout>
+        </LinearLayout>
+
 
     </androidx.cardview.widget.CardView>
     <!--        WireType-->

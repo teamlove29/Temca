@@ -23,6 +23,7 @@ import com.alw.temca.Common.Common
 import com.alw.temca.Model.DataToMoterReportModel
 import com.alw.temca.Model.DataToTransformerReportModel
 import com.alw.temca.R
+import com.alw.temca.ui.CurrentRating.ReportInCurrentActivity
 import com.itextpdf.text.*
 import com.itextpdf.text.pdf.BaseFont
 import com.itextpdf.text.pdf.PdfWriter
@@ -50,7 +51,7 @@ class MoterReportActivity : AppCompatActivity() {
         setContentView(R.layout.activity_moter_report)
 
         val DataFromMoter = intent.getParcelableArrayListExtra<DataToMoterReportModel>("DataFromMoter")!!
-
+        var stringFilePath:String = Environment.getExternalStorageDirectory().path + "/Download/${resources.getString(R.string.app_name)}" + ReportInCurrentActivity.file_name
 
         if(DataFromMoter[0].resultpressure == "0.00 V ( 0.00% )"){
             drop.visibility = View.GONE
@@ -90,7 +91,7 @@ class MoterReportActivity : AppCompatActivity() {
             .withPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)
             .withListener(object : PermissionListener {
                 override fun onPermissionGranted(p0: PermissionGrantedResponse?) {
-                        createPDFFile(Common.getAppPath(this@MoterReportActivity) + file_name, DataFromMoter) }
+                        createPDFFile(stringFilePath, DataFromMoter) }
                 override fun onPermissionDenied(p0: PermissionDeniedResponse?) {
                     showSettingsDialog()
                     Toast.makeText(
@@ -110,11 +111,7 @@ class MoterReportActivity : AppCompatActivity() {
 
         btnSendEmailInMoterReport.setOnClickListener {
             try {
-                val fileWithinMyDir = File(
-                    Environment.getExternalStorageDirectory().toString()
-                            + File.separator
-                            + applicationContext.resources.getString(R.string.app_name)
-                            + file_name)
+                val fileWithinMyDir = File(stringFilePath)
 
                 val uri = FileProvider.getUriForFile(this, this.getPackageName().toString() + ".fileprovider", fileWithinMyDir)
 

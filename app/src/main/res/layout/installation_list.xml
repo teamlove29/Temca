@@ -39,7 +39,7 @@
             android:layout_below="@+id/textViewInstallationTitle"
             android:text="เดินสายภายในฝ้าเพดานที่เป็นฉนวนความร้อน"
             android:autoSizeTextType="uniform"
-            android:autoSizeMinTextSize="14sp"
+            android:autoSizeMinTextSize="13sp"
             android:autoSizeMaxTextSize="15sp"
             android:autoSizeStepGranularity="2sp"
             android:fontFamily="@font/mitr_regular"

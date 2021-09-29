@@ -23,6 +23,7 @@ import com.alw.temca.Common.ApplicationSelectorReceiver
 import com.alw.temca.Common.Common
 import com.alw.temca.Model.ReportResultWireSize
 import com.alw.temca.R
+import com.alw.temca.ui.CurrentRating.ReportInCurrentActivity
 import com.alw.temca.ui.ElectricalOnePhase.ReportInOnePhaseActivity
 import com.itextpdf.text.*
 import com.itextpdf.text.pdf.BaseFont
@@ -55,6 +56,7 @@ class ReportInThreePhaseActivity : AppCompatActivity() {
 
 
         val DataFromWireSize = intent.getParcelableArrayListExtra<ReportResultWireSize>("DataFromWireSize")!!
+        var stringFilePath:String = Environment.getExternalStorageDirectory().path + "/Download/${resources.getString(R.string.app_name)}" + ReportInCurrentActivity.file_name
 
         textViewResultPhaseInReport.text = DataFromWireSize[0].phase
         textViewResultInstallationInReport.text =  DataFromWireSize[0].installation
@@ -97,9 +99,7 @@ class ReportInThreePhaseActivity : AppCompatActivity() {
             .withListener(object : PermissionListener {
                 override fun onPermissionGranted(p0: PermissionGrantedResponse?) {
                     if (DataFromWireSize.size > 0 ) {
-                        createPDFFile(
-                            Common.getAppPath(this@ReportInThreePhaseActivity) + file_name, DataFromWireSize
-                        )
+                        createPDFFile(stringFilePath, DataFromWireSize)
                     }
                 }
                 override fun onPermissionDenied(p0: PermissionDeniedResponse?) {
@@ -122,12 +122,7 @@ class ReportInThreePhaseActivity : AppCompatActivity() {
 
         btnSendEmailInWireSize.setOnClickListener {
             try {
-                val fileWithinMyDir = File(
-                    Environment.getExternalStorageDirectory().toString()
-                            + File.separator
-                            + applicationContext.resources.getString(R.string.app_name)
-                            + file_name
-                )
+                val fileWithinMyDir = File(stringFilePath)
 
                 val uri = FileProvider.getUriForFile(this, this.packageName.toString() + ".fileprovider", fileWithinMyDir)
                 val sendIntent = Intent(Intent.ACTION_SEND)

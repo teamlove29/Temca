@@ -9,26 +9,29 @@ import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Environment
 import android.provider.Settings
 import android.text.Html
 import android.text.SpannableString
 import android.util.Log
+import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
 import androidx.core.content.FileProvider
 import com.alw.temca.Common.ApplicationSelectorReceiver
 import com.alw.temca.Common.Common
 import com.alw.temca.Model.CurrentRating.ReportResultCurrent
-import com.alw.temca.Model.ReportResultWireSize
 import com.alw.temca.R
 import com.alw.temca.ui.ElectricalOnePhase.ReportInOnePhaseActivity
 import com.itextpdf.text.*
 import com.itextpdf.text.pdf.BaseFont
+import com.itextpdf.text.pdf.PdfReader
 import com.itextpdf.text.pdf.PdfWriter
 import com.itextpdf.text.pdf.draw.LineSeparator
 import com.itextpdf.text.pdf.draw.VerticalPositionMark
+import com.itextpdf.text.pdf.parser.PdfTextExtractor
 import com.karumi.dexter.Dexter
 import com.karumi.dexter.PermissionToken
 import com.karumi.dexter.listener.PermissionDeniedResponse
@@ -40,6 +43,7 @@ import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileOutputStream
 
+
 class ReportInCurrentActivity : AppCompatActivity() {
     companion object{
         val file_name:String = "_result_calculate.pdf"
@@ -49,14 +53,15 @@ class ReportInCurrentActivity : AppCompatActivity() {
 
         lateinit var typeCableInReport:String
         lateinit var phaseInReport:String
+
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_report_in_current)
 
         val dataFromCurrentRating = intent.getParcelableArrayListExtra<ReportResultCurrent>("DataFromCurrentRating")!!
-
-
+        var stringFilePath:String = Environment.getExternalStorageDirectory().path + "/Download/${resources.getString(R.string.app_name)}" + file_name
 
 
         // เฟส
@@ -109,30 +114,46 @@ class ReportInCurrentActivity : AppCompatActivity() {
         textViewReslutMainPhaseInReportCurrent.text = phaseInReport
         textViewResultInstallationInReport.text = groupReport
         textViewReslutMainCableTypeInPipeReport.text = typeCableInReport
-        textViewMainResultInstallationInReport.text = Html.fromHtml(dataFromCurrentRating[0].cableSize.replace("mm2","mm<sup><small>2</small></sup>"))
+        textViewMainResultInstallationInReport.text = Html.fromHtml(
+            dataFromCurrentRating[0].cableSize.replace(
+                "mm2",
+                "mm<sup><small>2</small></sup>"
+            )
+        )
         textViewResultConduitSize.text = dataFromCurrentRating[0].resultCurrentMax
+
+//
+//        ActivityCompat.requestPermissions(
+//            this, arrayOf(
+//                Manifest.permission.WRITE_EXTERNAL_STORAGE,
+//                Manifest.permission.READ_EXTERNAL_STORAGE
+//            ), PackageManager.PERMISSION_GRANTED
+//        )
 
         Dexter.withActivity(this)
                 .withPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)
                 .withListener(object : PermissionListener {
                     override fun onPermissionGranted(p0: PermissionGrantedResponse?) {
-                        if (dataFromCurrentRating.size > 0 ) {
+                        if (dataFromCurrentRating.size > 0) {
                             createPDFFile(
-                                    Common.getAppPath(this@ReportInCurrentActivity) + ReportInOnePhaseActivity.file_name, dataFromCurrentRating
+                                stringFilePath,
+                                dataFromCurrentRating
                             )
                         }
                     }
+
                     override fun onPermissionDenied(p0: PermissionDeniedResponse?) {
                         showSettingsDialog()
                         Toast.makeText(
-                                this@ReportInCurrentActivity,
-                                "Denied Permission",
-                                Toast.LENGTH_LONG
+                            this@ReportInCurrentActivity,
+                            "Denied Permission",
+                            Toast.LENGTH_LONG
                         ).show()
                     }
+
                     override fun onPermissionRationaleShouldBeShown(
-                            p0: PermissionRequest?,
-                            p1: PermissionToken?
+                        p0: PermissionRequest?,
+                        p1: PermissionToken?
                     ) {
                         p1!!.continuePermissionRequest()
                     }
@@ -142,16 +163,21 @@ class ReportInCurrentActivity : AppCompatActivity() {
 
         btnSendEmailInPipeSize.setOnClickListener {
             try {
-                val fileWithinMyDir = File(
-                        Environment.getExternalStorageDirectory().toString()
-                                + File.separator
-                                + applicationContext.resources.getString(R.string.app_name)
-                                + ReportInOnePhaseActivity.file_name)
 
-                val uri = FileProvider.getUriForFile(this, this.getPackageName().toString() + ".fileprovider", fileWithinMyDir)
+                val fileWithinMyDir = File(stringFilePath)
+                val uri = FileProvider.getUriForFile(
+                    this,
+                    this.packageName.toString() + ".fileprovider",
+                    fileWithinMyDir
+                )
                 val sendIntent = Intent(Intent.ACTION_SEND)
                 val receiver = Intent(this, ApplicationSelectorReceiver::class.java)
-                val pendingIntent = PendingIntent.getBroadcast(this, 0, receiver, PendingIntent.FLAG_UPDATE_CURRENT)
+                val pendingIntent = PendingIntent.getBroadcast(
+                    this,
+                    0,
+                    receiver,
+                    PendingIntent.FLAG_UPDATE_CURRENT
+                )
                 sendIntent.type = "*/*"
                 sendIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
                 sendIntent.putExtra(Intent.EXTRA_SUBJECT, "รายงานผลการคำนวณหาขนาดสาย")
@@ -159,11 +185,18 @@ class ReportInCurrentActivity : AppCompatActivity() {
                 sendIntent.putExtra(Intent.EXTRA_STREAM, uri)
 //                startActivityForResult(Intent.createChooser(sendIntent, "SHARE", pendingIntent.intentSender), MY_REQUEST_CODE)
                 val chooser = Intent.createChooser(sendIntent, "Share File")
-                val resInfoList = this.packageManager.queryIntentActivities(chooser, PackageManager.MATCH_DEFAULT_ONLY)
+                val resInfoList = this.packageManager.queryIntentActivities(
+                    chooser,
+                    PackageManager.MATCH_DEFAULT_ONLY
+                )
 
                 for (resolveInfo in resInfoList) {
                     val packageName = resolveInfo.activityInfo.packageName
-                    grantUriPermission(packageName, uri, Intent.FLAG_GRANT_WRITE_URI_PERMISSION or Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                    grantUriPermission(
+                        packageName,
+                        uri,
+                        Intent.FLAG_GRANT_WRITE_URI_PERMISSION or Intent.FLAG_GRANT_READ_URI_PERMISSION
+                    )
                 }
                 startActivity(chooser)
 
@@ -172,18 +205,46 @@ class ReportInCurrentActivity : AppCompatActivity() {
 //                println("Error : $e")
             }
         }
+
+
+//        fun buttonReadPDF(view: View?) {
+//
+//            val fileWithinMyDir = File(
+//                Environment.getExternalStorageDirectory().toString()
+//                        + File.separator
+//                        + applicationContext.resources.getString(R.string.app_name)
+//                        + ReportInOnePhaseActivity.file_name
+//            )
+//
+//            try {
+//                val pdfReader = PdfReader(fileWithinMyDir.path)
+//                val stringParse = PdfTextExtractor.getTextFromPage(pdfReader, 1).trim { it <= ' ' }
+//                pdfReader.close()
+////            textView.setText(stringParse)
+//            } catch (e: Exception) {
+//                e.printStackTrace()
+////            textView.setText("Error in Reading")
+//            }
+//        }
+
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        Log.i("SS", "onActivityResult: $requestCode, $resultCode, " + (data?.toString()
-                ?: "empty intent"))
+        Log.i(
+            "SS", "onActivityResult: $requestCode, $resultCode, " + (data?.toString()
+                ?: "empty intent")
+        )
         if (requestCode == ReportInOnePhaseActivity.MY_REQUEST_CODE) {
-            Toast.makeText(applicationContext, "Success send email",
-                    Toast.LENGTH_SHORT).show()
+            Toast.makeText(
+                applicationContext, "Success send email",
+                Toast.LENGTH_SHORT
+            ).show()
         }else{
-            Toast.makeText(applicationContext, "failed to send email",
-                    Toast.LENGTH_SHORT).show()
+            Toast.makeText(
+                applicationContext, "failed to send email",
+                Toast.LENGTH_SHORT
+            ).show()
         }
         finish() // to end your activity when toast is shown
     }
@@ -214,14 +275,14 @@ class ReportInCurrentActivity : AppCompatActivity() {
 
             // Custom font
             val fontName = BaseFont.createFont(
-                    "assets/sarabun_regular.ttf",
-                    BaseFont.IDENTITY_H,
-                    BaseFont.NOT_EMBEDDED, true
+                "assets/sarabun_regular.ttf",
+                BaseFont.IDENTITY_H,
+                BaseFont.NOT_EMBEDDED, true
             )
             val fontNameBoldStyle = BaseFont.createFont(
-                    "assets/sarabun_medium.ttf",
-                    BaseFont.IDENTITY_H,
-                    BaseFont.NOT_EMBEDDED, true
+                "assets/sarabun_medium.ttf",
+                BaseFont.IDENTITY_H,
+                BaseFont.NOT_EMBEDDED, true
             )
 
             // Add Title to document
@@ -284,22 +345,61 @@ class ReportInCurrentActivity : AppCompatActivity() {
             }
 
 
-            addNewItemWithLeftAndRight(document, "รายงานการคำนวนพิกัดกระแสสายไฟฟ้า", "", titleStyle, detailStyleTitle)
+            addNewItemWithLeftAndRight(
+                document,
+                "รายงานการคำนวนพิกัดกระแสสายไฟฟ้า",
+                "",
+                titleStyle,
+                detailStyleTitle
+            )
             addLineSeperator(document)
             addNewItem(document, "ข้อมูลการใช้งาน", Element.ALIGN_LEFT, headingStyle)
             addLineSpace(document)
-            addItemAndResult(document, "                เฟส : ", phaseInPDF, titleStyleTitle, valueStyle)
+            addItemAndResult(
+                document,
+                "                เฟส : ",
+                phaseInPDF,
+                titleStyleTitle,
+                valueStyle
+            )
             addLineSpace(document)
-            addItemAndResult(document, "                กลุ่มการติดตั้ง : ", groupReport, titleStyleTitle, valueStyle)
+            addItemAndResult(
+                document,
+                "                กลุ่มการติดตั้ง : ",
+                groupReport,
+                titleStyleTitle,
+                valueStyle
+            )
             addLineSpace(document)
-            addItemAndResult(document, "                ชนิดสายไฟฟ้า : ", typeCableInPDF, titleStyleTitle, valueStyle)
+            addItemAndResult(
+                document,
+                "                ชนิดสายไฟฟ้า : ",
+                typeCableInPDF,
+                titleStyleTitle,
+                valueStyle
+            )
             addLineSpace(document)
-            addItemAndResult(document, "                ขนาดสายไฟฟ้า : ", data[0].cableSize, titleStyleTitle, valueStyle)
+            addItemAndResult(
+                document,
+                "                ขนาดสายไฟฟ้า : ",
+                data[0].cableSize,
+                titleStyleTitle,
+                valueStyle
+            )
             addLineSpace(document)
 
             addNewItem(document, "ผลการคำนวน", Element.ALIGN_LEFT, headingStyle)
             addLineSpace(document)
-            addItemAndResult(document, "                พิกัดกระแสไฟฟ้าสูงสุด     ", data[0].resultCurrentMax.replace("mm", "mm2"), titleStyleTitle, valueStyle)
+            addItemAndResult(
+                document,
+                "                พิกัดกระแสไฟฟ้าสูงสุด     ",
+                data[0].resultCurrentMax.replace(
+                    "mm",
+                    "mm2"
+                ),
+                titleStyleTitle,
+                valueStyle
+            )
 
             addLineSpace(document)
             addLineSpace(document)
@@ -314,11 +414,11 @@ class ReportInCurrentActivity : AppCompatActivity() {
 
     @Throws(DocumentException::class)
     fun addNewItemWithLeftAndRight(
-            document: Document,
-            textLeft: String,
-            textRight: String,
-            leftStyle: Font,
-            rightStyle: Font
+        document: Document,
+        textLeft: String,
+        textRight: String,
+        leftStyle: Font,
+        rightStyle: Font
     ) {
         //add Image
         val d = resources.getDrawable(R.drawable.temca_logo_mini)
@@ -364,7 +464,13 @@ class ReportInCurrentActivity : AppCompatActivity() {
 
 
 
-    fun addItemAndResult(document: Document, textLeft: String, textRight: String, leftStyle: Font, rightStyle: Font){
+    fun addItemAndResult(
+        document: Document,
+        textLeft: String,
+        textRight: String,
+        leftStyle: Font,
+        rightStyle: Font
+    ){
         val fractionValues = arrayOf("1/2", "1/4", "3/4")
         val fractionValues2 = arrayOf("\u00BD", "\u00BC", "\u00BE")
         val glue =  Chunk(VerticalPositionMark())
@@ -377,7 +483,12 @@ class ReportInCurrentActivity : AppCompatActivity() {
             if(textRight.indexOf('/') != -1){
                 for(i in 0..2){
                     if(textRight.indexOf(fractionValues[i]) != -1){
-                        p.add(Chunk(textRight.replace(fractionValues[i],fractionValues2[i]), rightStyle))
+                        p.add(
+                            Chunk(
+                                textRight.replace(fractionValues[i], fractionValues2[i]),
+                                rightStyle
+                            )
+                        )
                         break
                     }else if(i == 2) p.add(Chunk(textRight, rightStyle))
                 }
@@ -391,11 +502,15 @@ class ReportInCurrentActivity : AppCompatActivity() {
         val builder: AlertDialog.Builder = AlertDialog.Builder(this)
         builder.setTitle("Need Permissions")
         builder.setMessage("This app needs permission to use this feature. You can grant them in app settings.")
-        builder.setPositiveButton("GOTO SETTINGS", DialogInterface.OnClickListener { dialog, which ->
-            dialog.cancel()
-            openSettings()
-        })
-        builder.setNegativeButton("Cancel", DialogInterface.OnClickListener { dialog, which -> dialog.cancel() })
+        builder.setPositiveButton(
+            "GOTO SETTINGS",
+            DialogInterface.OnClickListener { dialog, which ->
+                dialog.cancel()
+                openSettings()
+            })
+        builder.setNegativeButton(
+            "Cancel",
+            DialogInterface.OnClickListener { dialog, which -> dialog.cancel() })
         builder.show()
     }
     private fun openSettings() {

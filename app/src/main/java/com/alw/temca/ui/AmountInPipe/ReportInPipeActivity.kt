@@ -22,6 +22,7 @@ import com.alw.temca.Common.ApplicationSelectorReceiver
 import com.alw.temca.Common.Common
 import com.alw.temca.Model.AmountInPipe.ResultPipeToReportModel
 import com.alw.temca.R
+import com.alw.temca.ui.CurrentRating.ReportInCurrentActivity
 import com.itextpdf.text.*
 import com.itextpdf.text.pdf.BaseFont
 import com.itextpdf.text.pdf.PdfWriter
@@ -54,14 +55,14 @@ class ReportInPipeActivity : AppCompatActivity() {
         setContentView(R.layout.activity_report_in_pipe)
 
         val resultInPipe = intent.getParcelableExtra<ResultPipeToReportModel>("resultInPipe")
-
+        var stringFilePath:String = Environment.getExternalStorageDirectory().path + "/Download/${resources.getString(R.string.app_name)}" + ReportInCurrentActivity.file_name
 
         Dexter.withActivity(this)
                 .withPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)
                 .withListener(object : PermissionListener {
                     override fun onPermissionGranted(p0: PermissionGrantedResponse?) {
                         if (resultInPipe != null) {
-                            createPDFFile(Common.getAppPath(this@ReportInPipeActivity) + file_name, resultInPipe)
+                            createPDFFile(stringFilePath, resultInPipe)
                         }
                     }
 
@@ -118,11 +119,7 @@ class ReportInPipeActivity : AppCompatActivity() {
 
         btnSendEmailInPipeSize.setOnClickListener {
             try {
-                val fileWithinMyDir = File(
-                        Environment.getExternalStorageDirectory().toString()
-                                + File.separator
-                                + applicationContext.resources.getString(R.string.app_name)
-                                + file_name)
+                val fileWithinMyDir = File(stringFilePath)
 
                 val uri = FileProvider.getUriForFile(this, this.getPackageName().toString() + ".fileprovider", fileWithinMyDir)
 

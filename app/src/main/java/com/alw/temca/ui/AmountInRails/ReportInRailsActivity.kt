@@ -17,6 +17,7 @@ import com.alw.temca.Common.ApplicationSelectorReceiver
 import com.alw.temca.Common.Common
 import com.alw.temca.Model.AmountInRails.ResultRailsToReportModel
 import com.alw.temca.R
+import com.alw.temca.ui.CurrentRating.ReportInCurrentActivity
 import com.itextpdf.text.*
 import com.itextpdf.text.pdf.BaseFont
 import com.itextpdf.text.pdf.PdfWriter
@@ -44,6 +45,7 @@ class ReportInRailsActivity : AppCompatActivity() {
         setContentView(R.layout.activity_report_in_rails)
 
         val resultInRails = intent.getParcelableExtra<ResultRailsToReportModel>("resultInRails")
+        var stringFilePath:String = Environment.getExternalStorageDirectory().path + "/Download/${resources.getString(R.string.app_name)}" + ReportInCurrentActivity.file_name
 
         Dexter.withActivity(this)
                 .withPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)
@@ -51,7 +53,7 @@ class ReportInRailsActivity : AppCompatActivity() {
                     override fun onPermissionGranted(p0: PermissionGrantedResponse?) {
                         if (resultInRails != null) {
                             createPDFFile(
-                                    Common.getAppPath(this@ReportInRailsActivity) + file_name, resultInRails
+                                stringFilePath, resultInRails
                             )
                         }
                     }
@@ -103,11 +105,7 @@ class ReportInRailsActivity : AppCompatActivity() {
 
         btnSendEmailInPipeSize.setOnClickListener {
             try {
-                val fileWithinMyDir = File(
-                        Environment.getExternalStorageDirectory().toString()
-                                + File.separator
-                                + applicationContext.resources.getString(R.string.app_name)
-                                + file_name)
+                val fileWithinMyDir = File(stringFilePath)
 
                 val uri = FileProvider.getUriForFile(this, this.packageName.toString() + ".fileprovider", fileWithinMyDir)
                 val sendIntent = Intent(Intent.ACTION_SEND)

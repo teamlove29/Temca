@@ -30,6 +30,7 @@ import com.alw.temca.Common.ApplicationSelectorReceiver
 import com.alw.temca.Common.Common
 import com.alw.temca.Model.ReportReslutPipeSizeModel
 import com.alw.temca.R
+import com.alw.temca.ui.CurrentRating.ReportInCurrentActivity
 import com.itextpdf.text.*
 import com.itextpdf.text.pdf.BaseFont
 import com.itextpdf.text.pdf.PdfDocument
@@ -65,21 +66,16 @@ class PipeSizeReportActivity : AppCompatActivity() {
 
         val resultPipe = intent.getParcelableExtra<ReportReslutPipeSizeModel>("resultPipeSize") // have not railSize
         val resultMax = intent.getParcelableExtra<ReportReslutPipeSizeModel>("resultMaxCable") // have not amount
+        var stringFilePath:String = Environment.getExternalStorageDirectory().path + "/Download/${resources.getString(R.string.app_name)}" + ReportInCurrentActivity.file_name
 
         Dexter.withActivity(this)
             .withPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)
             .withListener(object : PermissionListener {
                 override fun onPermissionGranted(p0: PermissionGrantedResponse?) {
                     if (resultPipe != null) {
-                        createPDFFile(
-                                Common.getAppPath(this@PipeSizeReportActivity) + file_name,
-                                resultPipe
-                        )
+                        createPDFFile(stringFilePath, resultPipe)
                     } else {
-                        createPDFFile(
-                                Common.getAppPath(this@PipeSizeReportActivity) + file_name,
-                                resultMax
-                        )
+                        createPDFFile(stringFilePath, resultMax)
                     }
 
                 }
@@ -142,11 +138,7 @@ class PipeSizeReportActivity : AppCompatActivity() {
 
         btnSendEmailInPipeSize.setOnClickListener {
             try {
-                val fileWithinMyDir = File(
-                        Environment.getExternalStorageDirectory().toString()
-                                + File.separator
-                                + applicationContext.resources.getString(R.string.app_name)
-                                + file_name)
+                val fileWithinMyDir = File(stringFilePath)
 
 //                val uri = FileProvider.getUriForFile(this, this.packageName.toString() + ".fileprovider", fileWithinMyDir)
 //                val sendIntent = Intent(Intent.ACTION_SEND)

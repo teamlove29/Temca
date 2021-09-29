@@ -2,16 +2,17 @@ package com.alw.temca.ui.CurrentRating
 
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Html
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.alw.temca.Model.CurrentRating.ReportResultCurrent
-import com.alw.temca.Model.TypeCableModel
 import com.alw.temca.R
 import com.alw.temca.ui.ElectricalOnePhase.OnePhaseActivity
 import com.alw.temca.ui.SponsorActivity
+import com.itextpdf.text.pdf.PdfReader
+import com.itextpdf.text.pdf.parser.PdfTextExtractor
 import jxl.Workbook
 import kotlinx.android.synthetic.main.activity_current_rating.*
 import java.io.IOException
@@ -59,23 +60,42 @@ class CurrentRatingActivity : AppCompatActivity() {
     private fun loadData(){
         val sharedPref = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
         val dataOfPhase = sharedPref.getString(TASK_LIST_PREF_KEY_PHASE_IN_CURRENT_RATING, "1 เฟส")
-        val dataOfInstallation = sharedPref.getString(TASK_LIST_PREF_KEY_INSTALLATION_CURRENT_RATING, "กลุ่ม 2")
+        val dataOfInstallation = sharedPref.getString(
+            TASK_LIST_PREF_KEY_INSTALLATION_CURRENT_RATING,
+            "กลุ่ม 2"
+        )
 //        val dataOfTypeCable = if(dataOfInstallation!!.slice(0..6) == "กลุ่ม 5" ){
 //            sharedPref.getString(TASK_LIST_PREF_KEY_TYPE_CABLE_CURRENT_RATING, "NYY") }
 //            else{ sharedPref.getString(TASK_LIST_PREF_KEY_TYPE_CABLE_CURRENT_RATING, "IEC 01") }
-        val dataOfTypeCable = sharedPref.getString(TASK_LIST_PREF_KEY_TYPE_CABLE_CURRENT_RATING, "PVC แกนเดี่ยว")
-        val dataOfSizeCable = sharedPref.getString(TASK_LIST_PREF_KEY_SIZE_CABLE_CURRENT_RATING, "2.5 mm2")
+        val dataOfTypeCable = sharedPref.getString(
+            TASK_LIST_PREF_KEY_TYPE_CABLE_CURRENT_RATING,
+            "PVC แกนเดี่ยว"
+        )
+        val dataOfSizeCable = sharedPref.getString(
+            TASK_LIST_PREF_KEY_SIZE_CABLE_CURRENT_RATING,
+            "2.5 mm2"
+        )
 
         PhaseTextView.text = dataOfPhase
         InstallationTextView.text = dataOfInstallation
         typeCableTextView.text = dataOfTypeCable
-        cableSizeTextView.text =  Html.fromHtml(dataOfSizeCable!!.replace("mm2","mm<sup><small>2</small></sup>"))
+        cableSizeTextView.text =  Html.fromHtml(
+            dataOfSizeCable!!.replace(
+                "mm2",
+                "mm<sup><small>2</small></sup>"
+            )
+        )
 
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_current_rating)
+
+        tableBeforeCalculateInPipe.visibility = View.GONE
+
+
+
     }
 
 
@@ -147,14 +167,16 @@ class CurrentRatingActivity : AppCompatActivity() {
             val XLS = applicationContext.assets.open(getXLS)
             val wb = Workbook.getWorkbook(XLS)
             val sheet = wb.getSheet(findSheetInTableCableSize)            // index
-            val sizeCable = arrayListOf("1 mm2", "1.5 mm2", "2.5 mm2", "4 mm2", "6 mm2",
-                    "10 mm2", "16 mm2", "25 mm2", "35 mm2", "50 mm2", "70 mm2", "95 mm2",
-                    "120 mm2", "150 mm2", "185 mm2", "240 mm2", "300 mm2", "400 mm2", "500 mm2")
+            val sizeCable = arrayListOf(
+                "1 mm2", "1.5 mm2", "2.5 mm2", "4 mm2", "6 mm2",
+                "10 mm2", "16 mm2", "25 mm2", "35 mm2", "50 mm2", "70 mm2", "95 mm2",
+                "120 mm2", "150 mm2", "185 mm2", "240 mm2", "300 mm2", "400 mm2", "500 mm2"
+            )
 
                 sizeCable.forEachIndexed { index, sizeCable  -> // หาขนาดสาย mm2
                     println(cableSizeTextView.text == sizeCable)
-                    if (cableSizeTextView.text.toString().replace("mm2","mm2") == sizeCable){
-                        val dataOfTale = sheet.getCell(colInTable, index+1).contents
+                    if (cableSizeTextView.text.toString().replace("mm2", "mm2") == sizeCable){
+                        val dataOfTale = sheet.getCell(colInTable, index + 1).contents
                         textViewResultMaxCurrent.text = "${dataOfTale} A"
 
                     }
@@ -171,16 +193,16 @@ class CurrentRatingActivity : AppCompatActivity() {
         val intent = Intent(this, ReportInCurrentActivity::class.java)
 
         dataToReport.add(
-                ReportResultCurrent(
-                        PhaseTextView.text.toString(), // phase
-                        InstallationTextView.text.toString(),  // groupinstallation
-                        typeCableTextView.text.toString(), // cableType
-                        cableSizeTextView.text.toString(), // cablesize
-                        textViewResultMaxCurrent.text.toString() // result
-                )// result
+            ReportResultCurrent(
+                PhaseTextView.text.toString(), // phase
+                InstallationTextView.text.toString(),  // groupinstallation
+                typeCableTextView.text.toString(), // cableType
+                cableSizeTextView.text.toString(), // cablesize
+                textViewResultMaxCurrent.text.toString() // result
+            )// result
         )
 
-        intent.putParcelableArrayListExtra("DataFromCurrentRating",dataToReport)
+        intent.putParcelableArrayListExtra("DataFromCurrentRating", dataToReport)
         startActivityForResult(intent, OnePhaseActivity.TASK_NAME_REQUEST_CODE)
         finish()
     }
@@ -195,15 +217,15 @@ class CurrentRatingActivity : AppCompatActivity() {
     }
     fun onclickChooseTypeCable(view: View) {
         val intent = Intent(this, TypeCableInCurrentActivity::class.java)
-        intent.putExtra("Phase",PhaseTextView.text)
-        intent.putExtra("Group",InstallationTextView.text)
+        intent.putExtra("Phase", PhaseTextView.text)
+        intent.putExtra("Group", InstallationTextView.text)
         startActivityForResult(intent, TASK_NAME_REQUEST_CODE)
     }
     fun onClickChooseSizeCable(view: View) {
         val intent = Intent(this, SizeCableInCurrentActivity::class.java)
-        intent.putExtra("Phase",PhaseTextView.text)
-        intent.putExtra("TypeCable",typeCableTextView.text)
-        intent.putExtra("Group",InstallationTextView.text)
+        intent.putExtra("Phase", PhaseTextView.text)
+        intent.putExtra("TypeCable", typeCableTextView.text)
+        intent.putExtra("Group", InstallationTextView.text)
         startActivityForResult(intent, TASK_NAME_REQUEST_CODE)
     }
     fun sponsorOnClick(view: View) {
@@ -227,7 +249,7 @@ class CurrentRatingActivity : AppCompatActivity() {
         if (requestCode == TASK_NAME_REQUEST_CODE){
             if(resultCode == RESULT_OK) {
 
-                val dataPhase = data!!.getIntExtra("dataPhase",0)
+                val dataPhase = data!!.getIntExtra("dataPhase", 0)
                 val dataInstallation = data!!.getStringExtra("dataInstall")
                 val dataInstallationDes = data.getStringExtra("dataInstallDes").toString()
                 val dataTypeCable = data!!.getStringExtra("dataTypeCable")
@@ -267,7 +289,12 @@ class CurrentRatingActivity : AppCompatActivity() {
                     saveData("sizeCable", "1.5 mm2")
                 }
                 if (dataSizeCable != null) {
-                    cableSizeTextView.text = Html.fromHtml(dataSizeCable.replace("mm2","mm<sup><small>2</small></sup>"))
+                    cableSizeTextView.text = Html.fromHtml(
+                        dataSizeCable.replace(
+                            "mm2",
+                            "mm<sup><small>2</small></sup>"
+                        )
+                    )
                     saveData("sizeCable", dataSizeCable)
                 }
 
