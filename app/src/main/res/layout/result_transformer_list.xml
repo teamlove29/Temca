@@ -61,7 +61,7 @@
                 android:id="@+id/TextViewTransformerSizeResult2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="รางขนาด"
+                android:text="ขนาดราง"
                 android:textSize="16sp"
                 android:fontFamily="@font/mitr_regular"
                 android:textColor="@color/white"
