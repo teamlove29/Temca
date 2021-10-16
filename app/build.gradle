@@ -8,7 +8,7 @@ android {
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
 //    packagingOptions {
-//        exclude "META-INF/DEPENDENCIES"
+//        exclude "META-INF/DEPENDENCIES"ะ
 //    }
 //    buildFeatures {
 //        viewBinding true
