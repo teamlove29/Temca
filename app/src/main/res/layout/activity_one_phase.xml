@@ -272,10 +272,11 @@ tools:context=".ui.ElectricalOnePhase.OnePhaseActivity">
                 android:maxLength="4"
                 android:hint="2000"
                 android:fontFamily="@font/mitr_regular"
-                android:layout_toRightOf="@+id/textViewDistance"
                 android:background="@null"
                 android:textColorHint="@color/defaulthint"
                 android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="40dp"
                 />
 
         </RelativeLayout>

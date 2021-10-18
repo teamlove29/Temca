@@ -302,6 +302,7 @@ class MoterActivity : AppCompatActivity() {
                     val calbeGroundIntable = sheet.getCell(7, j).contents // ขนาดสายดินในตาราง
                     val conduitInTable = sheet.getCell(5, j).contents // ขนาดท่อร้อยสายในตาราง
                     val breakerInTable = sheet.getCell(6, i).contents // ขนาดเบรกเกอร์ในตาราง
+                    val circuitInTable = sheet.getCell(10, i).contents // พิกัดกระแสไฟ
                     val cableSizeWithOutX = sheet.getCell(9, j).contents // ขนาดเบรกเกอร์ในตาราง
 
                     if(TextViewCableTypeInMoter.text == checkCableType){
@@ -349,8 +350,11 @@ class MoterActivity : AppCompatActivity() {
                             val amountDeistance = Integer.parseInt(editTextDistanceInMoter.text.toString())
                             if (cableSizeWithOutX == fineCableTypeInTable) { // แก้ cableSize ตัดคำออก
                                 val getreslutInTable = sheetPressure.getCell(phaseIndex, h).contents.toDouble()
-                                println("dasdsad ${getreslutInTable}")
-                                val pullResult = getreslutInTable * Integer.parseInt(breakerInTable.toString().replace(" A", "")) * amountDeistance / 1000 // result
+                                val pullResult = if(TextViewStartPantern.text == "STAR DELTA"){  // result
+                                        (getreslutInTable * (circuitInTable.toDouble()* 0.58 )) * amountDeistance / 1000
+                                }else{
+                                    (getreslutInTable * circuitInTable.toDouble()) * amountDeistance / 1000
+                                }
                                 val PercentPressure  = 100 * pullResult / voteInMoter // result
 
                                 var pullResulttoString = "${"%.2f V".format(pullResult)}"
